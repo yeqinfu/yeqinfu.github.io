@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>CUDA Miner | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="下载CUDA工具1234cd ~wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda-repo-ubuntu1604-9-2-local_9.2.88-1_amd64sudo dpkg -i cuda-repo-ubuntu1604-9-2-local_9.2.88-1_amd64sudo apt">
+<meta name="keywords" content="code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CUDA Miner">
+<meta property="og:url" content="http://yoursite.com/2018/10/12/CUDA Miner/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="下载CUDA工具1234cd ~wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda-repo-ubuntu1604-9-2-local_9.2.88-1_amd64sudo dpkg -i cuda-repo-ubuntu1604-9-2-local_9.2.88-1_amd64sudo apt">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://ws2.sinaimg.cn/large/c1b251b3gy1fwdlto2jz3j20py0790ue.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/large/c1b251b3gy1fwdnsdpi5aj21960933za.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/large/c1b251b3gy1fwdnvz8a56j20uc0fdq4q.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CUDA Miner">
+<meta name="twitter:description" content="下载CUDA工具1234cd ~wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda-repo-ubuntu1604-9-2-local_9.2.88-1_amd64sudo dpkg -i cuda-repo-ubuntu1604-9-2-local_9.2.88-1_amd64sudo apt">
+<meta name="twitter:image" content="http://ws2.sinaimg.cn/large/c1b251b3gy1fwdlto2jz3j20py0790ue.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-CUDA Miner" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CUDA Miner
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h3 id="下载CUDA工具"><a href="#下载CUDA工具" class="headerlink" title="下载CUDA工具"></a>下载CUDA工具</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">wget https://developer.nvidia.com/compute/cuda/9.2/Prod/local_installers/cuda-repo-ubuntu1604-9-2-local_9.2.88-1_amd64</span><br><span class="line">sudo dpkg -i cuda-repo-ubuntu1604-9-2-local_9.2.88-1_amd64</span><br><span class="line">sudo apt-key add /var/cuda-repo-9-2-local/7fa2af80.pub</span><br></pre></td></tr></table></figure>
+<p>第一个文件比较大，大概1G多，命令窗下载会比较大，可能会断了，可以选择拷贝后面的链接部分用浏览器下载，再执行第二个命令解压。</p>
+<p><img src="http://ws2.sinaimg.cn/large/c1b251b3gy1fwdlto2jz3j20py0790ue.jpg" alt="image"></p>
+<p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp; sudo apt-get install cuda</span><br></pre></td></tr></table></figure>
+<p>过程可能有点久，安装完成之后可以在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/</span><br></pre></td></tr></table></figure>
+<p>目录下看到安装的文件，把此文件下的可执行文件夹加入到环境变量中。此步骤主要是为了安装目录下<code>nvcc</code> 这个可执行脚本在编译cuda30需要用到。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=/usr/local/cuda-9.2/bin$&#123;PATH:+:$&#123;PATH&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>中间的cuda-9.2以你下载的驱动文件型号为转移。可以把此命令加入到开机启动的bashrc文件中。</p>
+<h3 id="编译epoch"><a href="#编译epoch" class="headerlink" title="编译epoch"></a>编译epoch</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">git clone https://github.com/aeternity/epoch.git epoch &amp;&amp; cd epoch</span><br><span class="line">git checkout tags/v0.19.0</span><br></pre></td></tr></table></figure>
+<p>下载epoch源码，这里提示说必须下载官方源码，而不能只下载release包，因为release包不包含cuda30，所以之前的动作都是为编译做准备。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd apps/aecuckoo &amp;&amp; make c_src/.git</span><br><span class="line">cd c_src/src &amp;&amp; make libblake2b.so cuda30</span><br><span class="line">cp cuda30 ~/node/lib/aecuckoo-0.1.0/priv/bin</span><br></pre></td></tr></table></figure>
+<p><img src="http://wx1.sinaimg.cn/large/c1b251b3gy1fwdnsdpi5aj21960933za.jpg" alt="image"></p>
+<p>进入这个目录后编译产生的文件cuda30，把它拷贝到我们之前解压的release包node目录下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 更改配置文件</span><br></pre></td></tr></table></figure></p>
+<p>mining:<br>    cuckoo:<br>        miner:<br>            executable: cuda30<br>            extra_args: “”<br>            node_bits: 30<br>            hex_encoded_header: true<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">拷贝成功后，在配置文件中就可以把原来的lean30改成cuda30.然后重启epoch就可以了</span><br><span class="line"></span><br><span class="line">查看GPU使用情况</span><br></pre></td></tr></table></figure></p>
+<p>nvidia-smi<br><code>`</code></p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
+<li><p>所有流程都是在ubuntu电脑，而非虚拟机环境下进行的，我不清楚如何让虚拟机使用宿主机显卡</p>
+</li>
+<li><p>编译cuda30的代码默认是7GB，你的显卡至少要4GB，如果是4GB需要更改代码重新编译，更改的代码如图</p>
+<p><img src="http://wx3.sinaimg.cn/large/c1b251b3gy1fwdnvz8a56j20uc0fdq4q.jpg" alt="image"></p>
+<p>这个mean_nimer.cu中menGB更改为4</p>
+</li>
+<li><p>当使用显卡挖矿时，CPU挖矿就停止了，不能并行挖矿</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/10/12/CUDA Miner/" class="article-date">
+  <time datetime="2018-10-12T14:00:58.000Z" itemprop="datePublished">2018-10-12</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/12/26/Sophia基本语法/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Sophia基本语法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/26/docker方式启动epoch/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">docker方式启动epoch</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

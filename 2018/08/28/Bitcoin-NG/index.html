@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Bitcoin-NG | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="关于Bitcoin-NG的原理，这里结合aeternity测试网的区块和Bitcoin-NG白皮书做一个说明  和比特币不同的是POW共识是用来产生一个Leader，如何标志一个Leader产生呢？如上图最新的块314。这些有序号的块被称为Key Block。Key Block的挖掘旷工在接下来的一段时期（epoch）拥有记账权，也就是产生Micro Block。也就是如上图所示，314的Micr">
+<meta name="keywords" content="block chain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bitcoin-NG">
+<meta property="og:url" content="http://yoursite.com/2018/08/28/Bitcoin-NG/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="关于Bitcoin-NG的原理，这里结合aeternity测试网的区块和Bitcoin-NG白皮书做一个说明  和比特币不同的是POW共识是用来产生一个Leader，如何标志一个Leader产生呢？如上图最新的块314。这些有序号的块被称为Key Block。Key Block的挖掘旷工在接下来的一段时期（epoch）拥有记账权，也就是产生Micro Block。也就是如上图所示，314的Micr">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/c1b251b3gy1fup90bt9f8j20x80f4gq6.jpg">
+<meta property="og:image" content="http://ws1.sinaimg.cn/large/c1b251b3gy1fup93nei6oj20vi0eiaek.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/large/c1b251b3gy1fup8u30bfhj20ct056aah.jpg">
+<meta property="og:image" content="http://ws2.sinaimg.cn/large/c1b251b3gy1fvh0epaq6nj20dr02ot8t.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bitcoin-NG">
+<meta name="twitter:description" content="关于Bitcoin-NG的原理，这里结合aeternity测试网的区块和Bitcoin-NG白皮书做一个说明  和比特币不同的是POW共识是用来产生一个Leader，如何标志一个Leader产生呢？如上图最新的块314。这些有序号的块被称为Key Block。Key Block的挖掘旷工在接下来的一段时期（epoch）拥有记账权，也就是产生Micro Block。也就是如上图所示，314的Micr">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/large/c1b251b3gy1fup90bt9f8j20x80f4gq6.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-Bitcoin-NG" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Bitcoin-NG
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>关于Bitcoin-NG的原理，这里结合<a href="https://explorer.aepps.com/#/" target="_blank" rel="noopener">aeternity测试网</a>的区块和<a href="https://www.usenix.org/system/files/conference/nsdi16/nsdi16-paper-eyal.pdf" target="_blank" rel="noopener">Bitcoin-NG白皮书</a>做一个说明</p>
+<p><img src="http://wx2.sinaimg.cn/large/c1b251b3gy1fup90bt9f8j20x80f4gq6.jpg" alt="img"></p>
+<p>和比特币不同的是POW共识是用来产生一个Leader，如何标志一个Leader产生呢？如上图最新的块314。这些有序号的块被称为Key Block。Key Block的挖掘旷工在接下来的一段时期（epoch）拥有记账权，也就是产生Micro Block。也就是如上图所示，314的Micro Blocks显示为0，但是当我调用智能合约的某个方法的时候，314这个块会产生变化，如下图所示：</p>
+<p><img src="http://ws1.sinaimg.cn/large/c1b251b3gy1fup93nei6oj20vi0eiaek.jpg" alt="image"></p>
+<p>也就是在这个记账时期还没过去的一段时间内，314的旷工拥有持续一段时间的记账。</p>
+<p>每个块都有指向上一个块的hash值，这个值可能是Key Block的hash也可能是Key Block最后一个Micro Block的hash</p>
+<p><img src="http://wx1.sinaimg.cn/large/c1b251b3gy1fup8u30bfhj20ct056aah.jpg" alt="image"></p>
+<p>当A拥有记账权后的一段时间内（这个时间大概是由难度值控制的时间，比如十分钟，可能多或者少）A矿机一直在打包所有的交易，也就是产生Micro Block,这个是没有难度值的块，也就是没有工作量。跟Key Block不一样。当新的KeyBlock产生时候，也就是被全网大部分节点承认后，B（产生新的Key Block的矿机）就可以获取到A的所有交易费用的60%。</p>
+<h3 id="为什么A做的工作要B闯进来46分成？"><a href="#为什么A做的工作要B闯进来46分成？" class="headerlink" title="为什么A做的工作要B闯进来46分成？"></a>为什么A做的工作要B闯进来46分成？</h3><p>这里假设A矿机的算力为α，前一个Key Block的收益比例为r（reader）后一个旷工收益比例为1-r</p>
+<p>假设A私自挖矿（保留最后一个Micro Block,在此基础上挖矿，如果挖到了就获得了全部交易费，如果在没挖到之前被），那么A可以获得完全的收益，但是问题是发布出去的新的Key Block要被承认的概率是多少</p>
+<p>某种程度上，算力比例就是代表收益比例，如果你的算力α=100%那么你的平均收益就是百分百。而如果A私自挖矿，A获得的收益为α，但是A在计算的同时，全网的算力也没有闲着，它们算出的概率为1-α</p>
+<p>为了尽力避免旷工有偷偷保留微块，取得优势获得交易全部费用的想法，必须考虑到让旷工公正的收益大于私下挖矿的收益</p>
+<p><img src="http://ws2.sinaimg.cn/large/c1b251b3gy1fvh0epaq6nj20dr02ot8t.jpg" alt="image"></p>
+<p>左边公式代表旷工私下保留微块获得的收益公式，右边代表及时发布微块的收益，所以中间必须是小于号。</p>
+<p>当旷工决定保留最后微块获得优势后去挖下一个Key Block，就会有两种情况发生，第一种他挖到了，并且公布新的Key Block被全网接受了。那么挖到的收益就可以获得100%的收益，但是被全网接受的概率取决于他的算力在全网的占比</p>
+<blockquote>
+<p>假如他的算力是100% 那么全网就是他自己，假如他的算力占比30%那么被接受的概率就是30%</p>
+</blockquote>
+<p>所以左边等式第一项可以这么理解</p>
+<p>但是他也可能失败，他失败的概率也就是全网其他旷工成功的概率，全网其他旷工成功的收益是(1-α)*(1-r)</p>
+<p>而当前旷工失败之后想要瓜分其他全网旷工的收益也只能是(1-α)<em>(1-r)</em>α</p>
+<p>如果当前旷工及时公布微块，那么他获得的收益就是r</p>
+<blockquote>
+<p>假设如果当前旷工算力很低，而他想隐藏微块，去计算下一个Key Block,那么有很大概率他算出的Key Block会被丢弃，所以这边一定会有一个分界线当它的算力达到一定值，可以大概率控制全网，比特币是50%以上</p>
+</blockquote>
+<p>其实还有很多疑惑，未完待续。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/08/28/Bitcoin-NG/" class="article-date">
+  <time datetime="2018-08-28T09:00:58.000Z" itemprop="datePublished">2018-08-28</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/">block chain</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/08/30/测试网epoch基本使用/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          测试网epoch基本使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/26/区块链高价币种和著名漏洞/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">区块链币种介绍</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

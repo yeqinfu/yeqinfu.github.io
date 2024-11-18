@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>杭电1005 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334package oj;import java.util.Scanner;public class Main_1005 &amp;#123;	public static void main(String[] args) &amp;#123;		Scanner scanner = new Scanne">
+<meta name="keywords" content="杭电">
+<meta property="og:type" content="article">
+<meta property="og:title" content="杭电1005">
+<meta property="og:url" content="http://yoursite.com/2017/01/03/杭电1005/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334package oj;import java.util.Scanner;public class Main_1005 &amp;#123;	public static void main(String[] args) &amp;#123;		Scanner scanner = new Scanne">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="杭电1005">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334package oj;import java.util.Scanner;public class Main_1005 &amp;#123;	public static void main(String[] args) &amp;#123;		Scanner scanner = new Scanne">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-杭电1005" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      杭电1005
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">package oj;</span><br><span class="line"></span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class Main_1005 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		while (true) &#123;</span><br><span class="line">			int a=scanner.nextInt();</span><br><span class="line">			int b=scanner.nextInt();</span><br><span class="line">			int n=scanner.nextInt();</span><br><span class="line">			if (a==0&amp;&amp;b==0&amp;&amp;n==0) &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;else&#123;</span><br><span class="line">				</span><br><span class="line">				System.out.println(fun(a,b,n%49));</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private static int fun(int a,int b,int n)&#123;</span><br><span class="line">		if (n==1) &#123;</span><br><span class="line">			return 1;</span><br><span class="line">		&#125;else if (n==2) &#123;</span><br><span class="line">			return 1;</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			return (a*fun(a, b, n-1)+b*fun(a, b, n-2))%7;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>提交去掉包名和_1005<br>如果不添加％49会堆栈溢出，因为n值过大，</p>
+<blockquote>
+<p>f(n) = (A <em> f(n - 1) + B </em> f(n - 2)) mod 7.<br>从这个公式可以看出，最后每个值的范围是在［0-6］<br>而随着n的增长，值集合会出现周期性变化，周期最大是49，因为f(n-1)取值[0-6],f(n-2)也是，所以前面值的组合是49<br>就是最长周期为49。<br>f(n-1)和f(n-2)是连续的两个数，而两个数的取值都有7种，所以最大周期49，就比如两个连续可能是［0，0］［0，1］但是无论如何<br>这种组合就只有49种，所以一旦f(n-1)和f(n-2)重复了它们后面的一个数也会被固定，f(n)也就被确定了</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/01/03/杭电1005/" class="article-date">
+  <time datetime="2017-01-03T16:27:13.000Z" itemprop="datePublished">2017-01-03</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杭电/">杭电</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/01/04/杭电2035/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          杭电2035
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/03/杭电1004/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">杭电1004</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

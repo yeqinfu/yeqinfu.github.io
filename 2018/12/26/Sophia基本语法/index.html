@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Sophia基本语法 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Sophia基本语法 这是一个强类型的语言  Sophia没有模块，相反有静态合约。  每个合约实例都存在于公链或者状态通道中  合约可以通过 public 关键字声明API供外部调用，外部合约就可以调用它，  合约可以定义本地状态，这个状态必须在合约发布的时候被初始化，在一个叫 init 的初始化函数中，如下 123type state = &amp;#123; value : int &amp;#125;fu">
+<meta name="keywords" content="code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sophia基本语法">
+<meta property="og:url" content="http://yoursite.com/2018/12/26/Sophia基本语法/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="Sophia基本语法 这是一个强类型的语言  Sophia没有模块，相反有静态合约。  每个合约实例都存在于公链或者状态通道中  合约可以通过 public 关键字声明API供外部调用，外部合约就可以调用它，  合约可以定义本地状态，这个状态必须在合约发布的时候被初始化，在一个叫 init 的初始化函数中，如下 123type state = &amp;#123; value : int &amp;#125;fu">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sophia基本语法">
+<meta name="twitter:description" content="Sophia基本语法 这是一个强类型的语言  Sophia没有模块，相反有静态合约。  每个合约实例都存在于公链或者状态通道中  合约可以通过 public 关键字声明API供外部调用，外部合约就可以调用它，  合约可以定义本地状态，这个状态必须在合约发布的时候被初始化，在一个叫 init 的初始化函数中，如下 123type state = &amp;#123; value : int &amp;#125;fu">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-Sophia基本语法" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Sophia基本语法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h3 id="Sophia基本语法"><a href="#Sophia基本语法" class="headerlink" title="Sophia基本语法"></a>Sophia基本语法</h3><ul>
+<li><p>这是一个强类型的语言</p>
+</li>
+<li><p>Sophia没有模块，相反有静态合约。</p>
+</li>
+<li><p>每个合约实例都存在于公链或者状态通道中</p>
+</li>
+<li><p>合约可以通过 public 关键字声明API供外部调用，外部合约就可以调用它，</p>
+</li>
+<li><p>合约可以定义本地状态，这个状态必须在合约发布的时候被初始化，在一个叫 init 的初始化函数中，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type state = &#123; value : int &#125;</span><br><span class="line">function init(val)       = &#123; value = val &#125;</span><br><span class="line">stateful function tick() = put(state&#123; value = state.value + 1 &#125;)</span><br></pre></td></tr></table></figure>
+<p>声明本地状态的变量必须被初始化，并且要更改状态的函数必须声明 stateful 关键字。</p>
+</li>
+<li><p>合约可以继承另一个合约（可以多继承？），继承后，父类合约的 public 方法就会被包含到子类合约中，本地状态也一并继承，但是父类合约的私有方法不能被子类合约调用。</p>
+</li>
+</ul>
+<h4 id="合约基本变量"><a href="#合约基本变量" class="headerlink" title="合约基本变量"></a>合约基本变量</h4><p>通过let绑定变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let greeting = &quot;Hello&quot;</span><br><span class="line">let score = 10</span><br><span class="line">let newScore = 10 + score</span><br><span class="line">let condition = false</span><br></pre></td></tr></table></figure>
+<p>如果要更改变量的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let message = &quot;Hello&quot; // message has value &quot;Hello&quot;</span><br><span class="line">let message = &quot;Bye&quot; // message has value &quot;Bye&quot;</span><br><span class="line">message = &quot;Hola&quot; // Error</span><br></pre></td></tr></table></figure>
+<p>必须要加上 let  才能绑定新的值。这里还有一个，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function main(x : int) = </span><br><span class="line">    let score = 1</span><br><span class="line">    let score = &quot;ddd&quot;</span><br><span class="line">    score</span><br></pre></td></tr></table></figure>
+<p>score  这个变量通过 let 赋值，竟然可以从 int 类型变成 string 类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let score: int = 10</span><br></pre></td></tr></table></figure>
+<p>变量赋值的时候可以指定为 int 类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function main(x : int) = </span><br><span class="line">   let score:int = 1</span><br><span class="line">   let score:string = &quot;ddd&quot;</span><br><span class="line">   score</span><br></pre></td></tr></table></figure>
+<p>变量通过匿名函数赋值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let myInt = (5: int) + (10: int)</span><br><span class="line">let add = (x: int, y: int) : int =&gt; x + y  // this is a function definition</span><br></pre></td></tr></table></figure>
+<p>如上， add 这个变量，通过这个匿名函数赋值的。但是还不知道这个操作的意义在那里。</p>
+<h4 id="变量类型声明"><a href="#变量类型声明" class="headerlink" title="变量类型声明"></a>变量类型声明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type intCoordinates = (int, int, int);</span><br><span class="line">let buddy: intCoordinates = (10, 20, 20);</span><br></pre></td></tr></table></figure>
+<p>一个变量的类型除了是基本类型，还可以是多类型，这边自定义的类型，名字叫 intCoordinates 它是三个int 类型组成的，所以 buddy 在赋值的时候必须传三个整形。多类型还可以缩写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type coordinates(&apos;a) = (&apos;a, &apos;a, &apos;a)</span><br><span class="line">let buddy: coordinates(int) = (10,20,30)</span><br></pre></td></tr></table></figure>
+<p>当然也可以这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">type coordinates(&apos;a) = (&apos;a, &apos;a, &apos;a)</span><br><span class="line">type pp(&apos;a,&apos;b) = (&apos;a,&apos;a,&apos;b,&apos;b)</span><br><span class="line">function main(x : int) = </span><br><span class="line">  let score:int = 1</span><br><span class="line">  let score:string = &quot;ddd&quot;</span><br><span class="line">  let buddy: coordinates(int) = (10,20,30)</span><br><span class="line">  let my: pp(int,string) = (1,1,&quot;aa&quot;,&quot;bb&quot;)</span><br><span class="line">  score</span><br></pre></td></tr></table></figure>
+<h4 id="List类型"><a href="#List类型" class="headerlink" title="List类型"></a>List类型</h4><p> list 类型里面应该只能是同一种类型，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function main(x : int) = </span><br><span class="line">    let xs = [1,2,3,4]</span><br><span class="line">    let xs1 = [&quot;a&quot;,&quot;b&quot;]</span><br><span class="line">    let xs2 = [&quot;a&quot;,1] //error</span><br><span class="line">    1</span><br></pre></td></tr></table></figure>
+<p>往list 添加元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function main(x : int) = </span><br><span class="line">   let xs = [1,2,3,4]</span><br><span class="line">   let xs1 = [2,6]</span><br><span class="line">   let xs2 = 2::xs1</span><br><span class="line">   1</span><br></pre></td></tr></table></figure>
+<p>但是似乎不能通过这个连接符去连接两个list</p>
+<h4 id="Tuple-类型"><a href="#Tuple-类型" class="headerlink" title="Tuple 类型"></a>Tuple 类型</h4><p>如果需要在集合放置不同类型的元素，可以用tuple </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let ageAndName = (24, &quot;Lil&apos; Language&quot;)</span><br><span class="line">let my3dCoordinates = (20.0, 30.5, 100.0)</span><br></pre></td></tr></table></figure>
+<p>还可以这样赋值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let ageAndName: (int, string) = (24, &quot;Lil&apos; Language&quot;)</span><br><span class="line">/* a tuple type alias */</span><br><span class="line">type coord3d = (float, float, float)</span><br><span class="line">let my3dCoordinates: coord3d = (20.0, 30.5, 100.0)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let my3dCoordinates = (20.0, 30.5, 100.0)</span><br><span class="line">let (x, y, z) = my3dCoordinates /* now you&apos;ve retrieved x, y, z */</span><br><span class="line">let (_, y, _) = my3dCoordinates /* now you&apos;ve retrieved y */</span><br></pre></td></tr></table></figure>
+<p>下划线是占位符，代表不需要赋值</p>
+<h4 id="Record-类型"><a href="#Record-类型" class="headerlink" title="Record 类型"></a>Record 类型</h4><p>这种类型类似于C语言的结构体 但是关键字是通过record来声明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">record account = &#123; name    : string,</span><br><span class="line">                     balance : int &#125;</span><br></pre></td></tr></table></figure>
+<p>以上是Record定义，声明之后就可以赋值了，me这个变量在赋值的时候，会自动知道你赋值的是一个account的record类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">record account = &#123; name    : string,</span><br><span class="line">                     balance : int &#125;</span><br><span class="line">  function main(x : int) = </span><br><span class="line">    let me=&#123;name=&quot;haha&quot;,balance=100&#125;</span><br><span class="line">    1</span><br></pre></td></tr></table></figure>
+<p>内部变量的访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let name = me.name</span><br></pre></td></tr></table></figure>
+<p>但是，如果你没有声明这个record编译就不会通过，比如下面这样编译不通过，因为没有声明record</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">contract Identity =</span><br><span class="line">  type state = ()</span><br><span class="line">  function main(x : int) = </span><br><span class="line">    let me=&#123;name=&quot;haha&quot;,balance=100&#125;</span><br><span class="line">    let name=me.name</span><br><span class="line">    1</span><br></pre></td></tr></table></figure>
+<h4 id="map类型"><a href="#map类型" class="headerlink" title="map类型"></a>map类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">contract Identity =</span><br><span class="line">  type state = () </span><br><span class="line">  type accounts = map(string, address)</span><br><span class="line">  function main()=</span><br><span class="line">    let all:accounts=&#123;&#125;</span><br><span class="line">    all[&quot;ddd&quot;]</span><br><span class="line">  function get_balance(a : address, hah : map(address, int)) =</span><br><span class="line">    hah[a]</span><br></pre></td></tr></table></figure>
+<p>如上例子，声明了一个type为accounts的类型，取值的时候直接 all[“ddd”] 取值就可以。</p>
+<h4 id="State"><a href="#State" class="headerlink" title="State"></a>State</h4><p>其实官方教程很多都编译不过去，很多应该都是错的。state这个特殊的变量，合约的状态应该都放在state这个名字的变量中，注意state的类型是一个record类型，关键合约的变量都应该放在state里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">contract Identity =</span><br><span class="line"></span><br><span class="line">  record state = &#123; start_amount : int,</span><br><span class="line">                 start_height : int,</span><br><span class="line">                 dec          : int,</span><br><span class="line">                 beneficiary  : address,</span><br><span class="line">                 sold         : bool &#125;</span><br><span class="line">  function main(x : int) = x</span><br><span class="line">  public function init(beneficiary:address, start:int, decrease:int) : state =</span><br><span class="line">    &#123; start_amount = start,</span><br><span class="line">      start_height = Chain.block_height,</span><br><span class="line">      beneficiary  = beneficiary,</span><br><span class="line">      dec          = decrease,</span><br><span class="line">      sold         = false &#125;</span><br></pre></td></tr></table></figure>
+<p>当我们声明了这个state变量的时候，还必须实现init函数，不然会报错，提示需要init赋值这个state</p>
+<p>当我们队state这个变量进行了一定的定义和初始化之后，在合约的全局中就可以对state这个record类型的变量进行一些隐式赋值，当我们想更改state的内容，那么相关的方法必须声明 stateful 关键字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">contract Identity =</span><br><span class="line"></span><br><span class="line">  record state = &#123; start_amount : int,</span><br><span class="line">                 start_height : int,</span><br><span class="line">                 dec          : int,</span><br><span class="line">                 beneficiary  : address,</span><br><span class="line">                 sold         : bool &#125;</span><br><span class="line"> </span><br><span class="line">  public function init(beneficiary:address, start:int, decrease:int) : state =</span><br><span class="line">    &#123; start_amount = start,</span><br><span class="line">      start_height = Chain.block_height,</span><br><span class="line">      beneficiary  = beneficiary,</span><br><span class="line">      dec          = decrease,</span><br><span class="line">      sold         = false &#125;</span><br><span class="line">  public stateful function main(test:int) =</span><br><span class="line">    put(state&#123;start_amount=test&#125;)</span><br><span class="line">    1</span><br></pre></td></tr></table></figure>
+<p>这里做一个简单的测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">contract Identity =</span><br><span class="line"></span><br><span class="line">  record state = &#123; amount : int &#125;</span><br><span class="line"> </span><br><span class="line">  public function init(x:int) : state =</span><br><span class="line">    &#123; amount = x &#125;</span><br><span class="line">  public stateful function main(test:int) =</span><br><span class="line">    put(state&#123;amount=test&#125;)</span><br><span class="line">    state.amount</span><br><span class="line">  public function main2(test:int)=</span><br><span class="line">    put(state&#123;amount=test&#125;)</span><br><span class="line">    state.amount</span><br></pre></td></tr></table></figure>
+<p>如上代码，我们初始化amount为100，两个函数都对state进行赋值，但是一个有stateful的声明，这里对两个函数进行调用，发现都可以改state的值，我也不知道为什么，我觉得main2应该编译期就报错才对。</p>
+<h4 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if(exp1) exp2 else exp3</span><br><span class="line">let y = if(5&gt;4) true else false</span><br></pre></td></tr></table></figure>
+<p>第二种有点像kotlin哈哈</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">switch (expr0) </span><br><span class="line">        pattern1 =&gt; expr1</span><br><span class="line">        pattern2 =&gt; expr2</span><br><span class="line">        _    =&gt; expr3</span><br></pre></td></tr></table></figure>
+<p>最后一个代表默认走的逻辑</p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public stateful function main(test:int) =</span><br><span class="line">  put(state&#123;amount=test&#125;)</span><br><span class="line">  state.amount</span><br></pre></td></tr></table></figure>
+<p>如上等号后面就是一个函数的体，函数体有严格的作用域范围，函数体必须要有缩进，推进是两个空格，当然一个空格也不报错，但是之后必须是都一个空格，最后一行是返回值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x) =&gt; x + 1</span><br></pre></td></tr></table></figure>
+<p>匿名函数，以上</p>
+<h4 id="异常抛出"><a href="#异常抛出" class="headerlink" title="异常抛出"></a>异常抛出</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abort(reason : string) : &apos;a</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abort(&quot;balance not sufficient&quot;)</span><br></pre></td></tr></table></figure>
+<p>直接输入异常内容后抛出就可以了，异常函数a 应该是一个类似于泛型的意思</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/12/26/Sophia基本语法/" class="article-date">
+  <time datetime="2018-12-26T09:00:58.000Z" itemprop="datePublished">2018-12-26</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2019/01/09/Grin 挖矿/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Grin 挖矿
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/12/CUDA Miner/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CUDA Miner</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

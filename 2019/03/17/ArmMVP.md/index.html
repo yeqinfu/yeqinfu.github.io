@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>ArmsMVP学习 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="项目中用到这个框架，所以需要学习它。理清这几点  这个框架集成了哪些框架，做了什么整合工作 Arms的整体框架逻辑  从我们继承的BaseApplication开始入手  BaseApplication的内容很简单，所有的逻辑都放在AppDelegate中。 AppDelegate123456789101112131415public AppDelegate(@NonNull Context co">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArmsMVP学习">
+<meta property="og:url" content="http://yoursite.com/2019/03/17/ArmMVP.md/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="项目中用到这个框架，所以需要学习它。理清这几点  这个框架集成了哪些框架，做了什么整合工作 Arms的整体框架逻辑  从我们继承的BaseApplication开始入手  BaseApplication的内容很简单，所有的逻辑都放在AppDelegate中。 AppDelegate123456789101112131415public AppDelegate(@NonNull Context co">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1g16659rc6gj20ru0gsmz2.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ArmsMVP学习">
+<meta name="twitter:description" content="项目中用到这个框架，所以需要学习它。理清这几点  这个框架集成了哪些框架，做了什么整合工作 Arms的整体框架逻辑  从我们继承的BaseApplication开始入手  BaseApplication的内容很简单，所有的逻辑都放在AppDelegate中。 AppDelegate123456789101112131415public AppDelegate(@NonNull Context co">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1g16659rc6gj20ru0gsmz2.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-ArmMVP.md" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ArmsMVP学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>项目中用到这个框架，所以需要学习它。理清这几点</p>
+<ul>
+<li>这个框架集成了哪些框架，做了什么整合工作</li>
+<li>Arms的整体框架逻辑</li>
+</ul>
+<p>从我们继承的BaseApplication开始入手</p>
+<p><img src="https://ws1.sinaimg.cn/large/c1b251b3gy1g16659rc6gj20ru0gsmz2.jpg" alt="image"></p>
+<p>BaseApplication的内容很简单，所有的逻辑都放在AppDelegate中。</p>
+<h4 id="AppDelegate"><a href="#AppDelegate" class="headerlink" title="AppDelegate"></a>AppDelegate</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">AppDelegate</span><span class="params">(@NonNull Context context)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//用反射, 将 AndroidManifest.xml 中带有 ConfigModule 标签的 class 转成对象集合（List&lt;ConfigModule&gt;）</span></span><br><span class="line">        <span class="keyword">this</span>.mModules = <span class="keyword">new</span> ManifestParser(context).parse();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//遍历之前获得的集合, 执行每一个 ConfigModule 实现类的某些方法</span></span><br><span class="line">        <span class="keyword">for</span> (ConfigModule <span class="keyword">module</span> : mModules) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//将框架外部, 开发者实现的 Application 的生命周期回调 (AppLifecycles) 存入 mAppLifecycles 集合 (此时还未注册回调)</span></span><br><span class="line">            <span class="keyword">module</span>.injectAppLifecycle(context, mAppLifecycles);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//将框架外部, 开发者实现的 Activity 的生命周期回调 (ActivityLifecycleCallbacks) 存入 mActivityLifecycles 集合 (此时还未注册回调)</span></span><br><span class="line">            <span class="keyword">module</span>.injectActivityLifecycle(context, mActivityLifecycles);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>构造函数加载子工程的配置文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Arms 配置 --&gt;</span><br><span class="line">       &lt;meta-data</span><br><span class="line">               android:name=&quot;com.thread0.demo.app.CalendarConfiguration&quot;</span><br><span class="line">               android:value=&quot;ConfigModule&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>比如以上的配置被加载进去。通过反射得到这个类的实例，这个配置可以多个。必须实现ConfigModule这个接口。    子工程实现的AppLifecycle，ActivityLifecycle在构造函数就被收集到这个AppDelegate代理类中。</p>
+<p>在这个代理类中也是使用了一些注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//注册框架内部已实现的 Activity 生命周期逻辑</span><br><span class="line">   mApplication.registerActivityLifecycleCallbacks(mActivityLifecycle);</span><br><span class="line"></span><br><span class="line">   //注册框架内部已实现的 RxLifecycle 逻辑</span><br><span class="line">   mApplication.registerActivityLifecycleCallbacks(mActivityLifecycleForRxLifecycle);</span><br></pre></td></tr></table></figure>
+<p>mActivityLifecycle，mActivityLifecycleForRxLifecycle这两个变量在这里注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Inject</span><br><span class="line">   @Named(&quot;ActivityLifecycle&quot;)</span><br><span class="line">   protected Application.ActivityLifecycleCallbacks mActivityLifecycle;</span><br><span class="line">   @Inject</span><br><span class="line">   @Named(&quot;ActivityLifecycleForRxLifecycle&quot;)</span><br><span class="line">   protected Application.ActivityLifecycleCallbacks mActivityLifecycleForRxLifecycle;</span><br></pre></td></tr></table></figure>
+<p>以这两个实例为例子，追溯这两个是如何被赋值的。</p>
+<p>被注入的变量都是有一个组件提供接口，也就是DaggerAppComponent对应的工厂类是AppModule</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Binds</span><br><span class="line">   @Named(&quot;ActivityLifecycle&quot;)</span><br><span class="line">   abstract Application.ActivityLifecycleCallbacks bindActivityLifecycle(ActivityLifecycle activityLifecycle);</span><br><span class="line"></span><br><span class="line">   @Binds</span><br><span class="line">   @Named(&quot;ActivityLifecycleForRxLifecycle&quot;)</span><br><span class="line">   abstract Application.ActivityLifecycleCallbacks bindActivityLifecycleForRxLifecycle(ActivityLifecycleForRxLifecycle activityLifecycleForRxLifecycle);</span><br></pre></td></tr></table></figure>
+<p>看到相应的方法，恰好这不是一个@Provides注解，而是一个@Binds注解，这个注解意味着提供的方法可以是一个抽象方法，以bindActivityLifecycle方法为例子，最终提供的是ActivityLifecycle这个最终实现类。点击这个类，可以看到</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ActivityLifecycle</span> <span class="keyword">implements</span> <span class="title">Application</span>.<span class="title">ActivityLifecycleCallbacks</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    AppManager mAppManager;</span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    Application mApplication;</span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    Cache&lt;String, Object&gt; mExtras;</span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    Lazy&lt;FragmentManager.FragmentLifecycleCallbacks&gt; mFragmentLifecycle;</span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    Lazy&lt;List&lt;FragmentManager.FragmentLifecycleCallbacks&gt;&gt; mFragmentLifecycles;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ActivityLifecycle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>看到这个类的构造被打上了注入标签，说明就是这个构造函数被实例化。还发现这个类还依赖其他的注入，以AppManager为例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.activityLifecycleProvider = DoubleCheck.provider(ActivityLifecycle_Factory.create(this.provideAppManagerProvider, this.applicationProvider, this.provideExtrasProvider, this.fragmentLifecycleProvider, this.provideFragmentLifecyclesProvider));</span><br></pre></td></tr></table></figure>
+<p>可以看到这些依赖的注入都是由apt生成代码里面另外提供的。最后看到生成的类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AppModule_ProvideAppManagerFactory</span><br></pre></td></tr></table></figure>
+<p>由实现get方法，这个是Factory接口提供的，也是Provider提供的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public interface Factory&lt;T&gt; extends Provider&lt;T&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>跑远了。。。。</p>
+<p>然后回到AppDelegate，也就是说arms本身就向系统注册了mActivityLifecycle这个用来记录系统的activity的所有生命周期。同时也允许子工程另外添加activityLifecycle这些回调。</p>
+<p>逻辑都在这个代理类中，如果项目不能继承它的baseapp就需要拷贝它的baseapp的代码到我们自己实现的子类中。</p>
+<h4 id="BaseActivity"><a href="#BaseActivity" class="headerlink" title="BaseActivity"></a>BaseActivity</h4><p>这个类的逻辑也很简单。需要看到继承这个基类后需要实现的一些方法。比如setupActivityComponent。</p>
+<p>刚才上面看到了这个框架本身就提供了activity生命周期的回调。ActivityLifecycle</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public void onActivityCreated(Activity activity, Bundle savedInstanceState) &#123;</span><br><span class="line">      //如果 intent 包含了此字段,并且为 true 说明不加入到 list 进行统一管理</span><br><span class="line">      boolean isNotAdd = false;</span><br><span class="line">      if (activity.getIntent() != null)</span><br><span class="line">          isNotAdd = activity.getIntent().getBooleanExtra(AppManager.IS_NOT_ADD_ACTIVITY_LIST, false);</span><br><span class="line"></span><br><span class="line">      if (!isNotAdd)</span><br><span class="line">          mAppManager.addActivity(activity);</span><br><span class="line"></span><br><span class="line">      //配置ActivityDelegate</span><br><span class="line">      if (activity instanceof IActivity) &#123;</span><br><span class="line">          ActivityDelegate activityDelegate = fetchActivityDelegate(activity);</span><br><span class="line">          if (activityDelegate == null) &#123;</span><br><span class="line">              Cache&lt;String, Object&gt; cache = getCacheFromActivity((IActivity) activity);</span><br><span class="line">              activityDelegate = new ActivityDelegateImpl(activity);</span><br><span class="line">              //使用 IntelligentCache.KEY_KEEP 作为 key 的前缀, 可以使储存的数据永久存储在内存中</span><br><span class="line">              //否则存储在 LRU 算法的存储空间中, 前提是 Activity 使用的是 IntelligentCache (框架默认使用)</span><br><span class="line">              cache.put(IntelligentCache.getKeyOfKeep(ActivityDelegate.ACTIVITY_DELEGATE), activityDelegate);</span><br><span class="line">          &#125;</span><br><span class="line">          activityDelegate.onCreate(savedInstanceState);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      registerFragmentCallbacks(activity);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>在这里，判断了是不是实现了IActivity这个接口，来对应匹配ActivityDelegate代理类。而这个代理类的实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void onCreate(@Nullable Bundle savedInstanceState) &#123;</span><br><span class="line">    //如果要使用 EventBus 请将此方法返回 true</span><br><span class="line">    if (iActivity.useEventBus())&#123;</span><br><span class="line">        //注册到事件主线</span><br><span class="line">        EventBusManager.getInstance().register(mActivity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //这里提供 AppComponent 对象给 BaseActivity 的子类, 用于 Dagger2 的依赖注入</span><br><span class="line">    iActivity.setupActivityComponent(ArmsUtils.obtainAppComponentFromContext(mActivity));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>就调用了注册组件的方法。fragment同理。</p>
+<p>现在还差，这些缓存到底有什么作用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2019/03/17/ArmMVP.md/" class="article-date">
+  <time datetime="2019-03-17T14:00:58.000Z" itemprop="datePublished">2019-03-17</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2019/05/17/android-app入口问题/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android-app入口问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/12/Dagger2/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Dagger2入门</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>区块链-MerkleTree | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习笔记，参考 区块每一笔交易都是MerKleTree的节点，最后的Merkle根参与区块的哈希。了解一下什么是MerkleTree HashList Merkle Tree的区别Hash List可以看作一种特殊的Merkle Tree，即树高为2的多叉Merkle Tree 根据以上博客内容可以参考得知哈希树的应用可以用来P2P下载，此外比特币的交易记录也是通过该树完成打包成块，多节点下载的好">
+<meta name="keywords" content="block chain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链-MerkleTree">
+<meta property="og:url" content="http://yoursite.com/2018/06/05/区块链-MerkleTree/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="学习笔记，参考 区块每一笔交易都是MerKleTree的节点，最后的Merkle根参与区块的哈希。了解一下什么是MerkleTree HashList Merkle Tree的区别Hash List可以看作一种特殊的Merkle Tree，即树高为2的多叉Merkle Tree 根据以上博客内容可以参考得知哈希树的应用可以用来P2P下载，此外比特币的交易记录也是通过该树完成打包成块，多节点下载的好">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1fs0cb6uo45j20qd0rg0ty.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1fs0ck7ptttj204c0140nu.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="区块链-MerkleTree">
+<meta name="twitter:description" content="学习笔记，参考 区块每一笔交易都是MerKleTree的节点，最后的Merkle根参与区块的哈希。了解一下什么是MerkleTree HashList Merkle Tree的区别Hash List可以看作一种特殊的Merkle Tree，即树高为2的多叉Merkle Tree 根据以上博客内容可以参考得知哈希树的应用可以用来P2P下载，此外比特币的交易记录也是通过该树完成打包成块，多节点下载的好">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1fs0cb6uo45j20qd0rg0ty.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-区块链-MerkleTree" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      区块链-MerkleTree
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>学习笔记，<a href="https://blog.csdn.net/wo541075754/article/details/54632929" target="_blank" rel="noopener">参考</a></p>
+<p>区块每一笔交易都是MerKleTree的节点，最后的Merkle根参与区块的哈希。了解一下什么是MerkleTree</p>
+<h4 id="HashList-Merkle-Tree的区别"><a href="#HashList-Merkle-Tree的区别" class="headerlink" title="HashList Merkle Tree的区别"></a>HashList Merkle Tree的区别</h4><p>Hash List可以看作一种特殊的Merkle Tree，即树高为2的多叉Merkle Tree</p>
+<p>根据以上博客内容可以参考得知哈希树的应用可以用来P2P下载，此外比特币的交易记录也是通过该树完成打包成块，多节点下载的好处很明显，速度快。</p>
+<p><img src="https://ws1.sinaimg.cn/large/c1b251b3gy1fs0cb6uo45j20qd0rg0ty.jpg" alt="哈希树"></p>
+<p>如图，哈希树的每相邻哈希串联成新的字符串，然后对这个字符串进行哈希得到新的根节点，以此类推最终得到root hash。</p>
+<h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>回顾一下时间复杂度是如何计算的。假设数据块数量为n，那么从底下的节点hash次数就分别为n，n/2,n/4一直到n=1</p>
+<p>此时的计算次数</p>
+<blockquote>
+<p>sum=n+n/2+n/4….+1</p>
+</blockquote>
+<p>很明显呢这是一个等比数列q=1/2</p>
+<p><img src="https://ws1.sinaimg.cn/large/c1b251b3gy1fs0ck7ptttj204c0140nu.jpg" alt="等比求和公式"></p>
+<p>根据求和公式得到</p>
+<blockquote>
+<p>sum=2n*(1-0.5^n)</p>
+</blockquote>
+<p>去掉常量，并且当n趋近于无穷大，0.5^n项为趋近于0，最后</p>
+<blockquote>
+<p>sum=n 时间复杂度为n</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/06/05/区块链-MerkleTree/" class="article-date">
+  <time datetime="2018-06-05T09:00:58.000Z" itemprop="datePublished">2018-06-05</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/">block chain</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/06/05/区块链-拜占庭将军问题/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          区块链-拜占庭将军问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/04/区块链学习大纲/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">区块链学习大纲</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

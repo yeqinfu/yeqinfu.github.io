@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Kotlin泛型函数 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="let1inline fun &amp;lt;T, R&amp;gt; T.let(f: (T) -&amp;gt; R): R = f(this) 方法声明中看出，接受的参数是一个函数f，这个f的入参就是T，返回值就是R。然后let函数的返回值类型为R整个let的方法体就是f(this)。上面这个函数可以改成看的清晰点的： 123inline fun &amp;lt;T, R&amp;gt; T.let(f: (T) -&amp;gt; R)">
+<meta name="keywords" content="code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin泛型函数">
+<meta property="og:url" content="http://yoursite.com/2018/01/23/kotlin泛型函数/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="let1inline fun &amp;lt;T, R&amp;gt; T.let(f: (T) -&amp;gt; R): R = f(this) 方法声明中看出，接受的参数是一个函数f，这个f的入参就是T，返回值就是R。然后let函数的返回值类型为R整个let的方法体就是f(this)。上面这个函数可以改成看的清晰点的： 123inline fun &amp;lt;T, R&amp;gt; T.let(f: (T) -&amp;gt; R)">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin泛型函数">
+<meta name="twitter:description" content="let1inline fun &amp;lt;T, R&amp;gt; T.let(f: (T) -&amp;gt; R): R = f(this) 方法声明中看出，接受的参数是一个函数f，这个f的入参就是T，返回值就是R。然后let函数的返回值类型为R整个let的方法体就是f(this)。上面这个函数可以改成看的清晰点的： 123inline fun &amp;lt;T, R&amp;gt; T.let(f: (T) -&amp;gt; R)">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-kotlin泛型函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kotlin泛型函数
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> T.<span class="title">let</span><span class="params">(f: (<span class="type">T</span>) -&gt; <span class="type">R</span>)</span></span>: R = f(<span class="keyword">this</span>)</span><br></pre></td></tr></table></figure>
+<p>方法声明中看出，接受的参数是一个函数f，这个f的入参就是T，返回值就是R。然后let函数的返回值类型为R整个let的方法体就是f(this)。上面这个函数可以改成看的清晰点的：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> T.<span class="title">let</span><span class="params">(f: (<span class="type">T</span>) -&gt; <span class="type">R</span>)</span></span>: R &#123;</span><br><span class="line">       <span class="keyword">return</span>  f(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在运用let函数的时候可以这样写,入参是大括号的闭包</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> d=Intent()</span><br><span class="line"> <span class="keyword">var</span> re=d?.let(&#123;</span><br><span class="line">            haha(d)</span><br><span class="line">        &#125;)</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">haha</span><span class="params">(i:<span class="type">Intent</span>)</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>lambda简写，第一个中省略小括号，省略小括号并且把闭包放在外面</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re=d?.let()&#123;</span><br><span class="line">            haha(d)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> re=d?.let&#123;</span><br><span class="line">            haha(d)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>闭包默认有一个参数被省略</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re=d?.let()&#123;it-&gt;</span><br><span class="line">            haha(it)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以写成这样,下划线代表参数占位符</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re=d?.let&#123;_-&gt;</span><br><span class="line">           haha(it)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>let函数加？可以让it保证不为空，let函数只有d不为空的时候被执行</p>
+<h3 id="with"><a href="#with" class="headerlink" title="with"></a>with</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> <span class="title">with</span><span class="params">(receiver: <span class="type">T</span>, f: <span class="type">T</span>.() -&gt; <span class="type">R</span>)</span></span>: R = receiver.f()</span><br></pre></td></tr></table></figure>
+<p>with接收一个对象receiver，和一个函数，这个函数会作为这个对象的扩展函数执行。最后返回这个函数的返回值。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f: (T) -&gt; R</span><br><span class="line">f: T.() -&gt; R</span><br></pre></td></tr></table></figure>
+<p>这两个表达式的区别，第一个代表一个方法，名字叫f 参数表示一个T，返回值是R。第二个代表名字叫f，是T的扩展函数，返回值为R。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list: MutableList&lt;String&gt; = mutableListOf(<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>)</span><br><span class="line">  <span class="keyword">val</span> change: Any</span><br><span class="line">  change = with(list) &#123;</span><br><span class="line">      add(<span class="string">"D"</span>)</span><br><span class="line">      add(<span class="string">"E"</span>)</span><br><span class="line">      <span class="keyword">this</span>.add(<span class="string">"F"</span>)</span><br><span class="line">      size</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>简写后，大括号代表拓展函数体，add方法是list的方法，可以加this，也可以不加list，最后一句表达式就是返回值。</p>
+<h3 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> T.<span class="title">apply</span><span class="params">(f: <span class="type">T</span>.() -&gt; <span class="type">Unit</span>)</span></span>: T &#123; f(); <span class="keyword">return</span> <span class="keyword">this</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>apply被定义为T的拓展函数，接受一个扩展函数，返回T本身。和with类似，但是返回的一直都是this，即T</p>
+<h3 id="safeRun"><a href="#safeRun" class="headerlink" title="safeRun"></a>safeRun</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 自定义泛型函数 结合let函数</span></span><br><span class="line"><span class="comment">    * 如果fragement没有被attached到Activity就不执行</span></span><br><span class="line"><span class="comment">    * 这边可以做异步返回的检查工作</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> T.<span class="title">safeRun</span><span class="params">(f: (<span class="type">T</span>) -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (isAdded) &#123;</span><br><span class="line">          f(<span class="keyword">this</span>)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>项目中，会出现一个异步异常，就是如果异步返回的时候fragment已经被销毁，比如多个viewpager迅速切换，这时候在返回的回调函数调用设置界面就会出现异常奔溃，是因为fragment已经没有和activity关联了。所以，自定义了这个扩展函数，使用如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">response?.safeRun &#123;</span><br><span class="line">                     tv_totalKwh.text=it.message.analysisCateSum</span><br><span class="line">                    </span><br><span class="line">                 &#125;</span><br></pre></td></tr></table></figure>
+<p>在这个方法体执行之前，做了不为null的检查和fragment的attched的检查。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/01/23/kotlin泛型函数/" class="article-date">
+  <time datetime="2018-01-23T09:00:58.000Z" itemprop="datePublished">2018-01-23</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/01/23/Kotlin委托模式/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Kotlin委托模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/16/AS的GsonFormat插件变种/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">AS的GsonFormat插件变种</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

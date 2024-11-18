@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>比特币闪电网络原理 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="交易瓶颈解决方案闪电网络参考 比特币最大的瓶颈就是交易瓶颈，每个块大小只有1m，平均每秒7笔交易速度让人诟病，出块时间十分钟，还得六个确认。流通不方便，等同于只有一家银行，外面有一大推的人在排队等待转账。 如果将块大小扩容，比如扩容到一个G之类的方案，对开发和旷工接入成本又会过高，因为当前的完整节点数据库就已经上百G了。一味的扩容肯定也不是好的解决方案，如果接入成本过高就带来了中心化的可能。所以闪">
+<meta name="keywords" content="block chain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="比特币闪电网络原理">
+<meta property="og:url" content="http://yoursite.com/2018/06/27/比特币闪电网络原理/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="交易瓶颈解决方案闪电网络参考 比特币最大的瓶颈就是交易瓶颈，每个块大小只有1m，平均每秒7笔交易速度让人诟病，出块时间十分钟，还得六个确认。流通不方便，等同于只有一家银行，外面有一大推的人在排队等待转账。 如果将块大小扩容，比如扩容到一个G之类的方案，对开发和旷工接入成本又会过高，因为当前的完整节点数据库就已经上百G了。一味的扩容肯定也不是好的解决方案，如果接入成本过高就带来了中心化的可能。所以闪">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1fsplivxq06j20k00m83zh.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1fspputok1tj20hs0b4wen.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="比特币闪电网络原理">
+<meta name="twitter:description" content="交易瓶颈解决方案闪电网络参考 比特币最大的瓶颈就是交易瓶颈，每个块大小只有1m，平均每秒7笔交易速度让人诟病，出块时间十分钟，还得六个确认。流通不方便，等同于只有一家银行，外面有一大推的人在排队等待转账。 如果将块大小扩容，比如扩容到一个G之类的方案，对开发和旷工接入成本又会过高，因为当前的完整节点数据库就已经上百G了。一味的扩容肯定也不是好的解决方案，如果接入成本过高就带来了中心化的可能。所以闪">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1fsplivxq06j20k00m83zh.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-比特币闪电网络原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      比特币闪电网络原理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h3 id="交易瓶颈解决方案"><a href="#交易瓶颈解决方案" class="headerlink" title="交易瓶颈解决方案"></a>交易瓶颈解决方案</h3><h5 id="闪电网络"><a href="#闪电网络" class="headerlink" title="闪电网络"></a>闪电网络</h5><p><a href="https://www.zhihu.com/question/46515457" target="_blank" rel="noopener">参考</a></p>
+<p>比特币最大的瓶颈就是交易瓶颈，每个块大小只有1m，平均每秒7笔交易速度让人诟病，出块时间十分钟，还得六个确认。流通不方便，等同于只有一家银行，外面有一大推的人在排队等待转账。</p>
+<p>如果将块大小扩容，比如扩容到一个G之类的方案，对开发和旷工接入成本又会过高，因为当前的完整节点数据库就已经上百G了。一味的扩容肯定也不是好的解决方案，如果接入成本过高就带来了中心化的可能。所以闪电网络应运而生</p>
+<h5 id="什么是闪电网络"><a href="#什么是闪电网络" class="headerlink" title="什么是闪电网络"></a>什么是闪电网络</h5><p>如果比特币交易是银行记账的话，闪电网络就是支付宝，因为比特币数据库是只增不减，解决最好的方案就是小的交易不上节点，而是转为去类似支付宝一样的地方去结算交易，那么交易记账的压力就会减少很多。</p>
+<p>同理，其实像交易所的币种交易，也类似充当闪电网络的角色，你在交易所的交易是不会被记录到比特币的节点的，只有最后你提现的时候，才会有你和交易所的余额结算的动作。</p>
+<p><img src="https://ws1.sinaimg.cn/large/c1b251b3gy1fsplivxq06j20k00m83zh.jpg" alt></p>
+<h4 id="序列到期可撤销合约RSMC（Revocable-Sequence-Maturity-Contract）"><a href="#序列到期可撤销合约RSMC（Revocable-Sequence-Maturity-Contract）" class="headerlink" title="序列到期可撤销合约RSMC（Revocable Sequence Maturity Contract）"></a>序列到期可撤销合约RSMC（Revocable Sequence Maturity Contract）</h4><p>如果Alice和Bob要交易，那么请他们在闪电网络中建立微双向支付通道，大概的内容如上图。</p>
+<ul>
+<li><p>第一步，Alice和Bob同时转入0.5 btc加入自己各自的签名，输出地址为Alice&amp;Bob，那么这个地址Alice&amp;Bob 就有了1 btc，但是他们两任何一个人都无法将这个1btc转入比特币主链，因为要两个人签名。</p>
+</li>
+<li><p>下方的两个分支（C1a和RD1a是一体的）他们的输入都是Alice&amp;Bob 所以，如果下面的交易执行成功，也只有其中的一个分支是有效的。</p>
+</li>
+<li><p>假设 Alice要退出，她会提出一个Commitment Tx 交易，这个交易包含两条，如图所示，第一条C1a: Alice自己签名了，但是需要Bob也签名，输出是Alice2&amp;Bob 和Bob 分别都是0.5</p>
+<blockquote>
+<p>这里为什么是Alice2&amp;Bob呢？可能是因为在Funding Tx交易中的输入地址是Alice&amp;Bob所以需要做一个区分。而在实际上，我觉得直接Alice&amp;Bob应该也没问题，待验证</p>
+</blockquote>
+</li>
+<li><p>第二条 是需要Alice2 签名和Bob签名并且要seq个确认才能执行的，最后转账地址是Alice0.5</p>
+</li>
+<li><p>假设Alice发起了退出，也就行Commitment Tx 被执行，Bob知道后签名了，也就是同时在C1a和RD1a都签名了。Bob立马得到了0.5，因为如C1a所示，当然，Bob签名之前，会确认自己立马得到的钱是多少才会肯签名</p>
+</li>
+<li><p>RD1a也被签名了，但是需要闪电网络经过确认，也就是seq个确认，之后才会让Alice得到0.5</p>
+</li>
+</ul>
+<p>那么这样下来，如果Alice退出，Bob会立马得到他的钱，但是Alice需要等待，同理Bob退出，Alice也会立马得到。经过确认是为了保证Commitment Tx 的输入是一个有效输入</p>
+<h3 id="交易更新"><a href="#交易更新" class="headerlink" title="交易更新"></a>交易更新</h3><p>以上的Commitment Tx 交易是以两者分配退出为例子，而如果假设Alice要转账给Bob 0.1btc，只要从新提交一个Commitment Tx交易，把C1a的Bob输出改为0.6，而RD1a自己改为0.4就可以了。经过确认后，就完成了两者之间的转账。</p>
+<h3 id="哈希时间锁定合约（HTLC）"><a href="#哈希时间锁定合约（HTLC）" class="headerlink" title="哈希时间锁定合约（HTLC）"></a>哈希时间锁定合约（HTLC）</h3><p><img src="https://ws1.sinaimg.cn/large/c1b251b3gy1fspputok1tj20hs0b4wen.jpg" alt></p>
+<p>如图，如果Alice要转Bob，但是之间没有通道，可以，</p>
+<ul>
+<li>先发一个随机值a给Bob，Bob对随机值进行哈希得到Hash（a）</li>
+<li>Alice发布消息给中间人Charlie，如果知道Hash（a）的原来数字，则可以进行重新分配，</li>
+<li>同理Charlie也如此消息传递，Bob收到后，他知道，原来数字是a，那么Charlie，Bob会重新分配</li>
+<li>Charlie再拿到随机值a后再和Alice分配</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/06/27/比特币闪电网络原理/" class="article-date">
+  <time datetime="2018-06-27T09:00:58.000Z" itemprop="datePublished">2018-06-27</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/">block chain</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/07/05/区块链2.0/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          区块链2.0
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/21/认识比特币/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">认识比特币</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

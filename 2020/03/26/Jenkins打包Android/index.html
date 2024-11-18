@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Jenkins打包Android | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="实现目标 每天下班定时打包 打包后的产物归档 打包后收集，从上一次打包到本次打包的commit记录（也就是要求我们写好commit） 把产物和打包更新日志（commit日志）作为邮件模板内容发送给指定人  脚本步骤 前面添加描述，gitbucket账号配置，定时策略就略过了  执行android脚本   能够执行成功的前提是 环境已经下了Android SDK，SDK tools。并且配置好了AN">
+<meta name="keywords" content="Jenkins">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins打包Android">
+<meta property="og:url" content="http://yoursite.com/2020/03/26/Jenkins打包Android/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="实现目标 每天下班定时打包 打包后的产物归档 打包后收集，从上一次打包到本次打包的commit记录（也就是要求我们写好commit） 把产物和打包更新日志（commit日志）作为邮件模板内容发送给指定人  脚本步骤 前面添加描述，gitbucket账号配置，定时策略就略过了  执行android脚本   能够执行成功的前提是 环境已经下了Android SDK，SDK tools。并且配置好了AN">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://tva3.sinaimg.cn/large/c1b251b3gy1gd76p1giv5j20yv0lw75x.jpg">
+<meta property="og:image" content="https://tvax1.sinaimg.cn/large/c1b251b3gy1gd7a4gd0ufj20yc0843yw.jpg">
+<meta property="og:image" content="https://tva2.sinaimg.cn/large/c1b251b3gy1gd7a7zf08tj20tv05st8w.jpg">
+<meta property="og:image" content="https://tva3.sinaimg.cn/large/c1b251b3gy1gd7afov1moj20x20izdgx.jpg">
+<meta property="og:image" content="https://tva4.sinaimg.cn/large/c1b251b3gy1gd7dhvd0vmj21l00mddi2.jpg">
+<meta property="og:image" content="https://tvax4.sinaimg.cn/large/c1b251b3gy1gd7dlj4mskj211k0oxac0.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/c1b251b3gy1gd7dlunsh7j20uf0i8my8.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jenkins打包Android">
+<meta name="twitter:description" content="实现目标 每天下班定时打包 打包后的产物归档 打包后收集，从上一次打包到本次打包的commit记录（也就是要求我们写好commit） 把产物和打包更新日志（commit日志）作为邮件模板内容发送给指定人  脚本步骤 前面添加描述，gitbucket账号配置，定时策略就略过了  执行android脚本   能够执行成功的前提是 环境已经下了Android SDK，SDK tools。并且配置好了AN">
+<meta name="twitter:image" content="https://tva3.sinaimg.cn/large/c1b251b3gy1gd76p1giv5j20yv0lw75x.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-Jenkins打包Android" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Jenkins打包Android
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h2 id="实现目标"><a href="#实现目标" class="headerlink" title="实现目标"></a>实现目标</h2><ul>
+<li>每天下班定时打包</li>
+<li>打包后的产物归档</li>
+<li>打包后收集，从上一次打包到本次打包的commit记录（也就是要求我们写好commit）</li>
+<li>把产物和打包更新日志（commit日志）作为邮件模板内容发送给指定人</li>
+</ul>
+<h2 id="脚本步骤"><a href="#脚本步骤" class="headerlink" title="脚本步骤"></a>脚本步骤</h2><ul>
+<li><p>前面添加描述，gitbucket账号配置，定时策略就略过了</p>
+</li>
+<li><p>执行android脚本</p>
+<p><img src="https://tva3.sinaimg.cn/large/c1b251b3gy1gd76p1giv5j20yv0lw75x.jpg" alt="image"></p>
+<blockquote>
+<p>能够执行成功的前提是 环境已经下了Android SDK，SDK tools。并且配置好了ANDROID_HOME变量</p>
+</blockquote>
+</li>
+<li><p>产物归档</p>
+<p><img src="https://tvax1.sinaimg.cn/large/c1b251b3gy1gd7a4gd0ufj20yc0843yw.jpg" alt="image"></p>
+<blockquote>
+<p>通过正则提取指定产物</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="邮件配置"><a href="#邮件配置" class="headerlink" title="邮件配置"></a>邮件配置</h2><ul>
+<li>系统管理员配置</li>
+</ul>
+<p><img src="https://tva2.sinaimg.cn/large/c1b251b3gy1gd7a7zf08tj20tv05st8w.jpg" alt="image"></p>
+<blockquote>
+<p>设置系统管理员邮箱</p>
+</blockquote>
+<ul>
+<li><p><a href="https://service.mail.qq.com/cgi-bin/help?subtype=1&amp;&amp;id=28&amp;&amp;no=371" target="_blank" rel="noopener">腾讯邮件SMTP服务配置</a></p>
+<p><img src="https://tva3.sinaimg.cn/large/c1b251b3gy1gd7afov1moj20x20izdgx.jpg" alt="image"></p>
+</li>
+<li><p>填写默认的邮件模板</p>
+</li>
+</ul>
+<p><a href="https://www.jianshu.com/p/67aedb3582c7" target="_blank" rel="noopener">构建邮件模板HTML</a></p>
+<blockquote>
+<p>这个模板内容就包括了最近提交的日志，所以我们提交代码应该以功能开发或修复为提交单元，规范自己的提交格式。提交的记录也是作为阐明我们更新日志的内容</p>
+</blockquote>
+<blockquote>
+<p>具体的构建邮件通知主要靠这个Extended e-mail notification插件，需要jenkins下载这个插件</p>
+<p>这个插件可以帮忙定义发送邮件的内容，和构建结果不同而触发不同的发送方式</p>
+</blockquote>
+<ul>
+<li><p>构建触发</p>
+<p><img src="https://tva4.sinaimg.cn/large/c1b251b3gy1gd7dhvd0vmj21l00mddi2.jpg" alt="image"></p>
+<blockquote>
+<p>邮件发送的触发，这里设置了两个，党打包失败的时候发送邮件给开发，打包成功则发送给默认接受列表</p>
+<p>这个列表在系统配置那边添加，可以添加多个。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="发送邮件"><a href="#发送邮件" class="headerlink" title="发送邮件"></a>发送邮件</h2><p>构建成功后</p>
+<p><img src="https://tvax4.sinaimg.cn/large/c1b251b3gy1gd7dlj4mskj211k0oxac0.jpg" alt="image"></p>
+<p><img src="https://tva1.sinaimg.cn/large/c1b251b3gy1gd7dlunsh7j20uf0i8my8.jpg" alt="image"></p>
+<p>可以大致看到此次构建的一些增量功能信息和产物</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>构建频率设置为每天构建一次，后续大版本更新应该还需要以下功能</p>
+<ul>
+<li><p>构建成功自动发布到蒲公英平台，并邮件通知产品等</p>
+</li>
+<li><p>QQ或者钉钉构建通知机器人</p>
+</li>
+<li><p>单元测试用例加入构建</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2020/03/26/Jenkins打包Android/" class="article-date">
+  <time datetime="2020-03-26T09:00:00.000Z" itemprop="datePublished">2020-03-26</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2020/04/08/Jenkins产物归档并生成二维码/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Jenkins产物归档并生成二维码
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/24/技术博客搭建流程记录/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">技术博客搭建记录</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

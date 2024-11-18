@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>区块链-拜占庭将军问题 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="拜占庭将军问题参考  拜占庭帝国即中世纪的土耳其，拥有巨大的财富，周围10个邻邦垂诞已久，但拜占庭高墙耸立，固若金汤，没有一个单独的邻邦能够成功入侵。任何单个邻邦入侵的都会失败，同时也有可能自身被其他9个邻邦入侵。拜占庭帝国防御能力如此之强，至少要有十个邻邦中的一半以上同时进攻，才有可能攻破。 然而，如果其中的一个或者几个邻邦本身答应好一起进攻，但实际过程出现背叛，那么入侵者可能都会被歼灭。 于是">
+<meta name="keywords" content="block chain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链-拜占庭将军问题">
+<meta property="og:url" content="http://yoursite.com/2018/06/05/区块链-拜占庭将军问题/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="拜占庭将军问题参考  拜占庭帝国即中世纪的土耳其，拥有巨大的财富，周围10个邻邦垂诞已久，但拜占庭高墙耸立，固若金汤，没有一个单独的邻邦能够成功入侵。任何单个邻邦入侵的都会失败，同时也有可能自身被其他9个邻邦入侵。拜占庭帝国防御能力如此之强，至少要有十个邻邦中的一半以上同时进攻，才有可能攻破。 然而，如果其中的一个或者几个邻邦本身答应好一起进攻，但实际过程出现背叛，那么入侵者可能都会被歼灭。 于是">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="区块链-拜占庭将军问题">
+<meta name="twitter:description" content="拜占庭将军问题参考  拜占庭帝国即中世纪的土耳其，拥有巨大的财富，周围10个邻邦垂诞已久，但拜占庭高墙耸立，固若金汤，没有一个单独的邻邦能够成功入侵。任何单个邻邦入侵的都会失败，同时也有可能自身被其他9个邻邦入侵。拜占庭帝国防御能力如此之强，至少要有十个邻邦中的一半以上同时进攻，才有可能攻破。 然而，如果其中的一个或者几个邻邦本身答应好一起进攻，但实际过程出现背叛，那么入侵者可能都会被歼灭。 于是">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-区块链-拜占庭将军问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      区块链-拜占庭将军问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h2 id="拜占庭将军问题"><a href="#拜占庭将军问题" class="headerlink" title="拜占庭将军问题"></a>拜占庭将军问题</h2><p><a href="https://www.jianshu.com/p/5fea30b25f0a" target="_blank" rel="noopener">参考</a></p>
+<blockquote>
+<p>拜占庭帝国即中世纪的土耳其，拥有巨大的财富，周围10个邻邦垂诞已久，但拜占庭高墙耸立，固若金汤，没有一个单独的邻邦能够成功入侵。任何单个邻邦入侵的都会失败，同时也有可能自身被其他9个邻邦入侵。拜占庭帝国防御能力如此之强，至少要有十个邻邦中的一半以上同时进攻，才有可能攻破。</p>
+<p>然而，如果其中的一个或者几个邻邦本身答应好一起进攻，但实际过程出现背叛，那么入侵者可能都会被歼灭。</p>
+<p>于是每一方都小心行事，不敢轻易相信邻国。这就是拜占庭将军问题。</p>
+</blockquote>
+<p>此问题在区块链系统中，就是如何在全网络中的挖矿节点如何达成共识的问题。</p>
+<h4 id="身份确认"><a href="#身份确认" class="headerlink" title="身份确认"></a>身份确认</h4><p>当每个挖矿节点在完成了交易打包（穷举随机数找到合适目标哈希，也就是具有一定难度的哈希，<a href="http://www.yeqinfu.com/2018/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/" target="_blank" rel="noopener">关于区块链难度值</a>）。向全网发送最新账本的时候，要确定发送节点的身份，还有内容是否被篡改。是使用非对称加密，用私钥进行加签名，验证者可以通过公钥校验。</p>
+<h4 id="百分之五十一"><a href="#百分之五十一" class="headerlink" title="百分之五十一"></a>百分之五十一</h4><p>通过非对称加密可以解决将军身份问题，保证消息可靠。但是网络延迟等原因可能导致有两个节点几乎同时完成了工作量证明（找到了目标哈希）向全网发送最新账本的更新，出现了分支，两个消息都覆盖了全网的时候，如果节点a接受了两个最近账本，必须通过比较时间戳对比进行取舍，取最早完成的那个。</p>
+<p>这就类比于两个将军同时发了消息，一个说撤退，一个说进攻。其他将军有了一个方法可以知道哪个将军最先发送了消息，并且共识只听从最早的那个消息。（当然这边的最早是指一个编号，这两个消息应该是同一个编号，但是有一个是产生得比较早）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/06/05/区块链-拜占庭将军问题/" class="article-date">
+  <time datetime="2018-06-05T15:00:00.000Z" itemprop="datePublished">2018-06-05</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/">block chain</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/06/06/区块链-共识机制/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          区块链-共识机制
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/05/区块链-MerkleTree/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">区块链-MerkleTree</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

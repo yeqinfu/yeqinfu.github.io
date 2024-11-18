@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>IPv4掩码学习 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="IP协议网络互连指的是用路由器进行网络互连和路由选择。 IP地址分类，其中ABC类为单播地址（一对一通信）,D多播E保留。 盗图-&amp;gt;    每个IP都由网络号和主机号组成，路由器转发仅仅根据目的主机所连接的网络号来转发分组。实际上的ip地址是标志一个主机和一条链路的接口，当一个主机同时连接到两个网络上时，必须同时具有两个相应的ip，其网络号必须是不同的，这种叫多归属主机，比如路由器。 路由器">
+<meta name="keywords" content="network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IPv4掩码学习">
+<meta property="og:url" content="http://yoursite.com/2017/11/14/IPv4和子网掩码/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="IP协议网络互连指的是用路由器进行网络互连和路由选择。 IP地址分类，其中ABC类为单播地址（一对一通信）,D多播E保留。 盗图-&amp;gt;    每个IP都由网络号和主机号组成，路由器转发仅仅根据目的主机所连接的网络号来转发分组。实际上的ip地址是标志一个主机和一条链路的接口，当一个主机同时连接到两个网络上时，必须同时具有两个相应的ip，其网络号必须是不同的，这种叫多归属主机，比如路由器。 路由器">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://www.educity.cn/article_images/2013-11-04/c38b7890-8795-4d63-acac-7e5e82004889.jpg">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510654581572&di=9ca5edabb0620886a8f04d896a14657a&imgtype=0&src=http%3A%2F%2Fimg1.ph.126.net%2FH82ifJA8ZZ0nojy28Grs_A%3D%3D%2F3375166445837610886.jpg">
+<meta property="og:image" content="http://chuantu.biz/t6/140/1510711865x2043453577.png">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IPv4掩码学习">
+<meta name="twitter:description" content="IP协议网络互连指的是用路由器进行网络互连和路由选择。 IP地址分类，其中ABC类为单播地址（一对一通信）,D多播E保留。 盗图-&amp;gt;    每个IP都由网络号和主机号组成，路由器转发仅仅根据目的主机所连接的网络号来转发分组。实际上的ip地址是标志一个主机和一条链路的接口，当一个主机同时连接到两个网络上时，必须同时具有两个相应的ip，其网络号必须是不同的，这种叫多归属主机，比如路由器。 路由器">
+<meta name="twitter:image" content="http://www.educity.cn/article_images/2013-11-04/c38b7890-8795-4d63-acac-7e5e82004889.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-IPv4和子网掩码" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      IPv4掩码学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h4 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h4><p>网络互连指的是用路由器进行网络互连和路由选择。</p>
+<p>IP地址分类，其中ABC类为单播地址（一对一通信）,D多播E保留。</p>
+<p>盗图-&gt; <img src="http://www.educity.cn/article_images/2013-11-04/c38b7890-8795-4d63-acac-7e5e82004889.jpg" alt="ip"></p>
+<p> <img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1510654581572&amp;di=9ca5edabb0620886a8f04d896a14657a&amp;imgtype=0&amp;src=http%3A%2F%2Fimg1.ph.126.net%2FH82ifJA8ZZ0nojy28Grs_A%3D%3D%2F3375166445837610886.jpg" alt="ip"></p>
+<p>每个IP都由网络号和主机号组成，路由器转发仅仅根据目的主机所连接的网络号来转发分组。实际上的ip地址是标志一个主机和一条链路的接口，当一个主机同时连接到两个网络上时，必须同时具有两个相应的ip，其网络号必须是不同的，这种叫多归属主机，比如路由器。</p>
+<p>路由器在转发ip数据报的时候，目标ip和源ip是始终不变的。但是在它的下一层，链路层的MAC地址却一直在改变。其中填入目标设备的MAC地址，永奥了地址解析协议ARP和逆地址解析协议RARP</p>
+<h5 id="ARP-RARP"><a href="#ARP-RARP" class="headerlink" title="ARP ,RARP"></a>ARP ,RARP</h5><p>就是ip和mac地址的一个转化。每个主机都会维护一个ARP缓存表，记录本网段的各个主机和路由器的ip地址到物理地址的映射表。</p>
+<ul>
+<li>当主机A向主机B发送数据报时候，如果缓存找到B地址，直接填入发送。如果没有，会发送一个ARP请求分组，请求目标主机B，的IP地址对应的MAC地址。</li>
+<li>如果主机B是刚加入本网段，收到请求分组后，就会回复A的ARP请求。</li>
+<li>当主机B不在同一个网段时候，主机A向路由器发出ARP请求，ARP请求报文为路由器的IP地址，收到路由器的MAC地址后，A把IP数据报发到路由器，如果路由器没有主机B的ARP的表项纪录，就会广播ARP，重复类似步骤。</li>
+</ul>
+<h4 id="划分子网构造超网"><a href="#划分子网构造超网" class="headerlink" title="划分子网构造超网"></a>划分子网构造超网</h4><p>单纯两级IP地址不够灵活，为了解决此问题引入子网号字段，变成三级IP地址。</p>
+<ul>
+<li>一个拥有许多物理网络的单位，划分为若干子网后，在本单外以外仍然变现为一个网络</li>
+<li>划分子网的方法是从主机号借用若干作为子网号。主机号相应减少了同样位数。单位内部变为三级IP地址，网络号，子网号，和主机号。</li>
+<li>外网发送的数据报，先根据网络号找到单位的网络路由，单位的路由收到数据报后，根据网络号和子网号找到目的子网，把IP数据报教父给目的主机。</li>
+</ul>
+<blockquote>
+<p>举例B类网址 145.13.0.0，网络号为145.13 ，目标地址为145.13.x.x的数据报都会发送到这个网络的路由R。现在把网络划分为三个子网，假定子网号占8位，因为网络号16位，所以现在主机号只有8位。三个子网分别为145.13.3.0；145.13.7.0和145.13.21.0。在划分后，对外表现还是一个网络。</p>
+</blockquote>
+<h5 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h5><p>当一个数据报的目标地址为145.13.3.10.已经达到这个路由器R，如何转发到子网145.13.3.0呢。此时用到子网掩码。</p>
+<p>当目标地址和子网掩码进行与运算后，就能找到对应子网。路由器查找就更快了，路由表也有子网掩码这一栏。如果一个网络不划分子网，那么该网络的子网掩码就使用默认子网掩码。默认子网掩码的1的位置和网络号长度一致。</p>
+<p>相邻路由在交换信息的时候，必须吧自己的网络子网掩码告诉相邻路由，</p>
+<h5 id="使用子网时分组转发"><a href="#使用子网时分组转发" class="headerlink" title="使用子网时分组转发"></a>使用子网时分组转发</h5><p>子网划分后，路由表必须包含以下三项内容，目标网络地址，子网掩码和下一跳地址。</p>
+<p><img src="http://chuantu.biz/t6/140/1510711865x2043453577.png" alt="tu"></p>
+<p>假定H1给H2发送数据报。</p>
+<ul>
+<li>H2的IP为128.30.33.138。主机H1先用自己所在的网络的子网掩码进行与操作，如果等同于H1的子网号128.30.33.0。则判断为内网，直接交付；然而并不是，128.30.33.138和255.255.255.128与结果是128.30.33.128。所以判断为外网络。交付给路由R1</li>
+<li>R1收到分组后，根据路由表，用子网掩码和分组的目标地址进行与，操作。与的结果和路由表当前行的目的网络地址进行比对，一致。则找到了</li>
+<li>找到后从接口1转发，直接交付H2</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/11/14/IPv4和子网掩码/" class="article-date">
+  <time datetime="2017-11-14T12:00:58.000Z" itemprop="datePublished">2017-11-14</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/">network</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/11/15/两类密码体制/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          两类密码体制
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/02/Android开发艺术探索笔记/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">android开发艺术探索笔记</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

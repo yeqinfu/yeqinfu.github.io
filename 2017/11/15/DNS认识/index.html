@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>认识DNS | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="域名系统（Domain Name System）根域名服务器域名系统是分布式的。根域名服务器是最高层次的域名服务器。他知道所偶有顶级域名服务器的域名和IP地址。如果根域名服务器瘫痪了，那么整个DNS将无法工作，在因特网上共有十三个不同IP地址的根域名服务器。他们的名字是用一个英文字母命名。从a到m。分别是a.rootservers.net, …, m.rootservers.net。但是这并不是说">
+<meta name="keywords" content="network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="认识DNS">
+<meta property="og:url" content="http://yoursite.com/2017/11/15/DNS认识/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="域名系统（Domain Name System）根域名服务器域名系统是分布式的。根域名服务器是最高层次的域名服务器。他知道所偶有顶级域名服务器的域名和IP地址。如果根域名服务器瘫痪了，那么整个DNS将无法工作，在因特网上共有十三个不同IP地址的根域名服务器。他们的名字是用一个英文字母命名。从a到m。分别是a.rootservers.net, …, m.rootservers.net。但是这并不是说">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="认识DNS">
+<meta name="twitter:description" content="域名系统（Domain Name System）根域名服务器域名系统是分布式的。根域名服务器是最高层次的域名服务器。他知道所偶有顶级域名服务器的域名和IP地址。如果根域名服务器瘫痪了，那么整个DNS将无法工作，在因特网上共有十三个不同IP地址的根域名服务器。他们的名字是用一个英文字母命名。从a到m。分别是a.rootservers.net, …, m.rootservers.net。但是这并不是说">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-DNS认识" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      认识DNS
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h4 id="域名系统（Domain-Name-System）"><a href="#域名系统（Domain-Name-System）" class="headerlink" title="域名系统（Domain Name System）"></a>域名系统（Domain Name System）</h4><h5 id="根域名服务器"><a href="#根域名服务器" class="headerlink" title="根域名服务器"></a>根域名服务器</h5><p>域名系统是分布式的。根域名服务器是最高层次的域名服务器。他知道所偶有顶级域名服务器的域名和IP地址。如果根域名服务器瘫痪了，那么整个DNS将无法工作，在因特网上共有十三个不同IP地址的根域名服务器。他们的名字是用一个英文字母命名。从a到m。分别是a.rootservers.net, …, m.rootservers.net。但是这并不是说只有十三个机器。而是十三套装置。根域名服务器并不是直接把待查询的域名直接转换成IP地址。而是告诉本地域名服务器下一步应该找哪个顶级域名服务器进行查询。</p>
+<h5 id="顶级域名服务器"><a href="#顶级域名服务器" class="headerlink" title="顶级域名服务器"></a>顶级域名服务器</h5><p>即TLD服务器，这些域名服务器负责管理在该顶级域名服务器注册的所有二级域名，当收到DNS查询情趣，就该出相应的回答。</p>
+<h5 id="权限域名服务器"><a href="#权限域名服务器" class="headerlink" title="权限域名服务器"></a>权限域名服务器</h5><p>这是负责一个区的域名服务器，当一个权限域名服务器还不能给出最后的查询回答时，就告诉DNS客户下一步改找哪个权限域名服务器。</p>
+<h5 id="本地域名服务器"><a href="#本地域名服务器" class="headerlink" title="本地域名服务器"></a>本地域名服务器</h5><p>当主机发出NDS查询请求时，这个查询清秀报文就发送给本地域名服务器。每一个因特网服务提供者ISP或者一个大学都可以拥有一个本地域名服务器。这种域名服务器也称为默认域名服务器。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/11/15/DNS认识/" class="article-date">
+  <time datetime="2017-11-15T12:00:58.000Z" itemprop="datePublished">2017-11-15</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/">network</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/11/16/java字节码/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          学习java字节码
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/15/两类密码体制/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">两类密码体制</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

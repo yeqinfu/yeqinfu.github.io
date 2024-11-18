@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>多线程生产者消费者 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="多线程生产者消费者生产者消费者模型 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959">
+<meta name="keywords" content="code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多线程生产者消费者">
+<meta property="og:url" content="http://yoursite.com/2017/10/23/多线程生产者消费者/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="多线程生产者消费者生产者消费者模型 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多线程生产者消费者">
+<meta name="twitter:description" content="多线程生产者消费者生产者消费者模型 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-多线程生产者消费者" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      多线程生产者消费者
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>多线程生产者消费者<br><a href="http://www.cnblogs.com/skywang12345/p/3480016.html" target="_blank" rel="noopener">生产者消费者模型</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Demo1.java</span></span><br><span class="line"><span class="comment">// 仓库</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Depot</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> capacity;    <span class="comment">// 仓库的容量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;        <span class="comment">// 仓库的实际数量</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Depot</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">        <span class="keyword">this</span>.size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">produce</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">             <span class="comment">// left 表示“想要生产的数量”(有可能生产量太多，需多此生产)</span></span><br><span class="line">            <span class="keyword">int</span> left = val;</span><br><span class="line">            <span class="keyword">while</span> (left &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// 库存已满时，等待“消费者”消费产品。</span></span><br><span class="line">                <span class="keyword">while</span> (size &gt;= capacity)</span><br><span class="line">                    wait();</span><br><span class="line">                <span class="comment">// 获取“实际生产的数量”(即库存中新增的数量)</span></span><br><span class="line">                <span class="comment">// 如果“库存”+“想要生产的数量”&gt;“总的容量”，则“实际增量”=“总的容量”-“当前容量”。(此时填满仓库)</span></span><br><span class="line">                <span class="comment">// 否则“实际增量”=“想要生产的数量”</span></span><br><span class="line">                <span class="keyword">int</span> inc = (size+left)&gt;capacity ? (capacity-size) : left;</span><br><span class="line">                size += inc;</span><br><span class="line">                left -= inc;</span><br><span class="line">                System.out.printf(<span class="string">"%s produce(%3d) --&gt; left=%3d, inc=%3d, size=%3d\n"</span>, </span><br><span class="line">                        Thread.currentThread().getName(), val, left, inc, size);</span><br><span class="line">                <span class="comment">// 通知“消费者”可以消费了。</span></span><br><span class="line">                notifyAll();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">consume</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// left 表示“客户要消费数量”(有可能消费量太大，库存不够，需多此消费)</span></span><br><span class="line">            <span class="keyword">int</span> left = val;</span><br><span class="line">            <span class="keyword">while</span> (left &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// 库存为0时，等待“生产者”生产产品。</span></span><br><span class="line">                <span class="keyword">while</span> (size &lt;= <span class="number">0</span>)</span><br><span class="line">                    wait();</span><br><span class="line">                <span class="comment">// 获取“实际消费的数量”(即库存中实际减少的数量)</span></span><br><span class="line">                <span class="comment">// 如果“库存”&lt;“客户要消费的数量”，则“实际消费量”=“库存”；</span></span><br><span class="line">                <span class="comment">// 否则，“实际消费量”=“客户要消费的数量”。</span></span><br><span class="line">                <span class="keyword">int</span> dec = (size&lt;left) ? size : left;</span><br><span class="line">                size -= dec;</span><br><span class="line">                left -= dec;</span><br><span class="line">                System.out.printf(<span class="string">"%s consume(%3d) &lt;-- left=%3d, dec=%3d, size=%3d\n"</span>, </span><br><span class="line">                        Thread.currentThread().getName(), val, left, dec, size);</span><br><span class="line">                notifyAll();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"capacity:"</span>+capacity+<span class="string">", actual size:"</span>+size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 生产者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Producer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Depot depot;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Producer</span><span class="params">(Depot depot)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.depot = depot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 消费产品：新建一个线程向仓库中生产产品。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">produce</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                depot.produce(val);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 消费者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Depot depot;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Customer</span><span class="params">(Depot depot)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.depot = depot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 消费产品：新建一个线程从仓库中消费产品。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">consume</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                depot.consume(val);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo1</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">        Depot mDepot = <span class="keyword">new</span> Depot(<span class="number">100</span>);</span><br><span class="line">        Producer mPro = <span class="keyword">new</span> Producer(mDepot);</span><br><span class="line">        Customer mCus = <span class="keyword">new</span> Customer(mDepot);</span><br><span class="line"></span><br><span class="line">        mPro.produce(<span class="number">60</span>);</span><br><span class="line">        mPro.produce(<span class="number">120</span>);</span><br><span class="line">        mCus.consume(<span class="number">90</span>);</span><br><span class="line">        mCus.consume(<span class="number">150</span>);</span><br><span class="line">        mPro.produce(<span class="number">110</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>某一个输出结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Thread-0 produce( 60) --&gt; left=  0, inc= 60, size= 60</span><br><span class="line">Thread-4 produce(110) --&gt; left= 70, inc= 40, size=100</span><br><span class="line">Thread-3 consume(150) &lt;-- left= 50, dec=100, size=  0</span><br><span class="line">Thread-1 produce(120) --&gt; left= 20, inc=100, size=100</span><br><span class="line">Thread-2 consume( 90) &lt;-- left=  0, dec= 90, size= 10</span><br><span class="line">Thread-3 consume(150) &lt;-- left= 40, dec= 10, size=  0</span><br><span class="line">Thread-4 produce(110) --&gt; left=  0, inc= 70, size= 70</span><br><span class="line">Thread-3 consume(150) &lt;-- left=  0, dec= 40, size= 30</span><br><span class="line">Thread-1 produce(120) --&gt; left=  0, inc= 20, size= 50</span><br></pre></td></tr></table></figure>
+<p>某个生产任务可能要中断，消费后再继续生产，因为仓库已经满了，某次消费也可能消费到仓库空了，必须再生产才能继续消费。这种情况，当执行notifyAll，唤醒后，自己进入等待状态。</p>
+<p>输出结果可能会不同，因为每个线程获取锁的概率不一定，正如下面例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        ShareObj obj = <span class="keyword">new</span> ShareObj(<span class="number">5</span>);</span><br><span class="line">        <span class="keyword">new</span> MyThread(obj).start();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">3</span>; i++) &#123;</span><br><span class="line">           TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">new</span> MyThread(obj).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShareObj</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> sec;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ShareObj</span><span class="params">(<span class="keyword">int</span> sec)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.sec = sec;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName());</span><br><span class="line">        TimeUnit.SECONDS.sleep(sec);</span><br><span class="line">        sec = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> ShareObj obj;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyThread</span><span class="params">(ShareObj obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.obj = obj;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            obj.doSomething();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>问题描述：多线程处于就绪状态，当对象锁被释放时，多个线程哪个会先得到对象锁？</p>
+<p><a href="http://bbs.csdn.net/topics/390458387" target="_blank" rel="noopener">问题描述参考</a></p>
+<p><a href="http://blog.csdn.net/chen77716/article/details/6618779" target="_blank" rel="noopener">多线程就绪时获得锁的顺序</a></p>
+<p>每个新请求锁的线程先加入ContentionList队列，该队列后进先出，可以并发访问。</p>
+<p>当Owner线程释放锁的时候，如果发现EntryList为空，则把ContentionList的等待队列放入EntryList，并把EntryList的head指定为OnDeck线程，这就很好的解释了，当上面描述问题中，如果创建线程 时候如果执行了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TimeUnit.SECONDS.sleep(1);</span><br></pre></td></tr></table></figure>
+<p>那么ContentionList必然是一个倒叙输出，就是最后创建的线程先得到锁，我指的是当第一个线程睡眠五秒，然后每秒创建一个线程，共创建三个线程，输出的结果一直都是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Thread-0</span><br><span class="line">Thread-3</span><br><span class="line">Thread-2</span><br><span class="line">Thread-1</span><br></pre></td></tr></table></figure>
+<p>如果你设置睡眠五秒，创建8个线程，每次创建休眠1秒则会得到这个结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Thread-0</span><br><span class="line">Thread-4</span><br><span class="line">Thread-3</span><br><span class="line">Thread-2</span><br><span class="line">Thread-1</span><br><span class="line">Thread-5</span><br><span class="line">Thread-6</span><br><span class="line">Thread-7</span><br><span class="line">Thread-8</span><br></pre></td></tr></table></figure>
+<p>在睡眠五秒内，4 3 2 1被加入到ContionList而后Thread-0线程释放锁后又被移入EntryList，并4线程处于OnDeck状态。后续获得锁的线程必然是 4 3 2 1这个顺序直到EntryList为空。当EntryList的线程的最后一个即1执行完时，ContentList只有一个线程5生成，被移动到EntryList，后续的操作都是恰好保持ContionList和EntryList始终只有一个线程。后续都会顺序输出，不管你创建8个还是20个线程。</p>
+<p>如果在创建线程的时候不执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TimeUnit.SECONDS.sleep(1);</span><br></pre></td></tr></table></figure>
+<p>则，进入ContionList的顺讯随机，因为ContionList可以并发访问，导致顺序不能确定，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/10/23/多线程生产者消费者/" class="article-date">
+  <time datetime="2017-10-23T11:00:58.000Z" itemprop="datePublished">2017-10-23</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/10/24/Lrucache介绍/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          LruCache介绍
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/23/线程同步/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">理解synchronized</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

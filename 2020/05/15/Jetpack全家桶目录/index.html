@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Jetpack全家桶目录 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本着跟随谷歌的脚步，学习一下Jetpack全家桶在项目中的使用。大概使用的框架有这些  Databinding LiveData Navigation Room ViewModel WorkManager ViewPager2  基本上，全家桶全用上。所以这里使用sunflower项目进行一个全家桶最佳实践的学习。不过缺少网络请求部分的内容。Paging分页库也没有。  Sunflower项目 这">
+<meta name="keywords" content="Jetpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jetpack全家桶目录">
+<meta property="og:url" content="http://yoursite.com/2020/05/15/Jetpack全家桶目录/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="本着跟随谷歌的脚步，学习一下Jetpack全家桶在项目中的使用。大概使用的框架有这些  Databinding LiveData Navigation Room ViewModel WorkManager ViewPager2  基本上，全家桶全用上。所以这里使用sunflower项目进行一个全家桶最佳实践的学习。不过缺少网络请求部分的内容。Paging分页库也没有。  Sunflower项目 这">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://tva4.sinaimg.cn/large/c1b251b3gy1gewl2tjup8j21yd20jn60.jpg">
+<meta property="og:image" content="https://tva3.sinaimg.cn/large/c1b251b3gy1getawbk4i6j20kc0dlglz.jpg">
+<meta property="og:image" content="https://tvax1.sinaimg.cn/large/c1b251b3gy1gewl37uxwqj20t50iz3zc.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jetpack全家桶目录">
+<meta name="twitter:description" content="本着跟随谷歌的脚步，学习一下Jetpack全家桶在项目中的使用。大概使用的框架有这些  Databinding LiveData Navigation Room ViewModel WorkManager ViewPager2  基本上，全家桶全用上。所以这里使用sunflower项目进行一个全家桶最佳实践的学习。不过缺少网络请求部分的内容。Paging分页库也没有。  Sunflower项目 这">
+<meta name="twitter:image" content="https://tva4.sinaimg.cn/large/c1b251b3gy1gewl2tjup8j21yd20jn60.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-Jetpack全家桶目录" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Jetpack全家桶目录
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>本着跟随谷歌的脚步，学习一下Jetpack全家桶在项目中的使用。大概使用的框架有这些</p>
+<ul>
+<li>Databinding</li>
+<li>LiveData</li>
+<li>Navigation</li>
+<li>Room</li>
+<li>ViewModel</li>
+<li>WorkManager</li>
+<li>ViewPager2</li>
+</ul>
+<p>基本上，全家桶全用上。所以这里使用sunflower项目进行一个全家桶最佳实践的学习。不过缺少网络请求部分的内容。Paging分页库也没有。</p>
+<p><img src="https://tva4.sinaimg.cn/large/c1b251b3gy1gewl2tjup8j21yd20jn60.jpg" alt="sunflower"></p>
+<h2 id="Sunflower项目"><a href="#Sunflower项目" class="headerlink" title="Sunflower项目"></a>Sunflower项目</h2>
+<p>这个项目采用全Kotlin编写，使用Jetpack全家桶，因为使用Navigation是属于单Ativity多Fragment的项目。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GardenActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView&lt;ActivityGardenBinding&gt;(<span class="keyword">this</span>, R.layout.activity_garden)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主Activity很简单，就一个设置布局。布局包含一个Navigation的根</p>
+<h3 id="Navigation导航图简单介绍"><a href="#Navigation导航图简单介绍" class="headerlink" title="Navigation导航图简单介绍"></a>Navigation导航图简单介绍</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;layout</span><br><span class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;FrameLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;fragment</span><br><span class="line">            android:id=&quot;@+id/nav_host&quot;</span><br><span class="line">            android:name=&quot;androidx.navigation.fragment.NavHostFragment&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            app:defaultNavHost=&quot;true&quot;</span><br><span class="line">            app:navGraph=&quot;@navigation/nav_garden&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/FrameLayout&gt;</span><br><span class="line"></span><br><span class="line">&lt;/layout&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>layout这个标签是属于databinding的范畴。navigation需要一个默认的navHost这里可以看到指向nav_garden这个导航图</p>
+</blockquote>
+<p>导航图描述的是多个Fragment之间的跳转关系，他帮助我们处理Fragment的事务，还有跳转动画，跳转传参定义。搭配ViewModel就可以实现多个Fragment的数据共享，不用说里面的Fragment更新了数据还需要EventBus通知一下外部的Fragment进行刷新。</p>
+<p><img src="https://tva3.sinaimg.cn/large/c1b251b3gy1getawbk4i6j20kc0dlglz.jpg" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">  ~ Copyright 2018 Google LLC</span><br><span class="line">  ~</span><br><span class="line">  ~ Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span><br><span class="line">  ~ you may not use this file except in compliance with the License.</span><br><span class="line">  ~ You may obtain a copy of the License at</span><br><span class="line">  ~</span><br><span class="line">  ~     https://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line">  ~</span><br><span class="line">  ~ Unless required by applicable law or agreed to in writing, software</span><br><span class="line">  ~ distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line">  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line">  ~ See the License for the specific language governing permissions and</span><br><span class="line">  ~ limitations under the License.</span><br><span class="line">  --&gt;</span><br><span class="line"></span><br><span class="line">&lt;navigation xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    app:startDestination=&quot;@id/view_pager_fragment&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=&quot;@+id/view_pager_fragment&quot;</span><br><span class="line">        android:name=&quot;com.google.samples.apps.sunflower.HomeViewPagerFragment&quot;</span><br><span class="line">        tools:layout=&quot;@layout/fragment_view_pager&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;action</span><br><span class="line">                android:id=&quot;@+id/action_view_pager_fragment_to_plant_detail_fragment&quot;</span><br><span class="line">                app:destination=&quot;@id/plant_detail_fragment&quot;</span><br><span class="line">                app:enterAnim=&quot;@anim/slide_in_right&quot;</span><br><span class="line">                app:exitAnim=&quot;@anim/slide_out_left&quot;</span><br><span class="line">                app:popEnterAnim=&quot;@anim/slide_in_left&quot;</span><br><span class="line">                app:popExitAnim=&quot;@anim/slide_out_right&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/fragment&gt;</span><br><span class="line"></span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=&quot;@+id/plant_detail_fragment&quot;</span><br><span class="line">        android:name=&quot;com.google.samples.apps.sunflower.PlantDetailFragment&quot;</span><br><span class="line">        android:label=&quot;@string/plant_details_title&quot;</span><br><span class="line">        tools:layout=&quot;@layout/fragment_plant_detail&quot;&gt;</span><br><span class="line">        &lt;argument</span><br><span class="line">            android:name=&quot;plantId&quot;</span><br><span class="line">            app:argType=&quot;string&quot; /&gt;</span><br><span class="line">    &lt;/fragment&gt;</span><br><span class="line"></span><br><span class="line">&lt;/navigation&gt;</span><br></pre></td></tr></table></figure>
+<p>导航图，描述了一个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app:startDestination=&quot;@id/view_pager_fragment&quot;</span><br></pre></td></tr></table></figure>
+<p>起点是一个viewpagerfragment也就是HomeViewPagerFragment 定义了一些动画，并且支持跳转到PlantDetailFragment ，通过下面的属性进行声明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app:destination=&quot;@id/plant_detail_fragment&quot;</span><br></pre></td></tr></table></figure>
+<p>导航图的制作，是面向图形界面友好的。可以通过图形操作进行一个导航图编辑。</p>
+<h4 id="定义了导航图之后，怎么用？"><a href="#定义了导航图之后，怎么用？" class="headerlink" title="定义了导航图之后，怎么用？"></a>定义了导航图之后，怎么用？</h4><p>当我们定义了一个导航图之后，系统会生成fragment的跳转代码，不用我们提交fragment replace事务。</p>
+<p>对应上面导航图，生成了一个类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class HomeViewPagerFragmentDirections private constructor() &#123;</span><br><span class="line">  private data class ActionViewPagerFragmentToPlantDetailFragment(</span><br><span class="line">    val plantId: String</span><br><span class="line">  ) : NavDirections &#123;</span><br><span class="line">    override fun getActionId(): Int = R.id.action_view_pager_fragment_to_plant_detail_fragment</span><br><span class="line"></span><br><span class="line">    override fun getArguments(): Bundle &#123;</span><br><span class="line">      val result = Bundle()</span><br><span class="line">      result.putString(&quot;plantId&quot;, this.plantId)</span><br><span class="line">      return result</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  companion object &#123;</span><br><span class="line">    fun actionViewPagerFragmentToPlantDetailFragment(plantId: String): NavDirections =</span><br><span class="line">        ActionViewPagerFragmentToPlantDetailFragment(plantId)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>导航图中，HomeViewPagerFragment有多少个目的地，这里就会相应生成。跳转代码</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> direction =</span><br><span class="line">               HomeViewPagerFragmentDirections.actionViewPagerFragmentToPlantDetailFragment(</span><br><span class="line">                   plant.plantId</span><br><span class="line">               )</span><br><span class="line">           view.findNavController().navigate(direction)</span><br></pre></td></tr></table></figure>
+<h3 id="HomeViewPagerFragment"><a href="#HomeViewPagerFragment" class="headerlink" title="HomeViewPagerFragment"></a>HomeViewPagerFragment</h3><p>主Activity设置了默认起点是HomeViewPagerFragment，所以这里看这个类用到什么东西</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeViewPagerFragment</span> : <span class="type">Fragment</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreateView</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        inflater: <span class="type">LayoutInflater</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">        container: <span class="type">ViewGroup</span>?,</span></span></span><br><span class="line"><span class="function"><span class="params">        savedInstanceState: <span class="type">Bundle</span>?</span></span></span><br><span class="line"><span class="function"><span class="params">    )</span></span>: View? &#123;</span><br><span class="line">        <span class="keyword">val</span> binding = FragmentViewPagerBinding.inflate(inflater, container, <span class="literal">false</span>)</span><br><span class="line">        <span class="keyword">val</span> tabLayout = binding.tabs</span><br><span class="line">        <span class="keyword">val</span> viewPager = binding.viewPager</span><br><span class="line"></span><br><span class="line">        viewPager.adapter = SunflowerPagerAdapter(<span class="keyword">this</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Set the icon and text for each tab</span></span><br><span class="line">        TabLayoutMediator(tabLayout, viewPager) &#123; tab, position -&gt;</span><br><span class="line">            tab.setIcon(getTabIcon(position))</span><br><span class="line">            tab.text = getTabTitle(position)</span><br><span class="line">        &#125;.attach()</span><br><span class="line"></span><br><span class="line">        (activity <span class="keyword">as</span> AppCompatActivity).setSupportActionBar(binding.toolbar)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> binding.root</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">getTabIcon</span><span class="params">(position: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">when</span> (position) &#123;</span><br><span class="line">            MY_GARDEN_PAGE_INDEX -&gt; R.drawable.garden_tab_selector</span><br><span class="line">            PLANT_LIST_PAGE_INDEX -&gt; R.drawable.plant_list_tab_selector</span><br><span class="line">            <span class="keyword">else</span> -&gt; <span class="keyword">throw</span> IndexOutOfBoundsException()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">getTabTitle</span><span class="params">(position: <span class="type">Int</span>)</span></span>: String? &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">when</span> (position) &#123;</span><br><span class="line">            MY_GARDEN_PAGE_INDEX -&gt; getString(R.string.my_garden_title)</span><br><span class="line">            PLANT_LIST_PAGE_INDEX -&gt; getString(R.string.plant_list_title)</span><br><span class="line">            <span class="keyword">else</span> -&gt; <span class="literal">null</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个Fragment也是使用过Databinding来绑定ViewModel和layout的内容设定。</p>
+<blockquote>
+<p>fragment的layout名字为 fragment_view_pager.xml使用databinding生成一个类FragmentViewPagerBinding 用来绑定xml中声明的元素和代码之间的联系</p>
+</blockquote>
+<h4 id="ViewPager2"><a href="#ViewPager2" class="headerlink" title="ViewPager2"></a>ViewPager2</h4><p>HomeViewPagerFragment 内容部分是一个<a href="https://github.com/android/views-widgets-samples/tree/master/ViewPager2" target="_blank" rel="noopener">ViewPager2</a></p>
+<p>新特性：</p>
+<ul>
+<li><p>支持从右到左布局</p>
+<blockquote>
+<p>需要 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; &lt;application    android:icon=&quot;@drawable/app_sample_code&quot;    android:label=&quot;@string/activity_sample_code&quot;    android:supportsRtl=&quot;true&quot;    android:theme=&quot;@style/Theme.AppCompat.Light&quot;&gt;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; &lt;androidx.viewpager2.widget.ViewPager2    android:layoutDirection=&quot;rtl&quot;    android:id=&quot;@+id/viewPager&quot;    android:layout_width=&quot;match_parent&quot;    android:layout_height=&quot;match_parent&quot;/&gt;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>设置支持</p>
+</blockquote>
+</li>
+<li><p>支持从上到下的滚动，垂直滚动</p>
+</li>
+<li><p>滚动动画特效</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ViewPager2.PageTransformer</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h4 id="TabLayoutMediator"><a href="#TabLayoutMediator" class="headerlink" title="TabLayoutMediator"></a>TabLayoutMediator</h4><p>ViewPager2无法和 Tablayout直接绑定使用这个类来完成绑定，完成联动。</p>
+<h4 id="CollapsingToolbarLayout"><a href="#CollapsingToolbarLayout" class="headerlink" title="CollapsingToolbarLayout"></a>CollapsingToolbarLayout</h4><p>这里还有简单的监听ViewPager2滑动事件，进行一个头部的收起的特效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="SunflowerPagerAdapter"><a href="#SunflowerPagerAdapter" class="headerlink" title="SunflowerPagerAdapter"></a>SunflowerPagerAdapter</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">val</span> MY_GARDEN_PAGE_INDEX = <span class="number">0</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">val</span> PLANT_LIST_PAGE_INDEX = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SunflowerPagerAdapter</span></span>(fragment: Fragment) : FragmentStateAdapter(fragment) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Mapping of the ViewPager page indexes to their respective Fragments</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> tabFragmentsCreators: Map&lt;<span class="built_in">Int</span>, () -&gt; Fragment&gt; = mapOf(</span><br><span class="line">        MY_GARDEN_PAGE_INDEX to &#123; GardenFragment() &#125;,</span><br><span class="line">        PLANT_LIST_PAGE_INDEX to &#123; PlantListFragment() &#125;</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getItemCount</span><span class="params">()</span></span> = tabFragmentsCreators.size</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">createFragment</span><span class="params">(position: <span class="type">Int</span>)</span></span>: Fragment &#123;</span><br><span class="line">        <span class="keyword">return</span> tabFragmentsCreators[position]?.invoke() ?: <span class="keyword">throw</span> IndexOutOfBoundsException()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看到Map的value是一个函数，返回相应的两个子Fragment。调用返回的时候使用invoke方法。</p>
+<h3 id="GardenFragment-我的花园页面"><a href="#GardenFragment-我的花园页面" class="headerlink" title="GardenFragment 我的花园页面"></a>GardenFragment 我的花园页面</h3><p>布局使用Databinding，主要是一个recycleview列表和空状态的添加按钮。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;data&gt;</span><br><span class="line"></span><br><span class="line">        &lt;variable</span><br><span class="line">                name=&quot;hasPlantings&quot;</span><br><span class="line">                type=&quot;boolean&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/data&gt;</span><br><span class="line"></span><br><span class="line">    ···省略···</span><br><span class="line"></span><br><span class="line">&lt;/layout&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>声明了变量，判断是否一棵都没种</p>
+</blockquote>
+<h4 id="GardenPlantingListViewModel"><a href="#GardenPlantingListViewModel" class="headerlink" title="GardenPlantingListViewModel"></a>GardenPlantingListViewModel</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private val viewModel: GardenPlantingListViewModel by viewModels &#123;</span><br><span class="line">       InjectorUtils.provideGardenPlantingListViewModelFactory(requireContext())</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>在GardenFragment 声明了一个数据模型GardenPlantingListViewModel</p>
+<h4 id="by-viewModels"><a href="#by-viewModels" class="headerlink" title="by viewModels"></a>by viewModels</h4><p>这是一个拓展函数，帮助我们进行ViewModel初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@MainThread</span><br><span class="line">inline fun &lt;reified VM : ViewModel&gt; Fragment.viewModels(</span><br><span class="line">    noinline ownerProducer: () -&gt; ViewModelStoreOwner = &#123; this &#125;,</span><br><span class="line">    noinline factoryProducer: (() -&gt; Factory)? = null</span><br><span class="line">) = createViewModelLazy(VM::class, &#123; ownerProducer().viewModelStore &#125;, factoryProducer)</span><br></pre></td></tr></table></figure>
+<p>这个拓展函数第一个参数是ownerProducer代表生命周期所有者，第二个参数代表生产者。先看第一个参数，她的参数类型是一个函数，返回值是ViewModelStoreOwner，默认参数值是{ this }，那么其实也就是Fragment本身。那其实可以简化成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@MainThread</span><br><span class="line">inline fun &lt;reified VM : ViewModel&gt; Fragment.viewModels(</span><br><span class="line">        noinline factoryProducer: () -&gt; ViewModelProvider.Factory</span><br><span class="line">) = createViewModelLazy(VM::class, &#123;this.viewModelStore &#125;, factoryProducer)</span><br></pre></td></tr></table></figure>
+<p>只有一个参数，第一个参数用this直接代替。只适用于第一个参数不传的情况。</p>
+<p>第二个参数是提供者，是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InjectorUtils.provideGardenPlantingListViewModelFactory(requireContext())</span><br></pre></td></tr></table></figure>
+<p>的返回值</p>
+<h4 id="GardenPlantingRepository-花园在种的数据仓库"><a href="#GardenPlantingRepository-花园在种的数据仓库" class="headerlink" title="GardenPlantingRepository 花园在种的数据仓库"></a>GardenPlantingRepository 花园在种的数据仓库</h4><p>这个仓库数据直连Room数据库。从表中获取的数据。所以先看Room库的数据配置内容</p>
+<h3 id="AppDatabase-数据库管理"><a href="#AppDatabase-数据库管理" class="headerlink" title="AppDatabase 数据库管理"></a>AppDatabase 数据库管理</h3><p>定义了数据版本和多少张表并且使用@Volatile 全局单例。整个类很简单的内容，其中一个创建数据库的方法。使用的是WorkManager来创建数据库</p>
+<h3 id="WorkManager"><a href="#WorkManager" class="headerlink" title="WorkManager"></a>WorkManager</h3><p>调度任务,可以轻松地调度即使在应用退出或设备重启时仍应运行的可延迟异步任务,定义了一个只执行一次的创建数据任务。</p>
+<p>任务内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class SeedDatabaseWorker(</span><br><span class="line">    context: Context,</span><br><span class="line">    workerParams: WorkerParameters</span><br><span class="line">) : CoroutineWorker(context, workerParams) &#123;</span><br><span class="line">    override suspend fun doWork(): Result = coroutineScope &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            applicationContext.assets.open(PLANT_DATA_FILENAME).use &#123; inputStream -&gt;</span><br><span class="line">                JsonReader(inputStream.reader()).use &#123; jsonReader -&gt;</span><br><span class="line">                    val plantType = object : TypeToken&lt;List&lt;Plant&gt;&gt;() &#123;&#125;.type</span><br><span class="line">                    val plantList: List&lt;Plant&gt; = Gson().fromJson(jsonReader, plantType)</span><br><span class="line"></span><br><span class="line">                    val database = AppDatabase.getInstance(applicationContext)</span><br><span class="line">                    database.plantDao().insertAll(plantList)</span><br><span class="line"></span><br><span class="line">                    Result.success()</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ex: Exception) &#123;</span><br><span class="line">            Log.e(TAG, &quot;Error seeding database&quot;, ex)</span><br><span class="line">            Result.failure()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    companion object &#123;</span><br><span class="line">        private const val TAG = &quot;SeedDatabaseWorker&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是简单的assets文件读取数据转成数据库一个过程，当Result.success()标志着任务完成结束。</p>
+<h4 id="GardenPlanting表-Plant表"><a href="#GardenPlanting表-Plant表" class="headerlink" title="GardenPlanting表 Plant表"></a>GardenPlanting表 Plant表</h4><p>回到AppDatabase，看下两张表结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * Indicates when the [Plant] was planted. Used for showing notification when it&apos;s time</span><br><span class="line">    * to harvest the plant.</span><br><span class="line">    */</span><br><span class="line">   @ColumnInfo(name = &quot;plant_date&quot;) val plantDate: Calendar = Calendar.getInstance(),</span><br></pre></td></tr></table></figure>
+<p>其中有奇怪的地方，表结构一般都是基本数据类型或者String，但是这边的表结构字段出现了Calendar对象，也就是Room支持的功能。</p>
+<p>在AppDatabase顶部作用域有一个注解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Database(entities = [GardenPlanting::class, Plant::class], version = 1, exportSchema = false)</span><br><span class="line">@TypeConverters(Converters::class)</span><br></pre></td></tr></table></figure>
+<p>其中有一个类型转化器。内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Type converters to allow Room to reference complex data types.</span><br><span class="line"> */</span><br><span class="line">class Converters &#123;</span><br><span class="line">    @TypeConverter fun calendarToDatestamp(calendar: Calendar): Long = calendar.timeInMillis</span><br><span class="line"></span><br><span class="line">    @TypeConverter fun datestampToCalendar(value: Long): Calendar =</span><br><span class="line">            Calendar.getInstance().apply &#123; timeInMillis = value &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>正是这个类型转化器，帮助我们从Calendar到timeInMillis的转化。</p>
+<blockquote>
+<p>@TypeConverter的两个方法是成对出现的，方法名称可以任意命名，重点在入参和出参类型，必须是需要转换的类型和最终转换后的类型</p>
+<p>并且这个转化器是放在Database级别的，所以，所有的表都是可以用的。如果放在Entity或者Dao则使用范围相应变小。</p>
+</blockquote>
+<h4 id="回到-GardenPlantingRepository"><a href="#回到-GardenPlantingRepository" class="headerlink" title="回到 GardenPlantingRepository"></a>回到 GardenPlantingRepository</h4><p><img src="https://tvax1.sinaimg.cn/large/c1b251b3gy1gewl37uxwqj20t50iz3zc.jpg" alt="sunflower_viewmodel"></p>
+<p>花园列表，我们种植的花园数据，第一是我们种的具体植物，可能是番茄，种类是番茄，实例可能是多棵番茄。所以这里有一对多的关系。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * This class captures the relationship between a [Plant] and a user&apos;s [GardenPlanting], which is</span><br><span class="line"> * used by Room to fetch the related entities.</span><br><span class="line"> */</span><br><span class="line">data class PlantAndGardenPlantings(</span><br><span class="line">    @Embedded</span><br><span class="line">    val plant: Plant,//表示种类信息</span><br><span class="line"></span><br><span class="line">    @Relation(parentColumn = &quot;id&quot;, entityColumn = &quot;plant_id&quot;)</span><br><span class="line">    val gardenPlantings: List&lt;GardenPlanting&gt; = emptyList()//表示在种的列表</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>@Embedded 这个注解可以被用在Entity表种，或者任意实体类？ 去表明一个嵌套关系，被打上标注得字段可以用于数据库查询。<br>情况一，如果被标注得是一个Entity,那么被标注的表字段会被包含在这个外部的Entity表中。</p>
+<ul>
+<li>public class Coordinates {<ul>
+<li>double latitude;</li>
+<li>double longitude;</li>
+<li>}</li>
+<li>public class Address {</li>
+<li>String street;</li>
+<li>{@literal @}Embedded</li>
+<li>Coordinates coordinates;</li>
+<li>}<br>比如。上面，Room数据库会把经纬度两个字段，作为Address的表字段。<br>如果字段名字有冲突，可以用prefix来标准被注解包含进来的新字段，比如经纬度。加前缀</li>
+</ul>
+</li>
+</ul>
+<p>@Relation</p>
+<p>关系映射，PlantAndGardenPlantings这个类包含两个字段，两张表，<br>这里用这个注解进行一个关系映射<br>Plant代表植物目录中的每个物种的种植信息，他的id映射到我的花园中已经种植的具体花草信息，这个是一个一对多的关系。</p>
+</blockquote>
+<p>最终首页的数据源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val plantAndGardenPlantings: LiveData&lt;List&lt;PlantAndGardenPlantings&gt;&gt; =</span><br><span class="line">            gardenPlantingRepository.getPlantedGardens()</span><br></pre></td></tr></table></figure>
+<p>和我们的Room数据库进行了一个关联</p>
+<h3 id="回到GardenFragment-数据源和界面绑定"><a href="#回到GardenFragment-数据源和界面绑定" class="headerlink" title="回到GardenFragment 数据源和界面绑定"></a>回到GardenFragment 数据源和界面绑定</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">private fun subscribeUi(adapter: GardenPlantingAdapter, binding: FragmentGardenBinding) &#123;</span><br><span class="line">       viewModel.plantAndGardenPlantings.observe(viewLifecycleOwner) &#123; result -&gt;</span><br><span class="line">           binding.hasPlantings = !result.isNullOrEmpty()</span><br><span class="line">           adapter.submitList(result)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>viewModel实例和界面绑定对象binding进行了一个观察者模式的关联。</p>
+<h3 id="PlantListFragment"><a href="#PlantListFragment" class="headerlink" title="PlantListFragment"></a>PlantListFragment</h3><p>同样有一个PlantListViewModel进行了一个数据关联。不再展开</p>
+<h4 id="MaskedCardView"><a href="#MaskedCardView" class="headerlink" title="MaskedCardView"></a>MaskedCardView</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * A Card view that clips the content of any shape, this should be done upstream in card,</span><br><span class="line"> * working around it for now.</span><br><span class="line"> */</span><br><span class="line">class MaskedCardView @JvmOverloads constructor(</span><br><span class="line">    context: Context,</span><br><span class="line">    attrs: AttributeSet? = null,</span><br><span class="line">    defStyle: Int = R.attr.materialCardViewStyle</span><br><span class="line">) : MaterialCardView(context, attrs, defStyle) &#123;</span><br><span class="line">    @SuppressLint(&quot;RestrictedApi&quot;)</span><br><span class="line">    private val pathProvider = ShapeAppearancePathProvider()</span><br><span class="line">    private val path: Path = Path()</span><br><span class="line">    private val shapeAppearance: ShapeAppearanceModel = ShapeAppearanceModel(</span><br><span class="line">        context,</span><br><span class="line">        attrs,</span><br><span class="line">        defStyle,</span><br><span class="line">        R.style.Widget_MaterialComponents_CardView</span><br><span class="line">    )</span><br><span class="line">    private val rectF = RectF(0f, 0f, 0f, 0f)</span><br><span class="line"></span><br><span class="line">    override fun onDraw(canvas: Canvas) &#123;</span><br><span class="line">        canvas.clipPath(path)</span><br><span class="line">        super.onDraw(canvas)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @SuppressLint(&quot;RestrictedApi&quot;)</span><br><span class="line">    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) &#123;</span><br><span class="line">        rectF.right = w.toFloat()</span><br><span class="line">        rectF.bottom = h.toFloat()</span><br><span class="line">        pathProvider.calculatePath(shapeAppearance, 1f, rectF, path)</span><br><span class="line">        super.onSizeChanged(w, h, oldw, oldh)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>MaterialCardView是material库支持圆角的一个类。但是这里顶部是一张图片，右上角的圆角设置会失效。所以这个自定义view重新进行一个裁剪。</p>
+<blockquote>
+<p> @JvmOverloads 使用这个注解，可以省去自定义个view的多个构造</p>
+</blockquote>
+<h4 id="Plant表"><a href="#Plant表" class="headerlink" title="Plant表"></a>Plant表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Determines if the plant should be watered.  Returns true if [since]&apos;s date &gt; date of last</span><br><span class="line"> * watering + watering Interval; false otherwise.</span><br><span class="line"> */</span><br><span class="line">fun shouldBeWatered(since: Calendar, lastWateringDate: Calendar) =</span><br><span class="line">    since &gt; lastWateringDate.apply &#123; add(DAY_OF_YEAR, wateringInterval) &#125;</span><br></pre></td></tr></table></figure>
+<p>   这里用到kotlin默认重载&gt;号调用compareTo</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2020/05/15/Jetpack全家桶目录/" class="article-date">
+  <time datetime="2020-05-15T14:00:58.000Z" itemprop="datePublished">2020-05-15</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetpack/">Jetpack</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2020/06/15/Serializable和内部类出现的BUG/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Serializable和内部类出现的bug
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/06/Jetpack-Liftcycle/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Jetpack-Liftcycle</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

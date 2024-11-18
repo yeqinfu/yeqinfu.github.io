@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>两类密码体制 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="对称加密密码体制DESDES由IBM公司研制，是一种分组密码。在加密前，对明文进行分组。每组为64位长的二进制数据。然后对每组二进制数据进行加密处理，产生一族64位密文数据；最后把各组的密文串起来。得到密文。密钥为64位（实际密钥长度56,8位用于奇偶校验） DES的保密性取决于对密钥的保密，算法公开。 略~ 公钥密码体制RSA略~ 数字签名接受者能够合适发送者对报文的签名。也就是说，接受者能够确">
+<meta name="keywords" content="network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="两类密码体制">
+<meta property="og:url" content="http://yoursite.com/2017/11/15/两类密码体制/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="对称加密密码体制DESDES由IBM公司研制，是一种分组密码。在加密前，对明文进行分组。每组为64位长的二进制数据。然后对每组二进制数据进行加密处理，产生一族64位密文数据；最后把各组的密文串起来。得到密文。密钥为64位（实际密钥长度56,8位用于奇偶校验） DES的保密性取决于对密钥的保密，算法公开。 略~ 公钥密码体制RSA略~ 数字签名接受者能够合适发送者对报文的签名。也就是说，接受者能够确">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://chuantu.biz/t6/141/1510715711x2043453577.png">
+<meta property="og:image" content="http://chuantu.biz/t6/141/1510716599x2043453577.png">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="两类密码体制">
+<meta name="twitter:description" content="对称加密密码体制DESDES由IBM公司研制，是一种分组密码。在加密前，对明文进行分组。每组为64位长的二进制数据。然后对每组二进制数据进行加密处理，产生一族64位密文数据；最后把各组的密文串起来。得到密文。密钥为64位（实际密钥长度56,8位用于奇偶校验） DES的保密性取决于对密钥的保密，算法公开。 略~ 公钥密码体制RSA略~ 数字签名接受者能够合适发送者对报文的签名。也就是说，接受者能够确">
+<meta name="twitter:image" content="http://chuantu.biz/t6/141/1510715711x2043453577.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-两类密码体制" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      两类密码体制
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h4 id="对称加密密码体制"><a href="#对称加密密码体制" class="headerlink" title="对称加密密码体制"></a>对称加密密码体制</h4><h5 id="DES"><a href="#DES" class="headerlink" title="DES"></a>DES</h5><p>DES由IBM公司研制，是一种分组密码。在加密前，对明文进行分组。每组为64位长的二进制数据。然后对每组二进制数据进行加密处理，产生一族64位密文数据；最后把各组的密文串起来。得到密文。密钥为64位（实际密钥长度56,8位用于奇偶校验）</p>
+<p>DES的保密性取决于对密钥的保密，算法公开。</p>
+<p>略~</p>
+<h4 id="公钥密码体制"><a href="#公钥密码体制" class="headerlink" title="公钥密码体制"></a>公钥密码体制</h4><h5 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h5><p>略~</p>
+<h4 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h4><p>接受者能够合适发送者对报文的签名。也就是说，接受者能够确信该报文的确是发送者发送的。其他人无法伪造对报文的签名。并且接受者确信手偶到的数据和发送者发送的完全一样没有被篡改过。发送者事后不能抵赖对报文的签名。</p>
+<p>流程如下，发送者A用私钥对报文进行一个D运算，D运算本来是一个解密运算。但是还没加密怎么能解密呢，这个并没有关系，D运算后，得到了某种不可读的密文。发送者A把经过D运算的密文传送给B。B为了核实签名，用A的公钥进行了E运算，还原出了明文。任何人用A的公钥都可以进行E预算得到A发送的明文。此时，D运算和E运算不是为了解密和加密。而是为了进行签名和核实签名。</p>
+<p>因为除了A以外没人有私钥能对铭文加密。</p>
+<p>但是上述过程任何人可以查阅A的公钥，然后得知明文。为了防止这向发生，可以同时实现秘密通信和数字签名。</p>
+<p><img src="http://chuantu.biz/t6/141/1510715711x2043453577.png" alt="签名和公钥加密"></p>
+<p>发送者A用私钥进行铭文签名。保证了发送者的可靠性。用B的公钥进行加密。保证了明文不能被阅读。接受者用自己的私钥进行阅读，再用A的公钥进行可靠性检验。</p>
+<h5 id="鉴别"><a href="#鉴别" class="headerlink" title="鉴别"></a>鉴别</h5><p>鉴别的目的是要验证通信的对方的确是自己要通信的对象，而不是冒充者。鉴别可以分两种，报文鉴别，即锁收到的报文的确是报文发送者发送的。另一种是实体鉴别，实体可以一个人，也可以是一个进程。</p>
+<h5 id="报文鉴别"><a href="#报文鉴别" class="headerlink" title="报文鉴别"></a>报文鉴别</h5><p>当对很长的报文进行数字签名的时候会开销过大，因此，当我们传送不需要加密的报文时，可以使用报文摘要MD(Message Digest)。</p>
+<p><img src="http://chuantu.biz/t6/141/1510716599x2043453577.png" alt="报文摘要"></p>
+<p>发送者A把很长的报文经过摘要算法得出很短的摘要H。然后用私钥对H进行签名运算。兵追加在报文X尾部发送给B。B收到报文后收钱分离，然后用A的公钥进行E运算。得到摘要H。然后对报文也进行摘要，得到H，比对两个H。摘要的优点是近对短的很多的叮当报文摘要H进行数字签名。耗费资源少。</p>
+<p>报文摘要算法就是一种散列函数也叫密码编码的检验和。报文摘要算法是精心选择的单项函数。就是不可逆的。常用的报文摘要就是MD5</p>
+<h6 id="MD5大致流程"><a href="#MD5大致流程" class="headerlink" title="MD5大致流程"></a>MD5大致流程</h6><ul>
+<li>先把任意长度的报文按模2的64次方计算其余数。追加在报文后面</li>
+<li>在报文和余数之间填充1~512位，使得填充后总长度是512的整数倍。填充首位是1，后面都是0</li>
+<li>把追加和填充后的报文分割为一个个512的数据块，每个512数据块分成4个128的数据快，一次送到不同散列函数进行四轮运算，没一轮又都按32位的小数据块进行复杂运算。一直到最后计算出MD5的报文摘要代码（128位）</li>
+</ul>
+<p>另一种算法，安全散列算法SHA和MD5相似，但是码长160位。比MD5更安全，但是慢一些。</p>
+<h5 id="实体鉴别"><a href="#实体鉴别" class="headerlink" title="实体鉴别"></a>实体鉴别</h5><p>略~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/11/15/两类密码体制/" class="article-date">
+  <time datetime="2017-11-15T09:00:58.000Z" itemprop="datePublished">2017-11-15</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/">network</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/11/15/DNS认识/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          认识DNS
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/14/IPv4和子网掩码/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">IPv4掩码学习</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

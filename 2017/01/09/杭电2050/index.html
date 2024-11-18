@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>杭电2050 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="http://acm.hdu.edu.cn/showproblem.php?pid=2050 12345678910111213package oj;import java.util.Scanner;public class Main_2050 &amp;#123;	public static void main(String[] args) &amp;#123;		Scanner scanner = new S">
+<meta name="keywords" content="杭电">
+<meta property="og:type" content="article">
+<meta property="og:title" content="杭电2050">
+<meta property="og:url" content="http://yoursite.com/2017/01/09/杭电2050/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="http://acm.hdu.edu.cn/showproblem.php?pid=2050 12345678910111213package oj;import java.util.Scanner;public class Main_2050 &amp;#123;	public static void main(String[] args) &amp;#123;		Scanner scanner = new S">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="杭电2050">
+<meta name="twitter:description" content="http://acm.hdu.edu.cn/showproblem.php?pid=2050 12345678910111213package oj;import java.util.Scanner;public class Main_2050 &amp;#123;	public static void main(String[] args) &amp;#123;		Scanner scanner = new S">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-杭电2050" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      杭电2050
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2050" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=2050</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package oj;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line">public class Main_2050 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		int t = scanner.nextInt();</span><br><span class="line">		while (t--&gt;0) &#123;</span><br><span class="line">			int a=scanner.nextInt();</span><br><span class="line">			System.out.println(&quot;&quot;+(2*a*a-a+1));</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果是直线，会有啥规律？<br>在平面添加一条直线，会把平面分成两部分，在这个基础上再添加一条直线那就是变成4部分要得到平面分割最大面数，就要让第n条直线，穿过前面n－1条直线。可以得到规律<br>直线 面数量<br>1 2<br>2 4<br>3 7<br>4 11</p>
+<p>a1=1+1=2<br>a2=1+1+2=4<br>a3=1+1+2+3=7<br>a4=1+1+2+3+4=11<br>所以规律是<br>an=(n*(n+1))/2+1;</p>
+<p>如果在此基础上提出，每次给定的是两条平行线，就是每次给两条平行的线，求n条线能把平面划分多少个面，很明显n是偶数，它相对于直线添加的规律，假定直线的线面函数叫f(n)现在输入的j设定必定为偶数.很明显可以得到<br>g(j)=f(j)-j/2;<br>注意只适用j为偶数那么－j/2是怎么得来的？试想，本来应该香蕉的两条线，结果被搞成平行了，那么，会因为这个最少得减少1个面，因为每次添加都是偶数，那么就是，每次添加两天平行线，那就是在直线f(n)规律上减少一个面</p>
+<p>那么g(j) j为偶数，这就是平行线的规律。在g(j)的基础上，如果每组平行线它不是平行线而是从某个点发出的两条射线，就是说，每次添加的两条线，不再是平行线，而是射线，它两个有共同的原点。那么面数量会如何改变？结果就是面的数量得再减少一个<br>h(j)=g(j)-j/2;j还是偶数，这样才能符合g(j)得规律.所以最终整理出来<br>h(n)=(n(n+1))/2+1-n; n为偶数<br>所以这边就是把每条折线当成两个有同一原点的射线，为了适应输入j(j属于自然数) 所以方程里面的n都用2j来代替<br>得到新的y(j)=2jj -j+1 (j属于自然数)<br>这就是折线最大面数量规律<br>只要得到规律函数，这题就解了。<br>但是，实际上这道题的初衷，是让我们用递归的思想去解决，以上都是纯数学分析，得到规律公式。<br>递归，就是想要缩减n的规模，一个简单的方法得到递归的表达式就是：<br>y(j)-y(j-1)<br>整理得到j和j-1的增量表达式：<br>4j-3<br>所以，偷懒的变异代码变成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package oj;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line">public class Main_2050 &#123;</span><br><span class="line">   public static void main(String[] args) &#123;</span><br><span class="line">  Scanner scanner = new Scanner(System.in);</span><br><span class="line"> int t = scanner.nextInt();</span><br><span class="line">    while (t--&gt;0) &#123;</span><br><span class="line">   int a=scanner.nextInt();</span><br><span class="line">  System.out.println(&quot;&quot;+fun(a));</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">   private static int fun(int a) &#123;</span><br><span class="line">   if (a==1) &#123;</span><br><span class="line">   return 2;</span><br><span class="line"> </span><br><span class="line">  &#125;else&#123;</span><br><span class="line">    return fun(a-1)+4*a-3;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果光从递归就想解决，n和n－1之间的增量，还真的想不出来哦</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/01/09/杭电2050/" class="article-date">
+  <time datetime="2017-01-09T16:33:11.000Z" itemprop="datePublished">2017-01-09</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杭电/">杭电</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/02/06/博客TravisCI自动部署Hexo/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          TravisCI自动部署Hexo
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/05/杭电1050/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">杭电1050</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

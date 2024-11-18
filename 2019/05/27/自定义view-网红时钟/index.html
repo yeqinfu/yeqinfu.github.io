@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>自定义view-网红时钟 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="写了一个网红时钟，代码不完善，进位有bug，但是不想改。 主要记录这个view的实现思路。效果图  都是文字，所以第一步想的是定义文字工具类 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364static &amp;#1">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义view-网红时钟">
+<meta property="og:url" content="http://yoursite.com/2019/05/27/自定义view-网红时钟/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="写了一个网红时钟，代码不完善，进位有bug，但是不想改。 主要记录这个view的实现思路。效果图  都是文字，所以第一步想的是定义文字工具类 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364static &amp;#1">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/c1b251b3gy1g3bc7r0fabj209r0aut9k.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义view-网红时钟">
+<meta name="twitter:description" content="写了一个网红时钟，代码不完善，进位有bug，但是不想改。 主要记录这个view的实现思路。效果图  都是文字，所以第一步想的是定义文字工具类 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364static &amp;#1">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/large/c1b251b3gy1g3bc7r0fabj209r0aut9k.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-自定义view-网红时钟" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      自定义view-网红时钟
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>写了一个网红时钟，代码不完善，进位有bug，但是不想改。</p>
+<p>主要记录这个view的实现思路。效果图</p>
+<p><img src="http://wx2.sinaimg.cn/large/c1b251b3gy1g3bc7r0fabj209r0aut9k.jpg" alt="效果图"></p>
+<p>都是文字，所以第一步想的是定义文字工具类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; hours.length; i++) &#123;</span><br><span class="line">            hours[i] = numberArray[i] + <span class="string">"点"</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; months.length; i++) &#123;</span><br><span class="line">            months[i] = numberArray[i] + <span class="string">"月"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        minutes[<span class="number">0</span>] = <span class="string">"零分"</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; minutes.length; i++) &#123;</span><br><span class="line">            minutes[i] = numberArray[i] + <span class="string">"分"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        seconds[<span class="number">0</span>] = <span class="string">"零秒"</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; seconds.length; i++) &#123;</span><br><span class="line">            seconds[i] = numberArray[i] + <span class="string">"秒"</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String[] getSeconds() &#123;</span><br><span class="line">        <span class="keyword">return</span> seconds;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String[] getMinutes() &#123;</span><br><span class="line">        <span class="keyword">return</span> minutes;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String[] getHours() &#123;</span><br><span class="line">        <span class="keyword">return</span> hours;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取月份数组</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String[] getDays() &#123;</span><br><span class="line">        <span class="keyword">return</span> getDays(<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String[] getDays(Calendar calendar) &#123;</span><br><span class="line">        <span class="keyword">if</span> (calendar == <span class="keyword">null</span>) &#123;</span><br><span class="line">            calendar = Calendar.getInstance();</span><br><span class="line">        &#125;</span><br><span class="line">        DateUtils du = <span class="keyword">new</span> DateUtils();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> dayOfMonth =  du.getDays(du.getYear(), du.getMonth());</span><br><span class="line">        String[] result = <span class="keyword">new</span> String[dayOfMonth];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.length; i++) &#123;</span><br><span class="line">            result[i] = numberArray[i] + <span class="string">"日"</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 月份数组</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String[] getMonths() &#123;</span><br><span class="line">        <span class="keyword">return</span> months;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这样，文字内容生成就抽出来，就不会感觉乱糟糟啦</p>
+<p>整体实际上是把它分为6个圆形，半径根据如下文字作为长度，每个半径之间定义一个小间隙变量radiusOffset</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">private String year = &quot;2019年&quot;;</span><br><span class="line">   private String month = &quot;十二月&quot;;</span><br><span class="line">   private String day = &quot;三十一号&quot;;</span><br><span class="line">   private String dayhelf = &quot;下午&quot;;</span><br><span class="line">   private String hour = &quot;十二点&quot;;</span><br><span class="line">   private String minute = &quot;五十九分&quot;;</span><br><span class="line">   private String second = &quot;五十九秒&quot;;</span><br><span class="line">   private float radiusOffset = 10;</span><br></pre></td></tr></table></figure>
+<p>整体画笔只有一根，所以初始化的时候可以确定半径长度</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    yearRadius = getTextLength(year) / <span class="number">2</span> + radiusOffset;</span><br><span class="line">    monthRadius = yearRadius + radiusOffset + getTextLength(month);</span><br><span class="line">    dayRadius = monthRadius + radiusOffset + getTextLength(day);</span><br><span class="line">    dayHalfRadius = dayRadius + radiusOffset + getTextLength(dayhelf);</span><br><span class="line">    hourRadius = dayHalfRadius + radiusOffset + getTextLength(hour);</span><br><span class="line">    minuteRadius = hourRadius + radiusOffset + getTextLength(minute);</span><br><span class="line">    secondRadius = minuteRadius + radiusOffset + getTextLength(second);</span><br><span class="line">    commonTextHeight = -getTextPaint().ascent() + getTextPaint().descent();</span><br><span class="line">   <span class="comment">// startAnimator();</span></span><br><span class="line">    setDateAndStart(<span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种对称图，第一步先平移画布到中心位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 将坐标系原点移动到画布正中心</span><br><span class="line">      canvas.translate(mWidth / 2, mHeight / 2);</span><br></pre></td></tr></table></figure>
+<p>把年画进去，目前写死2019，因为不相信有明年</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 一个帮助你把文字写在指定点并居住在指定点位置的方法</span></span><br><span class="line"><span class="comment">  * 这里的偏移直角坐标系采用默认指教坐标系</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">drawTextOnMiddle</span><span class="params">(Canvas canvas, String targetText, <span class="keyword">float</span> x, <span class="keyword">float</span> y, Paint paint)</span> </span>&#123;</span><br><span class="line">     <span class="comment">/*文字测量*/</span></span><br><span class="line">     Rect bounds = <span class="keyword">new</span> Rect();</span><br><span class="line">     paint.getTextBounds(targetText, <span class="number">0</span>, targetText.length(), bounds);</span><br><span class="line">     <span class="keyword">float</span> width = bounds.right - bounds.left;</span><br><span class="line">     <span class="keyword">float</span> height = bounds.bottom - bounds.top;</span><br><span class="line">     canvas.drawText(targetText, x - width / <span class="number">2</span>, y + height / <span class="number">2</span>, paint);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>抽出一个方法，这个方法只要你告诉它中心点，它就会把文字画出来，文字的中心点会是你指定的。</p>
+<h5 id="画月份"><a href="#画月份" class="headerlink" title="画月份"></a>画月份</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">double initAngle = 0;</span><br><span class="line">      canvas.save();</span><br><span class="line">      canvas.rotate(monthRepeat * (360.0f / 12) + (float) monInitAngle);</span><br><span class="line">      for (int i = 0; i &lt; 12; i++) &#123;</span><br><span class="line">          Polar polar = new Polar(monthRadius, initAngle);</span><br><span class="line">          drawTextToPointLeft(canvas, polar.toPoint(), CommonNumber.getMonths()[i], getTextPaint());</span><br><span class="line">          canvas.rotate(-360 / 12);</span><br><span class="line">      &#125;</span><br><span class="line">      canvas.restore();</span><br></pre></td></tr></table></figure>
+<p>这个rotate是因为动的时候需要偏移，如果我们不需要动，那就没他什么事了。每次偏移都是通过角度来计算的。</p>
+<p>所以这里定义一个极坐标类，用来辅助偏移便于理解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 极坐标类</span><br><span class="line">    */</span><br><span class="line">   static class Polar &#123;</span><br><span class="line">       double radius;</span><br><span class="line">       double angle;</span><br><span class="line"></span><br><span class="line">       public Polar(double radius, double angle) &#123;</span><br><span class="line">           this.radius = radius;</span><br><span class="line">           this.angle = angle;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public double getRadius() &#123;</span><br><span class="line"></span><br><span class="line">           return radius;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public void setRadius(double radius) &#123;</span><br><span class="line">           this.radius = radius;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public double getAngle() &#123;</span><br><span class="line">           return angle;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public void setAngle(double angle) &#123;</span><br><span class="line">           this.angle = angle;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public Point toPoint() &#123;</span><br><span class="line">           Point point = new Point();</span><br><span class="line">           point.x = (int) (Math.cos(angle) * radius);</span><br><span class="line">           point.y = (int) (Math.sin(angle) * radius);</span><br><span class="line">           return point;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>然后不断偏移画文字，文字是重力靠外围的，所以定义了一个方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">private void drawTextToPointLeft(Canvas canvas, Point toPoint, String targetText, Paint paint) &#123;</span><br><span class="line">    Rect bounds = new Rect();</span><br><span class="line">    paint.getTextBounds(targetText, 0, targetText.length(), bounds);</span><br><span class="line">    float width = bounds.right - bounds.left;</span><br><span class="line">    toPoint.x = (int) (toPoint.x - width / 2);</span><br><span class="line">    drawTextOnMiddle(canvas, targetText, toPoint.x, toPoint.y, paint);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它可以找到靠外的文字中心位置，然后再调用drawTextOnMiddle完成绘图。</p>
+<p>其他时分秒都是类似的省略。</p>
+<h3 id="动画部分"><a href="#动画部分" class="headerlink" title="动画部分"></a>动画部分</h3><p>动画生成一个值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">final ValueAnimator valueAnimator= ValueAnimator.ofFloat(0, 1);</span><br></pre></td></tr></table></figure>
+<p>比如秒，每次动画过程偏移6度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">secondInitAngle = ((float) animation.getAnimatedValue() * 360.0 / 60);</span><br></pre></td></tr></table></figure>
+<p>所以这里动画执行过程一直改这个偏移度数。而当到59秒的时候会导致分发生动画</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (secondRepeat == <span class="number">59</span>) &#123;</span><br><span class="line">                  minuteInitAngle = secondInitAngle;</span><br><span class="line">                  <span class="keyword">if</span> (minuteRepeat == <span class="number">59</span>) &#123;</span><br><span class="line">                      hourInitAngle = ((<span class="keyword">float</span>) animation.getAnimatedValue() * <span class="number">360.0</span> / <span class="number">12</span>);</span><br><span class="line">                      <span class="keyword">if</span> (hourRepeat == <span class="number">11</span>) &#123;</span><br><span class="line">                          dayHalfInitAngle = ((<span class="keyword">float</span>) animation.getAnimatedValue() * <span class="number">360.0</span> / <span class="number">2</span>);</span><br><span class="line">                          <span class="keyword">int</span> dayLength=CommonNumber.getDays(<span class="keyword">null</span>).length;</span><br><span class="line">                          <span class="keyword">if</span> (dayHalfRepeat == <span class="number">1</span>) &#123;</span><br><span class="line">                              dayInitAngle = ((<span class="keyword">float</span>) animation.getAnimatedValue() * <span class="number">360.0</span> /dayLength);</span><br><span class="line">                              <span class="keyword">if</span> (dayRepeat==<span class="number">1</span>)&#123;</span><br><span class="line">                                  monInitAngle=((<span class="keyword">float</span>) animation.getAnimatedValue() * <span class="number">360.0</span> / <span class="number">12</span>);</span><br><span class="line">                              &#125;</span><br><span class="line">                          &#125;</span><br><span class="line"></span><br><span class="line">                      &#125;</span><br><span class="line"></span><br><span class="line">                  &#125;</span><br><span class="line"></span><br><span class="line">              &#125;</span><br></pre></td></tr></table></figure>
+<p>所以分也开始计算偏移角度。而当秒59，分也59这两个条件同时成立时，时针也要动，这样一直驱动向高位动画。</p>
+<p>大概就这么多，动画进位还有问题。真的用到这个view的时候再解决。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2019/05/27/自定义view-网红时钟/" class="article-date">
+  <time datetime="2019-05-27T14:00:58.000Z" itemprop="datePublished">2019-05-27</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2019/05/27/自定view-花花草草/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          自定义view-花花草草
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/17/android-app入口问题/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android-app入口问题</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

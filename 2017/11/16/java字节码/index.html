@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>学习java字节码 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习原文链接 写一个Demo.java代码如下 123456public class Demo&amp;#123;	private int aa=1;	void testMethod()&amp;#123;		//do nothing	&amp;#125;&amp;#125; 执行javac Demo.java后，查看Demo.class文件，得到如下内容 1234567891011121314151617cafe babe 0">
+<meta name="keywords" content="code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习java字节码">
+<meta property="og:url" content="http://yoursite.com/2017/11/16/java字节码/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="学习原文链接 写一个Demo.java代码如下 123456public class Demo&amp;#123;	private int aa=1;	void testMethod()&amp;#123;		//do nothing	&amp;#125;&amp;#125; 执行javac Demo.java后，查看Demo.class文件，得到如下内容 1234567891011121314151617cafe babe 0">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/3/20/7c6ee3a5ab7e10036b4f7a059dfd8ccd?imageView2/0/w/1280/h/960/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/3/20/1033aafa9504be8a60af21a20e0a6572?imageView2/0/w/1280/h/960/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/3/20/7a45f63f077133c0d0ed86d8928dbb45?imageView2/0/w/1280/h/960/ignore-error/1">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习java字节码">
+<meta name="twitter:description" content="学习原文链接 写一个Demo.java代码如下 123456public class Demo&amp;#123;	private int aa=1;	void testMethod()&amp;#123;		//do nothing	&amp;#125;&amp;#125; 执行javac Demo.java后，查看Demo.class文件，得到如下内容 1234567891011121314151617cafe babe 0">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/3/20/7c6ee3a5ab7e10036b4f7a059dfd8ccd?imageView2/0/w/1280/h/960/ignore-error/1">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-java字节码" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      学习java字节码
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p><a href="https://juejin.im/entry/58cf583c2f301e007e52d95f" target="_blank" rel="noopener">学习原文链接</a></p>
+<p>写一个Demo.java代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> aa=<span class="number">1</span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">testMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="comment">//do nothing</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行javac Demo.java后，查看Demo.class文件，得到如下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">cafe babe 0000 0034 0012 0a00 0400 0e09</span><br><span class="line">0003 000f 0700 1007 0011 0100 0261 6101</span><br><span class="line">0001 4901 0006 3c69 6e69 743e 0100 0328</span><br><span class="line">2956 0100 0443 6f64 6501 000f 4c69 6e65</span><br><span class="line">4e75 6d62 6572 5461 626c 6501 000a 7465</span><br><span class="line">7374 4d65 7468 6f64 0100 0a53 6f75 7263</span><br><span class="line">6546 696c 6501 0009 4465 6d6f 2e6a 6176</span><br><span class="line">610c 0007 0008 0c00 0500 0601 0004 4465</span><br><span class="line">6d6f 0100 106a 6176 612f 6c61 6e67 2f4f</span><br><span class="line">626a 6563 7400 2100 0300 0400 0000 0100</span><br><span class="line">0200 0500 0600 0000 0200 0100 0700 0800</span><br><span class="line">0100 0900 0000 2600 0200 0100 0000 0a2a</span><br><span class="line">b700 012a 04b5 0002 b100 0000 0100 0a00</span><br><span class="line">0000 0a00 0200 0000 0100 0400 0200 0000</span><br><span class="line">0b00 0800 0100 0900 0000 1900 0000 0100</span><br><span class="line">0000 01b1 0000 0001 000a 0000 0006 0001</span><br><span class="line">0000 0005 0001 000c 0000 0002 000d</span><br></pre></td></tr></table></figure>
+<p>盗图-&gt; <img src="https://user-gold-cdn.xitu.io/2017/3/20/7c6ee3a5ab7e10036b4f7a059dfd8ccd?imageView2/0/w/1280/h/960/ignore-error/1" alt="格式图"></p>
+<ul>
+<li><p>都是十六进制的东西，前面四个字节为魔数，值固定为0xcafe babe</p>
+</li>
+<li><p>接下来2+2个字节，为java版本号，0000是次版本号，0034是主版本号，0034转成十进制为52，对应1.8.0</p>
+</li>
+<li><p>接下来2+n字节为常量池，常量池包括字面量和符号引用。0012代表常量池的数量，十进制表示就是有17个。其中0项保留。</p>
+<p>盗图-&gt; <img src="https://user-gold-cdn.xitu.io/2017/3/20/1033aafa9504be8a60af21a20e0a6572?imageView2/0/w/1280/h/960/ignore-error/1" alt="常量类型表"></p>
+<p>0012代表常量池的数量，从这个表明class的常量池最大长度为65535，我也试过，当变量声明为7w个的时候，编译会报常量过多的错误。</p>
+</li>
+<li><p>常量1：对照上表，接下第一个是U1类型的数据代表常量，分析0a，转化成十进制为10，查表可知道是MethodRef_info；从表格可以得知接下来是一个U2，表明方法的类描述符的索引（即0004十进制4），然后是世象名称及类型性描述符（即CONSTANT_NameAndType_info索引000e，十进制14）</p>
+</li>
+<li><p>常量2，Tag（09，十进制09）查表可知是CONSTANT_Fieldref_info（然后是CONTANT_Class_info索引0003），CONTANT_NameAndType_info(000f,十进制16)</p>
+</li>
+<li><p>常量3（0700 10），Tag(07,CONSTANT_Class_info),全限定名常量项索引（0010）</p>
+</li>
+<li><p>常量4（07 0011），Tag(07,CONSTANT_Class_info),全限定名常量项索引（0011）</p>
+</li>
+<li><p>常量5（0100 026161），Tag(01,CONTANT_Utf8_info),UTF-8长度（length：0002），长度为length的UTF-8字符串（61就是ASCII的‘a’），因为长度为2，所以还有一个61，即‘a’;(从这里可以看出，变量名的命名长度最长不能超过两字节)</p>
+</li>
+<li><p>常量6（010001 49）,Tag(01,CONTANT_Utf8_info),length：1，值：49即“l”</p>
+</li>
+<li><p>常量7（01 0006 3c69 6e69 743e），Tag(01)，length：0006；字符（3c-&gt;’&lt;’）(69-&gt;’i’)(6e-&gt;’n’)(69-&gt;’i’)(74-&gt;’t’)(3e-&gt;’&gt;’)合起来就是‘<init>’;具体都是查ASCALL表得到的</init></p>
+</li>
+<li><p>常量8（0100 0328 2956），TAG(01),length：0003，字符：（28-&gt;’(‘）(29-&gt;’)’)(56-&gt;’V’),合起来就是()V</p>
+</li>
+<li><p>常量9 （0100 0443 6f64 65）TAG(01)，length：0004，字符43-&gt;’C’;6f-&gt;’o’;64-&gt;’d’;65-&gt;’e’;合起来Code</p>
+</li>
+<li><p>常量10（01 000f 4c69 6e65 4e75 6d62 6572 5461 62 6c65），TAG(01),length：15.最后合起来是‘LineNumberTable</p>
+</li>
+<li><p>常量11 略~</p>
+</li>
+<li><p>省略翻译部分常量，当常量都完了之后，进入00 21</p>
+<p>盗图-&gt;<img src="https://user-gold-cdn.xitu.io/2017/3/20/7a45f63f077133c0d0ed86d8928dbb45?imageView2/0/w/1280/h/960/ignore-error/1" alt="标志位"></p>
+<p>​</p>
+</li>
+</ul>
+<p>0021说是0020和0001的并集。所以声明为public类型，。。。</p>
+<p>0003类索引引用第三个常量，这两第三个常量引用16常量。最后定位为包名</p>
+<p>等等。大概了解到这里就够了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/11/16/java字节码/" class="article-date">
+  <time datetime="2017-11-16T09:00:58.000Z" itemprop="datePublished">2017-11-16</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/11/17/java形参和实参/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JAVA形参和实参
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/15/DNS认识/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">认识DNS</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

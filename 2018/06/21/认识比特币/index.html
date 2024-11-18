@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>认识比特币 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="区块链基础技术 非对称加密  哈希函数，签名技术  p2p网络，分布式数据库 ​   区块链（比特币）关键问题 共识机制 拜占庭将军问题 双花问题 默克尔树  区块链（比特币）交易流程 角色分类 用户，旷工区别 转账流程 数据存储，UTXO(未花费的交易输出) 工作量证明 交易不可更改 余额查询  区块链（比特币）的不足 专业矿机的出现 电力浪费，专业挖矿组织，51%攻击的可能 通货紧缩系统，交易">
+<meta name="keywords" content="block chain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="认识比特币">
+<meta property="og:url" content="http://yoursite.com/2018/06/21/认识比特币/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="区块链基础技术 非对称加密  哈希函数，签名技术  p2p网络，分布式数据库 ​   区块链（比特币）关键问题 共识机制 拜占庭将军问题 双花问题 默克尔树  区块链（比特币）交易流程 角色分类 用户，旷工区别 转账流程 数据存储，UTXO(未花费的交易输出) 工作量证明 交易不可更改 余额查询  区块链（比特币）的不足 专业矿机的出现 电力浪费，专业挖矿组织，51%攻击的可能 通货紧缩系统，交易">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1fsjqaz5txej20dj08074d.jpg">
+<meta property="og:image" content="http://ws2.sinaimg.cn/large/c1b251b3gy1fsjqf8xw7wj20x7081mzu.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1fsjqhwyo89j20ci0683ys.jpg">
+<meta property="og:image" content="http://ws2.sinaimg.cn/large/c1b251b3gy1fsjqrrifj3j20pz0jedh0.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1fsjqurdgv4j20zk0mn3zj.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/c1b251b3ly1fo0pwh8bg8j20ko0eytan.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/c1b251b3gy1fsjrn8axzyj20g00b3tbn.jpg">
+<meta property="og:image" content="http://book.8btc.com/books/1/master_bitcoin/_book/2/2-6.png">
+<meta property="og:image" content="http://book.8btc.com/books/1/master_bitcoin/_book/2/2-7.png">
+<meta property="og:image" content="http://ws2.sinaimg.cn/large/c1b251b3gy1fsjrkohp22j214e0dxjuf.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="认识比特币">
+<meta name="twitter:description" content="区块链基础技术 非对称加密  哈希函数，签名技术  p2p网络，分布式数据库 ​   区块链（比特币）关键问题 共识机制 拜占庭将军问题 双花问题 默克尔树  区块链（比特币）交易流程 角色分类 用户，旷工区别 转账流程 数据存储，UTXO(未花费的交易输出) 工作量证明 交易不可更改 余额查询  区块链（比特币）的不足 专业矿机的出现 电力浪费，专业挖矿组织，51%攻击的可能 通货紧缩系统，交易">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1fsjqaz5txej20dj08074d.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-认识比特币" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      认识比特币
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h3 id="区块链基础技术"><a href="#区块链基础技术" class="headerlink" title="区块链基础技术"></a>区块链基础技术</h3><ul>
+<li><p>非对称加密</p>
+</li>
+<li><p>哈希函数，签名技术</p>
+</li>
+<li><p>p2p网络，分布式数据库</p>
+<p>​</p>
+</li>
+</ul>
+<h3 id="区块链（比特币）关键问题"><a href="#区块链（比特币）关键问题" class="headerlink" title="区块链（比特币）关键问题"></a>区块链（比特币）关键问题</h3><ul>
+<li>共识机制</li>
+<li>拜占庭将军问题</li>
+<li>双花问题</li>
+<li>默克尔树</li>
+</ul>
+<h3 id="区块链（比特币）交易流程"><a href="#区块链（比特币）交易流程" class="headerlink" title="区块链（比特币）交易流程"></a>区块链（比特币）交易流程</h3><ul>
+<li>角色分类 用户，旷工区别</li>
+<li>转账流程</li>
+<li>数据存储，UTXO(未花费的交易输出)</li>
+<li>工作量证明</li>
+<li>交易不可更改</li>
+<li>余额查询</li>
+</ul>
+<h3 id="区块链（比特币）的不足"><a href="#区块链（比特币）的不足" class="headerlink" title="区块链（比特币）的不足"></a>区块链（比特币）的不足</h3><ul>
+<li>专业矿机的出现</li>
+<li>电力浪费，专业挖矿组织，51%攻击的可能</li>
+<li>通货紧缩系统，交易费过高，交易过慢</li>
+</ul>
+<h3 id="以太坊改进区块链2-0"><a href="#以太坊改进区块链2-0" class="headerlink" title="以太坊改进区块链2.0"></a>以太坊改进区块链2.0</h3><ul>
+<li><p>避免专业矿机，但依旧是pow</p>
+</li>
+<li><p>总量未恒定</p>
+</li>
+<li><p>图灵完备，增加智能合约</p>
+<p>​</p>
+</li>
+</ul>
+<h3 id="私有链，公有链，联盟链"><a href="#私有链，公有链，联盟链" class="headerlink" title="私有链，公有链，联盟链"></a>私有链，公有链，联盟链</h3><h1 id><a href="#" class="headerlink" title="===================================="></a>====================================</h1><h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><p><img src="https://ws1.sinaimg.cn/large/c1b251b3gy1fsjqaz5txej20dj08074d.jpg" alt="非对称加密"></p>
+<h3 id="常用哈希（散列）函数-md5（128）-sha1（160）"><a href="#常用哈希（散列）函数-md5（128）-sha1（160）" class="headerlink" title="常用哈希（散列）函数 md5（128） sha1（160）"></a>常用哈希（散列）函数 md5（128） sha1（160）</h3><p><img src="http://ws2.sinaimg.cn/large/c1b251b3gy1fsjqf8xw7wj20x7081mzu.jpg" alt="image"></p>
+<h3 id="p2p网络-举例快播下载"><a href="#p2p网络-举例快播下载" class="headerlink" title="p2p网络(举例快播下载)"></a>p2p网络(举例快播下载)</h3><p><img src="https://ws1.sinaimg.cn/large/c1b251b3gy1fsjqhwyo89j20ci0683ys.jpg" alt="p2p"></p>
+<h3 id="共识机制，拜占庭将军问题"><a href="#共识机制，拜占庭将军问题" class="headerlink" title="共识机制，拜占庭将军问题"></a>共识机制，拜占庭将军问题</h3><p><img src="http://ws2.sinaimg.cn/large/c1b251b3gy1fsjqrrifj3j20pz0jedh0.jpg" alt="image"></p>
+<h3 id="默克尔树"><a href="#默克尔树" class="headerlink" title="默克尔树"></a>默克尔树</h3><p><img src="https://ws1.sinaimg.cn/large/c1b251b3gy1fsjqurdgv4j20zk0mn3zj.jpg" alt="motree"></p>
+<h3 id="双花问题"><a href="#双花问题" class="headerlink" title="双花问题"></a>双花问题</h3><h3 id="比特币数据结构"><a href="#比特币数据结构" class="headerlink" title="比特币数据结构"></a>比特币数据结构</h3><p><img src="http://wx1.sinaimg.cn/mw690/c1b251b3ly1fo0pwh8bg8j20ko0eytan.jpg" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">$ bitcoin-cli getblock 000000000000000051d2e759c63a26e247f185ecb7926ed7a6624b↵ c31c2a717b true</span><br><span class="line">&#123;</span><br><span class="line">    &quot;hash&quot; : &quot;000000000000000051d2e759c63a26e247f185ecb7926ed7a6624bc31c2a717</span><br><span class="line">b&quot;,</span><br><span class="line">    &quot;confirmations&quot; : 2,</span><br><span class="line">    &quot;size&quot; : 248758,</span><br><span class="line">    &quot;height&quot; : 286384,</span><br><span class="line">    &quot;version&quot; : 2,</span><br><span class="line">    &quot;merkleroot&quot; : &quot;9891747e37903016c3b77c7a0ef10acf467c530de52d84735bd55538719f9916&quot;,</span><br><span class="line">    &quot;tx&quot; : [</span><br><span class="line">        &quot;46e130ab3c67d31d2b2c7f8fbc1ca71604a72e6bc504c8a35f777286c6d89bf0&quot;,</span><br><span class="line">        &quot;2d5625725b66d6c1da88b80b41e8c07dc5179ae2553361c96b14bcf1ce2c3868&quot;,</span><br><span class="line">        &quot;923392fc41904894f32d7c127059bed27dbb3cfd550d87b9a2dc03824f249c80&quot;,</span><br><span class="line">        &quot;f983739510a0f75837a82bfd9c96cd72090b15fa3928efb9cce95f6884203214&quot;,</span><br><span class="line">        &quot;190e1b010d5a53161aa0733b953eb29ef1074070658aaa656f933ded1a177952&quot;,</span><br><span class="line">        &quot;ee791ec8161440262f6e9144d5702f0057cef7e5767bc043879b7c2ff3ff5277&quot;,</span><br><span class="line">        &quot;4c45449ff56582664abfadeb1907756d9bc90601d32387d9cfd4f1ef813b46be&quot;,</span><br><span class="line">        &quot;3b031ed886c6d5220b3e3a28e3261727f3b4f0b29de5f93bc2de3e97938a8a53&quot;,</span><br><span class="line">        &quot;14b533283751e34a8065952fd1cd2c954e3d37aaa69d4b183ac6483481e5497d&quot;,</span><br><span class="line">        &quot;57b28365adaff61aaf60462e917a7cc9931904258127685c18f136eeaebd5d35&quot;,</span><br><span class="line">        &quot;8c0cc19fff6b66980f90af39bee20294bc745baf32cd83199aa83a1f0cd6ca51&quot;,</span><br><span class="line">        &quot;1b408640d54a1409d66ddaf3915a9dc2e8a6227439e8d91d2f74e704ba1cdae2&quot;,</span><br><span class="line">        &quot;0568f4fad1fdeff4dc70b106b0f0ec7827642c05fe5d2295b9deba4f5c5f5168&quot;,</span><br><span class="line">        &quot;9194bfe5756c7ec04743341a3605da285752685b9c7eebb594c6ed9ec9145f86&quot;,</span><br><span class="line">        &quot;765038fc1d444c5d5db9163ba1cc74bba2b4f87dd87985342813bd24021b6faf&quot;,</span><br><span class="line">        &quot;bff1caa9c20fa4eef33877765ee0a7d599fd1962417871ca63a2486476637136&quot;,</span><br><span class="line">        &quot;d76aa89083f56fcce4d5bf7fcf20c0406abdac0375a2d3c62007f64aa80bed74&quot;,</span><br><span class="line">        &quot;e57a4c70f91c8d9ba0ff0a55987ea578affb92daaa59c76820125f31a9584dfc&quot;,</span><br><span class="line">        &quot;9ca8f969bd3ef5ec2a8685660fdbf7a8bd365524c2e1fc66c309acbae2c14ae3&quot;,</span><br><span class="line"></span><br><span class="line">#[... many more transactions ...]</span><br><span class="line"></span><br><span class="line">    ],</span><br><span class="line">    &quot;time&quot; : 1392660808,</span><br><span class="line">    &quot;nonce&quot; : 3888130470,</span><br><span class="line">    &quot;bits&quot; : &quot;19015f53&quot;,</span><br><span class="line">    &quot;difficulty&quot; : 3129573174.52228737,</span><br><span class="line">    &quot;chainwork&quot; : &quot;000000000000000000000000000000000000000000001931d1658fc04879e466&quot;,</span><br><span class="line">    &quot;previousblockhash&quot; : &quot;0000000000000000177e61d5f6ba6b9450e0dade9f39c257b4d48b4941ac77e7&quot;,</span><br><span class="line">    &quot;nextblockhash&quot; : &quot;0000000000000001239d2c3bf7f4c68a4ca673e434702a57da8fe0d829a92eb6&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="http://wx4.sinaimg.cn/large/c1b251b3gy1fsjrn8axzyj20g00b3tbn.jpg" alt></p>
+<p><img src="http://book.8btc.com/books/1/master_bitcoin/_book/2/2-6.png" alt></p>
+<p><img src="http://book.8btc.com/books/1/master_bitcoin/_book/2/2-7.png" alt></p>
+<p><img src="http://ws2.sinaimg.cn/large/c1b251b3gy1fsjrkohp22j214e0dxjuf.jpg" alt="image"></p>
+<h3 id="比特币钱包和交易所"><a href="#比特币钱包和交易所" class="headerlink" title="比特币钱包和交易所"></a>比特币钱包和交易所</h3><h2 id="Merkle树和简单支付验证（SPV）"><a href="#Merkle树和简单支付验证（SPV）" class="headerlink" title="Merkle树和简单支付验证（SPV）"></a>Merkle树和简单支付验证（SPV）</h2><p>布隆过滤器原理</p>
+<p><strong>SPV节点完全可以验证某个交易存在，但它不能验证某个交易（譬如同一个UTXO的双重支付）不存在，这是因为SPV节点没有一份关于所有交易的记录。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/06/21/认识比特币/" class="article-date">
+  <time datetime="2018-06-21T14:00:58.000Z" itemprop="datePublished">2018-06-21</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/">block chain</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/06/27/比特币闪电网络原理/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          比特币闪电网络原理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/15/区块链-布隆过滤器原理/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">区块链-布隆过滤器原理</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

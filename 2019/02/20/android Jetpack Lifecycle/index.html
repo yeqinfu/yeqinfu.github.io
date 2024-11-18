@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Android LifeCycle and LiveData | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="平时很少上android dev很多官方框架特性都没及时跟上，这个可能有点用，看下基本原理。 LiveData特性 UI一直都保持数据同步（小学翻译水平）观察者模式使用  不回内存泄漏，数据类同步宿主的生命周期  当宿主销毁不会导致奔溃？（这个似乎没没意义）  不需要手动处理生命周期（也没意义，包含在第一点第二点中了）  总是保持数据同步更新（同上）  宿主销毁可以保持立马接收到本地数据（比如旋转">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android LifeCycle and LiveData">
+<meta property="og:url" content="http://yoursite.com/2019/02/20/android Jetpack Lifecycle/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="平时很少上android dev很多官方框架特性都没及时跟上，这个可能有点用，看下基本原理。 LiveData特性 UI一直都保持数据同步（小学翻译水平）观察者模式使用  不回内存泄漏，数据类同步宿主的生命周期  当宿主销毁不会导致奔溃？（这个似乎没没意义）  不需要手动处理生命周期（也没意义，包含在第一点第二点中了）  总是保持数据同步更新（同上）  宿主销毁可以保持立马接收到本地数据（比如旋转">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://wx2.sinaimg.cn/large/c1b251b3gy1g0amy96q05j20g708cjs1.jpg">
+<meta property="og:image" content="https://wx3.sinaimg.cn/large/c1b251b3gy1g0aops3s8yj20tq052dgd.jpg">
+<meta property="og:image" content="https://wx4.sinaimg.cn/large/c1b251b3gy1g0covxu1d5j213a0eggns.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android LifeCycle and LiveData">
+<meta name="twitter:description" content="平时很少上android dev很多官方框架特性都没及时跟上，这个可能有点用，看下基本原理。 LiveData特性 UI一直都保持数据同步（小学翻译水平）观察者模式使用  不回内存泄漏，数据类同步宿主的生命周期  当宿主销毁不会导致奔溃？（这个似乎没没意义）  不需要手动处理生命周期（也没意义，包含在第一点第二点中了）  总是保持数据同步更新（同上）  宿主销毁可以保持立马接收到本地数据（比如旋转">
+<meta name="twitter:image" content="https://wx2.sinaimg.cn/large/c1b251b3gy1g0amy96q05j20g708cjs1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-android Jetpack Lifecycle" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android LifeCycle and LiveData
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>平时很少上android dev很多官方框架特性都没及时跟上，这个可能有点用，看下基本原理。</p>
+<h4 id="LiveData特性"><a href="#LiveData特性" class="headerlink" title="LiveData特性"></a>LiveData特性</h4><ul>
+<li><p>UI一直都保持数据同步（小学翻译水平）观察者模式使用</p>
+</li>
+<li><p>不回内存泄漏，数据类同步宿主的生命周期</p>
+</li>
+<li><p>当宿主销毁不会导致奔溃？（这个似乎没没意义）</p>
+</li>
+<li><p>不需要手动处理生命周期（也没意义，包含在第一点第二点中了）</p>
+</li>
+<li><p>总是保持数据同步更新（同上）</p>
+</li>
+<li><p>宿主销毁可以保持立马接收到本地数据（比如旋转屏幕）</p>
+<blockquote>
+<p>这里疑问，数据保持和宿主生命周期是否有冲突</p>
+</blockquote>
+</li>
+<li><p>分享资源（多个fragment可以使用这个来数据传递）</p>
+</li>
+</ul>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NameViewModel</span> : <span class="type">ViewModel</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Create a LiveData with a String</span></span><br><span class="line">    <span class="keyword">val</span> currentName: MutableLiveData&lt;String&gt; <span class="keyword">by</span> lazy &#123;</span><br><span class="line">        MutableLiveData&lt;String&gt;()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Rest of the ViewModel...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Get the ViewModel.</span></span><br><span class="line">     model = ViewModelProviders.of(<span class="keyword">this</span>).<span class="keyword">get</span>(NameViewModel::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="comment">// Create the observer which updates the UI.</span></span><br><span class="line">      <span class="keyword">val</span> nameObserver = Observer&lt;String&gt; &#123; newName -&gt;</span><br><span class="line">          <span class="comment">// Update the UI, in this case, a TextView.</span></span><br><span class="line">          tv_name.text = newName</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.</span></span><br><span class="line">      model.currentName.observe(<span class="keyword">this</span>, nameObserver)</span><br><span class="line"></span><br><span class="line">      btn_update.setOnClickListener &#123;</span><br><span class="line">          <span class="keyword">val</span> anotherName = <span class="string">"John Doe"</span></span><br><span class="line">          model.currentName.setValue(anotherName)</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>livedata默认可以使用，但是ViewModelProviders会提示找不到。这是因为support包依赖了livedata</p>
+<p>找不到ViewModelProviders手动添加以下依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">api &quot;android.arch.lifecycle:extensions:1.1.1&quot;</span><br></pre></td></tr></table></figure>
+<p>从依赖树可以看到导入情况（gradle view）</p>
+<p><img src="https://wx2.sinaimg.cn/large/c1b251b3gy1g0amy96q05j20g708cjs1.jpg" alt="image"></p>
+</li>
+</ul>
+<p>这个简单例子，可以看到tv_name一直观察着数据的变化。</p>
+<h4 id="LifeCycle基本原理"><a href="#LifeCycle基本原理" class="headerlink" title="LifeCycle基本原理"></a>LifeCycle基本原理</h4><p>lifecycle已经加入support包内，activity,fragment直接可以获取该对象。添加对activity对象的生命周期的监听只需要</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lifecycle.addObserver(NameObserver())</span><br></pre></td></tr></table></figure>
+<p>之后NameObserver这个实例的相应方法会收到回调。我们以activity为例子，查看添加getLifecycle方法的地方在SupportActivity这个方法返回的是一个子类LifecycleRegistry它继承Lifecycle</p>
+<p><img src="https://wx3.sinaimg.cn/large/c1b251b3gy1g0aops3s8yj20tq052dgd.jpg" alt="image"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Creates a new LifecycleRegistry for the given provider.</span></span><br><span class="line"><span class="comment">    * &lt;p&gt;</span></span><br><span class="line"><span class="comment">    * You should usually create this inside your LifecycleOwner class's constructor and hold</span></span><br><span class="line"><span class="comment">    * onto the same instance.</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> provider The owner LifecycleOwner</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">LifecycleRegistry</span><span class="params">(@NonNull LifecycleOwner provider)</span> </span>&#123;</span><br><span class="line">       mLifecycleOwner = <span class="keyword">new</span> WeakReference&lt;&gt;(provider);</span><br><span class="line">       mState = INITIALIZED;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这边一个弱引用，外面的实例是一个activity，这边弱引用。</p>
+<blockquote>
+<p>在我的理解中，内存泄漏通常是因为一个长生命周期的对象持有了一个短生命周期对象或者说会被结束的对象（总之就是生命周期不一致），导致短生命周期对象想要被回收的时候，得不到回收，因为长生命周期的对象持有对短生命周期对象的引用。所以如果这时候长生命周期的对象用弱引用，那么根据弱引用的特性，这个句柄就会被释放，对象会被回收。</p>
+</blockquote>
+<p>这里用了弱引用保证切断了activity可能被mLifecycleOwner长期持有的可能，为什么可能会被长期持有呢？</p>
+<p>因为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Lifecycle <span class="title">getLifecycle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.mLifecycleRegistry;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>鬼知道开发者拿到这个对象会不会把他怎样，比如赋值给一个全局静态对象。导致泄漏</p>
+<p>Lifecycle这个抽象类主要就是添加观察者，移除观察者还有生命周期对象的定义这几个。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addObserver</span><span class="params">(@NonNull LifecycleObserver observer)</span> </span>&#123;</span><br><span class="line">        State initialState = mState == DESTROYED ? DESTROYED : INITIALIZED;</span><br><span class="line">        ObserverWithState statefulObserver = <span class="keyword">new</span> ObserverWithState(observer, initialState);</span><br><span class="line">        ObserverWithState previous = mObserverMap.putIfAbsent(observer, statefulObserver);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (previous != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        LifecycleOwner lifecycleOwner = mLifecycleOwner.get();</span><br><span class="line">        <span class="keyword">if</span> (lifecycleOwner == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// it is null we should be destroyed. Fallback quickly</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> isReentrance = mAddingObserverCounter != <span class="number">0</span> || mHandlingEvent;</span><br><span class="line">        State targetState = calculateTargetState(observer);</span><br><span class="line">        mAddingObserverCounter++;</span><br><span class="line">        <span class="keyword">while</span> ((statefulObserver.mState.compareTo(targetState) &lt; <span class="number">0</span></span><br><span class="line">                &amp;&amp; mObserverMap.contains(observer))) &#123;</span><br><span class="line">            pushParentState(statefulObserver.mState);</span><br><span class="line">            statefulObserver.dispatchEvent(lifecycleOwner, upEvent(statefulObserver.mState));</span><br><span class="line">            popParentState();</span><br><span class="line">            <span class="comment">// mState / subling may have been changed recalculate</span></span><br><span class="line">            targetState = calculateTargetState(observer);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!isReentrance) &#123;</span><br><span class="line">            <span class="comment">// we do sync only on the top level.</span></span><br><span class="line">            sync();</span><br><span class="line">        &#125;</span><br><span class="line">        mAddingObserverCounter--;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>看到添加观察者这个方法中。有一个ObserverWithState这个类包含以下这些东西</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ObserverWithState</span> </span>&#123;</span><br><span class="line">        State mState;</span><br><span class="line">        GenericLifecycleObserver mLifecycleObserver;</span><br><span class="line"></span><br><span class="line">        ObserverWithState(LifecycleObserver observer, State initialState) &#123;</span><br><span class="line">            mLifecycleObserver = Lifecycling.getCallback(observer);</span><br><span class="line">            mState = initialState;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">dispatchEvent</span><span class="params">(LifecycleOwner owner, Event event)</span> </span>&#123;</span><br><span class="line">            State newState = getStateAfter(event);</span><br><span class="line">            mState = min(mState, newState);</span><br><span class="line">            mLifecycleObserver.onStateChanged(owner, event);</span><br><span class="line">            mState = newState;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>然后看一下State这个类是干什么用的，如下</p>
+<h5 id="State-class"><a href="#State-class" class="headerlink" title="State class"></a>State class</h5><p>这边涉及到一个事件枚举，一个状态枚举</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Event &#123;</span><br><span class="line">       <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * Constant for onCreate event of the &#123;<span class="doctag">@link</span> LifecycleOwner&#125;.</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       ON_CREATE,</span><br><span class="line">       <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * Constant for onStart event of the &#123;<span class="doctag">@link</span> LifecycleOwner&#125;.</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       ON_START,</span><br><span class="line">       <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * Constant for onResume event of the &#123;<span class="doctag">@link</span> LifecycleOwner&#125;.</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       ON_RESUME,</span><br><span class="line">       <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * Constant for onPause event of the &#123;<span class="doctag">@link</span> LifecycleOwner&#125;.</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       ON_PAUSE,</span><br><span class="line">       <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * Constant for onStop event of the &#123;<span class="doctag">@link</span> LifecycleOwner&#125;.</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       ON_STOP,</span><br><span class="line">       <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * Constant for onDestroy event of the &#123;<span class="doctag">@link</span> LifecycleOwner&#125;.</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       ON_DESTROY,</span><br><span class="line">       <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * An &#123;<span class="doctag">@link</span> Event Event&#125; constant that can be used to match all events.</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       ON_ANY</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Lifecycle states. You can consider the states as the nodes in a graph and</span></span><br><span class="line"><span class="comment">     * &#123;<span class="doctag">@link</span> Event&#125;s as the edges between these nodes.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> State &#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Destroyed state for a LifecycleOwner. After this event, this Lifecycle will not dispatch</span></span><br><span class="line"><span class="comment">         * any more events. For instance, for an &#123;<span class="doctag">@link</span> android.app.Activity&#125;, this state is reached</span></span><br><span class="line"><span class="comment">         * &lt;b&gt;right before&lt;/b&gt; Activity's &#123;<span class="doctag">@link</span> android.app.Activity#onDestroy() onDestroy&#125; call.</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        DESTROYED,</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Initialized state for a LifecycleOwner. For an &#123;<span class="doctag">@link</span> android.app.Activity&#125;, this is</span></span><br><span class="line"><span class="comment">         * the state when it is constructed but has not received</span></span><br><span class="line"><span class="comment">         * &#123;<span class="doctag">@link</span> android.app.Activity#onCreate(android.os.Bundle) onCreate&#125; yet.</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        INITIALIZED,</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Created state for a LifecycleOwner. For an &#123;<span class="doctag">@link</span> android.app.Activity&#125;, this state</span></span><br><span class="line"><span class="comment">         * is reached in two cases:</span></span><br><span class="line"><span class="comment">         * &lt;ul&gt;</span></span><br><span class="line"><span class="comment">         *     &lt;li&gt;after &#123;<span class="doctag">@link</span> android.app.Activity#onCreate(android.os.Bundle) onCreate&#125; call;</span></span><br><span class="line"><span class="comment">         *     &lt;li&gt;&lt;b&gt;right before&lt;/b&gt; &#123;<span class="doctag">@link</span> android.app.Activity#onStop() onStop&#125; call.</span></span><br><span class="line"><span class="comment">         * &lt;/ul&gt;</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        CREATED,</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Started state for a LifecycleOwner. For an &#123;<span class="doctag">@link</span> android.app.Activity&#125;, this state</span></span><br><span class="line"><span class="comment">         * is reached in two cases:</span></span><br><span class="line"><span class="comment">         * &lt;ul&gt;</span></span><br><span class="line"><span class="comment">         *     &lt;li&gt;after &#123;<span class="doctag">@link</span> android.app.Activity#onStart() onStart&#125; call;</span></span><br><span class="line"><span class="comment">         *     &lt;li&gt;&lt;b&gt;right before&lt;/b&gt; &#123;<span class="doctag">@link</span> android.app.Activity#onPause() onPause&#125; call.</span></span><br><span class="line"><span class="comment">         * &lt;/ul&gt;</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        STARTED,</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Resumed state for a LifecycleOwner. For an &#123;<span class="doctag">@link</span> android.app.Activity&#125;, this state</span></span><br><span class="line"><span class="comment">         * is reached after &#123;<span class="doctag">@link</span> android.app.Activity#onResume() onResume&#125; is called.</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        RESUMED;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Compares if this State is greater or equal to the given &#123;<span class="doctag">@code</span> state&#125;.</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span> state State to compare with</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span> true if this State is greater or equal to the given &#123;<span class="doctag">@code</span> state&#125;</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isAtLeast</span><span class="params">(@NonNull State state)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> compareTo(state) &gt;= <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这两个枚举的关系用官方的注释就可以很好的理解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * Lifecycle states. You can consider the states as the nodes in a graph and</span><br><span class="line">    * &#123;@link Event&#125;s as the edges between these nodes.</span><br><span class="line">    */</span><br></pre></td></tr></table></figure>
+<p>我们把状态想象成一个点，把事件想象成两点之间的边如下图</p>
+<p><img src="https://wx4.sinaimg.cn/large/c1b251b3gy1g0covxu1d5j213a0eggns.jpg" alt="image"></p>
+<p>从第一行的生命周期来映射出各个状态，我们的Lifecycle只有这几个比较关键的状态INITIALIZED，CREATED，STARTED，RESUMED，DESTROYED这几个状态从我们的生命周期上来说覆盖面积是不一样的。比如CREATED就比较长，但是当我们处于RESUMED的状态的时候，就肯定是处于STARTED，CREATED之上的状态了。</p>
+<blockquote>
+<p>这几个状态的关键是，RESUMED标志着界面已经是可见的状态了,并且显示到前台可以和用户交互了</p>
+<p>STARTED这个状态标志可见但是没有到前台不能喝用户交互</p>
+</blockquote>
+<p>所以跟随源码，我们就可以理解这个方法了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> State <span class="title">getStateAfter</span><span class="params">(Event event)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (event) &#123;</span><br><span class="line">            <span class="keyword">case</span> ON_CREATE:</span><br><span class="line">            <span class="keyword">case</span> ON_STOP:</span><br><span class="line">                <span class="keyword">return</span> CREATED;</span><br><span class="line">            <span class="keyword">case</span> ON_START:</span><br><span class="line">            <span class="keyword">case</span> ON_PAUSE:</span><br><span class="line">                <span class="keyword">return</span> STARTED;</span><br><span class="line">            <span class="keyword">case</span> ON_RESUME:</span><br><span class="line">                <span class="keyword">return</span> RESUMED;</span><br><span class="line">            <span class="keyword">case</span> ON_DESTROY:</span><br><span class="line">                <span class="keyword">return</span> DESTROYED;</span><br><span class="line">            <span class="keyword">case</span> ON_ANY:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Unexpected event value "</span> + event);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>举个例子，启动一个activity到可见可交互</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onCreate-&gt;onStart-&gt;onResume</span><br></pre></td></tr></table></figure>
+<p>那么这个状态会从</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATED-&gt;STARTED-&gt;RESUMED</span><br></pre></td></tr></table></figure>
+<p>如果又启动其它Activity那么这个activity就会再经历</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onPause-&gt;onStop</span><br></pre></td></tr></table></figure>
+<p>那么状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RESUMED-&gt;CREATED</span><br></pre></td></tr></table></figure>
+<p>可以看到这个activity回退到CREATED这个状态</p>
+<h5 id="ObserverWithState-amp-GenericLifecycleObserver"><a href="#ObserverWithState-amp-GenericLifecycleObserver" class="headerlink" title="ObserverWithState&amp;GenericLifecycleObserver"></a>ObserverWithState&amp;GenericLifecycleObserver</h5><p>我们回到ObserverWithState这个类中，看到这个GenericLifecycleObserver成员变量和我们传进来的observer（NameObserver）有联系。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mLifecycleObserver = Lifecycling.getCallback(observer);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void dispatchEvent(LifecycleOwner owner, Event event) &#123;</span><br><span class="line">           State newState = getStateAfter(event);</span><br><span class="line">           mState = min(mState, newState);</span><br><span class="line">           mLifecycleObserver.onStateChanged(owner, event);</span><br><span class="line">           mState = newState;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<p>肯定是等会别的类调用这个dispatchEvent然后才会回调我们自定义的NameObserver这个类中的方法。所以先看</p>
+<p>Lifecycling里面怎么写的。</p>
+<p>getCallback这个方法中，可以看到包含一些已经定义好的监听器Observer</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FullLifecycleObserver</span><br><span class="line">GenericLifecycleObserver</span><br></pre></td></tr></table></figure>
+<p>其实最后还是帮你把自定义的监听器（NameObserver）进行进一步的封装修饰变成GenericLifecycleObserver返回。</p>
+<p>我们的自定义的NameObserver肯定是往下走，走到这一步</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> Class&lt;?&gt; klass = object.getClass();</span><br><span class="line">      <span class="keyword">int</span> type = getObserverConstructorType(klass);</span><br><span class="line">      <span class="keyword">if</span> (type == GENERATED_CALLBACK) &#123;</span><br><span class="line">          List&lt;Constructor&lt;? extends GeneratedAdapter&gt;&gt; constructors =</span><br><span class="line">                  sClassToAdapters.get(klass);</span><br><span class="line">          <span class="keyword">if</span> (constructors.size() == <span class="number">1</span>) &#123;</span><br><span class="line">              GeneratedAdapter generatedAdapter = createGeneratedAdapter(</span><br><span class="line">                      constructors.get(<span class="number">0</span>), object);</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">new</span> SingleGeneratedAdapterObserver(generatedAdapter);</span><br><span class="line">          &#125;</span><br><span class="line">          GeneratedAdapter[] adapters = <span class="keyword">new</span> GeneratedAdapter[constructors.size()];</span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; constructors.size(); i++) &#123;</span><br><span class="line">              adapters[i] = createGeneratedAdapter(constructors.get(i), object);</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">new</span> CompositeGeneratedAdaptersObserver(adapters);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getObserverConstructorType</span><span class="params">(Class&lt;?&gt; klass)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (sCallbackCache.containsKey(klass)) &#123;</span><br><span class="line">           <span class="keyword">return</span> sCallbackCache.get(klass);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">int</span> type = resolveObserverCallbackType(klass);</span><br><span class="line">       sCallbackCache.put(klass, type);</span><br><span class="line">       <span class="keyword">return</span> type;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到它把我们的自定义监听器通过类名进行了缓存，其中重要的两个变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">private static final int REFLECTIVE_CALLBACK = 1;（反射回调）//直译</span><br><span class="line">private static final int GENERATED_CALLBACK = 2;（已经生成回调）</span><br></pre></td></tr></table></figure>
+<p>把我们的自定义监听器分成两类。</p>
+<p>看这个方法怎么分类的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// anonymous class bug:35073837</span></span><br><span class="line">      <span class="keyword">if</span> (klass.getCanonicalName() == <span class="keyword">null</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> REFLECTIVE_CALLBACK;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<p>getCanonicalName本地类或者匿名类或者数组类型的时候getCanonicalName()方法将会返回null，从这个备注看出曾经因为这个出现了bug，如果我们的自定义监听器是一个匿名内部类把它规划为REFLECTIVE_CALLBACK</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nullable</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> Constructor&lt;? extends GeneratedAdapter&gt; generatedConstructor(Class&lt;?&gt; klass) &#123;</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           Package aPackage = klass.getPackage();</span><br><span class="line">           String name = klass.getCanonicalName();</span><br><span class="line">           <span class="keyword">final</span> String fullPackage = aPackage != <span class="keyword">null</span> ? aPackage.getName() : <span class="string">""</span>;</span><br><span class="line">           <span class="keyword">final</span> String adapterName = getAdapterName(fullPackage.isEmpty() ? name :</span><br><span class="line">                   name.substring(fullPackage.length() + <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">           <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>) <span class="keyword">final</span> Class&lt;? extends GeneratedAdapter&gt; aClass =</span><br><span class="line">                   (Class&lt;? extends GeneratedAdapter&gt;) Class.forName(</span><br><span class="line">                           fullPackage.isEmpty() ? adapterName : fullPackage + <span class="string">"."</span> + adapterName);</span><br><span class="line">           Constructor&lt;? extends GeneratedAdapter&gt; constructor =</span><br><span class="line">                   aClass.getDeclaredConstructor(klass);</span><br><span class="line">           <span class="keyword">if</span> (!constructor.isAccessible()) &#123;</span><br><span class="line">               constructor.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> constructor;</span><br><span class="line">       &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">           <span class="comment">// this should not happen</span></span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码返回的就是你传入的kclass的构造器但是为什么要重新Class.forName得到aClass然后再getDeclaredConstructor，而不是直接klass调用getDeclaredConstructor？</p>
+<blockquote>
+<p>其实仔细一看原来不一样</p>
+<p>它找的是com.ppandroid.androidsample.livedata.NameObserver_LifecycleAdapter</p>
+<p>所以返回null</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (constructor != <span class="keyword">null</span>) &#123;</span><br><span class="line">          sClassToAdapters.put(klass, Collections</span><br><span class="line">                  .&lt;Constructor&lt;? extends GeneratedAdapter&gt;&gt;singletonList(constructor));</span><br><span class="line">          <span class="keyword">return</span> GENERATED_CALLBACK;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<p>从这里看出，如果返回不为空，说明这个类（自定义监听器）的对应adapter已经被缓存了。那么返回这个监听器的类型就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GENERATED_CALLBACK//已经生成的监听器</span><br></pre></td></tr></table></figure>
+<p>如果为空，也就是第一次调用就会继续往下走</p>
+<p>hasLifecycleMethods这个方法是判断自定义监听器里面是否包含了监听器注解的方法。如果我们没写注解监听，那么会继续往下走</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; superclass = klass.getSuperclass();</span><br><span class="line">      List&lt;Constructor&lt;? extends GeneratedAdapter&gt;&gt; adapterConstructors = <span class="keyword">null</span>;</span><br><span class="line">      <span class="keyword">if</span> (isLifecycleParent(superclass)) &#123;</span><br><span class="line">          <span class="keyword">if</span> (getObserverConstructorType(superclass) == REFLECTIVE_CALLBACK) &#123;</span><br><span class="line">              <span class="keyword">return</span> REFLECTIVE_CALLBACK;</span><br><span class="line">          &#125;</span><br><span class="line">          adapterConstructors = <span class="keyword">new</span> ArrayList&lt;&gt;(sClassToAdapters.get(superclass));</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<p>如果没有，那么这段代码会去找当前监听器的父类，看看父类是否声明了注解方法。这边有一个递归寻找的逻辑。</p>
+<p>如果递归到底还是没找到，还会继续往下走。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Class&lt;?&gt; intrface : klass.getInterfaces()) &#123;</span><br><span class="line">           <span class="keyword">if</span> (!isLifecycleParent(intrface)) &#123;</span><br><span class="line">               <span class="keyword">continue</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (getObserverConstructorType(intrface) == REFLECTIVE_CALLBACK) &#123;</span><br><span class="line">               <span class="keyword">return</span> REFLECTIVE_CALLBACK;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (adapterConstructors == <span class="keyword">null</span>) &#123;</span><br><span class="line">               adapterConstructors = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">           &#125;</span><br><span class="line">           adapterConstructors.addAll(sClassToAdapters.get(intrface));</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<p>这段是判断我们自定义的监听器所有实现的接口是否有注解</p>
+<blockquote>
+<p>考虑得真全面啊 </p>
+</blockquote>
+<p>如果还没找到，返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REFLECTIVE_CALLBACK</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>总结，也就是自定义监听器，要所有接口都实现了对应的_LifecycleAdapter才会返回GENERATED_CALLBACK</p>
+<p>不然都是REFLECTIVE_CALLBACK</p>
+</blockquote>
+<h5 id="回退到getCallback"><a href="#回退到getCallback" class="headerlink" title="回退到getCallback"></a>回退到getCallback</h5><p>这下清除看到根据不同类型的callback来确定是否需要new一个新的监听器适配器，如果是已经生成的callback还需要判断是否是有实现多接口的逻辑，返回不同的对象如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SingleGeneratedAdapterObserver</span><br><span class="line">CompositeGeneratedAdaptersObserver</span><br></pre></td></tr></table></figure>
+<p>这些适配器都是继承GenericLifecycleObserver 实现了onStateChanged这个方法，在这个方法被调用的时候分别去反射回调我们定义的注解方法。</p>
+<h4 id="回退addObserver"><a href="#回退addObserver" class="headerlink" title="回退addObserver"></a>回退addObserver</h4><p>根据以上，我们可以看到我们自定义的监听器是如何被调用并且缓存起来的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ObserverWithState previous = mObserverMap.putIfAbsent(observer, statefulObserver);</span><br></pre></td></tr></table></figure>
+<p>然后把生成的监听器缓存到mObserverMap，如果如果之前已经缓存过了，previous会不为null，而如果没有缓存过，逻辑继续往下走。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">LifecycleOwner lifecycleOwner = mLifecycleOwner.get();</span><br><span class="line">       <span class="keyword">if</span> (lifecycleOwner == <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="comment">// it is null we should be destroyed. Fallback quickly</span></span><br><span class="line">           <span class="keyword">return</span>;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<p>判断宿主的类（activity）是否已经销毁</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> isReentrance = mAddingObserverCounter != <span class="number">0</span> || mHandlingEvent;</span><br><span class="line">      State targetState = calculateTargetState(observer);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> State <span class="title">calculateTargetState</span><span class="params">(LifecycleObserver observer)</span> </span>&#123;</span><br><span class="line">       Entry&lt;LifecycleObserver, ObserverWithState&gt; previous = mObserverMap.ceil(observer);</span><br><span class="line"></span><br><span class="line">       State siblingState = previous != <span class="keyword">null</span> ? previous.getValue().mState : <span class="keyword">null</span>;</span><br><span class="line">       State parentState = !mParentStates.isEmpty() ? mParentStates.get(mParentStates.size() - <span class="number">1</span>)</span><br><span class="line">               : <span class="keyword">null</span>;</span><br><span class="line">       <span class="keyword">return</span> min(min(mState, siblingState), parentState);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>calculateTargetState这个方法可以看到它找到我们之定义的监听器之前的上一个监听器（显然第一次的话肯定为null）。siblingState这个暂定叫做兄弟监听器，也就是我们前一个监听器，所有的监听器都是链式存储，可以根据当前监听器找到上一个或者下一个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">min(min(mState, siblingState), parentState)</span><br></pre></td></tr></table></figure>
+<p>可以看到两次比较，比较出当前监听器和兄弟监听器和父类监听器哪个最小，也就是枚举比较。</p>
+<blockquote>
+<p>父类监听器目前这里不知道哪里赋值。找到最小的然后返回</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> ((statefulObserver.mState.compareTo(targetState) &lt; <span class="number">0</span></span><br><span class="line">                &amp;&amp; mObserverMap.contains(observer))) &#123;</span><br><span class="line">            pushParentState(statefulObserver.mState);</span><br><span class="line">            statefulObserver.dispatchEvent(lifecycleOwner, upEvent(statefulObserver.mState));</span><br><span class="line">            popParentState();</span><br><span class="line">            <span class="comment">// mState / subling may have been changed recalculate</span></span><br><span class="line">            targetState = calculateTargetState(observer);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>看到监听器最小监听器和当前监听器的比较，小于的时候进入循环体。在这里把他加入mParentStates的列表中。并且进行事件分发。</p>
+<p>其实这段循环，应该是宿主（activity）如果添加了多个监听器，每个监听器可能又是多实现的监听接口（LifecycleObserver）监听接口，事件分发的顺序。</p>
+<h4 id="事件分发"><a href="#事件分发" class="headerlink" title="事件分发"></a>事件分发</h4><p>事件分发的入口是ProcessLifecycleOwnerInitializer这个类</p>
+<p>LifecycleDispatcher</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">static void init(Context context) &#123;</span><br><span class="line">       if (sInitialized.getAndSet(true)) &#123;</span><br><span class="line">           return;</span><br><span class="line">       &#125;</span><br><span class="line">       ((Application) context.getApplicationContext())</span><br><span class="line">               .registerActivityLifecycleCallbacks(new DispatcherActivityCallback());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>注册之后可以监听到每个新建的activity的生命周期，然后分发事件。</p>
+<p>fragment同理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">registerFragmentLifecycleCallbacks</span><br></pre></td></tr></table></figure>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>lifecycle是可以提供生命周期的回调功能的一个类。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2019/02/20/android Jetpack Lifecycle/" class="article-date">
+  <time datetime="2019-02-20T14:00:58.000Z" itemprop="datePublished">2019-02-20</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2019/02/20/Android Jetpack LiveData/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android Jetpack LiveData ViewModel
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/13/Android编译兼容/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android编译兼容性</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

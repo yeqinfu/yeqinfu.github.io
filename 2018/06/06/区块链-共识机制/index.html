@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>区块链-共识机制 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="共识机制参考 POW工作量证明 目标哈希是具有一定难度值的哈希，比如要求十个零开头的哈希。这个难度值会随着全网络节点的算力（节点数量，过去平均产生块的时间）而动态变化，保证链条产生块的速度维持稳定。 而要得到目标哈希，从头部可以看出，只能更改Nonce的这个随机数。这个过程就是工作量证明 POS权益证明参考 参考2 省去了旷工这个媒介，避免了POW的电力浪费。  SHA256（SHA256（Bpr">
+<meta name="keywords" content="block chain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链-共识机制">
+<meta property="og:url" content="http://yoursite.com/2018/06/06/区块链-共识机制/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="共识机制参考 POW工作量证明 目标哈希是具有一定难度值的哈希，比如要求十个零开头的哈希。这个难度值会随着全网络节点的算力（节点数量，过去平均产生块的时间）而动态变化，保证链条产生块的速度维持稳定。 而要得到目标哈希，从头部可以看出，只能更改Nonce的这个随机数。这个过程就是工作量证明 POS权益证明参考 参考2 省去了旷工这个媒介，避免了POW的电力浪费。  SHA256（SHA256（Bpr">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1fs1ghl55sdj20nm0j4gnk.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="区块链-共识机制">
+<meta name="twitter:description" content="共识机制参考 POW工作量证明 目标哈希是具有一定难度值的哈希，比如要求十个零开头的哈希。这个难度值会随着全网络节点的算力（节点数量，过去平均产生块的时间）而动态变化，保证链条产生块的速度维持稳定。 而要得到目标哈希，从头部可以看出，只能更改Nonce的这个随机数。这个过程就是工作量证明 POS权益证明参考 参考2 省去了旷工这个媒介，避免了POW的电力浪费。  SHA256（SHA256（Bpr">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1fs1ghl55sdj20nm0j4gnk.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-区块链-共识机制" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      区块链-共识机制
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p><a href="https://shuwoom.com/?p=798" target="_blank" rel="noopener">共识机制参考</a></p>
+<h3 id="POW工作量证明"><a href="#POW工作量证明" class="headerlink" title="POW工作量证明"></a>POW工作量证明</h3><p><img src="https://ws1.sinaimg.cn/large/c1b251b3gy1fs1ghl55sdj20nm0j4gnk.jpg" alt="tu"></p>
+<p>目标哈希是具有一定难度值的哈希，比如要求十个零开头的哈希。这个难度值会随着全网络节点的算力（节点数量，过去平均产生块的时间）而动态变化，保证链条产生块的速度维持稳定。</p>
+<p>而要得到目标哈希，从头部可以看出，只能更改Nonce的这个随机数。这个过程就是工作量证明</p>
+<h3 id="POS权益证明"><a href="#POS权益证明" class="headerlink" title="POS权益证明"></a>POS权益证明</h3><p><a href="https://www.zhihu.com/question/263915518" target="_blank" rel="noopener">参考</a></p>
+<p><a href="https://charlesliuyx.github.io/2017/09/25/%E7%8E%B0%E4%BB%A3%E5%8C%BA%E5%9D%97%E9%93%BE%E4%B8%8E%E6%96%B0%E6%8A%80%E6%9C%AF/#%E6%9D%83%E7%9B%8A%E8%AF%81%E6%98%8E" target="_blank" rel="noopener">参考2</a></p>
+<p>省去了旷工这个媒介，避免了POW的电力浪费。</p>
+<blockquote>
+<p>SHA256（SHA256（Bprev）,A ,t）≤balance(A)m</p>
+</blockquote>
+<p>这其中，H为某个哈希函数；t为UTC时间戳；Bprev指的是上个区块；balance(A)代表账户A额余额。</p>
+<p>唯一可以不断调整得到参数的是t，等式右边是某个固定实数，因此当balance(A)越大，找到合理的t概率越大，普遍对t的范围有所限制，如可尝试的时间不能超过标准时间戳一小时，也就是一个及诶单可以尝试7200次，一个账户的余额越多，就越容易发现下一个区块。</p>
+<p>当你打开钱包客户端就会参与挖矿计算，挖矿的概率根据你的持有币的多少和币龄决定。</p>
+<p>例如，你持有100个币，总共持有30天，你的币龄就是3000，此时，若你发现了一个PoS算法支持的区块（<strong>直观来说就是你拥有币的数量和时间越长，你新建区块的几率越大</strong>），你的币龄就会被置0。你每被清空365币龄，你将会从区块中获得0.05个币的利息（相当于年利率5%），那么在这个案例中，利息 = 3000 * 5% / 365 = 0.41个币。</p>
+<p>也就是打开客户端就可以获得利息。你的挖矿收益和算力无关。</p>
+<h3 id="DPOS-委任权益证明"><a href="#DPOS-委任权益证明" class="headerlink" title="DPOS 委任权益证明"></a>DPOS 委任权益证明</h3><p>POS参与出块就要求客户端必须打开，在DPOS权益证明下，更加进一步节约电能。让每个持有币的人进行投票产生101位代表，这101代表用于出块，出块的速度更快，每个块时间为10秒，一笔交易大概一分钟，6个确认。</p>
+<h3 id="PBFT-实用拜占庭容错算法"><a href="#PBFT-实用拜占庭容错算法" class="headerlink" title="PBFT 实用拜占庭容错算法"></a>PBFT 实用拜占庭容错算法</h3><p>拜占庭共识算法（Practical Byzantine Fault Tolerance- PBFT）也是一种常见的共识证明。它与之前两种都不相同，PBFT以计算为基础，也没有代币奖励。由链上所有人参与投票，少于（N-1）/3个节点反对时就获得公示信息的权利。</p>
+<p>优点： 算法的可靠性有严格的数学证明，具备（n-1)/3容错性</p>
+<p>缺点：当有1/3或以上记账人停止工作后，系统将无法提供服务。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/06/06/区块链-共识机制/" class="article-date">
+  <time datetime="2018-06-06T15:00:00.000Z" itemprop="datePublished">2018-06-06</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/">block chain</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/06/07/区块链-以太坊/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          区块链-以太坊
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/05/区块链-拜占庭将军问题/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">区块链-拜占庭将军问题</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

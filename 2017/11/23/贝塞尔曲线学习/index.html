@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>学习贝塞尔曲线 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="画一个简单的心。 效果图如下：  四个控制点的贝塞尔曲线。定义四个点 1234567int gridSpace=80;   float pointRadius=20;   //四个自定义点 假设位置   BPoint p0=new BPoint(7*gridSpace,6*gridSpace);   BPoint p1=new BPoint(11*gridSpace,5*gridSpace);">
+<meta name="keywords" content="code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习贝塞尔曲线">
+<meta property="og:url" content="http://yoursite.com/2017/11/23/贝塞尔曲线学习/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="画一个简单的心。 效果图如下：  四个控制点的贝塞尔曲线。定义四个点 1234567int gridSpace=80;   float pointRadius=20;   //四个自定义点 假设位置   BPoint p0=new BPoint(7*gridSpace,6*gridSpace);   BPoint p1=new BPoint(11*gridSpace,5*gridSpace);">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/c1b251b3gy1fls03bmka9g208w0fskik.gif">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习贝塞尔曲线">
+<meta name="twitter:description" content="画一个简单的心。 效果图如下：  四个控制点的贝塞尔曲线。定义四个点 1234567int gridSpace=80;   float pointRadius=20;   //四个自定义点 假设位置   BPoint p0=new BPoint(7*gridSpace,6*gridSpace);   BPoint p1=new BPoint(11*gridSpace,5*gridSpace);">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/c1b251b3gy1fls03bmka9g208w0fskik.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-贝塞尔曲线学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      学习贝塞尔曲线
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>画一个简单的心。</p>
+<p>效果图如下：</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/c1b251b3gy1fls03bmka9g208w0fskik.gif" alt="心图"></p>
+<p>四个控制点的贝塞尔曲线。定义四个点</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> gridSpace=<span class="number">80</span>;</span><br><span class="line">   <span class="keyword">float</span> pointRadius=<span class="number">20</span>;</span><br><span class="line">   <span class="comment">//四个自定义点 假设位置</span></span><br><span class="line">   BPoint p0=<span class="keyword">new</span> BPoint(<span class="number">7</span>*gridSpace,<span class="number">6</span>*gridSpace);</span><br><span class="line">   BPoint p1=<span class="keyword">new</span> BPoint(<span class="number">11</span>*gridSpace,<span class="number">5</span>*gridSpace);</span><br><span class="line">   BPoint p2=<span class="keyword">new</span> BPoint(<span class="number">11</span>*gridSpace,<span class="number">11</span>*gridSpace);</span><br><span class="line">   BPoint p3=<span class="keyword">new</span> BPoint(<span class="number">7</span>*gridSpace,<span class="number">12</span>*gridSpace);</span><br></pre></td></tr></table></figure>
+<p>BPoint</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.widget.bezier;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by yeqinfu on 2017/11/23.</span></span><br><span class="line"><span class="comment"> * 贝塞尔坐标点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BPoint</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">float</span> x;</span><br><span class="line">    <span class="keyword">public</span></span><br><span class="line">    <span class="keyword">float</span> y;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BPoint</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BPoint</span><span class="params">(<span class="keyword">float</span> x, <span class="keyword">float</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.x = x;</span><br><span class="line">        <span class="keyword">this</span>.y = y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主要绘画代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">       <span class="comment">//背景网格</span></span><br><span class="line">       drawBackground(canvas);</span><br><span class="line">       <span class="comment">//画四个控制点</span></span><br><span class="line">       drawControllerPoint(canvas);</span><br><span class="line">       <span class="comment">//三阶贝塞尔曲线</span></span><br><span class="line">       Path path2=<span class="keyword">new</span> Path();</span><br><span class="line">       BPoint start2=Utils_Berzier.calculateBerzierThree(p0,p1,p2,p3,<span class="number">0</span>);</span><br><span class="line">       path2.moveTo(start2.x,start2.y);</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">float</span> i=<span class="number">0.01f</span>;i&lt;<span class="number">1f</span>;i+=<span class="number">0.01f</span>)&#123;</span><br><span class="line">           BPoint point=Utils_Berzier.calculateBerzierThree(p0,p1,p2,p3,i);</span><br><span class="line">           path2.lineTo(point.x,point.y);</span><br><span class="line">       &#125;</span><br><span class="line">      <span class="comment">// canvas.drawPath(path2,getPathPaint());</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">/**计算p1 p2镜像点位置*/</span></span><br><span class="line">       BPoint p4=calculataImagePoint(p0,p3,p1);</span><br><span class="line">       BPoint p5=calculataImagePoint(p0,p3,p2);</span><br><span class="line">       <span class="comment">//镜像三阶贝塞尔曲线</span></span><br><span class="line">       Path path3=<span class="keyword">new</span> Path();</span><br><span class="line">       BPoint start3=Utils_Berzier.calculateBerzierThree(p0,p4,p5,p3,<span class="number">0</span>);</span><br><span class="line">       path3.moveTo(start3.x,start3.y);</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">float</span> i=<span class="number">0.01f</span>;i&lt;<span class="number">1f</span>;i+=<span class="number">0.01f</span>)&#123;</span><br><span class="line">           BPoint point=Utils_Berzier.calculateBerzierThree(p0,p4,p5,p3,i);</span><br><span class="line">           path3.lineTo(point.x,point.y);</span><br><span class="line">       &#125;</span><br><span class="line">       path3.addPath(path2);</span><br><span class="line">       canvas.drawPath(path3,getPathPaint());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>网格背景</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">drawBackground</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;getHeight();i+=gridSpace)&#123;</span><br><span class="line">          canvas.drawLine(<span class="number">0</span>,i,getWidth(),i,getBackgroundPaint());</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;getWidth();i+=gridSpace)&#123;</span><br><span class="line">          canvas.drawLine(i,<span class="number">0</span>,i,getHeight(),getBackgroundPaint());</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>画四个控制点,并连线</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">drawControllerPoint</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">        drawPoint(p0,canvas);</span><br><span class="line">        drawPoint(p1,canvas);</span><br><span class="line">        drawPoint(p2,canvas);</span><br><span class="line">        drawPoint(p3,canvas);</span><br><span class="line">        linePoint(p0,p1,canvas);</span><br><span class="line">        linePoint(p1,p2,canvas);</span><br><span class="line">        linePoint(p2,p3,canvas);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>画点代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">drawPoint</span><span class="params">(BPoint p0, Canvas canvas)</span> </span>&#123;</span><br><span class="line">       canvas.drawCircle( p0.x, p0.y,pointRadius,getPointPaint());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>连线代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">linePoint</span><span class="params">(BPoint p0, BPoint p1, Canvas canvas)</span> </span>&#123;</span><br><span class="line">       canvas.drawLine(p0.x,p0.y,p1.x,p1.y,getPointPaint());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>根据这四个点就可以画出三阶曲线了，画出来的曲线存在path2中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//三阶贝塞尔曲线</span></span><br><span class="line">     Path path2=<span class="keyword">new</span> Path();</span><br><span class="line">     BPoint start2=Utils_Berzier.calculateBerzierThree(p0,p1,p2,p3,<span class="number">0</span>);</span><br><span class="line">     path2.moveTo(start2.x,start2.y);</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">float</span> i=<span class="number">0.01f</span>;i&lt;<span class="number">1f</span>;i+=<span class="number">0.01f</span>)&#123;</span><br><span class="line">         BPoint point=Utils_Berzier.calculateBerzierThree(p0,p1,p2,p3,i);</span><br><span class="line">         path2.lineTo(point.x,point.y);</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<p>查看calculateBerzierThree方法。把这条曲线细分成一百个点，然后连线。这边并没有用android自带的path2.quadTo();path2.cubicTo();这几个方法去实现贝塞尔曲线。而是自己用公式计算，并细分细节。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 三阶贝塞尔曲线</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p0</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p1</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p2</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p3</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> t</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BPoint <span class="title">calculateBerzierThree</span><span class="params">(BPoint p0,BPoint p1,BPoint p2,BPoint p3,<span class="keyword">float</span> t)</span></span>&#123;</span><br><span class="line">       BPoint bPoint=<span class="keyword">new</span> BPoint();</span><br><span class="line">       bPoint.x=getBerzierThree(p0.x,p1.x,p2.x,p3.x,t);</span><br><span class="line">       bPoint.y=getBerzierThree(p0.y,p1.y,p2.y,p3.y,t);</span><br><span class="line">       <span class="keyword">return</span> bPoint;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>返回是一个不同细节时候的点。在上一层被连接。接着看getBerzierThree代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 三阶贝塞尔曲线</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p0</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p1</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p2</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p3</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> t</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">float</span> <span class="title">getBerzierThree</span><span class="params">(<span class="keyword">float</span> p0,<span class="keyword">float</span> p1,<span class="keyword">float</span> p2,<span class="keyword">float</span> p3,<span class="keyword">float</span> t)</span></span>&#123;</span><br><span class="line">       <span class="keyword">return</span> p0*(<span class="number">1</span>-t)*(<span class="number">1</span>-t)*(<span class="number">1</span>-t)+<span class="number">3</span>*p1*t*(<span class="number">1</span>-t)*(<span class="number">1</span>-t)+<span class="number">3</span>*p2*t*t*(<span class="number">1</span>-t)+p3*t*t*t;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>直接就是三阶曲线方程式</p>
+<p>然后返回ondraw方法.因为这样只画出了一半的心形线</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**计算p1 p2镜像点位置*/</span></span><br><span class="line">     BPoint p4=calculataImagePoint(p0,p3,p1);</span><br><span class="line">     BPoint p5=calculataImagePoint(p0,p3,p2);</span><br><span class="line">     <span class="comment">//镜像三阶贝塞尔曲线</span></span><br><span class="line">     Path path3=<span class="keyword">new</span> Path();</span><br><span class="line">     BPoint start3=Utils_Berzier.calculateBerzierThree(p0,p4,p5,p3,<span class="number">0</span>);</span><br><span class="line">     path3.moveTo(start3.x,start3.y);</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">float</span> i=<span class="number">0.01f</span>;i&lt;<span class="number">1f</span>;i+=<span class="number">0.01f</span>)&#123;</span><br><span class="line">         BPoint point=Utils_Berzier.calculateBerzierThree(p0,p4,p5,p3,i);</span><br><span class="line">         path3.lineTo(point.x,point.y);</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<p>p4,p5是分别关于p0,p3直线函数的镜像点。</p>
+<p>查看镜像计算方法calculataImagePoint</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> p0 直线点1</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> p3 直线点2</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> p1 镜像点</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> p1的镜像点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> BPoint <span class="title">calculataImagePoint</span><span class="params">(BPoint p0, BPoint p3, BPoint p1)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//计算p0p3直线公式y=ax+b 的ab值</span></span><br><span class="line">        <span class="keyword">float</span> a=(p0.y-p3.y)/(p0.x-p3.x);</span><br><span class="line">        <span class="keyword">float</span> b=p0.y-p0.x*a;</span><br><span class="line">        <span class="comment">//根据中点公式，斜率相乘为-1得到一个代数式</span></span><br><span class="line">        BPoint result=<span class="keyword">new</span> BPoint();</span><br><span class="line">        result.x=(<span class="number">2</span>*p1.y*a-<span class="number">2</span>*b*a-a*a*p1.x+p1.x)/(<span class="number">1</span>+a*a);</span><br><span class="line">        result.y=p1.y-(result.x-p1.x)/a;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>如图注解，就是一个代数式的总结而已。得到的镜像path</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">path3.addPath(path2);</span><br><span class="line">       canvas.drawPath(path3,getPathPaint());</span><br></pre></td></tr></table></figure>
+<p>合并并描绘</p>
+<p>再来看控制点触摸监听</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (event.getAction()==MotionEvent.ACTION_DOWN)&#123;<span class="comment">//按下事件</span></span><br><span class="line">           BPoint point=calculatePointArea(event);</span><br><span class="line">           <span class="keyword">if</span> (point!=<span class="keyword">null</span>)&#123;<span class="comment">//说明按在控制点上</span></span><br><span class="line">               move=point;</span><br><span class="line">               <span class="keyword">return</span>  <span class="keyword">true</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;<span class="keyword">else</span> <span class="keyword">if</span> (event.getAction()==MotionEvent.ACTION_MOVE)&#123;<span class="comment">//移动事件</span></span><br><span class="line">           <span class="keyword">if</span> (move!=<span class="keyword">null</span>)&#123;</span><br><span class="line">               move.x=event.getX();</span><br><span class="line">               move.y=event.getY();</span><br><span class="line">               invalidate();</span><br><span class="line">               <span class="keyword">return</span>  <span class="keyword">true</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;<span class="keyword">else</span> <span class="keyword">if</span> (event.getAction()==MotionEvent.ACTION_UP)&#123;<span class="comment">//松手</span></span><br><span class="line">           move=<span class="keyword">null</span>;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>按下事件计算是否按下四个控制点的其中一个查看calculatePointArea方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 计算按下的点是否在控制点范围内</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> event</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span> 如果在，返回该控制点，不在返回null</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> BPoint <span class="title">calculatePointArea</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">float</span> distance=calculatePointDistance(event,p0);</span><br><span class="line">      <span class="keyword">if</span> (distance&lt;=pointRadius)&#123;</span><br><span class="line">          <span class="keyword">return</span> p0;</span><br><span class="line">      &#125;</span><br><span class="line">      distance=calculatePointDistance(event,p1);</span><br><span class="line">      <span class="keyword">if</span> (distance&lt;=pointRadius)&#123;</span><br><span class="line">          <span class="keyword">return</span> p1;</span><br><span class="line">      &#125;</span><br><span class="line">      distance=calculatePointDistance(event,p2);</span><br><span class="line">      <span class="keyword">if</span> (distance&lt;=pointRadius)&#123;</span><br><span class="line">          <span class="keyword">return</span> p2;</span><br><span class="line">      &#125;</span><br><span class="line">      distance=calculatePointDistance(event,p3);</span><br><span class="line">      <span class="keyword">if</span> (distance&lt;=pointRadius)&#123;</span><br><span class="line">          <span class="keyword">return</span> p3;</span><br><span class="line">      &#125;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>两点之间距离计算calculatePointDistance</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">float</span> <span class="title">calculatePointDistance</span><span class="params">(MotionEvent event, BPoint p0)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">float</span> result= (<span class="keyword">float</span>) Math.sqrt((event.getX()-p0.x)*(event.getX()-p0.x)+(event.getY()-p0.y)*(event.getY()-p0.y));</span><br><span class="line">       <span class="keyword">return</span> result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>然后move事件不断重新更新被按下的控制点的坐标重绘整个界面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (move!=<span class="keyword">null</span>)&#123;</span><br><span class="line">              move.x=event.getX();</span><br><span class="line">              move.y=event.getY();</span><br><span class="line">              invalidate();</span><br><span class="line">              <span class="keyword">return</span>  <span class="keyword">true</span>;</span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure>
+<p>完结。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/11/23/贝塞尔曲线学习/" class="article-date">
+  <time datetime="2017-11-23T09:00:58.000Z" itemprop="datePublished">2017-11-23</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/11/30/学习Https/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          学习https
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/17/java形参和实参/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JAVA形参和实参</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

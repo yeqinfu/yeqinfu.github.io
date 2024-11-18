@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>JAVA形参和实参 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="参考原文 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748public class MainDe &amp;#123;		public static void main(String[] args) &amp;#123;		//int swap		int a=1,b=2;		swapInt">
+<meta name="keywords" content="code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA形参和实参">
+<meta property="og:url" content="http://yoursite.com/2017/11/17/java形参和实参/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="参考原文 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748public class MainDe &amp;#123;		public static void main(String[] args) &amp;#123;		//int swap		int a=1,b=2;		swapInt">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVA形参和实参">
+<meta name="twitter:description" content="参考原文 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748public class MainDe &amp;#123;		public static void main(String[] args) &amp;#123;		//int swap		int a=1,b=2;		swapInt">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-java形参和实参" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JAVA形参和实参
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p><a href="https://dailycast.github.io/Java-%E5%BD%A2%E5%8F%82%E4%B8%8E%E5%AE%9E%E5%8F%82/" target="_blank" rel="noopener">参考原文</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainDe</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//int swap</span></span><br><span class="line">		<span class="keyword">int</span> a=<span class="number">1</span>,b=<span class="number">2</span>;</span><br><span class="line">		swapInt(a,b);</span><br><span class="line">		System.out.println(<span class="string">"a="</span>+a+<span class="string">" b="</span>+b);</span><br><span class="line">		<span class="comment">//integer swap</span></span><br><span class="line">		Integer c=<span class="number">1</span>,d=<span class="number">2</span>;</span><br><span class="line">		swapInteger(c,d);</span><br><span class="line">		System.out.println(<span class="string">"c="</span>+c+<span class="string">" d="</span>+d);</span><br><span class="line">		<span class="comment">//object swap</span></span><br><span class="line">		A e=<span class="keyword">new</span> A(<span class="number">1</span>);</span><br><span class="line">		A f=<span class="keyword">new</span> A(<span class="number">2</span>);</span><br><span class="line">		swapObj(e,f);</span><br><span class="line">		System.out.println(<span class="string">"e="</span>+e.age+<span class="string">" f="</span>+f.age);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swapObj</span><span class="params">(A e, A f)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> temp=e.age;</span><br><span class="line">		e.age=f.age;</span><br><span class="line">		f.age=temp;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swapInteger</span><span class="params">(Integer c, Integer d)</span> </span>&#123;</span><br><span class="line">		Integer temp=c;</span><br><span class="line">		c=d;</span><br><span class="line">		d=temp;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swapInt</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> temp=a;</span><br><span class="line">		a=b;</span><br><span class="line">		b=temp;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">		A(<span class="keyword">int</span> age)&#123;</span><br><span class="line">			<span class="keyword">this</span>.age=age;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行后答案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=1 b=2</span><br><span class="line">c=1 d=2</span><br><span class="line">e=2 f=1</span><br></pre></td></tr></table></figure>
+<p>基本数据类型在传递的时候都是传值，而对象都是传址。</p>
+<h5 id="swapInt-a-b"><a href="#swapInt-a-b" class="headerlink" title="swapInt a b"></a>swapInt a b</h5><p>这个方法只是把main方法的两个ab的值传递给swapInt的两个形参，而main方法的ab始终指向12；swapInt是不可能改变main里面的ab的值的。</p>
+<h5 id="swapInteger-cd"><a href="#swapInteger-cd" class="headerlink" title="swapInteger cd"></a>swapInteger cd</h5><p>Integer是对象，传递给swapInteger的是cd指向的两个地址，然而swapInteger 方法中的形参地址指向的改变，依然不能影响main方法中的cd引用的地址。</p>
+<h5 id="swapObj-ef"><a href="#swapObj-ef" class="headerlink" title="swapObj  ef"></a>swapObj  ef</h5><p>还是传地址，main方法中的ef指向的空间地址，swapObj  更改的事这个空间地址内部的某一个变量的值，这时候main方法指向的空间还是不变，但是里面的变量值却被改变了。所以是会影响到main的</p>
+<p>因为Integer是对象，所以按道理是可以让swapInteger 方法影响到main的。所以原博文提供了一个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(Integer numa, Integer numb)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> tmp = numa.intValue();<span class="comment">//tmp 定义为基本数据类型</span></span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           Field field = Integer.class.getDeclaredField("value");</span><br><span class="line">           field.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">           field.set(numa, numb);<span class="comment">//这个时候并不改变 tmp 的值</span></span><br><span class="line">           field.set(numb, tmp);</span><br><span class="line">       &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这个对象空间有一个value的字段里面直接存的是int的值。把它改了就可以了。</p>
+<p>然后原文还介绍了Integer装箱的缓存，缓存的字符在-128到127之间。就是说上面呢这个方法要百分百灵敏，要么不使用自动装箱，要么自动装箱的值要超过缓存范围。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/11/17/java形参和实参/" class="article-date">
+  <time datetime="2017-11-17T14:00:00.000Z" itemprop="datePublished">2017-11-17</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/11/23/贝塞尔曲线学习/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          学习贝塞尔曲线
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/16/java字节码/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">学习java字节码</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

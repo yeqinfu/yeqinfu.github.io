@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Kotlin委托模式 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="设计模式之代理模式（委托模式） Kotlin中委托实现关键字by 1234567891011121314151617181920 interface ISports &amp;#123;        fun doSports()    &amp;#125;    class SwimForSports: ISports&amp;#123;        override fun doSports() &amp;#123;">
+<meta name="keywords" content="code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin委托模式">
+<meta property="og:url" content="http://yoursite.com/2018/01/23/Kotlin委托模式/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="设计模式之代理模式（委托模式） Kotlin中委托实现关键字by 1234567891011121314151617181920 interface ISports &amp;#123;        fun doSports()    &amp;#125;    class SwimForSports: ISports&amp;#123;        override fun doSports() &amp;#123;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin委托模式">
+<meta name="twitter:description" content="设计模式之代理模式（委托模式） Kotlin中委托实现关键字by 1234567891011121314151617181920 interface ISports &amp;#123;        fun doSports()    &amp;#125;    class SwimForSports: ISports&amp;#123;        override fun doSports() &amp;#123;">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-Kotlin委托模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kotlin委托模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>设计模式之代理模式（委托模式）</p>
+<p>Kotlin中委托实现关键字by</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">interface</span> <span class="title">ISports</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">doSports</span><span class="params">()</span></span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">SwimForSports</span>: <span class="type">ISports&#123;</span></span></span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">doSports</span><span class="params">()</span></span> &#123;</span><br><span class="line">            println(<span class="string">"do swim"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">SportsManager</span></span>(sport: ISports): ISports <span class="keyword">by</span> sport</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> swimSports= SwimForSports()</span><br><span class="line">        <span class="keyword">var</span> m=SportsManager(swimSports)</span><br><span class="line">        m.doSports()<span class="comment">// Log：do swim</span></span><br><span class="line">        Log.d(<span class="string">"yeqinfu"</span>,<span class="string">"-------"</span>+(m <span class="keyword">is</span> ISports))</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//echo yeqinfu: -------true</span></span><br></pre></td></tr></table></figure>
+<p>实现了ISports接口，实际由sport 对象代理</p>
+<h3 id="lazy"><a href="#lazy" class="headerlink" title="lazy"></a>lazy</h3><p>延迟委托</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">lazy</span><span class="params">(initializer: () -&gt; <span class="type">T</span>)</span></span>: Lazy&lt;T&gt; = SynchronizedLazyImpl(initializer)</span><br></pre></td></tr></table></figure>
+<p>查看Lazy接口</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a value with lazy initialization.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * To create an instance of [Lazy] use the [lazy] function.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Lazy</span>&lt;<span class="type">out T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Gets the lazily initialized value of the current Lazy instance.</span></span><br><span class="line"><span class="comment">     * Once the value was initialized it must not change during the rest of lifetime of this Lazy instance.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">val</span> value: T</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns `true` if a value for this Lazy instance has been already initialized, and `false` otherwise.</span></span><br><span class="line"><span class="comment">     * Once this function has returned `true` it stays `true` for the rest of lifetime of this Lazy instance.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">isInitialized</span><span class="params">()</span></span>: <span class="built_in">Boolean</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个接口存了值，和是否已经初始化了的变量，再看SynchronizedLazyImpl</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">SynchronizedLazyImpl</span>&lt;<span class="type">out T</span>&gt;</span>(initializer: () -&gt; T, lock: Any? = <span class="literal">null</span>) : Lazy&lt;T&gt;, Serializable &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> initializer: (() -&gt; T)? = initializer</span><br><span class="line">    <span class="meta">@Volatile</span> <span class="keyword">private</span> <span class="keyword">var</span> _value: Any? = UNINITIALIZED_VALUE</span><br><span class="line">    <span class="comment">// final field is required to enable safe publication of constructed instance</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> lock = lock ?: <span class="keyword">this</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> value: T</span><br><span class="line">        <span class="keyword">get</span>() &#123;</span><br><span class="line">            <span class="keyword">val</span> _v1 = _value</span><br><span class="line">            <span class="keyword">if</span> (_v1 !== UNINITIALIZED_VALUE) &#123;</span><br><span class="line">                <span class="meta">@Suppress(<span class="meta-string">"UNCHECKED_CAST"</span>)</span></span><br><span class="line">                <span class="keyword">return</span> _v1 <span class="keyword">as</span> T</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> synchronized(lock) &#123;</span><br><span class="line">                <span class="keyword">val</span> _v2 = _value</span><br><span class="line">                <span class="keyword">if</span> (_v2 !== UNINITIALIZED_VALUE) &#123;</span><br><span class="line">                    <span class="meta">@Suppress(<span class="meta-string">"UNCHECKED_CAST"</span>)</span> (_v2 <span class="keyword">as</span> T)</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">val</span> typedValue = initializer!!()</span><br><span class="line">                    _value = typedValue</span><br><span class="line">                    initializer = <span class="literal">null</span></span><br><span class="line">                    typedValue</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">isInitialized</span><span class="params">()</span></span>: <span class="built_in">Boolean</span> = _value !== UNINITIALIZED_VALUE</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>: String = <span class="keyword">if</span> (isInitialized()) value.toString() <span class="keyword">else</span> <span class="string">"Lazy value not initialized yet."</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">writeReplace</span><span class="params">()</span></span>: Any = InitializedLazyImpl(value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重写了value的get方法，_value会被赋值一次，并且是线程同步的。之后 _value再也不会是null值，就一直直接返回。</p>
+<p>可能会有疑惑就是lazy函数返回值是一个Lazy<t>类型，</t></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> d:<span class="built_in">Int</span> <span class="keyword">by</span> lazy &#123;</span><br><span class="line">        <span class="number">2</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>怎么通过赋值，赋值给这个变量d呢</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public inline operator fun &lt;T&gt; Lazy&lt;T&gt;.getValue(thisRef: Any?, property: KProperty&lt;*&gt;): T = value</span><br></pre></td></tr></table></figure>
+<p>by 执行了Lazy<t> 的getValue方法 实现赋值的。</t></p>
+<h3 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name: String <span class="keyword">by</span> Delegates.observable(<span class="string">"wang"</span>, &#123;</span><br><span class="line">      kProperty, oldName, newName -&gt;</span><br><span class="line">      println(<span class="string">"kProperty：<span class="subst">$&#123;kProperty.name&#125;</span> | oldName:<span class="variable">$oldName</span> | newName:<span class="variable">$newName</span>"</span>)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<p>这个委托会帮我们监控属性的变化，当set被调用的时候，会执行我们的lambda表达式查看方法如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">observable</span><span class="params">(initialValue: <span class="type">T</span>, <span class="keyword">crossinline</span> onChange: (<span class="type">property</span>: <span class="type">KProperty</span>&lt;*&gt;, <span class="type">oldValue</span>: <span class="type">T</span>, <span class="type">newValue</span>: <span class="type">T</span>) -&gt; <span class="type">Unit</span>)</span></span>: ReadWriteProperty&lt;Any?, T&gt; = <span class="keyword">object</span> : ObservableProperty&lt;T&gt;(initialValue) &#123;</span><br><span class="line">       <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">afterChange</span><span class="params">(property: <span class="type">KProperty</span>&lt;*&gt;, oldValue: <span class="type">T</span>, newValue: <span class="type">T</span>)</span></span> = onChange(property, oldValue, newValue)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>涉及到内联关键字</p>
+<p>所谓的内联函数就是在被调用的地方直接展开，没有参数压栈和返回时候的参数出栈资源释放的操作，提高了程序的执行速度</p>
+<h4 id="kotlin-inline-noinline-crossinline"><a href="#kotlin-inline-noinline-crossinline" class="headerlink" title="kotlin inline noinline crossinline"></a>kotlin inline noinline crossinline</h4><p><a href="http://blog.csdn.net/u013009899/article/details/78584994" target="_blank" rel="noopener">参考</a></p>
+<p>一个函数中，如果存在一个lambda表达式，在该lambda中不支持直接进行return退出该函数，比如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">    innerFun &#123;</span><br><span class="line">        <span class="comment">//return  //错误，不支持直接return</span></span><br><span class="line">        <span class="comment">//只支持通过标签，返回innerFun</span></span><br><span class="line">        <span class="keyword">return</span><span class="symbol">@innerFun</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//如果是匿名或者具名函数，则支持</span></span><br><span class="line">    <span class="keyword">var</span> f = <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>除非是inline函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">    innerFun &#123;</span><br><span class="line">        <span class="keyword">return</span>  <span class="comment">//支持直接返回outterFun</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>如果是内联</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">        innerFun &#123;</span><br><span class="line">            <span class="comment">//return  //错误，不支持直接return</span></span><br><span class="line">            <span class="comment">//只支持通过标签，返回innerFun</span></span><br><span class="line">            Log.d(<span class="string">"======"</span>,<span class="string">"=============innerFun==============="</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        Log.d(<span class="string">"======"</span>,<span class="string">"=============innerFun2222==============="</span>)</span><br><span class="line">        <span class="comment">//如果是匿名或者具名函数，则支持</span></span><br><span class="line">        <span class="keyword">var</span> f = <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">        a()</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//echo ======: =============innerFun===============</span></span><br></pre></td></tr></table></figure>
+<p>可以理解，方法执行的时候被直接展开，innerFun2222没有得到输出，因为内联函数return了</p>
+<h6 id="noinline"><a href="#noinline" class="headerlink" title="noinline"></a>noinline</h6><blockquote>
+<p>如果你只想被（作为参数）传给一个内联函数的 lamda 表达式中只有一些被内联，你可以用 noinline 修饰符标记一些函数参数：</p>
+</blockquote>
+<h5 id="crossinline"><a href="#crossinline" class="headerlink" title="crossinline"></a>crossinline</h5><p>crossinline 的作用是让被标记的lambda表达式不允许非局部返回。 </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">       innerFun &#123;</span><br><span class="line">          </span><br><span class="line">           Log.d(<span class="string">"======"</span>,<span class="string">"=============innerFun==============="</span>)</span><br><span class="line">           <span class="keyword">return</span><span class="symbol">@innerFun</span></span><br><span class="line">       &#125;</span><br><span class="line">       Log.d(<span class="string">"======"</span>,<span class="string">"=============innerFun2222==============="</span>)</span><br><span class="line">       <span class="comment">//如果是匿名或者具名函数，则支持</span></span><br><span class="line">       <span class="keyword">var</span> f = <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">           <span class="keyword">return</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(<span class="keyword">crossinline</span> a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">       a()</span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">//echo =============innerFun===============</span></span><br><span class="line"><span class="comment">//=============innerFun2222===============</span></span><br></pre></td></tr></table></figure>
+<p>不允许局部返回之后有两个echo 日志</p>
+<p>observable 两个入参，一个是初始值 initialValue 一个是callback的lambda</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ObservableProperty</span>&lt;<span class="type">T</span>&gt;</span>(initialValue: T) : ReadWriteProperty&lt;Any?, T&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> value = initialValue</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  The callback which is called before a change to the property value is attempted.</span></span><br><span class="line"><span class="comment">     *  The value of the property hasn't been changed yet, when this callback is invoked.</span></span><br><span class="line"><span class="comment">     *  If the callback returns `true` the value of the property is being set to the new value,</span></span><br><span class="line"><span class="comment">     *  and if the callback returns `false` the new value is discarded and the property remains its old value.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">beforeChange</span><span class="params">(property: <span class="type">KProperty</span>&lt;*&gt;, oldValue: <span class="type">T</span>, newValue: <span class="type">T</span>)</span></span>: <span class="built_in">Boolean</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The callback which is called after the change of the property is made. The value of the property</span></span><br><span class="line"><span class="comment">     * has already been changed when this callback is invoked.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">afterChange</span> <span class="params">(property: <span class="type">KProperty</span>&lt;*&gt;, oldValue: <span class="type">T</span>, newValue: <span class="type">T</span>)</span></span>: <span class="built_in">Unit</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T &#123;</span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;, value: <span class="type">T</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> oldValue = <span class="keyword">this</span>.value</span><br><span class="line">        <span class="keyword">if</span> (!beforeChange(property, oldValue, value)) &#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.value = value</span><br><span class="line">        afterChange(property, oldValue, value)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回值表达式是实现了了上述这个类，在setvalue方法中设置了oldvalue，调用了afterChange，最后执行了外层的lambda。实现了监听模式。</p>
+<h4 id="Vetoable"><a href="#Vetoable" class="headerlink" title="Vetoable"></a>Vetoable</h4><p>特殊委托，从setvalue看出，是根据lambda返回值决定是否要保持值。</p>
+<h4 id="Not-Null"><a href="#Not-Null" class="headerlink" title="Not Null"></a>Not Null</h4><p>在没有赋值调用getValue会抛出异常</p>
+<h4 id="map映射"><a href="#map映射" class="headerlink" title="map映射"></a>map映射</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/01/23/Kotlin委托模式/" class="article-date">
+  <time datetime="2018-01-23T14:00:58.000Z" itemprop="datePublished">2018-01-23</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/03/20/区块链原理/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          区块链原理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/23/kotlin泛型函数/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Kotlin泛型函数</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

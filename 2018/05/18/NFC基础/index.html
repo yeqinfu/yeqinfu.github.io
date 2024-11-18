@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>NFC基础 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="卡片类型参考 跟nfc有关的ISO标准：    ISO 14443 RFID卡标准（非接触IC卡），该标准又有很多子标准     ISO 7816 接触式IC卡标准   ISO 15693 某种射频卡标准吧，这个没查到资料   ISO 18092 NFC标准    NfcA NfcB类型卡的区别   Class Description     TagTechnology The interface">
+<meta name="keywords" content="code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NFC基础">
+<meta property="og:url" content="http://yoursite.com/2018/05/18/NFC基础/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="卡片类型参考 跟nfc有关的ISO标准：    ISO 14443 RFID卡标准（非接触IC卡），该标准又有很多子标准     ISO 7816 接触式IC卡标准   ISO 15693 某种射频卡标准吧，这个没查到资料   ISO 18092 NFC标准    NfcA NfcB类型卡的区别   Class Description     TagTechnology The interface">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NFC基础">
+<meta name="twitter:description" content="卡片类型参考 跟nfc有关的ISO标准：    ISO 14443 RFID卡标准（非接触IC卡），该标准又有很多子标准     ISO 7816 接触式IC卡标准   ISO 15693 某种射频卡标准吧，这个没查到资料   ISO 18092 NFC标准    NfcA NfcB类型卡的区别   Class Description     TagTechnology The interface">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-NFC基础" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NFC基础
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h3 id="卡片类型"><a href="#卡片类型" class="headerlink" title="卡片类型"></a>卡片类型</h3><p><a href="https://blog.csdn.net/h3c4lenovo/article/details/8179879" target="_blank" rel="noopener">参考</a></p>
+<p>跟nfc有关的ISO标准：</p>
+<table>
+<thead>
+<tr>
+<th>ISO 14443</th>
+<th>RFID卡标准（非接触IC卡），该标准又有很多子标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO 7816</td>
+<td>接触式IC卡标准</td>
+</tr>
+<tr>
+<td>ISO 15693</td>
+<td>某种射频卡标准吧，这个没查到资料</td>
+</tr>
+<tr>
+<td>ISO 18092</td>
+<td>NFC标准</td>
+</tr>
+</tbody>
+</table>
+<h5 id="NfcA-NfcB类型卡的区别"><a href="#NfcA-NfcB类型卡的区别" class="headerlink" title="NfcA NfcB类型卡的区别"></a>NfcA NfcB类型卡的区别</h5><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TagTechnology</code></td>
+<td>The interface that all tag technology classes must implement.</td>
+</tr>
+<tr>
+<td><code>NfcA</code></td>
+<td>Provides access to NFC-A (ISO 14443-3A) properties and I/O operations.</td>
+</tr>
+<tr>
+<td><code>NfcB</code></td>
+<td>Provides access to NFC-B (ISO 14443-3B) properties and I/O operations.</td>
+</tr>
+<tr>
+<td><code>NfcF</code></td>
+<td>Provides access to NFC-F (JIS 6319-4) properties and I/O operations.</td>
+</tr>
+<tr>
+<td><code>NfcV</code></td>
+<td>Provides access to NFC-V (ISO 15693) properties and I/O operations.</td>
+</tr>
+<tr>
+<td><code>IsoDep</code></td>
+<td>Provides access to ISO-DEP (ISO 14443-4) properties and I/O operations.</td>
+</tr>
+<tr>
+<td><code>Ndef</code></td>
+<td>Provides access to NDEF data and operations on NFC tags that have been formatted as NDEF.</td>
+</tr>
+<tr>
+<td><code>NdefFormatable</code></td>
+<td>Provides a format operations for tags that may be NDEF formattable.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MifareClassic</code></td>
+<td>Provides access to MIFARE Classic properties and I/O operations, if this Android device supports MIFARE.</td>
+</tr>
+<tr>
+<td><code>MifareUltralight</code></td>
+<td>Provides access to MIFARE Ultralight properties and I/O operations, if this Android device supports MIFARE.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="主动模式"><a href="#主动模式" class="headerlink" title="主动模式"></a>主动模式</h4><p>NFC第一种通信模式计较主动模式，在主动模式下，nfc发起设备要发送数据给目标设备时，必须产生自己的射频场，被读nfc设备发送响应改发起设备时，也要产生自己的射频场。</p>
+<h4 id="被动模式"><a href="#被动模式" class="headerlink" title="被动模式"></a>被动模式</h4><p>在被动模式下，nfc发起设备的一方，在整个通信过程中提供射频场。</p>
+<h4 id="NFC工作模式和应用分类"><a href="#NFC工作模式和应用分类" class="headerlink" title="NFC工作模式和应用分类"></a>NFC工作模式和应用分类</h4><p>读写模式，p2p模式，卡模拟模式（支付0模式）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/05/18/NFC基础/" class="article-date">
+  <time datetime="2018-05-18T14:00:58.000Z" itemprop="datePublished">2018-05-18</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/05/23/原码反码补码总结/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          原码，反码，补码总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/28/Android逆向入门-Smali语法/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android逆向入门-smali语法</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

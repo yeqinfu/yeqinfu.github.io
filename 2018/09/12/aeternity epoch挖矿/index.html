@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>epoch挖矿简易教程 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="准备工作ubuntu16.04安装erlang环境 1sudo apt-get install erlang 下载epoch release包，并解压 生成 beneficiay(挖矿受益者)账户解压后重命名文件夹为node，在node子文件夹bin中有一个名为epoch的shell脚本执行命令。不过，在生成账户之前需要安装密钥支持库的相关依赖 1sudo apt-get install buil">
+<meta name="keywords" content="block chain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="epoch挖矿简易教程">
+<meta property="og:url" content="http://yoursite.com/2018/09/12/aeternity epoch挖矿/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="准备工作ubuntu16.04安装erlang环境 1sudo apt-get install erlang 下载epoch release包，并解压 生成 beneficiay(挖矿受益者)账户解压后重命名文件夹为node，在node子文件夹bin中有一个名为epoch的shell脚本执行命令。不过，在生成账户之前需要安装密钥支持库的相关依赖 1sudo apt-get install buil">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/c1b251b3gy1fv6sak7yntj20pn01pq39.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/large/c1b251b3gy1fv6snbmbljj20i2028jro.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/c1b251b3gy1fv6sowxxzsj210o01y3yz.jpg">
+<meta property="og:image" content="http://ws3.sinaimg.cn/large/c1b251b3gy1fv7lx9nnhqj219q02smyb.jpg">
+<meta property="og:image" content="http://ws3.sinaimg.cn/large/c1b251b3gy1fv6ty3zoaij20s203n755.jpg">
+<meta property="og:image" content="http://ws4.sinaimg.cn/large/c1b251b3gy1fv6u5cmwjcj21h805swi5.jpg">
+<meta property="og:image" content="http://ws2.sinaimg.cn/large/c1b251b3gy1fv824pwf54j21ar0j8gn0.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="epoch挖矿简易教程">
+<meta name="twitter:description" content="准备工作ubuntu16.04安装erlang环境 1sudo apt-get install erlang 下载epoch release包，并解压 生成 beneficiay(挖矿受益者)账户解压后重命名文件夹为node，在node子文件夹bin中有一个名为epoch的shell脚本执行命令。不过，在生成账户之前需要安装密钥支持库的相关依赖 1sudo apt-get install buil">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/large/c1b251b3gy1fv6sak7yntj20pn01pq39.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-aeternity epoch挖矿" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      epoch挖矿简易教程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>ubuntu16.04安装erlang环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install erlang</span><br></pre></td></tr></table></figure>
+<p>下载epoch release包，并解压</p>
+<h4 id="生成-beneficiay-挖矿受益者-账户"><a href="#生成-beneficiay-挖矿受益者-账户" class="headerlink" title="生成 beneficiay(挖矿受益者)账户"></a>生成 beneficiay(挖矿受益者)账户</h4><p>解压后重命名文件夹为node，在node子文件夹bin中有一个名为epoch的shell脚本执行命令。不过，在生成账户之前需要安装密钥支持库的相关依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.16.tar.gz</span><br><span class="line">tar -xf libsodium-1.0.16.tar.gz &amp;&amp; cd libsodium-1.0.16</span><br><span class="line">./configure &amp;&amp; make &amp;&amp; sudo make install &amp;&amp; sudo ldconfig</span><br></pre></td></tr></table></figure>
+<p>以上的依赖完成后，可以利用node的子目录bin/epoch生成账户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/epoch keys_gen PASSWORD</span><br></pre></td></tr></table></figure>
+<p>后面的PASSWORD是你自己定义的密钥，此密钥目的是给生成的公钥私钥对的私钥进行对称加密，每次使用账户的时候需要用你输入的密钥进行对私钥解密。</p>
+<p><img src="http://wx2.sinaimg.cn/large/c1b251b3gy1fv6sak7yntj20pn01pq39.jpg" alt="image"></p>
+<p>生成后会在当前目录下生成新的文件夹generated_keys里面包含新生成的文件夹公钥私钥</p>
+<h4 id="配置beneficiay账户"><a href="#配置beneficiay账户" class="headerlink" title="配置beneficiay账户"></a>配置beneficiay账户</h4><p>在node文件夹下创建一个epoch.yaml文件写入以下配置信息，并且更改配置账户字段为刚才生成的账户公钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">sync:</span><br><span class="line">    port: 3115</span><br><span class="line">    external_port: 3015</span><br><span class="line"></span><br><span class="line">keys:</span><br><span class="line">    dir: keys</span><br><span class="line">    password: &quot;secret&quot;</span><br><span class="line"></span><br><span class="line">http:</span><br><span class="line">    external:</span><br><span class="line">        port: 3013</span><br><span class="line">    internal:</span><br><span class="line">        port: 3113</span><br><span class="line"></span><br><span class="line">websocket:</span><br><span class="line">    internal:</span><br><span class="line">        port: 3114</span><br><span class="line">    channel:</span><br><span class="line">        port: 3014</span><br><span class="line"></span><br><span class="line">mining:</span><br><span class="line">    beneficiary: &quot;beneficiary_pubkey_to_be_replaced&quot;</span><br><span class="line">    autostart: true</span><br><span class="line"></span><br><span class="line">chain:</span><br><span class="line">    persist: true</span><br><span class="line">    db_path: ./my_db</span><br></pre></td></tr></table></figure>
+<p>利用epoch脚本检查配置是否有效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/epoch check_config epoch.yaml</span><br></pre></td></tr></table></figure>
+<p><img src="http://wx3.sinaimg.cn/large/c1b251b3gy1fv6snbmbljj20i2028jro.jpg" alt="image"></p>
+<p>启动epoch</p>
+<p><img src="http://wx2.sinaimg.cn/large/c1b251b3gy1fv6sowxxzsj210o01y3yz.jpg" alt="image"></p>
+<p>会提示需要修改最大文件打开数量根据提示修改即可</p>
+<blockquote>
+<p>ubuntu18.04 可能无法修改此项，16版本则可以。可能是硬件设备在不同版本受限不同。</p>
+<p>我同样是虚拟机，18不行16则可以</p>
+</blockquote>
+<p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit -n 50000</span><br></pre></td></tr></table></figure>
+<p>再次启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/epoch start</span><br></pre></td></tr></table></figure>
+<h4 id="查看挖矿日志"><a href="#查看挖矿日志" class="headerlink" title="查看挖矿日志"></a>查看挖矿日志</h4><p>启动后，node目录下会生成log/*的若干文件，可以尝试搜索相关关键字来查看是否挖到新的块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;mined&quot; log/epoch_mining.log</span><br></pre></td></tr></table></figure>
+<p><img src="http://ws3.sinaimg.cn/large/c1b251b3gy1fv7lx9nnhqj219q02smyb.jpg" alt="image"></p>
+<p>当结果有值时，代表已经挖到新的块了</p>
+<h4 id="可能出现的错误"><a href="#可能出现的错误" class="headerlink" title="可能出现的错误"></a>可能出现的错误</h4><p>检查log/epoch_mining.log有类似出现这些内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed to mine block, runtime error; retrying with different nonce (was 13078180597498667023). Error: &#123;execution_failed,&#123;signal,sigabrt,true&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>更改配置文件epoch.yaml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mining:</span><br><span class="line">    autostart: true</span><br></pre></td></tr></table></figure>
+<p>改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mining:</span><br><span class="line">    autostart: true</span><br><span class="line">    cuckoo:</span><br><span class="line">        miner:</span><br><span class="line">            executable: lean30</span><br><span class="line">            extra_args: &quot;&quot;</span><br><span class="line">            node_bits: 30</span><br></pre></td></tr></table></figure>
+<p>然后执行<code>bin/epoch stop; bin/epoch start;</code>重启</p>
+<p><img src="http://ws3.sinaimg.cn/large/c1b251b3gy1fv6ty3zoaij20s203n755.jpg" alt="image"></p>
+<p>如果log/epoch_mining.log最后显示starting mining说明正在挖矿</p>
+<h4 id="验证你的节点是否和测试网同步"><a href="#验证你的节点是否和测试网同步" class="headerlink" title="验证你的节点是否和测试网同步"></a>验证你的节点是否和测试网同步</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl http://31.13.249.70:3013/v2/blocks/top</span><br><span class="line">curl http://127.0.0.1:3013/v2/blocks/top</span><br></pre></td></tr></table></figure>
+<p><img src="http://ws4.sinaimg.cn/large/c1b251b3gy1fv6u5cmwjcj21h805swi5.jpg" alt="image"></p>
+<p>比较哈希值是否一致</p>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p>epoch不同版本都不是向前兼容的，所以当我们看到已经挖到新的矿，想查询自己的beneficiay账户是否得到相应的奖励。可以在epoch启动的情况下执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:3013/v2/accounts/ak%242ibwhmwkiQpUjtAQAfEQ139CqtknJFhkpzgtqtF791dQAF3L4m</span><br></pre></td></tr></table></figure>
+<p>把账户公钥改成自己的公钥，如果你拿着自己的账户用python sdk查询可能会查不到账户余额，原因是本地的epoch版本和python sdk调用的epoch版本不一致，简单说就是不同版本在不同的链上。</p>
+<p>epoch启动后可以根据<a href="https://aeternity.github.io/epoch-api-docs/?config=https://raw.githubusercontent.com/aeternity/epoch/master/apps/aehttp/priv/swagger.json#/" target="_blank" rel="noopener">epoch api</a> 中展示的接口去查询所需要的信息，例如查询自己挖矿链上的最高的一个块数据</p>
+<p><img src="http://ws2.sinaimg.cn/large/c1b251b3gy1fv824pwf54j21ar0j8gn0.jpg" alt="image"></p>
+<p>把host部分替换成 <code>localhost:3013</code> 在本地请求就可以了，更多请求接口信息可以参考<a href="https://github.com/aeternity/epoch-api-docs" target="_blank" rel="noopener">这个项目</a> 。官方回复我epoch尚未暴露swagger 接口部分，可能后续会改进，就不用那么麻烦了。</p>
+<h4 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h4><p>epoch 项目地址：<a href="https://github.com/aeternity/epoch" target="_blank" rel="noopener">https://github.com/aeternity/epoch</a></p>
+<p>epoch-api-doc地址：<a href="https://github.com/aeternity/epoch-api-docs" target="_blank" rel="noopener">https://github.com/aeternity/epoch-api-docs</a></p>
+<h4 id><a href="#" class="headerlink" title=" "></a> </h4>
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/09/12/aeternity epoch挖矿/" class="article-date">
+  <time datetime="2018-09-12T09:00:58.000Z" itemprop="datePublished">2018-09-12</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/">block chain</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/09/18/以太坊测试网络使用/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          以太坊测试网络Ganache使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/05/Aeternity测试简易使用教程/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Aeternity测试网简易使用教程</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

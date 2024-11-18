@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Dagger2入门 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="@Inject注解12@InjectLoginActivityPresenter presenter; 1234@Injectpublic LoginPresenter(ICommonView iView)&amp;#123;       this.iView = iView;&amp;#125; 使用的地方加一個注解可以省去new实例，在对应的构造方法加一个注解。这两个呼应 @Component注解直译组件，想">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dagger2入门">
+<meta property="og:url" content="http://yoursite.com/2019/03/12/Dagger2/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="@Inject注解12@InjectLoginActivityPresenter presenter; 1234@Injectpublic LoginPresenter(ICommonView iView)&amp;#123;       this.iView = iView;&amp;#125; 使用的地方加一個注解可以省去new实例，在对应的构造方法加一个注解。这两个呼应 @Component注解直译组件，想">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/c1b251b3gy1g0zwqb3q66j20by049mx9.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/c1b251b3gy1g0zwsoj17wj20wg0cqdh8.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/c1b251b3gy1g0zwtpxg7bj20zy0i476g.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/c1b251b3gy1g0zxe7qcpkj20lp02t0sr.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/c1b251b3gy1g0zxkrjsdoj20fx057jrn.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/c1b251b3gy1g0zxl0u8g6j20ny05xaae.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/c1b251b3gy1g0zxnc9cc1j20n4054t8y.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dagger2入门">
+<meta name="twitter:description" content="@Inject注解12@InjectLoginActivityPresenter presenter; 1234@Injectpublic LoginPresenter(ICommonView iView)&amp;#123;       this.iView = iView;&amp;#125; 使用的地方加一個注解可以省去new实例，在对应的构造方法加一个注解。这两个呼应 @Component注解直译组件，想">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/c1b251b3gy1g0zwqb3q66j20by049mx9.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-Dagger2" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Dagger2入门
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h4 id="Inject注解"><a href="#Inject注解" class="headerlink" title="@Inject注解"></a>@Inject注解</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Inject</span></span><br><span class="line">LoginActivityPresenter presenter;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Inject</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">LoginPresenter</span><span class="params">(ICommonView iView)</span></span>&#123;</span><br><span class="line">       <span class="keyword">this</span>.iView = iView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用的地方加一個注解可以省去new实例，在对应的构造方法加一个注解。这两个呼应</p>
+<h4 id="Component注解"><a href="#Component注解" class="headerlink" title="@Component注解"></a>@Component注解</h4><p>直译组件，想象成一个容器，module中的产物都放在容器里面，然后这个组件和要使用的地方做关联，比如和Activity做关联。activity要实例可以到这个容器取。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ActivityScope</span></span><br><span class="line"><span class="meta">@Component</span>(modules = CommonModule<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">interface</span> <span class="title">CommonComponent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inject</span><span class="params">(MainActivity activity)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注入器从注入后，开始给需要的赋值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DaggerCommonComponent.</span><br><span class="line">               builder().</span><br><span class="line">               commonModule(<span class="keyword">new</span> CommonModule(<span class="keyword">this</span>)).</span><br><span class="line">               build().</span><br><span class="line">               inject(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="Module注解"><a href="#Module注解" class="headerlink" title="@Module注解"></a>@Module注解</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommonModule</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ICommonView iView;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CommonModule</span><span class="params">(ICommonView iView)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.iView = iView;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="meta">@ActivityScope</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ICommonView <span class="title">provideIcommonView</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.iView;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>被打上@module注解的类相当于一个工厂，具体地负责实例的生产，生产的方法都被打上@Provides标签</p>
+<p>但是上面这个module的方法中提供的是ICommonView，并不是LoginPresenter实例。</p>
+<p>所以我在上面的module中再添加了一个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Provides</span></span><br><span class="line">  <span class="meta">@ActivityScope</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> ICommonView <span class="title">provideIcommonView</span><span class="params">()</span></span>&#123;</span><br><span class="line">      Log.d(<span class="string">"yeqinfu"</span>,<span class="string">"=======provideIcommonView====="</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.iView;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">@Provides</span></span><br><span class="line">  <span class="meta">@ActivityScope</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> LoginPresenter <span class="title">provideLoginPresenter</span><span class="params">()</span></span>&#123;</span><br><span class="line">      Log.d(<span class="string">"yeqinfu"</span>,<span class="string">"======provideLoginPresenter======"</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> LoginPresenter(<span class="keyword">this</span>.iView);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>其他保持不变，重新build后发现调用的是provideLoginPresenter这个方法，而如果把provideLoginPresenter这个方法去掉，会发现调用的是provideIcommonView这个方法。很神奇，为什么呢？</p>
+<p>build之后可以看到每一个provide注解都会生成一个类。</p>
+<p><img src="https://ws3.sinaimg.cn/large/c1b251b3gy1g0zwqb3q66j20by049mx9.jpg" alt="image"></p>
+<p>但是这两个生成的类在哪里被使用呢？当我们提供这两个类的时候，发现DaggerCommonComponent类中使用了CommonModule_ProvideLoginPresenterFactory</p>
+<p><img src="https://ws1.sinaimg.cn/large/c1b251b3gy1g0zwsoj17wj20wg0cqdh8.jpg" alt="image"></p>
+<p>而如果注掉provideLoginPresenter，就会默认使用CommonModule_ProvideIcommonViewFactory</p>
+<p><img src="https://ws3.sinaimg.cn/large/c1b251b3gy1g0zwtpxg7bj20zy0i476g.jpg" alt="image"></p>
+<h4 id="Singleton"><a href="#Singleton" class="headerlink" title="@Singleton"></a>@Singleton</h4><p>单例注解</p>
+<p>如果需要两个对象如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Inject</span><br><span class="line">LoginPresenter presenter;</span><br><span class="line"></span><br><span class="line">@Inject</span><br><span class="line">LoginPresenter presenter2;</span><br><span class="line">Log.d(&quot;yeqinfu&quot;,&quot;---hahah-&gt;&quot;+presenter);</span><br><span class="line">Log.d(&quot;yeqinfu&quot;,&quot;---hahah-&gt;&quot;+presenter2);</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws2.sinaimg.cn/large/c1b251b3gy1g0zxe7qcpkj20lp02t0sr.jpg" alt="image"></p>
+<p>可以看到这是通过新new出来的。而实际上有时候并不需要</p>
+<p><img src="https://ws3.sinaimg.cn/large/c1b251b3gy1g0zxkrjsdoj20fx057jrn.jpg" alt="image"></p>
+<p><img src="https://ws2.sinaimg.cn/large/c1b251b3gy1g0zxl0u8g6j20ny05xaae.jpg" alt="image"></p>
+<p>在组件和provide方法添加单例声明，之后用的就是不会新new一个对象，组件那边不添加声明会报错，而provide方法添加声明会让里面的new LoginPresenter只被调用一次。而如果我们把provideLoginPresenter注释掉，改用</p>
+<p><img src="https://ws2.sinaimg.cn/large/c1b251b3gy1g0zxnc9cc1j20n4054t8y.jpg" alt="image"></p>
+<p>​    那么并不会让LoginPresenter保持单例。</p>
+<h4 id="自定义标记-Qualifier-和-＠Named"><a href="#自定义标记-Qualifier-和-＠Named" class="headerlink" title="自定义标记 @Qualifier 和 ＠Named"></a>自定义标记 @Qualifier 和 ＠Named</h4><p>像上面如果provide一个对象，有多个构造方法不知道调用那个就用这两个标注做区分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Named(&quot;context&quot;)</span><br><span class="line">@Provides</span><br><span class="line">public Person providesPersonWithContext(Context context) &#123;</span><br><span class="line">    return new Person(context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Named(&quot;string&quot;)</span><br><span class="line">@Provides</span><br><span class="line">public Person providesPersonWithName() &#123;</span><br><span class="line">    return new Person(&quot;yxm&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用的时候</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Named(&quot;string&quot;)</span><br><span class="line">   @Inject</span><br><span class="line">   Person p1;</span><br><span class="line"></span><br><span class="line">   @Named(&quot;context&quot;)</span><br><span class="line">   @Inject</span><br><span class="line">   Person p2;</span><br></pre></td></tr></table></figure>
+<p>也可以自定义标注</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Qualifier</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">public @interface PersonWithContext &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Qualifier</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">public @interface PersonWithName &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@PersonWithContext</span><br><span class="line"> @Provides</span><br><span class="line"> public Person providesPersonWithContext(Context context) &#123;</span><br><span class="line">     return new Person(context);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> @PersonWithName</span><br><span class="line"> @Provides</span><br><span class="line"> public Person providesPersonWithName() &#123;</span><br><span class="line">     return new Person(&quot;yxm&quot;);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@PersonWithContext</span><br><span class="line"> @Inject</span><br><span class="line"> Person p1;</span><br><span class="line"></span><br><span class="line"> @PersonWithContext</span><br><span class="line"> @Inject</span><br><span class="line"> Person p2;</span><br></pre></td></tr></table></figure>
+<h4 id="自定义生命周期-Scope"><a href="#自定义生命周期-Scope" class="headerlink" title="自定义生命周期@Scope"></a>自定义生命周期@Scope</h4><p>和单例一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Scope</span><br><span class="line">@Documented</span><br><span class="line">@Retention(RUNTIME)</span><br><span class="line">public @interface Singleton &#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Scope</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">public @interface ActivityScope &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只是名字不一样，一个用来表示单例，一个是我们自定义用来维持和activity一样的生命周期，应该是这个组件在哪里注入了，就在那里，比如activity生命周期内保持单例，如果activity销毁了，这个单例也没了。</p>
+<p>如果有另外一个activity也注入了这个组件，它是new一个和这个activity保持单例，而不是和前面一个一样。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2019/03/12/Dagger2/" class="article-date">
+  <time datetime="2019-03-12T10:00:58.000Z" itemprop="datePublished">2019-03-12</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2019/03/17/ArmMVP.md/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ArmsMVP学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/22/支付宝跳转技术/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">支付宝跳转技术</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

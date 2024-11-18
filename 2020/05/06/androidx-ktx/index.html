@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>AndroidX-KTX | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="项目中如果使用Kotlin，我们可以使用KTX这个Kotlin拓展程序包，帮助我们完成很多事情。它的主要作用就是封装了大量的拓展函数，内联函数，扩展属性，协程等。使用它，可以让kotlin代码更加简洁  可以看到这个核心包有大量的帮助类。 举例1234sharedPreferences            .edit()  // create an Editor            .putB">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AndroidX-KTX">
+<meta property="og:url" content="http://yoursite.com/2020/05/06/androidx-ktx/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="项目中如果使用Kotlin，我们可以使用KTX这个Kotlin拓展程序包，帮助我们完成很多事情。它的主要作用就是封装了大量的拓展函数，内联函数，扩展属性，协程等。使用它，可以让kotlin代码更加简洁  可以看到这个核心包有大量的帮助类。 举例1234sharedPreferences            .edit()  // create an Editor            .putB">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://tvax3.sinaimg.cn/large/c1b251b3gy1geih4ey74xj20ea0h4mxs.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AndroidX-KTX">
+<meta name="twitter:description" content="项目中如果使用Kotlin，我们可以使用KTX这个Kotlin拓展程序包，帮助我们完成很多事情。它的主要作用就是封装了大量的拓展函数，内联函数，扩展属性，协程等。使用它，可以让kotlin代码更加简洁  可以看到这个核心包有大量的帮助类。 举例1234sharedPreferences            .edit()  // create an Editor            .putB">
+<meta name="twitter:image" content="https://tvax3.sinaimg.cn/large/c1b251b3gy1geih4ey74xj20ea0h4mxs.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-androidx-ktx" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AndroidX-KTX
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>项目中如果使用Kotlin，我们可以使用KTX这个Kotlin拓展程序包，帮助我们完成很多事情。它的主要作用就是封装了大量的拓展函数，内联函数，扩展属性，协程等。使用它，可以让kotlin代码更加简洁</p>
+<p><img src="https://tvax3.sinaimg.cn/large/c1b251b3gy1geih4ey74xj20ea0h4mxs.jpg" alt="image"></p>
+<p>可以看到这个核心包有大量的帮助类。</p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sharedPreferences</span><br><span class="line">            .edit()  <span class="comment">// create an Editor</span></span><br><span class="line">            .putBoolean(<span class="string">"key"</span>, value)</span><br><span class="line">            .apply() <span class="comment">// write to disk asynchronously</span></span><br></pre></td></tr></table></figure>
+<p>我们使用Kotlin编写sp一般如上面所示。而使用KTX可以变成</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SharedPreferences.edit extension function signature from Android KTX - Core</span></span><br><span class="line">    <span class="comment">// inline fun SharedPreferences.edit(</span></span><br><span class="line">    <span class="comment">//         commit: Boolean = false,</span></span><br><span class="line">    <span class="comment">//         action: SharedPreferences.Editor.() -&gt; Unit)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Commit a new value asynchronously</span></span><br><span class="line">    sharedPreferences.edit &#123; putBoolean(<span class="string">"key"</span>, value) &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Commit a new value synchronously</span></span><br><span class="line">    sharedPreferences.edit(commit = <span class="literal">true</span>) &#123; putBoolean(<span class="string">"key"</span>, value) &#125;</span><br></pre></td></tr></table></figure>
+<p>看起来是简洁了一些，我们看内联函数源码</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SuppressLint(<span class="meta-string">"ApplySharedPref"</span>)</span></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> SharedPreferences.<span class="title">edit</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    commit: <span class="type">Boolean</span> = <span class="literal">false</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    action: <span class="type">SharedPreferences</span>.<span class="type">Editor</span>.() -&gt; <span class="type">Unit</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> editor = edit()</span><br><span class="line">    action(editor)</span><br><span class="line">    <span class="keyword">if</span> (commit) &#123;</span><br><span class="line">        editor.commit()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        editor.apply()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个内联函数，接收两个参数，第一个是可选的commit，第二个是一个无返回值的闭包函数，它在内部帮我们完成了一点点东西。</p>
+<h4 id="运算符重载集合串联"><a href="#运算符重载集合串联" class="headerlink" title="运算符重载集合串联"></a>运算符重载集合串联</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Combine 2 ArraySets into 1.</span></span><br><span class="line">    <span class="keyword">val</span> combinedArraySet = arraySetOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) + arraySetOf(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Combine with numbers to create a new sets.</span></span><br><span class="line">    <span class="keyword">val</span> newArraySet = combinedArraySet + <span class="number">7</span> + <span class="number">8</span></span><br></pre></td></tr></table></figure>
+<p>可以看到arraySetOf这个内联函数源码</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Returns a new [ArraySet] with the specified contents. */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">arraySetOf</span><span class="params">(<span class="keyword">vararg</span> values: <span class="type">T</span>)</span></span>: ArraySet&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">val</span> <span class="keyword">set</span> = ArraySet&lt;T&gt;(values.size)</span><br><span class="line">    <span class="meta">@Suppress(<span class="meta-string">"LoopToCallChain"</span>)</span> <span class="comment">// Causes needless copy to a list.</span></span><br><span class="line">    <span class="keyword">for</span> (value <span class="keyword">in</span> values) &#123;</span><br><span class="line">        <span class="keyword">set</span>.add(value)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">set</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>外部传一个多参数，返回一个ArraySet并且设置了值。同理+号被运算符重载，功能变成了两个set的合并</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a set containing all elements of the original set and the given [elements] collection,</span></span><br><span class="line"><span class="comment"> * which aren't already in this set.</span></span><br><span class="line"><span class="comment"> * The returned set preserves the element iteration order of the original set.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> Set<span class="type">&lt;T&gt;</span>.<span class="title">plus</span><span class="params">(elements: <span class="type">Iterable</span>&lt;<span class="type">T</span>&gt;)</span></span>: Set&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">val</span> result = LinkedHashSet&lt;T&gt;(mapCapacity(elements.collectionSizeOrNull()?.let &#123; <span class="keyword">this</span>.size + it &#125; ?: <span class="keyword">this</span>.size * <span class="number">2</span>))</span><br><span class="line">    result.addAll(<span class="keyword">this</span>)</span><br><span class="line">    result.addAll(elements)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a set containing all elements of the original set and then the given [element] if it isn't already in this set.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * The returned set preserves the element iteration order of the original set.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> Set<span class="type">&lt;T&gt;</span>.<span class="title">plus</span><span class="params">(element: <span class="type">T</span>)</span></span>: Set&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">val</span> result = LinkedHashSet&lt;T&gt;(mapCapacity(size + <span class="number">1</span>))</span><br><span class="line">    result.addAll(<span class="keyword">this</span>)</span><br><span class="line">    result.add(element)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>new了一个对象，把this和传参进行了一个合并。</p>
+<h4 id="Lifecycle-KTX"><a href="#Lifecycle-KTX" class="headerlink" title="Lifecycle KTX"></a>Lifecycle KTX</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lifecycleScope.launch &#123; </span><br><span class="line">          <span class="comment">//DO SOMETHING</span></span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<p>我们启动协程的时候协程销毁会伴随声明周期。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * [CoroutineScope] tied to this [LifecycleOwner]'s [Lifecycle].</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * This scope will be cancelled when the [Lifecycle] is destroyed.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * This scope is bound to</span></span><br><span class="line"><span class="comment"> * [Dispatchers.Main.immediate][kotlinx.coroutines.MainCoroutineDispatcher.immediate].</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">val</span> LifecycleOwner.lifecycleScope: LifecycleCoroutineScope</span><br><span class="line">    <span class="keyword">get</span>() = lifecycle.coroutineScope</span><br></pre></td></tr></table></figure>
+<p>LifecycleOwnerKT这个拓展类给LifecycleOwner就声明了一个拓展属性lifecycleScope，是LifecycleCoroutineScope类型</p>
+<p>返回的是协程的生命周期类</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * [CoroutineScope] tied to this [Lifecycle].</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * This scope will be cancelled when the [Lifecycle] is destroyed.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * This scope is bound to</span></span><br><span class="line"><span class="comment"> * [Dispatchers.Main.immediate][kotlinx.coroutines.MainCoroutineDispatcher.immediate]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">val</span> Lifecycle.coroutineScope: LifecycleCoroutineScope</span><br><span class="line">    <span class="keyword">get</span>() &#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">val</span> existing = mInternalScopeRef.<span class="keyword">get</span>() <span class="keyword">as</span> LifecycleCoroutineScopeImpl?</span><br><span class="line">            <span class="keyword">if</span> (existing != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> existing</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">val</span> newScope = LifecycleCoroutineScopeImpl(</span><br><span class="line">                <span class="keyword">this</span>,</span><br><span class="line">                SupervisorJob() + Dispatchers.Main.immediate</span><br><span class="line">            )</span><br><span class="line">            <span class="keyword">if</span> (mInternalScopeRef.compareAndSet(<span class="literal">null</span>, newScope)) &#123;</span><br><span class="line">                newScope.register()</span><br><span class="line">                <span class="keyword">return</span> newScope</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>最终的协程声明周期控制的实现类是LifecycleCoroutineScopeImpl</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">internal</span> <span class="class"><span class="keyword">class</span> <span class="title">LifecycleCoroutineScopeImpl</span></span>(</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> lifecycle: Lifecycle,</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> coroutineContext: CoroutineContext</span><br><span class="line">) : LifecycleCoroutineScope(), LifecycleEventObserver &#123;</span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">        <span class="comment">// in case we are initialized on a non-main thread, make a best effort check before</span></span><br><span class="line">        <span class="comment">// we return the scope. This is not sync but if developer is launching on a non-main</span></span><br><span class="line">        <span class="comment">// dispatcher, they cannot be 100% sure anyways.</span></span><br><span class="line">        <span class="keyword">if</span> (lifecycle.currentState == Lifecycle.State.DESTROYED) &#123;</span><br><span class="line">            coroutineContext.cancel()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">register</span><span class="params">()</span></span> &#123;</span><br><span class="line">        launch(Dispatchers.Main.immediate) &#123;</span><br><span class="line">            <span class="keyword">if</span> (lifecycle.currentState &gt;= Lifecycle.State.INITIALIZED) &#123;</span><br><span class="line">                lifecycle.addObserver(<span class="keyword">this</span><span class="symbol">@LifecycleCoroutineScopeImpl</span>)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                coroutineContext.cancel()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onStateChanged</span><span class="params">(source: <span class="type">LifecycleOwner</span>, event: <span class="type">Lifecycle</span>.<span class="type">Event</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (lifecycle.currentState &lt;= Lifecycle.State.DESTROYED) &#123;</span><br><span class="line">            lifecycle.removeObserver(<span class="keyword">this</span>)</span><br><span class="line">            coroutineContext.cancel()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看到了对DESTROYED状态进行了监听，控制了协程的取消。</p>
+<p>拓展包中大量的拓展函数不一一举例。</p>
+<h2 id="撰写我们自己的拓展函数"><a href="#撰写我们自己的拓展函数" class="headerlink" title="撰写我们自己的拓展函数"></a>撰写我们自己的拓展函数</h2><h4 id="场景1"><a href="#场景1" class="headerlink" title="场景1"></a>场景1</h4><p>我们在一个编辑页面有很多editext，每个都需要进行一个判空处理。所以就会变成这样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (TextUtils.isEmpty(iivProductName.getInputText())) &#123;</span><br><span class="line">               ToastUtil.showToast(<span class="string">"请输入产品名称"</span>);</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (TextUtils.isEmpty(iivPurchaseNumber.getInputText())) &#123;</span><br><span class="line">               ToastUtil.showToast(<span class="string">"请输入进货数量"</span>);</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (TextUtils.isEmpty(iivShelfLife.getInputText())) &#123;</span><br><span class="line">               ToastUtil.showToast(<span class="string">"请输入保质期"</span>);</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure>
+<p>如果这个页面有十个这样得输入框，你就需要十个这样的判断，十分难受。而如果使用拓展函数变成这样。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 检查多个editext是否是空的，提示语默认使用hint</span></span><br><span class="line"><span class="comment"> * 不然提示输入为空，</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">checkEditextNoEmpty</span><span class="params">(<span class="keyword">vararg</span> editTexts: <span class="type">EditText</span>, <span class="keyword">crossinline</span> f: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (item <span class="keyword">in</span> editTexts) &#123;</span><br><span class="line">        <span class="keyword">if</span> (TextUtils.isEmpty(item.text)) &#123;</span><br><span class="line">            <span class="keyword">var</span> msg = item.hint.toString()</span><br><span class="line">            <span class="keyword">if</span> (TextUtils.isEmpty(msg)) &#123;</span><br><span class="line">                item.error = <span class="string">"输入为空！"</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                item.error = msg</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    f.invoke()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接收的参数是不定数量的editext,还有一个闭包。进行一个循环判空，默认使用editext的hint进行提示，如果没有使用输入为空提示。这里可以使用ditext的error方法或者使用toast提示。</p>
+<p>那么我们的书写就变成了这样</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">checkEditextNoEmpty(et_product_name, et_address_street, et_unit_name, et_input_phone, et_number, et_print_number) &#123;</span><br><span class="line">           </span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<p>需要几个判断就传几个参数就可以了。然后闭包中就可以保证这些都不是空的了。</p>
+<h4 id="其他场景"><a href="#其他场景" class="headerlink" title="其他场景"></a>其他场景</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fun List&lt;String&gt;.removeStr(str:String):String&#123;</span><br><span class="line">       var result=&quot;&quot;</span><br><span class="line">       this.forEach &#123;</span><br><span class="line">           if (str == it)&#123;</span><br><span class="line"></span><br><span class="line">           &#125;else&#123;</span><br><span class="line">               result+=it</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return result</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，这个是帮助我们list中去除某个字符串的拓展函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 判断两个字符串内容是不是一样得</span></span><br><span class="line"><span class="comment">    * 比如ABD BDA它内容一样，那就应该一样</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">fun</span> String.<span class="title">isSameString</span><span class="params">(str:<span class="type">String</span>)</span></span>:<span class="built_in">Boolean</span>&#123;</span><br><span class="line">       <span class="keyword">var</span> sorts=<span class="keyword">this</span>.trim().toSortedSet()</span><br><span class="line">       <span class="keyword">var</span> sort2=str.trim().toSortedSet()</span><br><span class="line">       <span class="keyword">if</span> (sort2.size!=sorts.size)&#123;<span class="comment">//长度不一样</span></span><br><span class="line">           <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">       &#125;<span class="keyword">else</span>&#123;<span class="comment">//长度一样</span></span><br><span class="line">           <span class="keyword">return</span> sort2.containsAll(sorts)</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这个拓展函数在我的项目中是有使用场景的。是考试做题的时候的选择顺序。拼接成字符串，然后检查两个字符串是否内容一致。</p>
+<p>还有很多，可以根据业务场景抽象出来的拓展函数，比如判断是否登录的拓展函数等等。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2020/05/06/androidx-ktx/" class="article-date">
+  <time datetime="2020-05-06T09:00:00.000Z" itemprop="datePublished">2020-05-06</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2020/05/06/Jetpack-Liftcycle/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Jetpack-Liftcycle
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/08/Jenkins产物归档并生成二维码/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Jenkins产物归档并生成二维码</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

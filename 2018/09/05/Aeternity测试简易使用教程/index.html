@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Aeternity测试网简易使用教程 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Aeternity测试网络已经上线许久，这里简单介绍如何在测试网络创建账号，充值，转账，编译智能合约，发布智能合约，调用智能合约的步骤。 使用Python SDK创建账号Aeternity 创建账号可以使用Python SDK，JS SDK或者Go SDK。这里举例Python SDK，下载SDK后执行：  可以看到sdk包含的内容有公链数据查询，合约编译，账户区块查询，预言机，钱包创建等相关内容">
+<meta name="keywords" content="block chain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Aeternity测试网简易使用教程">
+<meta property="og:url" content="http://yoursite.com/2018/09/05/Aeternity测试简易使用教程/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="Aeternity测试网络已经上线许久，这里简单介绍如何在测试网络创建账号，充值，转账，编译智能合约，发布智能合约，调用智能合约的步骤。 使用Python SDK创建账号Aeternity 创建账号可以使用Python SDK，JS SDK或者Go SDK。这里举例Python SDK，下载SDK后执行：  可以看到sdk包含的内容有公链数据查询，合约编译，账户区块查询，预言机，钱包创建等相关内容">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://ws3.sinaimg.cn/large/c1b251b3gy1fwotdkp96qj20su0qm77u.jpg">
+<meta property="og:image" content="http://ws4.sinaimg.cn/large/c1b251b3gy1fwotgn0oidj217m076myj.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/c1b251b3gy1fwotlmm4zcj222k0qgq74.jpg">
+<meta property="og:image" content="http://ws3.sinaimg.cn/large/c1b251b3gy1fwotnpgoozj21bo0eywhl.jpg">
+<meta property="og:image" content="http://ws4.sinaimg.cn/large/c1b251b3gy1fwots7wfc7j21qk08w0vj.jpg">
+<meta property="og:image" content="http://ws4.sinaimg.cn/large/c1b251b3gy1fwottyrwghj21cy0degoc.jpg">
+<meta property="og:image" content="http://ws1.sinaimg.cn/large/c1b251b3gy1fuyh8zlv97j21470pogni.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/large/c1b251b3gy1fuyha19hogj213c0j4405.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/large/c1b251b3gy1fuyhfg87drj215g0hlgqf.jpg">
+<meta property="og:image" content="http://ws3.sinaimg.cn/large/c1b251b3gy1fuyhj1caa0j21290ct3yx.jpg">
+<meta property="og:image" content="http://ws2.sinaimg.cn/large/c1b251b3gy1fuyhkiz46lj213008g0t8.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/c1b251b3gy1fuyhm96wd5j20yw0hswgm.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Aeternity测试网简易使用教程">
+<meta name="twitter:description" content="Aeternity测试网络已经上线许久，这里简单介绍如何在测试网络创建账号，充值，转账，编译智能合约，发布智能合约，调用智能合约的步骤。 使用Python SDK创建账号Aeternity 创建账号可以使用Python SDK，JS SDK或者Go SDK。这里举例Python SDK，下载SDK后执行：  可以看到sdk包含的内容有公链数据查询，合约编译，账户区块查询，预言机，钱包创建等相关内容">
+<meta name="twitter:image" content="http://ws3.sinaimg.cn/large/c1b251b3gy1fwotdkp96qj20su0qm77u.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-Aeternity测试简易使用教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Aeternity测试网简易使用教程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>Aeternity测试网络已经上线许久，这里简单介绍如何在测试网络创建账号，充值，转账，编译智能合约，发布智能合约，调用智能合约的步骤。</p>
+<h3 id="使用Python-SDK创建账号"><a href="#使用Python-SDK创建账号" class="headerlink" title="使用Python SDK创建账号"></a>使用<a href="https://github.com/aeternity/aepp-sdk-python" target="_blank" rel="noopener">Python SDK</a>创建账号</h3><p>Aeternity 创建账号可以使用Python SDK，JS SDK或者Go SDK。这里举例Python SDK，下载SDK后执行：</p>
+<p><img src="http://ws3.sinaimg.cn/large/c1b251b3gy1fwotdkp96qj20su0qm77u.jpg" alt="image"></p>
+<p>可以看到sdk包含的内容有公链数据查询，合约编译，账户区块查询，预言机，钱包创建等相关内容。我们选择钱包创建，执行：</p>
+<p><img src="http://ws4.sinaimg.cn/large/c1b251b3gy1fwotgn0oidj217m076myj.jpg" alt="image"></p>
+<p>在account后面加上保存密钥文件的路径，加上create命令，输入密码后可以得到如上结果。</p>
+<h3 id="对生成的账户进行充值"><a href="#对生成的账户进行充值" class="headerlink" title="对生成的账户进行充值"></a>对生成的账户进行充值</h3><p>生成的账户其实是不会在链上有记录的，只有执行过交易才会有记录，所以如果发出转账会提示找不到此账户，因为此账户的余额为0.<a href="https://faucet.aepps.com/" target="_blank" rel="noopener">进入测试网充值</a>后，如图所示</p>
+<p><img src="http://wx2.sinaimg.cn/large/c1b251b3gy1fwotlmm4zcj222k0qgq74.jpg" alt="image"></p>
+<p>默认充值是5000AE，充值后就会产生交易记录，可以看到这个交易ID，点击跳转到区块链交易浏览器详情，不过似乎还没开发好，看不到详情。我们使用Python SDK查看交易详情,第一次查询是未充值显示找不到账户，第二次是充值后可以查询到相关余额。</p>
+<p><img src="http://ws3.sinaimg.cn/large/c1b251b3gy1fwotnpgoozj21bo0eywhl.jpg" alt="image"></p>
+<h3 id="测试网转账"><a href="#测试网转账" class="headerlink" title="测试网转账"></a>测试网转账</h3><p>我们的账户已经可以看到有余额是5000AE了，下面对此账户进行转账。</p>
+<p><img src="http://ws4.sinaimg.cn/large/c1b251b3gy1fwots7wfc7j21qk08w0vj.jpg" alt="image"></p>
+<p>指定了我们的密钥路径后，接上spend命令，转账到哪个账户的地址，转账余额。会提示输入密码，此密码就是解密我们密钥的密码输出上图，我们再看一下两个账户的账户余额</p>
+<p><img src="http://ws4.sinaimg.cn/large/c1b251b3gy1fwottyrwghj21cy0degoc.jpg" alt="image"></p>
+<p>经过我多次转账测试，发现每次转账测试网的手续费收取1AE，这个应该会调整。</p>
+<h3 id="智能合约编译"><a href="#智能合约编译" class="headerlink" title="智能合约编译"></a>智能合约编译</h3><p>Python SDK也提供了编译部署智能合约的功能，不过这里介绍<a href="https://contracts.aepps.com/" target="_blank" rel="noopener">在线IDE</a>进行编译，合约使用的是一个叫Sophia 的语言。</p>
+<p><img src="http://ws1.sinaimg.cn/large/c1b251b3gy1fuyh8zlv97j21470pogni.jpg" alt="image"></p>
+<p>直接使用测试样例，点击编译后成字节码，再点击下面的部署按钮就可以部署到测试网络了。</p>
+<p><img src="http://wx1.sinaimg.cn/large/c1b251b3gy1fuyha19hogj213c0j4405.jpg" alt="image"></p>
+<p>点击部署后会生成一个合约地址，我这里的合约地址为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ct$PzpYsHcA858UNDJLnfmQznnNKPwxmatXwFrWG6GjNhr1rScgm</span><br></pre></td></tr></table></figure>
+<h3 id="使用区块链浏览器进行查看合约和交易"><a href="#使用区块链浏览器进行查看合约和交易" class="headerlink" title="使用区块链浏览器进行查看合约和交易"></a>使用区块链浏览器进行查看合约和交易</h3><p><img src="http://wx3.sinaimg.cn/large/c1b251b3gy1fuyhfg87drj215g0hlgqf.jpg" alt="image"></p>
+<p>此浏览器可以查看我们以上执行动作的过程，包括充值交易，转账交易，合约创建。SDK并没有提供查询合约的方法，浏览器也不是很完善，所以刚才创建的合约我就不去找了。</p>
+<h3 id="智能合约调用"><a href="#智能合约调用" class="headerlink" title="智能合约调用"></a>智能合约调用</h3><p><img src="http://ws3.sinaimg.cn/large/c1b251b3gy1fuyhj1caa0j21290ct3yx.jpg" alt="image"></p>
+<p>这里使用IDE调用，传入方法名字和参数就可以了，更加复杂的合约例子可以看github的例子。</p>
+<h3 id="在线IDE更改账户"><a href="#在线IDE更改账户" class="headerlink" title="在线IDE更改账户"></a>在线IDE更改账户</h3><p><img src="http://ws2.sinaimg.cn/large/c1b251b3gy1fuyhkiz46lj213008g0t8.jpg" alt="image"></p>
+<p>如果需要更改账户的话，在线IDE的头部可以输入你的账户的密钥，此外，这个密钥是一个十六进制的字符串，用Python SDK生成的是一个已经加密的的密钥文件，所以我们可以在</p>
+<p><img src="http://wx4.sinaimg.cn/large/c1b251b3gy1fuyhm96wd5j20yw0hswgm.jpg" alt="image"></p>
+<p>如上图的位置增加一个输出，得到真正的私钥，后保存下来使用。</p>
+<h3 id="还需要改进的地方"><a href="#还需要改进的地方" class="headerlink" title="还需要改进的地方"></a>还需要改进的地方</h3><ul>
+<li>区块链浏览器 不能根据交易ID查询，根据合约ID查询，交易详情不够完善，比如gas的使用量，交易费用等。</li>
+<li>和以太坊IDE相比的话，缺少Debugger功能，还不够完善</li>
+<li>Python SDK缺少查询合约的功能</li>
+</ul>
+<h4 id="相关地址"><a href="#相关地址" class="headerlink" title="相关地址"></a>相关地址</h4><p>python sdk地址：<a href="https://github.com/aeternity/aepp-sdk-python" target="_blank" rel="noopener">https://github.com/aeternity/aepp-sdk-python</a></p>
+<p>测试网充值地址：<a href="https://faucet.aepps.com/" target="_blank" rel="noopener">https://faucet.aepps.com/</a></p>
+<p>在线合约IDE：<a href="https://contracts.aepps.com/" target="_blank" rel="noopener">https://contracts.aepps.com/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/09/05/Aeternity测试简易使用教程/" class="article-date">
+  <time datetime="2018-09-05T09:00:58.000Z" itemprop="datePublished">2018-09-05</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/">block chain</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/09/12/aeternity epoch挖矿/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          epoch挖矿简易教程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/30/测试网epoch基本使用/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">测试网epoch基本使用</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Map相关 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Map接口定义了一系列抽象方法 123456789101112131415int size();boolean isEmpty();boolean containsKey(Object key);boolean containsValue(Object value);V get(Object key);V put(K key, V value);V remove(Object key);void">
+<meta name="keywords" content="code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Map相关">
+<meta property="og:url" content="http://yoursite.com/2017/10/25/Map接口概览/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="Map接口定义了一系列抽象方法 123456789101112131415int size();boolean isEmpty();boolean containsKey(Object key);boolean containsValue(Object value);V get(Object key);V put(K key, V value);V remove(Object key);void">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Map相关">
+<meta name="twitter:description" content="Map接口定义了一系列抽象方法 123456789101112131415int size();boolean isEmpty();boolean containsKey(Object key);boolean containsValue(Object value);V get(Object key);V put(K key, V value);V remove(Object key);void">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-Map接口概览" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Map相关
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>Map接口定义了一系列抽象方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsKey</span><span class="params">(Object key)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsValue</span><span class="params">(Object value)</span></span>;</span><br><span class="line"><span class="function">V <span class="title">get</span><span class="params">(Object key)</span></span>;</span><br><span class="line"><span class="function">V <span class="title">put</span><span class="params">(K key, V value)</span></span>;</span><br><span class="line"><span class="function">V <span class="title">remove</span><span class="params">(Object key)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">putAll</span><span class="params">(Map&lt;? extends K, ? extends V&gt; m)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">Collection&lt;V&gt; <span class="title">values</span><span class="params">()</span></span>;</span><br><span class="line">Set&lt;Map.Entry&lt;K, V&gt;&gt; entrySet();</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">Collection&lt;V&gt; <span class="title">values</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>还有默认实现的抽象方法 </p>
+<p>java8新增方法</p>
+<p>compute(Object,BitFunction)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1087</span></span><br><span class="line"><span class="number">1088</span>    <span class="function"><span class="keyword">default</span> V <span class="title">compute</span><span class="params">(K key,</span></span></span><br><span class="line"><span class="function"><span class="params"><span class="number">1089</span>            BiFunction&lt;? <span class="keyword">super</span> K, ? <span class="keyword">super</span> V, ? extends V&gt; remappingFunction)</span> </span>&#123;</span><br><span class="line"><span class="number">1090</span>        Objects.requireNonNull(remappingFunction);</span><br><span class="line"><span class="number">1091</span>        V oldValue = get(key);</span><br><span class="line"><span class="number">1092</span></span><br><span class="line"><span class="number">1093</span>        V newValue = remappingFunction.apply(key, oldValue);</span><br><span class="line"><span class="number">1094</span>        <span class="keyword">if</span> (newValue == <span class="keyword">null</span>) &#123;</span><br><span class="line"><span class="number">1095</span>            <span class="comment">// delete mapping</span></span><br><span class="line"><span class="number">1096</span>            <span class="keyword">if</span> (oldValue != <span class="keyword">null</span> || containsKey(key)) &#123;</span><br><span class="line"><span class="number">1097</span>                <span class="comment">// something to remove</span></span><br><span class="line"><span class="number">1098</span>                remove(key);</span><br><span class="line"><span class="number">1099</span>                <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"><span class="number">1100</span>            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="number">1101</span>                <span class="comment">// nothing to do. Leave things as they were.</span></span><br><span class="line"><span class="number">1102</span>                <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"><span class="number">1103</span>            &#125;</span><br><span class="line"><span class="number">1104</span>        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="number">1105</span>            <span class="comment">// add or replace old mapping</span></span><br><span class="line"><span class="number">1106</span>            put(key, newValue);</span><br><span class="line"><span class="number">1107</span>            <span class="keyword">return</span> newValue;</span><br><span class="line"><span class="number">1108</span>        &#125;</span><br><span class="line"><span class="number">1109</span>    &#125;</span><br></pre></td></tr></table></figure>
+<p>入参是，key和BitFunction，BitFunction的实现，由外部定义。</p>
+<p>如果newValues为空，即BitFunction的apply实现返回null值，则如果map有这个key就移除，并且也返回null值。</p>
+<p>如果newValues不为null，则增加或者刷新map的key键值对。并返回apply的实现值。</p>
+<p>再一个java8方法</p>
+<p>computeIfAbsent(Object,Function)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">950</span> </span><br><span class="line"><span class="number">951</span>     <span class="function"><span class="keyword">default</span> V <span class="title">computeIfAbsent</span><span class="params">(K key,</span></span></span><br><span class="line"><span class="function"><span class="params"><span class="number">952</span>             Function&lt;? <span class="keyword">super</span> K, ? extends V&gt; mappingFunction)</span> </span>&#123;</span><br><span class="line"><span class="number">953</span>         Objects.requireNonNull(mappingFunction);</span><br><span class="line"><span class="number">954</span>         V v;</span><br><span class="line"><span class="number">955</span>         <span class="keyword">if</span> ((v = get(key)) == <span class="keyword">null</span>) &#123;</span><br><span class="line"><span class="number">956</span>             V newValue;</span><br><span class="line"><span class="number">957</span>             <span class="keyword">if</span> ((newValue = mappingFunction.apply(key)) != <span class="keyword">null</span>) &#123;</span><br><span class="line"><span class="number">958</span>                 put(key, newValue);</span><br><span class="line"><span class="number">959</span>                 <span class="keyword">return</span> newValue;</span><br><span class="line"><span class="number">960</span>             &#125;</span><br><span class="line"><span class="number">961</span>         &#125;</span><br><span class="line"><span class="number">962</span> </span><br><span class="line"><span class="number">963</span>         <span class="keyword">return</span> v;</span><br><span class="line"><span class="number">964</span>     &#125;</span><br></pre></td></tr></table></figure>
+<p>如果本地map已经存在这个key键值对，直接返回value，如果不存在，看看Function的apply实现是不是为null，如果为null，返回null，不为null，压入map。</p>
+<p>疑惑1：为什么compute computeIfAbsent的参数表一个是BitFunction一个是Function？</p>
+<p>再一个java8新方法</p>
+<p>computeIfPresent(Object,BitFunction)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1011</span></span><br><span class="line"><span class="number">1012</span>    <span class="function"><span class="keyword">default</span> V <span class="title">computeIfPresent</span><span class="params">(K key,</span></span></span><br><span class="line"><span class="function"><span class="params"><span class="number">1013</span>            BiFunction&lt;? <span class="keyword">super</span> K, ? <span class="keyword">super</span> V, ? extends V&gt; remappingFunction)</span> </span>&#123;</span><br><span class="line"><span class="number">1014</span>        Objects.requireNonNull(remappingFunction);</span><br><span class="line"><span class="number">1015</span>        V oldValue;</span><br><span class="line"><span class="number">1016</span>        <span class="keyword">if</span> ((oldValue = get(key)) != <span class="keyword">null</span>) &#123;</span><br><span class="line"><span class="number">1017</span>            V newValue = remappingFunction.apply(key, oldValue);</span><br><span class="line"><span class="number">1018</span>            <span class="keyword">if</span> (newValue != <span class="keyword">null</span>) &#123;</span><br><span class="line"><span class="number">1019</span>                put(key, newValue);</span><br><span class="line"><span class="number">1020</span>                <span class="keyword">return</span> newValue;</span><br><span class="line"><span class="number">1021</span>            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="number">1022</span>                remove(key);</span><br><span class="line"><span class="number">1023</span>                <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"><span class="number">1024</span>            &#125;</span><br><span class="line"><span class="number">1025</span>        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="number">1026</span>            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"><span class="number">1027</span>        &#125;</span><br><span class="line"><span class="number">1028</span>    &#125;</span><br></pre></td></tr></table></figure>
+<p>如果不存在key的键值对，直接返回null，不压入。如果存在，而apply实现不为空，就压入覆盖，如果apply实现为空，则移除已经有的key键值对。</p>
+<p>以上三个方法比较：</p>
+<p>compute 只要apply不为空，一定更新或者添加keyvalue，如果apply为空，还要移除map已经有的keyvalue</p>
+<p>computeIfAbsent 如果map的keyvalue为空并且apply实现不为空，才会加入map，不然map返回原有值或null</p>
+<p>​                                如果map不为空，不更新</p>
+<p>computeIfPresent   如果map有keyvalue，并且apply非空实现才更新，空实现则移除。如果map没有keyvalue，不操作，返回null</p>
+<p>java8新增foreach,默认实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">617</span> </span><br><span class="line"><span class="number">618</span>     <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(BiConsumer&lt;? <span class="keyword">super</span> K, ? <span class="keyword">super</span> V&gt; action)</span> </span>&#123;</span><br><span class="line"><span class="number">619</span>         Objects.requireNonNull(action);</span><br><span class="line"><span class="number">620</span>         <span class="keyword">for</span> (Map.Entry&lt;K, V&gt; entry : entrySet()) &#123;</span><br><span class="line"><span class="number">621</span>             K k;</span><br><span class="line"><span class="number">622</span>             V v;</span><br><span class="line"><span class="number">623</span>             <span class="keyword">try</span> &#123;</span><br><span class="line"><span class="number">624</span>                 k = entry.getKey();</span><br><span class="line"><span class="number">625</span>                 v = entry.getValue();</span><br><span class="line"><span class="number">626</span>             &#125; <span class="keyword">catch</span>(IllegalStateException ise) &#123;</span><br><span class="line"><span class="number">627</span>                 <span class="comment">// this usually means the entry is no longer in the map.</span></span><br><span class="line"><span class="number">628</span>                 <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException(ise);</span><br><span class="line"><span class="number">629</span>             &#125;</span><br><span class="line"><span class="number">630</span>             action.accept(k, v);</span><br><span class="line"><span class="number">631</span>         &#125;</span><br><span class="line"><span class="number">632</span>     &#125;</span><br></pre></td></tr></table></figure>
+<p>实际上用lambda可以写成这样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map.forEach((k, v) -&gt;</span><br><span class="line">    System.out.println(k+<span class="string">"="</span> + v));</span><br></pre></td></tr></table></figure>
+<p>实际上就是实现了BitConsumer的accept的方法，然后被回调了。</p>
+<p>java8新增getOrDefault</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">585 </span><br><span class="line">586     default V More ...getOrDefault(Object key, V defaultValue) &#123;</span><br><span class="line">587         V v;</span><br><span class="line">588         return (((v = get(key)) != null) || containsKey(key))</span><br><span class="line">589             ? v</span><br><span class="line">590             : defaultValue;</span><br><span class="line">591     &#125;</span><br></pre></td></tr></table></figure>
+<p>java 8新增merge方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1168</span></span><br><span class="line"><span class="number">1169</span>    <span class="function"><span class="keyword">default</span> V <span class="title">merge</span><span class="params">(K key, V value,</span></span></span><br><span class="line"><span class="function"><span class="params"><span class="number">1170</span>            BiFunction&lt;? <span class="keyword">super</span> V, ? <span class="keyword">super</span> V, ? extends V&gt; remappingFunction)</span> </span>&#123;</span><br><span class="line"><span class="number">1171</span>        Objects.requireNonNull(remappingFunction);</span><br><span class="line"><span class="number">1172</span>        Objects.requireNonNull(value);</span><br><span class="line"><span class="number">1173</span>        V oldValue = get(key);</span><br><span class="line"><span class="number">1174</span>        V newValue = (oldValue == <span class="keyword">null</span>) ? value :</span><br><span class="line"><span class="number">1175</span>                   remappingFunction.apply(oldValue, value);</span><br><span class="line"><span class="number">1176</span>        <span class="keyword">if</span>(newValue == <span class="keyword">null</span>) &#123;</span><br><span class="line"><span class="number">1177</span>            remove(key);</span><br><span class="line"><span class="number">1178</span>        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="number">1179</span>            put(key, newValue);</span><br><span class="line"><span class="number">1180</span>        &#125;</span><br><span class="line"><span class="number">1181</span>        <span class="keyword">return</span> newValue;</span><br><span class="line"><span class="number">1182</span>    &#125;</span><br><span class="line"><span class="number">1183</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>java 8新增putIfAbsent方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">740</span> </span><br><span class="line"><span class="number">741</span>     <span class="keyword">default</span> V More ...putIfAbsent(K key, V value) &#123;</span><br><span class="line"><span class="number">742</span>         V v = get(key);</span><br><span class="line"><span class="number">743</span>         <span class="keyword">if</span> (v == <span class="keyword">null</span>) &#123;</span><br><span class="line"><span class="number">744</span>             v = put(key, value);</span><br><span class="line"><span class="number">745</span>         &#125;</span><br><span class="line"><span class="number">746</span> </span><br><span class="line"><span class="number">747</span>         <span class="keyword">return</span> v;</span><br><span class="line"><span class="number">748</span>     &#125;</span><br></pre></td></tr></table></figure>
+<p>remove</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">783</span> </span><br><span class="line"><span class="number">784</span>     <span class="function"><span class="keyword">default</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object key, Object value)</span> </span>&#123;</span><br><span class="line"><span class="number">785</span>         Object curValue = get(key);</span><br><span class="line"><span class="number">786</span>         <span class="keyword">if</span> (!Objects.equals(curValue, value) ||</span><br><span class="line"><span class="number">787</span>             (curValue == <span class="keyword">null</span> &amp;&amp; !containsKey(key))) &#123;</span><br><span class="line"><span class="number">788</span>             <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"><span class="number">789</span>         &#125;</span><br><span class="line"><span class="number">790</span>         remove(key);</span><br><span class="line"><span class="number">791</span>         <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"><span class="number">792</span>     &#125;</span><br></pre></td></tr></table></figure>
+<p>replace 没什么说的。。。。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">883</span> </span><br><span class="line"><span class="number">884</span>     <span class="function"><span class="keyword">default</span> V <span class="title">replace</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line"><span class="number">885</span>         V curValue;</span><br><span class="line"><span class="number">886</span>         <span class="keyword">if</span> (((curValue = get(key)) != <span class="keyword">null</span>) || containsKey(key)) &#123;</span><br><span class="line"><span class="number">887</span>             curValue = put(key, value);</span><br><span class="line"><span class="number">888</span>         &#125;</span><br><span class="line"><span class="number">889</span>         <span class="keyword">return</span> curValue;</span><br><span class="line"><span class="number">890</span>     &#125;</span><br><span class="line"><span class="number">835</span> </span><br><span class="line"><span class="number">836</span>     <span class="keyword">default</span> <span class="keyword">boolean</span> More ...replace(K key, V oldValue, V newValue) &#123;</span><br><span class="line"><span class="number">837</span>         Object curValue = get(key);</span><br><span class="line"><span class="number">838</span>         <span class="keyword">if</span> (!Objects.equals(curValue, oldValue) ||</span><br><span class="line"><span class="number">839</span>             (curValue == <span class="keyword">null</span> &amp;&amp; !containsKey(key))) &#123;</span><br><span class="line"><span class="number">840</span>             <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"><span class="number">841</span>         &#125;</span><br><span class="line"><span class="number">842</span>         put(key, newValue);</span><br><span class="line"><span class="number">843</span>         <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"><span class="number">844</span>     &#125;</span><br></pre></td></tr></table></figure>
+<p>内部接口Entry&lt;K,V&gt;</p>
+<p>新增java8几个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">469</span> </span><br><span class="line"><span class="number">470</span>         <span class="keyword">public</span> <span class="keyword">static</span> &lt;K extends Comparable&lt;? <span class="keyword">super</span> K&gt;, V&gt; Comparator&lt;Map.Entry&lt;K,V&gt;&gt; comparingByKey() &#123;</span><br><span class="line"><span class="number">471</span>             <span class="keyword">return</span> (Comparator&lt;Map.Entry&lt;K, V&gt;&gt; &amp; Serializable)</span><br><span class="line"><span class="number">472</span>                 (c1, c2) -&gt; c1.getKey().compareTo(c2.getKey());</span><br><span class="line"><span class="number">473</span>         &#125;</span><br><span class="line"><span class="number">504</span> </span><br><span class="line"><span class="number">505</span>         <span class="keyword">public</span> <span class="keyword">static</span> &lt;K, V&gt; Comparator&lt;Map.Entry&lt;K, V&gt;&gt; comparingByKey(Comparator&lt;? <span class="keyword">super</span> K&gt; cmp) &#123;</span><br><span class="line"><span class="number">506</span>             Objects.requireNonNull(cmp);</span><br><span class="line"><span class="number">507</span>             <span class="keyword">return</span> (Comparator&lt;Map.Entry&lt;K, V&gt;&gt; &amp; Serializable)</span><br><span class="line"><span class="number">508</span>                 (c1, c2) -&gt; cmp.compare(c1.getKey(), c2.getKey());</span><br><span class="line"><span class="number">509</span>         &#125;</span><br><span class="line"><span class="number">486</span> </span><br><span class="line"><span class="number">487</span>         <span class="keyword">public</span> <span class="keyword">static</span> &lt;K, V extends Comparable&lt;? <span class="keyword">super</span> V&gt;&gt; Comparator&lt;Map.Entry&lt;K,V&gt;&gt; comparingByValue() &#123;</span><br><span class="line"><span class="number">488</span>             <span class="keyword">return</span> (Comparator&lt;Map.Entry&lt;K, V&gt;&gt; &amp; Serializable)</span><br><span class="line"><span class="number">489</span>                 (c1, c2) -&gt; c1.getValue().compareTo(c2.getValue());</span><br><span class="line"><span class="number">490</span>         &#125;</span><br><span class="line"><span class="number">523</span> </span><br><span class="line"><span class="number">524</span>         <span class="keyword">public</span> <span class="keyword">static</span> &lt;K, V&gt; Comparator&lt;Map.Entry&lt;K, V&gt;&gt;comparingByValue(Comparator&lt;? <span class="keyword">super</span> V&gt; cmp) &#123;</span><br><span class="line"><span class="number">525</span>             Objects.requireNonNull(cmp);</span><br><span class="line"><span class="number">526</span>             <span class="keyword">return</span> (Comparator&lt;Map.Entry&lt;K, V&gt;&gt; &amp; Serializable)</span><br><span class="line"><span class="number">527</span>                 (c1, c2) -&gt; cmp.compare(c1.getValue(), c2.getValue());</span><br><span class="line"><span class="number">528</span>         &#125;</span><br><span class="line"><span class="number">529</span>     &#125;</span><br></pre></td></tr></table></figure>
+<p>&amp;符号，java8新语法，表示同时满足两个接口，就是返回的东西已经同时实现了Comparator Serializable接口</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/10/25/Map接口概览/" class="article-date">
+  <time datetime="2017-10-25T10:00:58.000Z" itemprop="datePublished">2017-10-25</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/10/25/HashMap/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HashMap相关
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/24/Lrucache介绍/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LruCache介绍</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>学习https | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习参考 HTTPS由HTTP+SSL/TLS组成。服务端配置证书可以自己制作或者权威机构购买。证书传送其实就是公钥传送，里面包含颁发机构，过期时间等。 初始化浏览器将自己支持的加密规则发送给服务端 客户端解析证书服务端选一组加密算法和hash算法，把信息征收发送给客户端。客户端TLS验证公钥是否有效，比如颁发机构，过期时间，如果异常会弹出警告。如果没有异常，就生成一个随机值。用证书对改随机值进行">
+<meta name="keywords" content="code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习https">
+<meta property="og:url" content="http://yoursite.com/2017/11/30/学习Https/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="学习参考 HTTPS由HTTP+SSL/TLS组成。服务端配置证书可以自己制作或者权威机构购买。证书传送其实就是公钥传送，里面包含颁发机构，过期时间等。 初始化浏览器将自己支持的加密规则发送给服务端 客户端解析证书服务端选一组加密算法和hash算法，把信息征收发送给客户端。客户端TLS验证公钥是否有效，比如颁发机构，过期时间，如果异常会弹出警告。如果没有异常，就生成一个随机值。用证书对改随机值进行">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/c1b251b3gy1flzvdmhlonj20w90yrq55.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习https">
+<meta name="twitter:description" content="学习参考 HTTPS由HTTP+SSL/TLS组成。服务端配置证书可以自己制作或者权威机构购买。证书传送其实就是公钥传送，里面包含颁发机构，过期时间等。 初始化浏览器将自己支持的加密规则发送给服务端 客户端解析证书服务端选一组加密算法和hash算法，把信息征收发送给客户端。客户端TLS验证公钥是否有效，比如颁发机构，过期时间，如果异常会弹出警告。如果没有异常，就生成一个随机值。用证书对改随机值进行">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/c1b251b3gy1flzvdmhlonj20w90yrq55.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-学习Https" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      学习https
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p><a href="http://blog.csdn.net/clh604/article/details/22179907" target="_blank" rel="noopener">学习参考</a></p>
+<h5 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h5><p>由HTTP+SSL/TLS组成。服务端配置证书可以自己制作或者权威机构购买。证书传送其实就是公钥传送，里面包含颁发机构，过期时间等。</p>
+<h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><p>浏览器将自己支持的加密规则发送给服务端</p>
+<h5 id="客户端解析证书"><a href="#客户端解析证书" class="headerlink" title="客户端解析证书"></a>客户端解析证书</h5><p>服务端选一组加密算法和hash算法，把信息征收发送给客户端。客户端TLS验证公钥是否有效，比如颁发机构，过期时间，如果异常会弹出警告。如果没有异常，就生成一个随机值。用证书对改随机值进行加密。</p>
+<h5 id="传送加密信息"><a href="#传送加密信息" class="headerlink" title="传送加密信息"></a>传送加密信息</h5><p>服务端得到随机值，服务端和客户端用这个随机值来进行加密解密。</p>
+<h5 id="服务端解密信息"><a href="#服务端解密信息" class="headerlink" title="服务端解密信息"></a>服务端解密信息</h5><p>服务端用私钥解密之后，得到随机值（私钥），然后把内容通过该值进行对称加密。</p>
+<h5 id="传输加密后的信息"><a href="#传输加密后的信息" class="headerlink" title="传输加密后的信息"></a>传输加密后的信息</h5><p>服务端用随机值（私钥对称加密）传输内容</p>
+<h5 id="客户端解密"><a href="#客户端解密" class="headerlink" title="客户端解密"></a>客户端解密</h5><p>客户端用对称加密（随机值）进行解密</p>
+<h4 id="ssl位置"><a href="#ssl位置" class="headerlink" title="ssl位置"></a>ssl位置</h4><p>ssl在应用层和tcp层之间。通过加入ssl头部再传到下一层。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/c1b251b3gy1flzvdmhlonj20w90yrq55.jpg" alt="三次握手"></p>
+<p>上图梳理来自<a href="http://blog.csdn.net/u014386474/article/details/51669098" target="_blank" rel="noopener">博文代码</a></p>
+<p><a href="https://www.cnblogs.com/fron/p/https-20170111.html" target="_blank" rel="noopener">证书参考</a></p>
+<h2 id="生成服务器的密匙文件casserver-keystore"><a href="#生成服务器的密匙文件casserver-keystore" class="headerlink" title="生成服务器的密匙文件casserver.keystore"></a>生成服务器的密匙文件casserver.keystore</h2><blockquote>
+<h3 id="keytool-genkey-alias-casserver-keypass-cas123-keyalg-RSA-keystore-casserver-keystore-validity-365"><a href="#keytool-genkey-alias-casserver-keypass-cas123-keyalg-RSA-keystore-casserver-keystore-validity-365" class="headerlink" title="keytool -genkey -alias casserver -keypass cas123 -keyalg RSA -keystore casserver.keystore -validity 365"></a>keytool -genkey -alias casserver -keypass cas123 -keyalg RSA -keystore casserver.keystore -validity 365</h3></blockquote>
+<p>-alias指定别名为casserver；</p>
+<p>-keyalg指定RSA算法；</p>
+<p>-keypass指定私钥密码；</p>
+<p>-keystore指定密钥文件名称为casserver.keystore；</p>
+<p>-validity指定有效期为365天。</p>
+<p>另外提示输入密匙库口令应与-keypass指定的cas123相同.您的名字与姓氏fron.com是CAS服务器使用的域名（不能是IP，也不能是localhost），其它项随意填。</p>
+<h2 id="生成服务端证书casserver-cer"><a href="#生成服务端证书casserver-cer" class="headerlink" title="生成服务端证书casserver.cer"></a>生成服务端证书casserver.cer</h2><blockquote>
+<p>keytool -export -alias casserver -storepass cas123 -file casserver.cer -keystore casserver.keystore</p>
+</blockquote>
+<p>-alias指定别名为casserver；</p>
+<p>-storepass指定私钥为liuqizhi；</p>
+<p>-file指定导出证书的文件名为casserver.cer；</p>
+<p>-keystore指定之前生成的密钥文件的文件名。</p>
+<p>注意：-alias和-storepass必须为生成casserver.keystore密钥文件时所指定的别名和密码，否则证书导出失败</p>
+<h2 id="导入证书文件到cacerts-密钥库文件"><a href="#导入证书文件到cacerts-密钥库文件" class="headerlink" title="导入证书文件到cacerts 密钥库文件"></a>导入证书文件到cacerts 密钥库文件</h2><p>接下来就是把上面生成的服务器的证书casserver.cer导入到cacerts密钥库文件中(后面的客户端会用到这些)</p>
+<h2 id="服务端Tomcat配置"><a href="#服务端Tomcat配置" class="headerlink" title="服务端Tomcat配置"></a>服务端Tomcat配置</h2><p>server.xml是tomcat的主配置文件，Server是顶级组件，代表一个Tomcat实例，可以包含多个Services其中每个Service都有自己的Engines和Connectors</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector protocol=&quot;HTTP/1.1&quot; SSLEnabled=&quot;true&quot; maxThreads=&quot;150&quot;</span><br><span class="line">			scheme=&quot;https&quot; secure=&quot;true&quot; clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot;</span><br><span class="line"></span><br><span class="line">			keystoreFile=&quot;E:\dev_soft\apache-tomcat-9.0.0.M20\casserver.keystore&quot;</span><br><span class="line"></span><br><span class="line">			keystorePass=&quot;cas123&quot; port=&quot;8443&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>把上面的代码贴入Services标签</p>
+<p>配置了https之后，我们希望客户端或者其他都智能通过https来请求我们的服务，就必须禁用不安全的https请求方式，或者使http重定向为https。</p>
+<p>解决方法：</p>
+<p>在tomcat\conf\web.xml中的后面加上这样一段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;security-constraint&gt;</span><br><span class="line">		&lt;web-resource-collection&gt;</span><br><span class="line">			&lt;web-resource-name&gt;securedapp&lt;/web-resource-name&gt;</span><br><span class="line">			&lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">		&lt;/web-resource-collection&gt;</span><br><span class="line">		&lt;user-data-constraint&gt;</span><br><span class="line">			&lt;transport-guarantee&gt;CONFIDENTIAL&lt;/transport-guarantee&gt;</span><br><span class="line">		&lt;/user-data-constraint&gt;</span><br><span class="line">	&lt;/security-constraint&gt;</span><br></pre></td></tr></table></figure>
+<p>这样访问<a href="https://localhost:8443/" target="_blank" rel="noopener">https://localhost:8443/</a> 进入tomcat主页说明成功了。</p>
+<p>在我的项目中，tomcat的启动是根据以下代码启动的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tomcat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.catalina.connector.Connector;</span><br><span class="line"><span class="keyword">import</span> org.apache.catalina.startup.Tomcat;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The Class StartMainTomcat.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> nibili</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StartTomcat1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/** The Constant PORT. */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> PORT = <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/** The Constant CONTEXT. */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String CONTEXT = <span class="string">"web_api"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * The main method.</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">	 *            the arguments</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">	 *             the exception</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		System.setProperty(<span class="string">"catalina.base"</span>, System.getProperty(<span class="string">"user.dir"</span>) + <span class="string">"/target"</span>);</span><br><span class="line">		System.setProperty(<span class="string">"log.sql.port"</span>, <span class="string">"80"</span>);</span><br><span class="line">		Tomcat tomcat = <span class="keyword">new</span> Tomcat();</span><br><span class="line">		tomcat.setBaseDir(System.getProperty(<span class="string">"catalina.base"</span>));</span><br><span class="line">		tomcat.setPort(PORT);</span><br><span class="line">		tomcat.addWebapp(CONTEXT, System.getProperty(<span class="string">"user.dir"</span>) + <span class="string">"/src/main/webapp"</span>);</span><br><span class="line">		Connector connector = tomcat.getConnector();</span><br><span class="line">		connector.setURIEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">		tomcat.start();</span><br><span class="line">		System.out.println(<span class="string">"Hit Enter in console to stop server"</span>);</span><br><span class="line">		<span class="keyword">if</span> (System.in.read() != <span class="number">0</span>) &#123;</span><br><span class="line">			tomcat.stop();</span><br><span class="line">			System.out.println(<span class="string">"Server stopped"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是说，server.xml，web.xml的配置不适用这个启动方式。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/11/30/学习Https/" class="article-date">
+  <time datetime="2017-11-30T09:00:58.000Z" itemprop="datePublished">2017-11-30</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/12/22/杭电1008/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          杭电1008
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/23/贝塞尔曲线学习/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">学习贝塞尔曲线</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

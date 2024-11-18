@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>权限控制设计笔记 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="题目 如图，root拥有最高权限，R1-12代表权限组 问题1 我们要如何设计才能容易判断出 权限组之间的上下级关系，比如R4&amp;gt;R10 如何轻易添加一个权限组到树中的任意节点成哥方案（方案1）在设计表字段的时候给每个权限组定义两个数值，左值和右值 具体值如下图（root右边还有25）  所以每次增加一个字节点，比如在R5下面增加一个Rx的节点，那么需要判断所有的节点的右值，如果大于或者等于R">
+<meta name="keywords" content="code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="权限控制设计笔记">
+<meta property="og:url" content="http://yoursite.com/2020/02/25/权限控制设计笔记/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="题目 如图，root拥有最高权限，R1-12代表权限组 问题1 我们要如何设计才能容易判断出 权限组之间的上下级关系，比如R4&amp;gt;R10 如何轻易添加一个权限组到树中的任意节点成哥方案（方案1）在设计表字段的时候给每个权限组定义两个数值，左值和右值 具体值如下图（root右边还有25）  所以每次增加一个字节点，比如在R5下面增加一个Rx的节点，那么需要判断所有的节点的右值，如果大于或者等于R">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://tva4.sinaimg.cn/large/c1b251b3gy1gc8w5ytrj3j218g0lcjur.jpg">
+<meta property="og:image" content="https://tva4.sinaimg.cn/large/c1b251b3gy1gc8wp882baj20vc0h8acs.jpg">
+<meta property="og:image" content="https://tvax2.sinaimg.cn/large/c1b251b3gy1gc8wxa4gf2j20z20ictbx.jpg">
+<meta property="og:image" content="https://tvax1.sinaimg.cn/large/c1b251b3gy1gcfscun2ugj21h4192tfq.jpg">
+<meta property="og:updated_time" content="2024-11-18T05:41:34.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="权限控制设计笔记">
+<meta name="twitter:description" content="题目 如图，root拥有最高权限，R1-12代表权限组 问题1 我们要如何设计才能容易判断出 权限组之间的上下级关系，比如R4&amp;gt;R10 如何轻易添加一个权限组到树中的任意节点成哥方案（方案1）在设计表字段的时候给每个权限组定义两个数值，左值和右值 具体值如下图（root右边还有25）  所以每次增加一个字节点，比如在R5下面增加一个Rx的节点，那么需要判断所有的节点的右值，如果大于或者等于R">
+<meta name="twitter:image" content="https://tva4.sinaimg.cn/large/c1b251b3gy1gc8w5ytrj3j218g0lcjur.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+</html>
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-权限控制设计笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      权限控制设计笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><img src="https://tva4.sinaimg.cn/large/c1b251b3gy1gc8w5ytrj3j218g0lcjur.jpg" alt="Screen Shot 2020-02-25 at 7.52.37 PM"></p>
+<p>如图，root拥有最高权限，R1-12代表权限组</p>
+<h4 id="问题1-我们要如何设计才能容易判断出-权限组之间的上下级关系，比如R4-gt-R10-如何轻易添加一个权限组到树中的任意节点"><a href="#问题1-我们要如何设计才能容易判断出-权限组之间的上下级关系，比如R4-gt-R10-如何轻易添加一个权限组到树中的任意节点" class="headerlink" title="问题1 我们要如何设计才能容易判断出 权限组之间的上下级关系，比如R4&gt;R10 如何轻易添加一个权限组到树中的任意节点"></a>问题1 我们要如何设计才能容易判断出 权限组之间的上下级关系，比如R4&gt;R10 如何轻易添加一个权限组到树中的任意节点</h4><h2 id="成哥方案（方案1）"><a href="#成哥方案（方案1）" class="headerlink" title="成哥方案（方案1）"></a>成哥方案（方案1）</h2><p>在设计表字段的时候给每个权限组定义两个数值，左值和右值 具体值如下图（root右边还有25）</p>
+<p><img src="https://tva4.sinaimg.cn/large/c1b251b3gy1gc8wp882baj20vc0h8acs.jpg" alt="Screen Shot 2020-02-25 at 8.12.11 PM"></p>
+<p>所以每次增加一个字节点，比如在R5下面增加一个Rx的节点，那么需要判断所有的节点的右值，如果大于或者等于R5的右值，就都加2，然后Rx根据要添加的父亲节点的左右值，增加两个左右值，那么变成如下图</p>
+<p><img src="https://tvax2.sinaimg.cn/large/c1b251b3gy1gc8wxa4gf2j20z20ictbx.jpg" alt="Screen Shot 2020-02-25 at 8.20.03 PM"></p>
+<p>所以遍历了权限表之后，整体结构发生了变化。同理如果删除Rx这个节点，反向操作就可以了。</p>
+<p>观察1，我们可以通过左值右值的差值-1 再除以2获得当前节点下的子节点个数</p>
+<h5 id="删除子树"><a href="#删除子树" class="headerlink" title="删除子树"></a>删除子树</h5><p>如果我们要删除R4这颗子树（R4，R9，R10）那我们只需要判断任意节点满足左值大于等于R4的左值并且右值小于等于R4的右值。</p>
+<p>但是，如果我们删除子树，并且需要保持值的连续性，也就是维持观察1的定义，那么我们就需要从叶子节点开始删除，也就是设置一个递归删除，叶子节点的判断条件便是左值和右值相差1</p>
+<h5 id="添加子树"><a href="#添加子树" class="headerlink" title="添加子树"></a>添加子树</h5><p>如果我们要把R7的子树添加到R10下面，值的注意的是我们要保持维护R7子树的结构关系，同理R7的左右差值是固定的，进行一个递归添加。</p>
+<h4 id="任意两个权限组的关系比较"><a href="#任意两个权限组的关系比较" class="headerlink" title="任意两个权限组的关系比较"></a>任意两个权限组的关系比较</h4><p>通过左右值的关系可以发现，如果Rx是Ry的父亲节点，必定满足Rx的左值小于Ry的左值，右值相反，这两点必须同时满足。而不满足表示没有关系。</p>
+<h4 id="权限与人"><a href="#权限与人" class="headerlink" title="权限与人"></a>权限与人</h4><p>如果p1拥有R1，R2的两个权限组，p2拥有R4，R5两个权限组，如何判断p1是否是p2的上级？此时可以判断p2的所有权限组的权限范围是否在p2的权限范围之内。可能需要循环遍历。</p>
+<h2 id="方案2"><a href="#方案2" class="headerlink" title="方案2"></a>方案2</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>给每个权限进行一个编号，假设十个权限，注意是使用二进制位来表示权限</p>
+<ul>
+<li>权限1:1</li>
+<li>权限2:10</li>
+<li>权限3:100</li>
+<li>权限4:10000</li>
+<li>…</li>
+</ul>
+<p>所以新增权限是通过高位新增的方式来增加的。</p>
+<h3 id="权限表示"><a href="#权限表示" class="headerlink" title="权限表示"></a>权限表示</h3><p>所以如果有十个权限，root的权限就应该是十个权限的逻辑或操作</p>
+<blockquote>
+<p>root的权限=已经有的权限|新增权限</p>
+</blockquote>
+<p>比如root初始权限</p>
+<blockquote>
+<p>11_1111_1111</p>
+</blockquote>
+<p>我们新增一个编号权限</p>
+<blockquote>
+<p>100_0000_0000</p>
+</blockquote>
+<p>那么</p>
+<blockquote>
+<p>root的权限=11_1111_1111|100_0000_0000=111_1111_1111</p>
+</blockquote>
+<p>所以任意一个权限组的权限内容可以通过具体权限编号进行一个或运算的到一个最终值</p>
+<h4 id="权限删除"><a href="#权限删除" class="headerlink" title="权限删除"></a>权限删除</h4><p>假设权限组Rx他的权限值(高位部分的0其实可以忽略不写)</p>
+<blockquote>
+<p>00_1100_1110</p>
+</blockquote>
+<p>我们可以显然看出Rx拥有权限2，3，4，7，8的权限</p>
+<p>我们要删除Rx的权限3（编号100）的权限，那么需要执行以下公式</p>
+<p>异或操作相同为0不同为1</p>
+<blockquote>
+<p>新的权限值=旧的权限值^要删除的权限值</p>
+<p>新的权限值=00_1100_1110 ^ 00_0000_0100 = 00_1100_1010</p>
+</blockquote>
+<p>可以看出权限确实被删除了，而就算删除的权限本来就没有，这样的一个操作也不会多大影响比如试图删除权限9但是其实Rx本来就没有权限9</p>
+<h3 id="任意两个权限的比较（比较Rx是否覆盖了Ry的所有权限）"><a href="#任意两个权限的比较（比较Rx是否覆盖了Ry的所有权限）" class="headerlink" title="任意两个权限的比较（比较Rx是否覆盖了Ry的所有权限）"></a>任意两个权限的比较（比较Rx是否覆盖了Ry的所有权限）</h3><p>假设Rx=111，Ry=101</p>
+<p>那么我们应该先进行一个与操作，这个与操作的实际含义是找Rx覆盖Ry的最小子集</p>
+<p>的到的值是101，再去比较最小子集是否大于等于Ry如果大于说明Ry是在Rx里面的。</p>
+<p>上面那个假设是刚好相等，判断出Ry是Rx子集</p>
+<p>如果Ry=1101</p>
+<p>第一步，与结果=111 &amp; 1101 =101</p>
+<p>101和1101比较，小于，说明Ry不是Rx的子集</p>
+<h3 id="权限与人-1"><a href="#权限与人-1" class="headerlink" title="权限与人"></a>权限与人</h3><p>那么人员1如果需要拥有R1和R2两个权限，那就两个权限进行一个或操作，只需要一个字段存储。</p>
+<p>还有一个人员2拥有R2和R3权限，同理进行或操作存储</p>
+<p>比较人员1是否是人员2的上级，此时，跟任意两个权限的比较的思路是一样的。</p>
+<h2 id="第三种思路"><a href="#第三种思路" class="headerlink" title="第三种思路"></a>第三种思路</h2><p><img src="https://tvax1.sinaimg.cn/large/c1b251b3gy1gcfscun2ugj21h4192tfq.jpg" alt="1"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>我的方案当权限数量增加（叶子节点数量）当叶子节点数量为1 2 3 4 5的时候需要的位数 2 4 8 16 指数增加。所以32位int形就是可以表示32种权限，以我们讨论的那棵树有7个权限需要空间是2^7。不在乎有多少个叶子节点或者子节点的组合数量，因为一开始就是按照最大复杂度设计的。劣势是空间占领大。</li>
+<li>成哥的方案,需要的位数取决于节点数量<em>2，它所需的空间取决于当前有多少个节点（实际意义也就是权限组合有多少种），那么存储空间是有一个范围的，这个范围就是最小是只有一个root其他都是叶子节点（只有一种权限组合），它所占领的最小空间为 权限数量</em>2+2位。所占领的最大空间数量也是2^7,也就是进行了修剪</li>
+<li>庄晨的方案，root字段最短，第二层所需的位数应该是取决于树的第二层的节点数量，比如root是空字符串，第二层有三个节点第二层是不是应该00 01 10 第三层就是第二层的长度+该节点（比如00下有两个节点）子节点数量两个的话00 01，所以有0000 0001.按照这种方案，空间的大小取决于树的深度和广度，但是不会大于2^7</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2020/02/25/权限控制设计笔记/" class="article-date">
+  <time datetime="2020-02-25T14:00:58.000Z" itemprop="datePublished">2020-02-25</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2020/03/07/docker搭建confluenceby叶钦富/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          docker搭建confluence
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/02/25/权限控制设计笔记by叶钦富/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">权限控制设计笔记</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>老铁，我是底线</p>
+
+
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
