@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Vencent Blog">
+<meta property="og:url" content="https://yeqinfu.github.io/page/6/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:locale">
+<meta property="article:author" content="Vencent learn coding">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Vencent Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yeqinfu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-密码学-整数分解方案RSA" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/11/%E5%AF%86%E7%A0%81%E5%AD%A6-%E6%95%B4%E6%95%B0%E5%88%86%E8%A7%A3%E6%96%B9%E6%A1%88RSA/" class="article-date">
+  <time datetime="2018-06-11T15:00:00.000Z" itemprop="datePublished">2018-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/11/%E5%AF%86%E7%A0%81%E5%AD%A6-%E6%95%B4%E6%95%B0%E5%88%86%E8%A7%A3%E6%96%B9%E6%A1%88RSA/">密码学-整数分解方案RSA为例</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="公钥算法家族"><a href="#公钥算法家族" class="headerlink" title="公钥算法家族"></a>公钥算法家族</h3><p>整数分解方案：有效公钥方案是基于分解大整数是非常困难的，代表例子RSA</p>
+<p>离散对数方案：基于有限域内的离散对数问题，例子 Diffied-Hellman密钥交换，Elgamal加密，数字签名DSA</p>
+<p>椭圆曲线EC方案：离散对数算法的一个推广就是椭圆曲线公钥方案，例子椭圆需要Diffie-Hellman密钥交换，椭圆曲线数字签名算法ECDSA</p>
+<h3 id="整数分解方案"><a href="#整数分解方案" class="headerlink" title="整数分解方案"></a>整数分解方案</h3><h5 id="欧几里德算法"><a href="#欧几里德算法" class="headerlink" title="欧几里德算法"></a>欧几里德算法</h5><p><img src="http://ws4.sinaimg.cn/large/c1b251b3gy1fs7ardwc85j20wc07c418.jpg" alt="image"></p>
+<p>这段话中，如何证明x-y和y也互为素数？辗转相减法或者辗转相除法也是运用这个结论去求得两数的最大公约数，而互为质数的两数，最大公约数为1。</p>
+<blockquote>
+<p> 证明x-y与y互为素数</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/06/11/%E5%AF%86%E7%A0%81%E5%AD%A6-%E6%95%B4%E6%95%B0%E5%88%86%E8%A7%A3%E6%96%B9%E6%A1%88RSA/" data-id="cmp4q5co4004jna3f9aey0hck" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cryptography/" rel="tag">cryptography</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-区块链-以太坊" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/07/%E5%8C%BA%E5%9D%97%E9%93%BE-%E4%BB%A5%E5%A4%AA%E5%9D%8A/" class="article-date">
+  <time datetime="2018-06-07T09:00:00.000Z" itemprop="datePublished">2018-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/07/%E5%8C%BA%E5%9D%97%E9%93%BE-%E4%BB%A5%E5%A4%AA%E5%9D%8A/">区块链-以太坊</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://ethfans.org/wikis/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%99%BD%E7%9A%AE%E4%B9%A6">以太坊白皮书中文</a></p>
+<p>以太坊白皮书上说比特币系统的脚本语言存在一些严重的限制，缺少图灵完备性</p>
+<h3 id="什么是图灵机"><a href="#什么是图灵机" class="headerlink" title="什么是图灵机"></a>什么是图灵机</h3><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20115374">什么是图灵机</a></p>
+<p><strong>只要图灵机可以被实现，就可以用来解决任何可计算问题</strong>。</p>
+<h3 id="什么是图灵完备"><a href="#什么是图灵完备" class="headerlink" title="什么是图灵完备"></a>什么是图灵完备</h3><p>能模拟图灵机，可以解决所有可计算的问题</p>
+<h3 id="区块链2-0核心-智能合约"><a href="#区块链2-0核心-智能合约" class="headerlink" title="区块链2.0核心-智能合约"></a>区块链2.0核心-智能合约</h3><p>在比特币系统中，转账记录被封存在主链中，不能被更改。而在2.0中，思考了如果每个默克树的叶子节点不单单一个转账记录的哈希，而是一份代码的哈希，那么这个代码也具有不可串改的特性。所以区块链2.0的重点是开发一个可编程的区块链。</p>
+<p>其次，在比特币系统中，要维护这样的一个系统需要自己上主网，每个主网都有若干个旷工节点。而如果开发另一种币，是否也需要这一整套的系统。而智能合约代币就可以解决这个痛点。通过合约发布的代币也可以具有流通属性，并且多个币种可以共用一套旷工节点完成交易。</p>
+<h5 id="什么是智能合约"><a href="#什么是智能合约" class="headerlink" title="什么是智能合约"></a>什么是智能合约</h5><p>智能合约其实就是一段代码，或者说一个对象。它能干什么，取决于你的代码写了什么。比如这个合约例子</p>
+<p><a target="_blank" rel="noopener" href="http://remix.ethereum.org/#optimize=false&version=soljson-v0.4.24+commit.e67f0147.js">在线智能合约IDE</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.0;</span><br><span class="line">contract Ballot &#123;</span><br><span class="line"></span><br><span class="line">    struct Voter &#123;</span><br><span class="line">        uint weight;</span><br><span class="line">        bool voted;</span><br><span class="line">        uint8 vote;</span><br><span class="line">        address delegate;</span><br><span class="line">    &#125;</span><br><span class="line">    struct Proposal &#123;</span><br><span class="line">        uint voteCount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    address chairperson;</span><br><span class="line">    mapping(address =&gt; Voter) voters;</span><br><span class="line">    Proposal[] proposals;</span><br><span class="line"></span><br><span class="line">    /// Create a new ballot with $(_numProposals) different proposals.</span><br><span class="line">    function Ballot(uint8 _numProposals) public &#123;</span><br><span class="line">        chairperson = msg.sender;</span><br><span class="line">        voters[chairperson].weight = 1;</span><br><span class="line">        proposals.length = _numProposals;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /// Give $(toVoter) the right to vote on this ballot.</span><br><span class="line">    /// May only be called by $(chairperson).</span><br><span class="line">    function giveRightToVote(address toVoter) public &#123;</span><br><span class="line">        if (msg.sender != chairperson || voters[toVoter].voted) return;</span><br><span class="line">        voters[toVoter].weight = 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /// Delegate your vote to the voter $(to).</span><br><span class="line">    function delegate(address to) public &#123;</span><br><span class="line">        Voter storage sender = voters[msg.sender]; // assigns reference</span><br><span class="line">        if (sender.voted) return;</span><br><span class="line">        while (voters[to].delegate != address(0) &amp;&amp; voters[to].delegate != msg.sender)</span><br><span class="line">            to = voters[to].delegate;</span><br><span class="line">        if (to == msg.sender) return;</span><br><span class="line">        sender.voted = true;</span><br><span class="line">        sender.delegate = to;</span><br><span class="line">        Voter storage delegateTo = voters[to];</span><br><span class="line">        if (delegateTo.voted)</span><br><span class="line">            proposals[delegateTo.vote].voteCount += sender.weight;</span><br><span class="line">        else</span><br><span class="line">            delegateTo.weight += sender.weight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /// Give a single vote to proposal $(toProposal).</span><br><span class="line">    function vote(uint8 toProposal) public &#123;</span><br><span class="line">        Voter storage sender = voters[msg.sender];</span><br><span class="line">        if (sender.voted || toProposal &gt;= proposals.length) return;</span><br><span class="line">        sender.voted = true;</span><br><span class="line">        sender.vote = toProposal;</span><br><span class="line">        proposals[toProposal].voteCount += sender.weight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function winningProposal() public constant returns (uint8 _winningProposal) &#123;</span><br><span class="line">        uint256 winningVoteCount = 0;</span><br><span class="line">        for (uint8 prop = 0; prop &lt; proposals.length; prop++)</span><br><span class="line">            if (proposals[prop].voteCount &gt; winningVoteCount) &#123;</span><br><span class="line">                winningVoteCount = proposals[prop].voteCount;</span><br><span class="line">                _winningProposal = prop;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果以上代码被编译为以太坊虚拟机的字节码，经过个人账户发布后，被封存在了以太坊主链中，他就是一个永远不可更改的协议。这份代码实现了一个投票选举的例子。</p>
+<h3 id="代币部署"><a href="#代币部署" class="headerlink" title="代币部署"></a>代币部署</h3><p>同理，如果代码中实现了代币逻辑，那么执行代币空投，代币转账流通功能也就是一个智能合约的方法调用的过程而已。</p>
+<p><a target="_blank" rel="noopener" href="https://etherscan.io/address/0x8377ee6d3545bc6ff1425ee3015dc648b149c7b2#code">这个代币不知道为何看不到合约，可能是我看不懂</a></p>
+<p>看这个被部署的<a target="_blank" rel="noopener" href="https://etherscan.io/address/0xce853db3359326db6d03981c9fb42983bbcdd007#code">PNS 代币</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.8;</span><br><span class="line"></span><br><span class="line">contract ERC20Interface &#123;</span><br><span class="line">    function totalSupply() public constant returns (uint256 supply);</span><br><span class="line">    function balance() public constant returns (uint256);</span><br><span class="line">    function balanceOf(address _owner) public constant returns (uint256);</span><br><span class="line">    function transfer(address _to, uint256 _value) public returns (bool success);</span><br><span class="line">    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);</span><br><span class="line">    function approve(address _spender, uint256 _value) public returns (bool success);</span><br><span class="line">    function allowance(address _owner, address _spender) public constant returns (uint256 remaining);</span><br><span class="line"></span><br><span class="line">    event Transfer(address indexed _from, address indexed _to, uint256 _value);</span><br><span class="line">    event Approval(address indexed _owner, address indexed _spender, uint256 _value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// penispenispenispenis</span><br><span class="line">// YOU get a penis, and YOU get a penis, and YOU get a penis!</span><br><span class="line">contract Penis is ERC20Interface &#123;</span><br><span class="line">    string public constant symbol = &quot;PNS&quot;;</span><br><span class="line">    string public constant name = &quot;Penis&quot;;</span><br><span class="line">    uint8 public constant decimals = 2;</span><br><span class="line"></span><br><span class="line">    uint256 _totalSupply = 0;</span><br><span class="line">    uint256 _airdropAmount = 8008135;</span><br><span class="line">    uint256 _cutoff = _airdropAmount * 80085;</span><br><span class="line"></span><br><span class="line">    mapping(address =&gt; uint256) balances;</span><br><span class="line">    mapping(address =&gt; bool) initialized;</span><br><span class="line"></span><br><span class="line">    // Penis accepts request to tip-touch another Penis</span><br><span class="line">    mapping(address =&gt; mapping (address =&gt; uint256)) allowed;</span><br><span class="line"></span><br><span class="line">    function Penis() &#123;</span><br><span class="line">        initialized[msg.sender] = true;</span><br><span class="line">        balances[msg.sender] = _airdropAmount * 8008;</span><br><span class="line">        _totalSupply = balances[msg.sender];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function totalSupply() constant returns (uint256 supply) &#123;</span><br><span class="line">        return _totalSupply;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // What&#x27;s my girth?</span><br><span class="line">    function balance() constant returns (uint256) &#123;</span><br><span class="line">        return getBalance(msg.sender);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // What is the length of a particular Penis?</span><br><span class="line">    function balanceOf(address _address) constant returns (uint256) &#123;</span><br><span class="line">        return getBalance(_address);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Tenderly remove hand from Penis and place on another Penis</span><br><span class="line">    function transfer(address _to, uint256 _amount) returns (bool success) &#123;</span><br><span class="line">        initialize(msg.sender);</span><br><span class="line"></span><br><span class="line">        if (balances[msg.sender] &gt;= _amount</span><br><span class="line">            &amp;&amp; _amount &gt; 0) &#123;</span><br><span class="line">            initialize(_to);</span><br><span class="line">            if (balances[_to] + _amount &gt; balances[_to]) &#123;</span><br><span class="line"></span><br><span class="line">                balances[msg.sender] -= _amount;</span><br><span class="line">                balances[_to] += _amount;</span><br><span class="line"></span><br><span class="line">                Transfer(msg.sender, _to, _amount);</span><br><span class="line"></span><br><span class="line">                return true;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Perform the inevitable actions which cause release of that which each Penis</span><br><span class="line">    // is built to deliver. In EtherPenisLand there are only Penises, so this </span><br><span class="line">    // allows the transmission of one Penis&#x27;s payload (or partial payload but that</span><br><span class="line">    // is not as much fun) INTO another Penis. This causes the Penisae to change </span><br><span class="line">    // form such that all may see the glory they each represent. Erections.</span><br><span class="line">    function transferFrom(address _from, address _to, uint256 _amount) returns (bool success) &#123;</span><br><span class="line">        initialize(_from);</span><br><span class="line"></span><br><span class="line">        if (balances[_from] &gt;= _amount</span><br><span class="line">            &amp;&amp; allowed[_from][msg.sender] &gt;= _amount</span><br><span class="line">            &amp;&amp; _amount &gt; 0) &#123;</span><br><span class="line">            initialize(_to);</span><br><span class="line">            if (balances[_to] + _amount &gt; balances[_to]) &#123;</span><br><span class="line"></span><br><span class="line">                balances[_from] -= _amount;</span><br><span class="line">                allowed[_from][msg.sender] -= _amount;</span><br><span class="line">                balances[_to] += _amount;</span><br><span class="line"></span><br><span class="line">                Transfer(_from, _to, _amount);</span><br><span class="line"></span><br><span class="line">                return true;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Allow splooger to cause a payload release from your Penis, multiple times, up to </span><br><span class="line">    // the point at which no further release is possible..</span><br><span class="line">    function approve(address _spender, uint256 _amount) returns (bool success) &#123;</span><br><span class="line">        allowed[msg.sender][_spender] = _amount;</span><br><span class="line">        Approval(msg.sender, _spender, _amount);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function allowance(address _owner, address _spender) constant returns (uint256 remaining) &#123;</span><br><span class="line">        return allowed[_owner][_spender];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // internal privats</span><br><span class="line">    function initialize(address _address) internal returns (bool success) &#123;</span><br><span class="line">        if (_totalSupply &lt; _cutoff &amp;&amp; !initialized[_address]) &#123;</span><br><span class="line">            initialized[_address] = true;</span><br><span class="line">            balances[_address] = _airdropAmount;</span><br><span class="line">            _totalSupply += _airdropAmount;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getBalance(address _address) internal returns (uint256) &#123;</span><br><span class="line">        if (_totalSupply &lt; _cutoff &amp;&amp; !initialized[_address]) &#123;</span><br><span class="line">            return balances[_address] + _airdropAmount;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            return balances[_address];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个代币，就是简单的几个方法而已。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/06/07/%E5%8C%BA%E5%9D%97%E9%93%BE-%E4%BB%A5%E5%A4%AA%E5%9D%8A/" data-id="cmp4q5cnx003sna3f30rhg3se" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-区块链-共识机制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/06/%E5%8C%BA%E5%9D%97%E9%93%BE-%E5%85%B1%E8%AF%86%E6%9C%BA%E5%88%B6/" class="article-date">
+  <time datetime="2018-06-06T15:00:00.000Z" itemprop="datePublished">2018-06-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/06/%E5%8C%BA%E5%9D%97%E9%93%BE-%E5%85%B1%E8%AF%86%E6%9C%BA%E5%88%B6/">区块链-共识机制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://shuwoom.com/?p=798">共识机制参考</a></p>
+<h3 id="POW工作量证明"><a href="#POW工作量证明" class="headerlink" title="POW工作量证明"></a>POW工作量证明</h3><p><img src="https://ws1.sinaimg.cn/large/c1b251b3gy1fs1ghl55sdj20nm0j4gnk.jpg" alt="tu"></p>
+<p>目标哈希是具有一定难度值的哈希，比如要求十个零开头的哈希。这个难度值会随着全网络节点的算力（节点数量，过去平均产生块的时间）而动态变化，保证链条产生块的速度维持稳定。</p>
+<p>而要得到目标哈希，从头部可以看出，只能更改Nonce的这个随机数。这个过程就是工作量证明</p>
+<h3 id="POS权益证明"><a href="#POS权益证明" class="headerlink" title="POS权益证明"></a>POS权益证明</h3><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/263915518">参考</a></p>
+<p><a target="_blank" rel="noopener" href="https://charlesliuyx.github.io/2017/09/25/%E7%8E%B0%E4%BB%A3%E5%8C%BA%E5%9D%97%E9%93%BE%E4%B8%8E%E6%96%B0%E6%8A%80%E6%9C%AF/#%E6%9D%83%E7%9B%8A%E8%AF%81%E6%98%8E">参考2</a></p>
+<p>省去了旷工这个媒介，避免了POW的电力浪费。</p>
+<blockquote>
+<p>SHA256（SHA256（Bprev）,A ,t）≤balance(A)m</p>
+</blockquote>
+<p>这其中，H为某个哈希函数；t为UTC时间戳；Bprev指的是上个区块；balance(A)代表账户A额余额。</p>
+<p>唯一可以不断调整得到参数的是t，等式右边是某个固定实数，因此当balance(A)越大，找到合理的t概率越大，普遍对t的范围有所限制，如可尝试的时间不能超过标准时间戳一小时，也就是一个及诶单可以尝试7200次，一个账户的余额越多，就越容易发现下一个区块。</p>
+<p>当你打开钱包客户端就会参与挖矿计算，挖矿的概率根据你的持有币的多少和币龄决定。</p>
+<p>例如，你持有100个币，总共持有30天，你的币龄就是3000，此时，若你发现了一个PoS算法支持的区块（<strong>直观来说就是你拥有币的数量和时间越长，你新建区块的几率越大</strong>），你的币龄就会被置0。你每被清空365币龄，你将会从区块中获得0.05个币的利息（相当于年利率5%），那么在这个案例中，利息 &#x3D; 3000 * 5% &#x2F; 365 &#x3D; 0.41个币。</p>
+<p>也就是打开客户端就可以获得利息。你的挖矿收益和算力无关。</p>
+<h3 id="DPOS-委任权益证明"><a href="#DPOS-委任权益证明" class="headerlink" title="DPOS 委任权益证明"></a>DPOS 委任权益证明</h3><p>POS参与出块就要求客户端必须打开，在DPOS权益证明下，更加进一步节约电能。让每个持有币的人进行投票产生101位代表，这101代表用于出块，出块的速度更快，每个块时间为10秒，一笔交易大概一分钟，6个确认。</p>
+<h3 id="PBFT-实用拜占庭容错算法"><a href="#PBFT-实用拜占庭容错算法" class="headerlink" title="PBFT 实用拜占庭容错算法"></a>PBFT 实用拜占庭容错算法</h3><p>拜占庭共识算法（Practical Byzantine Fault Tolerance- PBFT）也是一种常见的共识证明。它与之前两种都不相同，PBFT以计算为基础，也没有代币奖励。由链上所有人参与投票，少于（N-1）&#x2F;3个节点反对时就获得公示信息的权利。</p>
+<p>优点： 算法的可靠性有严格的数学证明，具备（n-1)&#x2F;3容错性</p>
+<p>缺点：当有1&#x2F;3或以上记账人停止工作后，系统将无法提供服务。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/06/06/%E5%8C%BA%E5%9D%97%E9%93%BE-%E5%85%B1%E8%AF%86%E6%9C%BA%E5%88%B6/" data-id="cmp4q5cnz003xna3fe32pd9og" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-区块链-拜占庭将军问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/05/%E5%8C%BA%E5%9D%97%E9%93%BE-%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%B0%86%E5%86%9B%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2018-06-05T15:00:00.000Z" itemprop="datePublished">2018-06-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/05/%E5%8C%BA%E5%9D%97%E9%93%BE-%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%B0%86%E5%86%9B%E9%97%AE%E9%A2%98/">区块链-拜占庭将军问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="拜占庭将军问题"><a href="#拜占庭将军问题" class="headerlink" title="拜占庭将军问题"></a>拜占庭将军问题</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5fea30b25f0a">参考</a></p>
+<blockquote>
+<p>拜占庭帝国即中世纪的土耳其，拥有巨大的财富，周围10个邻邦垂诞已久，但拜占庭高墙耸立，固若金汤，没有一个单独的邻邦能够成功入侵。任何单个邻邦入侵的都会失败，同时也有可能自身被其他9个邻邦入侵。拜占庭帝国防御能力如此之强，至少要有十个邻邦中的一半以上同时进攻，才有可能攻破。</p>
+<p>然而，如果其中的一个或者几个邻邦本身答应好一起进攻，但实际过程出现背叛，那么入侵者可能都会被歼灭。</p>
+<p>于是每一方都小心行事，不敢轻易相信邻国。这就是拜占庭将军问题。</p>
+</blockquote>
+<p>此问题在区块链系统中，就是如何在全网络中的挖矿节点如何达成共识的问题。</p>
+<h4 id="身份确认"><a href="#身份确认" class="headerlink" title="身份确认"></a>身份确认</h4><p>当每个挖矿节点在完成了交易打包（穷举随机数找到合适目标哈希，也就是具有一定难度的哈希，<a target="_blank" rel="noopener" href="http://www.yeqinfu.com/2018/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/">关于区块链难度值</a>）。向全网发送最新账本的时候，要确定发送节点的身份，还有内容是否被篡改。是使用非对称加密，用私钥进行加签名，验证者可以通过公钥校验。</p>
+<h4 id="百分之五十一"><a href="#百分之五十一" class="headerlink" title="百分之五十一"></a>百分之五十一</h4><p>通过非对称加密可以解决将军身份问题，保证消息可靠。但是网络延迟等原因可能导致有两个节点几乎同时完成了工作量证明（找到了目标哈希）向全网发送最新账本的更新，出现了分支，两个消息都覆盖了全网的时候，如果节点a接受了两个最近账本，必须通过比较时间戳对比进行取舍，取最早完成的那个。</p>
+<p>这就类比于两个将军同时发了消息，一个说撤退，一个说进攻。其他将军有了一个方法可以知道哪个将军最先发送了消息，并且共识只听从最早的那个消息。（当然这边的最早是指一个编号，这两个消息应该是同一个编号，但是有一个是产生得比较早）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/06/05/%E5%8C%BA%E5%9D%97%E9%93%BE-%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%B0%86%E5%86%9B%E9%97%AE%E9%A2%98/" data-id="cmp4q5cnz003zna3fh8an0sqx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-区块链-MerkleTree" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/05/%E5%8C%BA%E5%9D%97%E9%93%BE-MerkleTree/" class="article-date">
+  <time datetime="2018-06-05T09:00:58.000Z" itemprop="datePublished">2018-06-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/05/%E5%8C%BA%E5%9D%97%E9%93%BE-MerkleTree/">区块链-MerkleTree</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习笔记，<a target="_blank" rel="noopener" href="https://blog.csdn.net/wo541075754/article/details/54632929">参考</a></p>
+<p>区块每一笔交易都是MerKleTree的节点，最后的Merkle根参与区块的哈希。了解一下什么是MerkleTree</p>
+<h4 id="HashList-Merkle-Tree的区别"><a href="#HashList-Merkle-Tree的区别" class="headerlink" title="HashList Merkle Tree的区别"></a>HashList Merkle Tree的区别</h4><p>Hash List可以看作一种特殊的Merkle Tree，即树高为2的多叉Merkle Tree</p>
+<p>根据以上博客内容可以参考得知哈希树的应用可以用来P2P下载，此外比特币的交易记录也是通过该树完成打包成块，多节点下载的好处很明显，速度快。</p>
+<p><img src="https://ws1.sinaimg.cn/large/c1b251b3gy1fs0cb6uo45j20qd0rg0ty.jpg" alt="哈希树"></p>
+<p>如图，哈希树的每相邻哈希串联成新的字符串，然后对这个字符串进行哈希得到新的根节点，以此类推最终得到root hash。</p>
+<h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>回顾一下时间复杂度是如何计算的。假设数据块数量为n，那么从底下的节点hash次数就分别为n，n&#x2F;2,n&#x2F;4一直到n&#x3D;1</p>
+<p>此时的计算次数</p>
+<blockquote>
+<p>sum&#x3D;n+n&#x2F;2+n&#x2F;4….+1</p>
+</blockquote>
+<p>很明显呢这是一个等比数列q&#x3D;1&#x2F;2</p>
+<p><img src="https://ws1.sinaimg.cn/large/c1b251b3gy1fs0ck7ptttj204c0140nu.jpg" alt="等比求和公式"></p>
+<p>根据求和公式得到</p>
+<blockquote>
+<p>sum&#x3D;2n*(1-0.5^n)</p>
+</blockquote>
+<p>去掉常量，并且当n趋近于无穷大，0.5^n项为趋近于0，最后</p>
+<blockquote>
+<p>sum&#x3D;n 时间复杂度为n</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/06/05/%E5%8C%BA%E5%9D%97%E9%93%BE-MerkleTree/" data-id="cmp4q5cnw003qna3fespi14v3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-区块链学习大纲" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/04/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" class="article-date">
+  <time datetime="2018-06-04T09:00:58.000Z" itemprop="datePublished">2018-06-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/04/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/">区块链学习大纲</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习笔记，<a target="_blank" rel="noopener" href="https://shuwoom.com/?p=916">参考</a></p>
+<p><img src="http://wx1.sinaimg.cn/large/c1b251b3gy1fryz9x0d38j20go1cjacu.jpg" alt="图"></p>
+<p><img src="https://ws1.sinaimg.cn/large/c1b251b3gy1fryzdq6hvvj20t22150xo.jpg" alt="pic"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/06/04/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2/" data-id="cmp4q5co10045na3f0wxm3aad" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java自动装箱总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/03/java%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2018-06-03T12:16:58.000Z" itemprop="datePublished">2018-06-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/03/java%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E6%80%BB%E7%BB%93/">java自动装箱</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="装箱"><a href="#装箱" class="headerlink" title="装箱"></a>装箱</h3><p>上一段代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main_Interger</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		Integer integer=<span class="number">1</span>;</span><br><span class="line">		System.out.println(integer.intValue());</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这就是最简单的自动装箱，一个1被负值给一个对象。然后执行javac去编译这个文件，得到的字节码再去查看编译后的代码是怎样的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.PrintStream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main_Interger</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] paramArrayOfString)</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">localInteger</span> <span class="operator">=</span> Integer.valueOf(<span class="number">1</span>);</span><br><span class="line">    System.out.println(localInteger.intValue());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以很明显自动装箱是在编译期完成的，装箱的方法调用的是Integer的valueOf方法</p>
+<p>所以另外一个例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main_Interger</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		Integer integer=<span class="number">1</span>;</span><br><span class="line">		Integer integer2=<span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		System.out.println(integer==integer2);</span><br><span class="line">		</span><br><span class="line">		Integer integer3=<span class="number">150</span>;</span><br><span class="line">		Integer integer4=<span class="number">150</span>;</span><br><span class="line">		</span><br><span class="line">		System.out.println(integer3==integer4);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>两次答案不一致，这个就是因为valueof方法搞的鬼，下面查看这个方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title function_">valueOf</span><span class="params">(<span class="type">int</span> i)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">            <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//  static final int low = -128;</span></span><br><span class="line"> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> high;</span><br><span class="line">  <span class="type">int</span> <span class="variable">h</span> <span class="operator">=</span> <span class="number">127</span>;</span><br><span class="line">   high = h;</span><br></pre></td></tr></table></figure>
+
+<p>源码看出，对integer进行了缓存，才导致这些问题。</p>
+<h3 id="拆箱"><a href="#拆箱" class="headerlink" title="拆箱"></a>拆箱</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main_Interger</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		Integer integer=<span class="number">1</span>;</span><br><span class="line">		<span class="type">int</span> sum=integer;</span><br><span class="line">		System.out.println(sum);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>编译后</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.PrintStream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main_Interger</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] paramArrayOfString)</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">localInteger</span> <span class="operator">=</span> Integer.valueOf(<span class="number">1</span>);</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> localInteger.intValue();</span><br><span class="line">    System.out.println(i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用了intValue方法获得该值。就这么多</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/06/03/java%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E6%80%BB%E7%BB%93/" data-id="cmp4q5cnt003dna3fbefafte2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-浮点数在计算机中的表示及精度误差" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/24/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%B2%BE%E5%BA%A6%E8%AF%AF%E5%B7%AE/" class="article-date">
+  <time datetime="2018-05-24T15:00:58.000Z" itemprop="datePublished">2018-05-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/24/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%B2%BE%E5%BA%A6%E8%AF%AF%E5%B7%AE/">浮点数在计算机中的表示和精度误差</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先看误差实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">	System.out.println(<span class="number">88.82</span> + <span class="number">10.85</span>);</span><br><span class="line">    System.out.println(<span class="number">8.82</span> + <span class="number">10.85</span>);</span><br><span class="line">	<span class="type">double</span> <span class="variable">f1</span> <span class="operator">=</span> (<span class="number">3.14</span> + <span class="number">10000000000L</span>) - <span class="number">10000000000L</span>;</span><br><span class="line">	<span class="type">double</span> <span class="variable">f2</span> <span class="operator">=</span> <span class="number">3.14</span> + (<span class="number">10000000000L</span> - <span class="number">10000000000L</span>);</span><br><span class="line">	System.out.println(f1 + <span class="string">&quot;===&quot;</span> + f2);</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">99.66999999999999</span></span><br><span class="line"><span class="number">19.67</span></span><br><span class="line"><span class="number">3.1399993896484375</span>===<span class="number">3.14</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="浮点数表示"><a href="#浮点数表示" class="headerlink" title="浮点数表示"></a>浮点数表示</h4><blockquote>
+<p>N&#x3D;S*R^J</p>
+</blockquote>
+<p>S代表尾数，R基数，j阶码</p>
+<p>在计算机中，规定浮点数表示尾数用纯小数，并且尾数最高位为1，这样的浮点数精度最高。</p>
+<p><img src="http://wx3.sinaimg.cn/large/c1b251b3gy1fruaob7ihcj20fz06b3yp.jpg" alt="image"></p>
+<h3 id="IEEE-754标准"><a href="#IEEE-754标准" class="headerlink" title="IEEE 754标准"></a>IEEE 754标准</h3><p>根据常用计算机浮点数表示标准，以下是各种类型表示占比</p>
+<p><img src="http://wx3.sinaimg.cn/large/c1b251b3gy1fruaruewumj20k804ldg9.jpg" alt="image"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">	System.out.println(<span class="number">88.82</span> + <span class="number">10.85</span>);</span><br><span class="line">    System.out.println(<span class="number">8.82</span> + <span class="number">10.85</span>);</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">99.66999999999999</span></span><br><span class="line"><span class="number">19.67</span></span><br></pre></td></tr></table></figure>
+
+<p>根据误差实例，直接上浮点数运算，以上都是double长实数，化成二进制表示法：</p>
+<h5 id="88-82转二进制数学方法："><a href="#88-82转二进制数学方法：" class="headerlink" title="88.82转二进制数学方法："></a>88.82转二进制数学方法：</h5><p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/597a0643614568312b5243c0.html">参考</a></p>
+<p><img src="http://wx3.sinaimg.cn/large/c1b251b3gy1fruiw3wvawj22oo3kwqv7.jpg" alt="image"></p>
+<p>整数部分的转化，用辗转相除法，倒叙得到88代表的 二进制1011000（上图88多了一个0，错误）</p>
+<p>小数部分的转化，用辗转相乘法，正序得到0.82二进制0.1101001110….后面就不再算了</p>
+<blockquote>
+<p>十进制小数化成二进制，具体是乘以二如果整数部分为一，就取出来，一直乘到小数为零</p>
+</blockquote>
+<p><img src="http://wx3.sinaimg.cn/large/c1b251b3gy1fruj0z4taoj207w070myt.jpg" alt="image"></p>
+<h5 id="十进制转二进制的代码实现"><a href="#十进制转二进制的代码实现" class="headerlink" title="十进制转二进制的代码实现"></a>十进制转二进制的代码实现</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 整数部分 十进制转二进制</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> n</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">fun</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">		StringBuilder stringBuilder=<span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">		<span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">			<span class="type">int</span> r=n%<span class="number">2</span>;</span><br><span class="line">			stringBuilder.append(r+<span class="string">&quot;&quot;</span>);</span><br><span class="line">			n=n/<span class="number">2</span>;</span><br><span class="line">			<span class="keyword">if</span> (n==<span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> stringBuilder.reverse().toString();</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 小数部分 十进制转二进制</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> n</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">fun2</span><span class="params">(<span class="type">double</span> n)</span>&#123;</span><br><span class="line">		StringBuilder stringBuilder=<span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">		stringBuilder.append(<span class="string">&quot;0.&quot;</span>);</span><br><span class="line">		<span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span> (n==<span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> stringBuilder.toString();</span><br><span class="line">			&#125;</span><br><span class="line">			n*=<span class="number">2</span>;</span><br><span class="line">			<span class="keyword">if</span> (n&gt;=<span class="number">1</span>) &#123;</span><br><span class="line">				stringBuilder.append(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">				n=n-<span class="number">1</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				stringBuilder.append(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(stringBuilder.toString());</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<p>由于0.82转化成二进制比较长，浮点数存在精度问题，会被舍去部分，通过代码算出0.82二进制</p>
+<blockquote>
+<p>0.11010001111010111000010100011110101110000101000111101</p>
+</blockquote>
+<p>所以88.82化成二进制</p>
+<blockquote>
+<p>1011000.11010001111010111000010100011110101110000101000111101</p>
+</blockquote>
+<p>再由上面的IEEE标准表格，转化成规格化二进制表示法得出</p>
+<p>88.82 阶码（1阶符 11阶值）0000 0000 0110</p>
+<blockquote>
+<p>第一个0代表阶符为正数，剩下七位代表6因为规格化后，小数点向左平移6位</p>
+</blockquote>
+<p>88.82尾数（1尾符 尾值）0101 1000 1101 0001 1110 1011 1000 0101 0001 1110 1011 1000 0101 </p>
+<blockquote>
+<p>第一个0代表数符，剩下代表精度尾数，从这里看出这个浮点数的精确值受到了舍弃</p>
+</blockquote>
+<p>最后0000 0000 0110 0101 1000 1101 0001 1110 1011 1000 0101 0001 1110 1011 1000 0101 </p>
+<p>同理可以用代码计算其他浮点数转化成机器数的表示方法</p>
+<h5 id="任意实数十进制转二进制"><a href="#任意实数十进制转二进制" class="headerlink" title="任意实数十进制转二进制"></a>任意实数十进制转二进制</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> n 输入一个实数可以大于1</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 输出 二进制</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">fun3</span><span class="params">(<span class="type">double</span> n)</span>&#123;</span><br><span class="line">	<span class="comment">//强转取整数部分</span></span><br><span class="line">	String part1=fun((<span class="type">int</span>)n);</span><br><span class="line">	String part2=fun2(n-(<span class="type">int</span>)n);</span><br><span class="line">	<span class="keyword">return</span> part1+part2.substring(<span class="number">1</span>,part2.length());</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="双精度浮点数表示"><a href="#双精度浮点数表示" class="headerlink" title="双精度浮点数表示"></a>双精度浮点数表示</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 输入是一个二进制字符串</span></span><br><span class="line"><span class="comment">	 * 输出是一个阶码+尾数的64bit浮点数表示</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> s</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">fun4</span><span class="params">(String s)</span>&#123;</span><br><span class="line">		<span class="comment">//小数点位置</span></span><br><span class="line">		<span class="type">int</span> pointIndex=s.length();</span><br><span class="line">		<span class="type">int</span> d=s.indexOf(<span class="string">&quot;.&quot;</span>);</span><br><span class="line">		<span class="keyword">if</span> (d!=-<span class="number">1</span>) &#123;</span><br><span class="line">			pointIndex=d;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//找到第一个1位置</span></span><br><span class="line">		<span class="type">int</span> first=s.indexOf(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">		<span class="keyword">if</span> (first==-<span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&quot;0000 0000 0000 0000 0000 0000&quot;</span>.replaceAll(<span class="string">&quot; &quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//阶符</span></span><br><span class="line">		String jf=pointIndex-first&gt;<span class="number">0</span>?<span class="string">&quot;0&quot;</span>:<span class="string">&quot;1&quot;</span>;</span><br><span class="line">		<span class="comment">//阶值</span></span><br><span class="line">		<span class="type">int</span> a=pointIndex-first-<span class="number">1</span>;</span><br><span class="line">		String jm=fun(a);</span><br><span class="line">		<span class="comment">//填充 不考虑阶值溢出</span></span><br><span class="line">		<span class="keyword">while</span>(jm.length()&lt;<span class="number">11</span>)&#123;</span><br><span class="line">			jm=<span class="string">&quot;0&quot;</span>+jm;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//阶码部分</span></span><br><span class="line">		String jString=jf+jm;</span><br><span class="line">		<span class="comment">//数符 不考虑负数</span></span><br><span class="line">		String sf=<span class="string">&quot;0&quot;</span>;</span><br><span class="line">		<span class="comment">//尾数</span></span><br><span class="line">		s=s.replace(<span class="string">&quot;.&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">		String sm=s.substring(first, Math.min(s.length(), <span class="number">51</span>+first));</span><br><span class="line">		<span class="keyword">return</span> jString+sf+sm;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		String string=fun3(<span class="number">8.82</span>);</span><br><span class="line">		System.out.println(fun4(string));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">0000000000110100011010001111010111000010100011110101110000101001</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>用以上代码得出8.82的浮点数表示</p>
+<blockquote>
+<p>0000000000110100011010001111010111000010100011110101110000101001</p>
+</blockquote>
+<p>88.82</p>
+<blockquote>
+<p>0000000001100101100011010001111010111000010100011110101110000101</p>
+</blockquote>
+<p>10.85</p>
+<blockquote>
+<p>0000000000110101011011001100110011001100110011001100110011001100</p>
+</blockquote>
+<h4 id="浮点数运算"><a href="#浮点数运算" class="headerlink" title="浮点数运算"></a>浮点数运算</h4><p>当阶码不同的时候，浮点运算不能直接进行加法运算，第一步需要对阶，然后尾数求和，规格化，舍入</p>
+<p>对阶，判断溢出。求出阶差，小阶向大阶看齐。尾数右移，尾数可能会丢失，精度受到影响。</p>
+<p>计算88.82+10.85</p>
+<p>求两者的补码，因为都是正数，补码相同</p>
+<p>88.82补码：</p>
+<blockquote>
+<p>0000 0000 0110; 0101100011010001111010111000010100011110101110000101</p>
+</blockquote>
+<p>10.85补码：</p>
+<blockquote>
+<p>0000 0000 0011; 0101011011001100110011001100110011001100110011001100</p>
+</blockquote>
+<h5 id="对阶-分号前为阶码"><a href="#对阶-分号前为阶码" class="headerlink" title="对阶(分号前为阶码)"></a>对阶(分号前为阶码)</h5><p>阶差：</p>
+<blockquote>
+<p>0000 0000 0110-0000 0000 0011</p>
+</blockquote>
+<p>等价于（-0000 0000 0011的补码是1111 1111 1101）(注：其实直接减答案也一样，但是如果被减数小于减数就要这种方法)</p>
+<blockquote>
+<p>0000 0000 0110+1111 1111 1101</p>
+</blockquote>
+<p>结果</p>
+<blockquote>
+<p>0000 0000 0011</p>
+</blockquote>
+<p>这是一个正值，说明要把10.85向高阶移动三位，尾数部分除了符号位右移三位，变成：</p>
+<p>10.85</p>
+<blockquote>
+<p>0000 0000 0110; 0000101011011001100110011001100110011001100110011001</p>
+</blockquote>
+<p>可以看出，前面补领三位，后面舍去三位，精度损失</p>
+<h5 id="尾数求和"><a href="#尾数求和" class="headerlink" title="尾数求和"></a>尾数求和</h5><p>计算10.85和88.82的尾数</p>
+<blockquote>
+<p>0000 1010 1101 1001 1001 1001 1001 1001 1001 1001 1001 1001 1001</p>
+<ul>
+<li></li>
+</ul>
+<p>0101 1000 1101 0001 1110 1011 1000 0101 0001 1110 1011 1000 0101</p>
+<p>&#x3D;</p>
+<p>0110 0011 1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1110</p>
+</blockquote>
+<h5 id="规格化"><a href="#规格化" class="headerlink" title="规格化"></a>规格化</h5><p>尾数部分值在0.5到1之间，已经是规格化，无需变化</p>
+<h5 id="判断溢出"><a href="#判断溢出" class="headerlink" title="判断溢出"></a>判断溢出</h5><p>两个补码相加没有溢出</p>
+<p>最终结果</p>
+<blockquote>
+<p>0000 0000 0110;0110 0011 1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1110</p>
+<p>99.66999999999999</p>
+<p>整数部分：</p>
+<p>110 0011-&gt;99</p>
+<p>小数部分-&gt;1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1110</p>
+</blockquote>
+<p>代码判断</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	System.out.println(<span class="string">&quot;1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1110&quot;</span>.replaceAll(<span class="string">&quot; &quot;</span>, <span class="string">&quot;&quot;</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.66999999999995</span>).substring(<span class="number">2</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.66999999999996</span>).substring(<span class="number">2</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.66999999999999</span>).substring(<span class="number">2</span>));</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011110</span></span><br><span class="line"><span class="number">1010101110000101000111101011100001010001110111010111</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011110000001</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011110100010111</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>因为我也不知道怎么把1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1110转正十进制小数，所以通过把0.66999999999999转化成二进制来比较答案来看不同。</p>
+<p>到这一步，发现精度还是有不对的。内存实际的数值更接近于0.66999999999996</p>
+<p>是哪里出错了？</p>
+<p>10.85对阶之后，尾数舍去了三位影响了精度，如果舍去采用0舍1入会出现什么结果？</p>
+<p>那么10.85舍去之后变成</p>
+<blockquote>
+<p>0000 0000 0110; 0000101011011001100110011001100110011001100110011010</p>
+<p>(末尾本来是1，刚好舍去的也是110入一位)</p>
+</blockquote>
+<p>再计算尾数求和</p>
+<blockquote>
+<p>0000 1010 1101 1001 1001 1001 1001 1001 1001 1001 1001 1001 1010</p>
+<ul>
+<li></li>
+</ul>
+<p>0101 1000 1101 0001 1110 1011 1000 0101 0001 1110 1011 1000 0101</p>
+<p>&#x3D;</p>
+<p>0110 0011 1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1111</p>
+</blockquote>
+<p>所以最终结果变成</p>
+<blockquote>
+<p>0000 0000 0110;0110 0011 1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1111</p>
+</blockquote>
+<p>此时代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1111&quot;</span>.replaceAll(<span class="string">&quot; &quot;</span>, <span class="string">&quot;&quot;</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.66999999999995</span>).substring(<span class="number">2</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.66999999999996</span>).substring(<span class="number">2</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.66999999999999</span>).substring(<span class="number">2</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.67</span>).substring(<span class="number">2</span>));</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011111</span></span><br><span class="line"><span class="number">1010101110000101000111101011100001010001110111010111</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011110000001</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011110100010111</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011110101110001</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看出内存中的数最接近0.66999999999999</p>
+<h4 id="同理计算8-82-10-85"><a href="#同理计算8-82-10-85" class="headerlink" title="同理计算8.82+10.85"></a>同理计算8.82+10.85</h4><p>8.82</p>
+<blockquote>
+<p>0000 0000 0011;0100011010001111010111000010100011110101110000101001</p>
+</blockquote>
+<p>10.85</p>
+<blockquote>
+<p>0000 0000 0011;0101011011001100110011001100110011001100110011001100</p>
+</blockquote>
+<p>对阶，发现对阶一致，那么直接尾数相加</p>
+<blockquote>
+<p>0100 0110 1000 1111 0101 1100 0010 1000 1111 0101 1100 0010 1001</p>
+<ul>
+<li></li>
+</ul>
+<p>0101 0110 1100 1100 1100 1100 1100 1100 1100 1100 1100 1100 1100</p>
+<p>&#x3D;</p>
+<p>01001 1101 0101 1100 0010 1000 1111 0101 1100 0010 1000 1111 0101</p>
+</blockquote>
+<p>出现了溢出此时，规格化后尾数0舍去1入得到最终</p>
+<blockquote>
+<p>0000 0000 0100;(阶码加1)</p>
+<p>0100 1110 1010 1110 0001 0100 0111 1010 1110 0001 0100 0111 1011</p>
+<p>尾数入1</p>
+</blockquote>
+<p>最终值</p>
+<blockquote>
+<p>0000 0000 0100;0100 1110 1010 1110 0001 0100 0111 1010 1110 0001 0100 0111 1011</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;10 1010 1110 0001 0100 0111 1010 1110 0001 0100 0111 1011&quot;</span>.replaceAll(<span class="string">&quot; &quot;</span>, <span class="string">&quot;&quot;</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.67</span>).substring(<span class="number">2</span>));</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">1010101110000101000111101011100001010001111011</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011110101110001</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>上述内容可能具体还会有错，因为不知道怎么把像</p>
+<p>1010101110000101000111101011100001010001111011（52bit）变成0.67.</p>
+<p>因为当把0.67化成一个二进制是</p>
+<p>10101011100001010001111010111000010100011110101110001（59bit）</p>
+<p>但是明白的是，浮点数运算的大致过程，和其中计算过程中的精度损失问题。当两个数相差越大因为要对阶而对齐导致的精度遗失是主要原因。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/05/24/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%B2%BE%E5%BA%A6%E8%AF%AF%E5%B7%AE/" data-id="cmp4q5coe005qna3f5npl9ckp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-原码反码补码总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/23/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2018-05-23T14:00:58.000Z" itemprop="datePublished">2018-05-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/23/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E6%80%BB%E7%BB%93/">原码，反码，补码总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原码就是符号位加上真值，在java中，我们知道short占用了2字节，也就是16bit。</p>
+<p>但是我们知道它只能表示最大的正数是32767，也就是2^15-1，本来16bit可以表示的正数范围应该是</p>
+<blockquote>
+<p>0~1111 1111 1111 1111</p>
+</blockquote>
+<p>但是现在正数只用了一半的空间，高位数的一半被用来表示负数，最高位代表符号位，1代表负数。所以short最小数可以表示-32768也就是全是1的情况。</p>
+<p>计算机中负数是以补码的形式存在，而反码的出现就是因为补码引起的。因为正数的反码就是本身，负数反码就是符号位不变，其余取反。</p>
+<p>这里假设最大正数不是32767（图计算方便），假设某个类型只用4bit表示，那么它的范围就是-8到7</p>
+<p>仔细一个个数</p>
+<blockquote>
+<p>0000 代表 0</p>
+<p>0001 代表 1</p>
+<p>0010 代表 2</p>
+<p>0011 代表 3</p>
+<p>0100 代表 4</p>
+<p>0101 代表 5</p>
+<p>0110 代表 6</p>
+<p>0111 代表 7</p>
+<p>然后1000代表什么呢？它代表-8</p>
+<p>1000 代表 -8</p>
+<p>1001 代表 -7</p>
+<p>1010 代表 -6</p>
+<p>…</p>
+<p>1111 代表 -1</p>
+</blockquote>
+<p>本来负数的补码就是反码+1，反过来已知补码求原码就是-1，再取反。比如：</p>
+<p>1001减1后：1000</p>
+<p>1000取反：1111就是-7所以没问题。</p>
+<p>但是为什么1000代表-8呢？</p>
+<p>其实可以从<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%90%8C%E4%BD%99%E5%AE%9A%E7%90%86/1212360?fr=aladdin">同余定理</a>的角度来理解。要表示一个负数，就用这个负数的同余数来表示。</p>
+<p>所以可以看到 </p>
+<p>8和-8同余</p>
+<p>9和-7同余</p>
+<p>…</p>
+<p>15和-1同余</p>
+<p>为什么这些分别两数同余呢就是同余定理的问题了。</p>
+<p>可以看下java代码求mod</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">	<span class="type">int</span> i=Math.floorMod(-<span class="number">7</span>, <span class="number">16</span>);</span><br><span class="line">	System.out.println(i);</span><br><span class="line"><span class="comment">//output:9</span></span><br></pre></td></tr></table></figure>
+
+<p>这里想，为什么是除以16？因为你长度就是16,如果你换成17，那output:10就变成了-7用10表示。</p>
+<p>-8用9表示，-9用8表示，-10用7表示。此时等等。感觉不对吧，-10用7表示，那7用啥表示？</p>
+<p>所以为什么不是除以15也是同样道理。</p>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p>到此为止，可以知道一些类型，举例short这个16bit表示的范围是32767到-32768的原因，和负数用同余数的映射关系。那么为什么负数要用补码（也就是同余数）来存？</p>
+<h4 id="计算机为什么负数要以补码的形式存在？"><a href="#计算机为什么负数要以补码的形式存在？" class="headerlink" title="计算机为什么负数要以补码的形式存在？"></a>计算机为什么负数要以补码的形式存在？</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/raytheweak/p/7290617.html">参考</a></p>
+<p>因为电路计算中，借位电路比较复杂	。</p>
+<p>有一道运算</p>
+<blockquote>
+<p>14-7化成二进制减法 1110-0111</p>
+</blockquote>
+<p>这里发现是不是需要借位</p>
+<p>那么如果看成</p>
+<blockquote>
+<p>14+(-7) 并且-7用它的同余数（补码表示）</p>
+<p>变成1110+1001得到&#x3D;0111（最高位溢出）</p>
+</blockquote>
+<p>很神奇，答案竟然一样。所以加法电路简单，用同余数表示不需要借位运算。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>不必去背诵什么正数的原码反码补码一样，什么负数的补码等于反码加1而是要真正理解计算机中，为什么要出现补码，为了运算更快。负数在内存中的表示方式。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/05/23/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E6%80%BB%E7%BB%93/" data-id="cmp4q5co2004bna3f7a2kazvn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-NFC基础" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/18/NFC%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2018-05-18T14:00:58.000Z" itemprop="datePublished">2018-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/18/NFC%E5%9F%BA%E7%A1%80/">NFC基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="卡片类型"><a href="#卡片类型" class="headerlink" title="卡片类型"></a>卡片类型</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/h3c4lenovo/article/details/8179879">参考</a></p>
+<p>跟nfc有关的ISO标准：</p>
+<table>
+<thead>
+<tr>
+<th>ISO 14443</th>
+<th>RFID卡标准（非接触IC卡），该标准又有很多子标准</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ISO 7816</td>
+<td>接触式IC卡标准</td>
+</tr>
+<tr>
+<td>ISO 15693</td>
+<td>某种射频卡标准吧，这个没查到资料</td>
+</tr>
+<tr>
+<td>ISO 18092</td>
+<td>NFC标准</td>
+</tr>
+</tbody></table>
+<h5 id="NfcA-NfcB类型卡的区别"><a href="#NfcA-NfcB类型卡的区别" class="headerlink" title="NfcA NfcB类型卡的区别"></a>NfcA NfcB类型卡的区别</h5><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>TagTechnology</code></td>
+<td>The interface that all tag technology classes must implement.</td>
+</tr>
+<tr>
+<td><code>NfcA</code></td>
+<td>Provides access to NFC-A (ISO 14443-3A) properties and I&#x2F;O operations.</td>
+</tr>
+<tr>
+<td><code>NfcB</code></td>
+<td>Provides access to NFC-B (ISO 14443-3B) properties and I&#x2F;O operations.</td>
+</tr>
+<tr>
+<td><code>NfcF</code></td>
+<td>Provides access to NFC-F (JIS 6319-4) properties and I&#x2F;O operations.</td>
+</tr>
+<tr>
+<td><code>NfcV</code></td>
+<td>Provides access to NFC-V (ISO 15693) properties and I&#x2F;O operations.</td>
+</tr>
+<tr>
+<td><code>IsoDep</code></td>
+<td>Provides access to ISO-DEP (ISO 14443-4) properties and I&#x2F;O operations.</td>
+</tr>
+<tr>
+<td><code>Ndef</code></td>
+<td>Provides access to NDEF data and operations on NFC tags that have been formatted as NDEF.</td>
+</tr>
+<tr>
+<td><code>NdefFormatable</code></td>
+<td>Provides a format operations for tags that may be NDEF formattable.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>MifareClassic</code></td>
+<td>Provides access to MIFARE Classic properties and I&#x2F;O operations, if this Android device supports MIFARE.</td>
+</tr>
+<tr>
+<td><code>MifareUltralight</code></td>
+<td>Provides access to MIFARE Ultralight properties and I&#x2F;O operations, if this Android device supports MIFARE.</td>
+</tr>
+</tbody></table>
+<h4 id="主动模式"><a href="#主动模式" class="headerlink" title="主动模式"></a>主动模式</h4><p>NFC第一种通信模式计较主动模式，在主动模式下，nfc发起设备要发送数据给目标设备时，必须产生自己的射频场，被读nfc设备发送响应改发起设备时，也要产生自己的射频场。</p>
+<h4 id="被动模式"><a href="#被动模式" class="headerlink" title="被动模式"></a>被动模式</h4><p>在被动模式下，nfc发起设备的一方，在整个通信过程中提供射频场。</p>
+<h4 id="NFC工作模式和应用分类"><a href="#NFC工作模式和应用分类" class="headerlink" title="NFC工作模式和应用分类"></a>NFC工作模式和应用分类</h4><p>读写模式，p2p模式，卡模拟模式（支付0模式）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/05/18/NFC%E5%9F%BA%E7%A1%80/" data-id="cmp4q5cnn002jna3fhy4edq9t" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/">__(&#39;next&#39;) &amp;raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetpack/" rel="tag">Jetpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/about-life/" rel="tag">about life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block-chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cryptography/" rel="tag">cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/" rel="tag">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" rel="tag">新闻摘要</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%AD%E7%94%B5/" rel="tag">杭电</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Jenkins/" style="font-size: 11.67px;">Jenkins</a> <a href="/tags/Jetpack/" style="font-size: 11.67px;">Jetpack</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/about-life/" style="font-size: 10px;">about life</a> <a href="/tags/android/" style="font-size: 16.67px;">android</a> <a href="/tags/block-chain/" style="font-size: 18.33px;">block chain</a> <a href="/tags/block-chain/" style="font-size: 10px;">block-chain</a> <a href="/tags/code/" style="font-size: 20px;">code</a> <a href="/tags/cryptography/" style="font-size: 13.33px;">cryptography</a> <a href="/tags/network/" style="font-size: 13.33px;">network</a> <a href="/tags/note/" style="font-size: 10px;">note</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" style="font-size: 15px;">新闻摘要</a> <a href="/tags/%E6%9D%AD%E7%94%B5/" style="font-size: 15px;">杭电</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 11.67px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/05/14/index/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/14/2026-05-14-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-05-14（周四）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/13/2026-05-13-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-05-13（周三）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/12/2026-05-12-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-05-12（周二）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/11/2026-05-11-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-05-11（周一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Vencent learn coding<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

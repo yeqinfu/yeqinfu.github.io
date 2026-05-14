@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Kotlin委托模式 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="设计模式之代理模式（委托模式） Kotlin中委托实现关键字by 1234567891011121314151617181920 interface ISports &amp;#123;        fun doSports()    &amp;#125;    class SwimForSports: ISports&amp;#123;        override fun doSports() &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin委托模式">
+<meta property="og:url" content="https://yeqinfu.github.io/2018/01/23/Kotlin%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="设计模式之代理模式（委托模式） Kotlin中委托实现关键字by 1234567891011121314151617181920 interface ISports &amp;#123;        fun doSports()    &amp;#125;    class SwimForSports: ISports&amp;#123;        override fun doSports() &amp;#123;">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-01-23T14:00:58.000Z">
+<meta property="article:modified_time" content="2026-05-14T00:02:22.315Z">
+<meta property="article:author" content="Vencent learn coding">
+<meta property="article:tag" content="code">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Vencent Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yeqinfu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Kotlin委托模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/23/Kotlin%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/" class="article-date">
+  <time datetime="2018-01-23T14:00:58.000Z" itemprop="datePublished">2018-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kotlin委托模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>设计模式之代理模式（委托模式）</p>
+<p>Kotlin中委托实现关键字by</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">interface</span> <span class="title class_">ISports</span> &#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">doSports</span><span class="params">()</span></span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">SwimForSports</span>: <span class="type">ISports</span>&#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">doSports</span><span class="params">()</span></span> &#123;</span><br><span class="line">            println(<span class="string">&quot;do swim&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">SportsManager</span>(sport: ISports): ISports <span class="keyword">by</span> sport</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> swimSports= SwimForSports()</span><br><span class="line">        <span class="keyword">var</span> m=SportsManager(swimSports)</span><br><span class="line">        m.doSports()<span class="comment">// Log：do swim</span></span><br><span class="line">        Log.d(<span class="string">&quot;yeqinfu&quot;</span>,<span class="string">&quot;-------&quot;</span>+(m <span class="keyword">is</span> ISports))</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//echo yeqinfu: -------true</span></span><br></pre></td></tr></table></figure>
+
+<p>实现了ISports接口，实际由sport 对象代理</p>
+<h3 id="lazy"><a href="#lazy" class="headerlink" title="lazy"></a>lazy</h3><p>延迟委托</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">lazy</span><span class="params">(initializer: () -&gt; <span class="type">T</span>)</span></span>: Lazy&lt;T&gt; = SynchronizedLazyImpl(initializer)</span><br></pre></td></tr></table></figure>
+
+<p>查看Lazy接口</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a value with lazy initialization.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * To create an instance of [Lazy] use the [lazy] function.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Lazy</span>&lt;<span class="type">out T</span>&gt; &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Gets the lazily initialized value of the current Lazy instance.</span></span><br><span class="line"><span class="comment">     * Once the value was initialized it must not change during the rest of lifetime of this Lazy instance.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">val</span> value: T</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns `true` if a value for this Lazy instance has been already initialized, and `false` otherwise.</span></span><br><span class="line"><span class="comment">     * Once this function has returned `true` it stays `true` for the rest of lifetime of this Lazy instance.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">isInitialized</span><span class="params">()</span></span>: <span class="built_in">Boolean</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个接口存了值，和是否已经初始化了的变量，再看SynchronizedLazyImpl</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">SynchronizedLazyImpl</span>&lt;<span class="type">out T</span>&gt;(initializer: () -&gt; T, lock: Any? = <span class="literal">null</span>) : Lazy&lt;T&gt;, Serializable &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> initializer: (() -&gt; T)? = initializer</span><br><span class="line">    <span class="meta">@Volatile</span> <span class="keyword">private</span> <span class="keyword">var</span> _value: Any? = UNINITIALIZED_VALUE</span><br><span class="line">    <span class="comment">// final field is required to enable safe publication of constructed instance</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> lock = lock ?: <span class="keyword">this</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> value: T</span><br><span class="line">        <span class="keyword">get</span>() &#123;</span><br><span class="line">            <span class="keyword">val</span> _v1 = _value</span><br><span class="line">            <span class="keyword">if</span> (_v1 !== UNINITIALIZED_VALUE) &#123;</span><br><span class="line">                <span class="meta">@Suppress(<span class="string">&quot;UNCHECKED_CAST&quot;</span>)</span></span><br><span class="line">                <span class="keyword">return</span> _v1 <span class="keyword">as</span> T</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> synchronized(lock) &#123;</span><br><span class="line">                <span class="keyword">val</span> _v2 = _value</span><br><span class="line">                <span class="keyword">if</span> (_v2 !== UNINITIALIZED_VALUE) &#123;</span><br><span class="line">                    <span class="meta">@Suppress(<span class="string">&quot;UNCHECKED_CAST&quot;</span>)</span> (_v2 <span class="keyword">as</span> T)</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">val</span> typedValue = initializer!!()</span><br><span class="line">                    _value = typedValue</span><br><span class="line">                    initializer = <span class="literal">null</span></span><br><span class="line">                    typedValue</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">isInitialized</span><span class="params">()</span></span>: <span class="built_in">Boolean</span> = _value !== UNINITIALIZED_VALUE</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>: String = <span class="keyword">if</span> (isInitialized()) value.toString() <span class="keyword">else</span> <span class="string">&quot;Lazy value not initialized yet.&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">writeReplace</span><span class="params">()</span></span>: Any = InitializedLazyImpl(value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>重写了value的get方法，_value会被赋值一次，并且是线程同步的。之后 _value再也不会是null值，就一直直接返回。</p>
+<p>可能会有疑惑就是lazy函数返回值是一个Lazy<T>类型，</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> d:<span class="built_in">Int</span> <span class="keyword">by</span> lazy &#123;</span><br><span class="line">        <span class="number">2</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>怎么通过赋值，赋值给这个变量d呢</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> Lazy<span class="type">&lt;T&gt;</span>.<span class="title">getValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T = value</span><br></pre></td></tr></table></figure>
+
+<p>by 执行了Lazy<T> 的getValue方法 实现赋值的。</p>
+<h3 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name: String <span class="keyword">by</span> Delegates.observable(<span class="string">&quot;wang&quot;</span>, &#123;</span><br><span class="line">      kProperty, oldName, newName -&gt;</span><br><span class="line">      println(<span class="string">&quot;kProperty：<span class="subst">$&#123;kProperty.name&#125;</span> | oldName:<span class="variable">$oldName</span> | newName:<span class="variable">$newName</span>&quot;</span>)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个委托会帮我们监控属性的变化，当set被调用的时候，会执行我们的lambda表达式查看方法如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">observable</span><span class="params">(initialValue: <span class="type">T</span>, <span class="keyword">crossinline</span> onChange: (<span class="type">property</span>: <span class="type">KProperty</span>&lt;*&gt;, <span class="type">oldValue</span>: <span class="type">T</span>, <span class="type">newValue</span>: <span class="type">T</span>) -&gt; <span class="type">Unit</span>)</span></span>: ReadWriteProperty&lt;Any?, T&gt; = <span class="keyword">object</span> : ObservableProperty&lt;T&gt;(initialValue) &#123;</span><br><span class="line">       <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">afterChange</span><span class="params">(property: <span class="type">KProperty</span>&lt;*&gt;, oldValue: <span class="type">T</span>, newValue: <span class="type">T</span>)</span></span> = onChange(property, oldValue, newValue)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>涉及到内联关键字</p>
+<p>所谓的内联函数就是在被调用的地方直接展开，没有参数压栈和返回时候的参数出栈资源释放的操作，提高了程序的执行速度</p>
+<h4 id="kotlin-inline-noinline-crossinline"><a href="#kotlin-inline-noinline-crossinline" class="headerlink" title="kotlin inline noinline crossinline"></a>kotlin inline noinline crossinline</h4><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/u013009899/article/details/78584994">参考</a></p>
+<p>一个函数中，如果存在一个lambda表达式，在该lambda中不支持直接进行return退出该函数，比如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">    innerFun &#123;</span><br><span class="line">        <span class="comment">//return  //错误，不支持直接return</span></span><br><span class="line">        <span class="comment">//只支持通过标签，返回innerFun</span></span><br><span class="line">        <span class="keyword">return</span><span class="symbol">@innerFun</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//如果是匿名或者具名函数，则支持</span></span><br><span class="line">    <span class="keyword">var</span> f = <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除非是inline函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">    innerFun &#123;</span><br><span class="line">        <span class="keyword">return</span>  <span class="comment">//支持直接返回outterFun</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是内联</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">        innerFun &#123;</span><br><span class="line">            <span class="comment">//return  //错误，不支持直接return</span></span><br><span class="line">            <span class="comment">//只支持通过标签，返回innerFun</span></span><br><span class="line">            Log.d(<span class="string">&quot;======&quot;</span>,<span class="string">&quot;=============innerFun===============&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        Log.d(<span class="string">&quot;======&quot;</span>,<span class="string">&quot;=============innerFun2222===============&quot;</span>)</span><br><span class="line">        <span class="comment">//如果是匿名或者具名函数，则支持</span></span><br><span class="line">        <span class="keyword">var</span> f = <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">        a()</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//echo ======: =============innerFun===============</span></span><br></pre></td></tr></table></figure>
+
+<p>可以理解，方法执行的时候被直接展开，innerFun2222没有得到输出，因为内联函数return了</p>
+<h6 id="noinline"><a href="#noinline" class="headerlink" title="noinline"></a>noinline</h6><blockquote>
+<p>如果你只想被（作为参数）传给一个内联函数的 lamda 表达式中只有一些被内联，你可以用 noinline 修饰符标记一些函数参数：</p>
+</blockquote>
+<h5 id="crossinline"><a href="#crossinline" class="headerlink" title="crossinline"></a>crossinline</h5><p>crossinline 的作用是让被标记的lambda表达式不允许非局部返回。 </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">       innerFun &#123;</span><br><span class="line">          </span><br><span class="line">           Log.d(<span class="string">&quot;======&quot;</span>,<span class="string">&quot;=============innerFun===============&quot;</span>)</span><br><span class="line">           <span class="keyword">return</span><span class="symbol">@innerFun</span></span><br><span class="line">       &#125;</span><br><span class="line">       Log.d(<span class="string">&quot;======&quot;</span>,<span class="string">&quot;=============innerFun2222===============&quot;</span>)</span><br><span class="line">       <span class="comment">//如果是匿名或者具名函数，则支持</span></span><br><span class="line">       <span class="keyword">var</span> f = <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">           <span class="keyword">return</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(<span class="keyword">crossinline</span> a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">       a()</span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">//echo =============innerFun===============</span></span><br><span class="line"><span class="comment">//=============innerFun2222===============</span></span><br></pre></td></tr></table></figure>
+
+<p>不允许局部返回之后有两个echo 日志</p>
+<p>observable 两个入参，一个是初始值 initialValue 一个是callback的lambda</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">ObservableProperty</span>&lt;<span class="type">T</span>&gt;(initialValue: T) : ReadWriteProperty&lt;Any?, T&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> value = initialValue</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  The callback which is called before a change to the property value is attempted.</span></span><br><span class="line"><span class="comment">     *  The value of the property hasn&#x27;t been changed yet, when this callback is invoked.</span></span><br><span class="line"><span class="comment">     *  If the callback returns `true` the value of the property is being set to the new value,</span></span><br><span class="line"><span class="comment">     *  and if the callback returns `false` the new value is discarded and the property remains its old value.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">beforeChange</span><span class="params">(property: <span class="type">KProperty</span>&lt;*&gt;, oldValue: <span class="type">T</span>, newValue: <span class="type">T</span>)</span></span>: <span class="built_in">Boolean</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The callback which is called after the change of the property is made. The value of the property</span></span><br><span class="line"><span class="comment">     * has already been changed when this callback is invoked.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">afterChange</span> <span class="params">(property: <span class="type">KProperty</span>&lt;*&gt;, oldValue: <span class="type">T</span>, newValue: <span class="type">T</span>)</span></span>: <span class="built_in">Unit</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T &#123;</span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;, value: <span class="type">T</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> oldValue = <span class="keyword">this</span>.value</span><br><span class="line">        <span class="keyword">if</span> (!beforeChange(property, oldValue, value)) &#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.value = value</span><br><span class="line">        afterChange(property, oldValue, value)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>返回值表达式是实现了了上述这个类，在setvalue方法中设置了oldvalue，调用了afterChange，最后执行了外层的lambda。实现了监听模式。</p>
+<h4 id="Vetoable"><a href="#Vetoable" class="headerlink" title="Vetoable"></a>Vetoable</h4><p>特殊委托，从setvalue看出，是根据lambda返回值决定是否要保持值。</p>
+<h4 id="Not-Null"><a href="#Not-Null" class="headerlink" title="Not Null"></a>Not Null</h4><p>在没有赋值调用getValue会抛出异常</p>
+<h4 id="map映射"><a href="#map映射" class="headerlink" title="map映射"></a>map映射</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/01/23/Kotlin%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/" data-id="cmp4q5cnl002bna3f2zp1hq43" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          区块链原理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/23/kotlin%E6%B3%9B%E5%9E%8B%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Kotlin泛型函数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetpack/" rel="tag">Jetpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/about-life/" rel="tag">about life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block-chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cryptography/" rel="tag">cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/" rel="tag">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" rel="tag">新闻摘要</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%AD%E7%94%B5/" rel="tag">杭电</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Jenkins/" style="font-size: 11.67px;">Jenkins</a> <a href="/tags/Jetpack/" style="font-size: 11.67px;">Jetpack</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/about-life/" style="font-size: 10px;">about life</a> <a href="/tags/android/" style="font-size: 16.67px;">android</a> <a href="/tags/block-chain/" style="font-size: 18.33px;">block chain</a> <a href="/tags/block-chain/" style="font-size: 10px;">block-chain</a> <a href="/tags/code/" style="font-size: 20px;">code</a> <a href="/tags/cryptography/" style="font-size: 13.33px;">cryptography</a> <a href="/tags/network/" style="font-size: 13.33px;">network</a> <a href="/tags/note/" style="font-size: 10px;">note</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" style="font-size: 15px;">新闻摘要</a> <a href="/tags/%E6%9D%AD%E7%94%B5/" style="font-size: 15px;">杭电</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 11.67px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/05/14/index/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/14/2026-05-14-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-05-14（周四）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/13/2026-05-13-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-05-13（周三）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/12/2026-05-12-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-05-12（周二）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/11/2026-05-11-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-05-11（周一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Vencent learn coding<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

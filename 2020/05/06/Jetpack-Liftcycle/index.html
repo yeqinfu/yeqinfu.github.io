@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jetpack-Liftcycle | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Jetpack全家桶适合使用在全新的项目中，算是一个趋势，这里大概学习一下它的原理 生命周期的控制一直都是很蛋疼的事情，无非就是销毁时候的异步线程持有了某个上下文对象，多次累计导致内存不足，对象泄漏没人管。 123456789101112class MyObserver : LifecycleObserver &amp;#123;          @OnLifecycleEvent(Lifecycle.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jetpack-Liftcycle">
+<meta property="og:url" content="https://yeqinfu.github.io/2020/05/06/Jetpack-Liftcycle/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="Jetpack全家桶适合使用在全新的项目中，算是一个趋势，这里大概学习一下它的原理 生命周期的控制一直都是很蛋疼的事情，无非就是销毁时候的异步线程持有了某个上下文对象，多次累计导致内存不足，对象泄漏没人管。 123456789101112class MyObserver : LifecycleObserver &amp;#123;          @OnLifecycleEvent(Lifecycle.">
+<meta property="og:locale">
+<meta property="og:image" content="https://tvax1.sinaimg.cn/large/c1b251b3gy1geirri0d5mj20lq0k3wg3.jpg">
+<meta property="article:published_time" content="2020-05-06T09:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-14T00:02:22.314Z">
+<meta property="article:author" content="Vencent learn coding">
+<meta property="article:tag" content="Jetpack">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tvax1.sinaimg.cn/large/c1b251b3gy1geirri0d5mj20lq0k3wg3.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Vencent Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yeqinfu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Jetpack-Liftcycle" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/06/Jetpack-Liftcycle/" class="article-date">
+  <time datetime="2020-05-06T09:00:00.000Z" itemprop="datePublished">2020-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Jetpack-Liftcycle
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Jetpack全家桶适合使用在全新的项目中，算是一个趋势，这里大概学习一下它的原理</p>
+<p>生命周期的控制一直都是很蛋疼的事情，无非就是销毁时候的异步线程持有了某个上下文对象，多次累计导致内存不足，对象泄漏没人管。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyObserver</span> : <span class="type">LifecycleObserver</span> &#123;</span><br><span class="line"></span><br><span class="line">          <span class="meta">@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)</span></span><br><span class="line">          <span class="function"><span class="keyword">fun</span> <span class="title">connectListener</span><span class="params">()</span></span> &#123;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="meta">@OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)</span></span><br><span class="line">          <span class="function"><span class="keyword">fun</span> <span class="title">disconnectListener</span><span class="params">()</span></span> &#123;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      lifecycle.addObserver(MyObserver())</span><br></pre></td></tr></table></figure>
+
+<p>之前可能会在activity ，fragment的resume stop加入很多逻辑，让其中看起来很臃肿。有了lifecycle之后，一切就被分离了。</p>
+<blockquote>
+<p>一般我们现在都是使用java8来编译，所以相对于官方的注解模式来标注某一个生命周期，更加推荐使用重写的方式，gradle添加依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation &quot;androidx.lifecycle:lifecycle-common-java8:2.2.0&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">* &lt;pre&gt;</span><br><span class="line"> * class TestObserver implements DefaultLifecycleObserver &#123;</span><br><span class="line"> *     &#123;@literal @&#125;Override</span><br><span class="line"> *     public void onCreate(LifecycleOwner owner) &#123;</span><br><span class="line"> *         // your code</span><br><span class="line"> *     &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> * &lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+
+<p>得益于java8的接口支持默认空实现，注解的方式因为使用运行时注解，效率不高，不推荐使用。</p>
+</blockquote>
+<h2 id="LifeCycle事件分发"><a href="#LifeCycle事件分发" class="headerlink" title="LifeCycle事件分发"></a>LifeCycle事件分发</h2><p>这里不从源码追到源头，而是从事件分发的源头看事件如何传递到我们自定义的监听者对象MyObserver</p>
+<p>分发的源头是ProcessLifecycleOwnerInitializer 这个类继承了ContentProvider 在onCreate函数中初始化了生命周期</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onCreate</span><span class="params">()</span> &#123;</span><br><span class="line">       LifecycleDispatcher.init(getContext());</span><br><span class="line">       ProcessLifecycleOwner.init(getContext());</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>一个生命周期分配器，进程生命周期所有者（翻译？）</p>
+<p>LifecycleDispatcher类中可以看到，实际上在这里注册了所有的activity的生命周期回调。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">(Context context)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (sInitialized.getAndSet(<span class="literal">true</span>)) &#123;</span><br><span class="line">           <span class="keyword">return</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       ((Application) context.getApplicationContext())</span><br><span class="line">               .registerActivityLifecycleCallbacks(<span class="keyword">new</span> <span class="title class_">DispatcherActivityCallback</span>());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">DispatcherActivityCallback</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">DispatcherActivityCallback</span> <span class="keyword">extends</span> <span class="title class_">EmptyActivityLifecycleCallbacks</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivityCreated</span><span class="params">(Activity activity, Bundle savedInstanceState)</span> &#123;</span><br><span class="line">            ReportFragment.injectIfNeededIn(activity);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivityStopped</span><span class="params">(Activity activity)</span> &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivitySaveInstanceState</span><span class="params">(Activity activity, Bundle outState)</span> &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，生命周期的分发都交给了ReportFragment</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">injectIfNeededIn</span><span class="params">(Activity activity)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= <span class="number">29</span>) &#123;</span><br><span class="line">            <span class="comment">// On API 29+, we can register for the correct Lifecycle callbacks directly</span></span><br><span class="line">            activity.registerActivityLifecycleCallbacks(</span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">LifecycleCallbacks</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Prior to API 29 and to maintain compatibility with older versions of</span></span><br><span class="line">        <span class="comment">// ProcessLifecycleOwner (which may not be updated when lifecycle-runtime is updated and</span></span><br><span class="line">        <span class="comment">// need to support activities that don&#x27;t extend from FragmentActivity from support lib),</span></span><br><span class="line">        <span class="comment">// use a framework fragment to get the correct timing of Lifecycle events</span></span><br><span class="line">        android.app.<span class="type">FragmentManager</span> <span class="variable">manager</span> <span class="operator">=</span> activity.getFragmentManager();</span><br><span class="line">        <span class="keyword">if</span> (manager.findFragmentByTag(REPORT_FRAGMENT_TAG) == <span class="literal">null</span>) &#123;</span><br><span class="line">            manager.beginTransaction().add(<span class="keyword">new</span> <span class="title class_">ReportFragment</span>(), REPORT_FRAGMENT_TAG).commit();</span><br><span class="line">            <span class="comment">// Hopefully, we are the first to make a transaction.</span></span><br><span class="line">            manager.executePendingTransactions();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是一个没有UI的fragment，伴随着每一个activity被创建，它也被创建。</p>
+<p>可以看到ComponentActivity其实也调用了一次</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(<span class="meta">@Nullable</span> Bundle savedInstanceState)</span> &#123;</span><br><span class="line">       <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">       mSavedStateRegistryController.performRestore(savedInstanceState);</span><br><span class="line">       ReportFragment.injectIfNeededIn(<span class="built_in">this</span>);</span><br><span class="line">       <span class="keyword">if</span> (mContentLayoutId != <span class="number">0</span>) &#123;</span><br><span class="line">           setContentView(mContentLayoutId);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>不过有做同步。为了防止没有继承ComponentActivity</p>
+<blockquote>
+<p>ComponentActivity 有两个，包名不同。都调用了</p>
+</blockquote>
+<p>所以看ReportFragment如何分发的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    public void onActivityCreated(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onActivityCreated(savedInstanceState);</span><br><span class="line">        dispatchCreate(mProcessListener);</span><br><span class="line">        dispatch(Lifecycle.Event.ON_CREATE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onStart() &#123;</span><br><span class="line">        super.onStart();</span><br><span class="line">        dispatchStart(mProcessListener);</span><br><span class="line">        dispatch(Lifecycle.Event.ON_START);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onResume() &#123;</span><br><span class="line">        super.onResume();</span><br><span class="line">        dispatchResume(mProcessListener);</span><br><span class="line">        dispatch(Lifecycle.Event.ON_RESUME);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，在fragment中监听activity的生命周期，</p>
+<blockquote>
+<p>疑问 因为这是一个空的fragment，它的生命周期回调能保持宿主activity的生命周期一致。</p>
+</blockquote>
+<p><img src="https://tvax1.sinaimg.cn/large/c1b251b3gy1geirri0d5mj20lq0k3wg3.jpg" alt="image"></p>
+<p>可以看到关键方法injectIfNeededIn有两种生命周期派发的模式，第一种是SDK大于等于29的时候，直接就是往activity注册一个回调，然后最后调用dispath方法，来分发事件，第二种是当SDK&lt;29的时候，通过Fragment的生命周期变化来派发生命周期变化的事件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">dispatch</span><span class="params">(<span class="meta">@NonNull</span> Activity activity, <span class="meta">@NonNull</span> Lifecycle.Event event)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (activity <span class="keyword">instanceof</span> LifecycleRegistryOwner) &#123;</span><br><span class="line">           ((LifecycleRegistryOwner) activity).getLifecycle().handleLifecycleEvent(event);</span><br><span class="line">           <span class="keyword">return</span>;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (activity <span class="keyword">instanceof</span> LifecycleOwner) &#123;</span><br><span class="line">           <span class="type">Lifecycle</span> <span class="variable">lifecycle</span> <span class="operator">=</span> ((LifecycleOwner) activity).getLifecycle();</span><br><span class="line">           <span class="keyword">if</span> (lifecycle <span class="keyword">instanceof</span> LifecycleRegistry) &#123;</span><br><span class="line">               ((LifecycleRegistry) lifecycle).handleLifecycleEvent(event);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用dispatch方法，最后会拿到LifecycleRegistryOwner或者LifecycleOwner 然后调用handleLifecycleEvent方法分发事件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">moveToState</span><span class="params">(State next)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (mState == next) &#123;</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      mState = next;</span><br><span class="line">      <span class="keyword">if</span> (mHandlingEvent || mAddingObserverCounter != <span class="number">0</span>) &#123;</span><br><span class="line">          mNewEventOccurred = <span class="literal">true</span>;</span><br><span class="line">          <span class="comment">// we will figure out what to do on upper level.</span></span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      mHandlingEvent = <span class="literal">true</span>;</span><br><span class="line">      sync();</span><br><span class="line">      mHandlingEvent = <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面方法，除了去重状态，还有一个备注比较有意思。当sync被正在调用的时候，外面的生命周期又发生了改变。这边是不会继续调用sync方法而是return掉了，备注写着会在上层处理。</p>
+<blockquote>
+<p>也就是说，如果生命周期变化很快，可能回调会漏掉。这边的写法并且一个标志位mNewEventOccurred</p>
+<p>标志新事件已经发生了。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// happens only on the top of stack (never in reentrance),</span></span><br><span class="line">    <span class="comment">// so it doesn&#x27;t have to take in account parents</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">sync</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">LifecycleOwner</span> <span class="variable">lifecycleOwner</span> <span class="operator">=</span> mLifecycleOwner.get();</span><br><span class="line">        <span class="keyword">if</span> (lifecycleOwner == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(<span class="string">&quot;LifecycleOwner of this LifecycleRegistry is already&quot;</span></span><br><span class="line">                    + <span class="string">&quot;garbage collected. It is too late to change lifecycle state.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (!isSynced()) &#123;</span><br><span class="line">            mNewEventOccurred = <span class="literal">false</span>;</span><br><span class="line">            <span class="comment">// no need to check eldest for nullability, because isSynced does it for us.</span></span><br><span class="line">            <span class="keyword">if</span> (mState.compareTo(mObserverMap.eldest().getValue().mState) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                backwardPass(lifecycleOwner);</span><br><span class="line">            &#125;</span><br><span class="line">            Entry&lt;LifecycleObserver, ObserverWithState&gt; newest = mObserverMap.newest();</span><br><span class="line">            <span class="keyword">if</span> (!mNewEventOccurred &amp;&amp; newest != <span class="literal">null</span></span><br><span class="line">                    &amp;&amp; mState.compareTo(newest.getValue().mState) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                forwardPass(lifecycleOwner);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        mNewEventOccurred = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">isSynced</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (mObserverMap.size() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">State</span> <span class="variable">eldestObserverState</span> <span class="operator">=</span> mObserverMap.eldest().getValue().mState;</span><br><span class="line">        <span class="type">State</span> <span class="variable">newestObserverState</span> <span class="operator">=</span> mObserverMap.newest().getValue().mState;</span><br><span class="line">        <span class="keyword">return</span> eldestObserverState == newestObserverState &amp;&amp; mState == newestObserverState;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>sync方法，看关键部分，判断是否Synced可以看到，需要监听生命周期的自定义监听器都放在了mObserverMap中，如果长度为0代表全部同步了。然后判断最老的和最新的监听器是否状态一致，是否都是最新状态，代表着监听器全部监听完成。否者进行事件分发。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">private void forwardPass(LifecycleOwner lifecycleOwner) &#123;</span><br><span class="line">        Iterator&lt;Entry&lt;LifecycleObserver, ObserverWithState&gt;&gt; ascendingIterator =</span><br><span class="line">                mObserverMap.iteratorWithAdditions();</span><br><span class="line">        while (ascendingIterator.hasNext() &amp;&amp; !mNewEventOccurred) &#123;</span><br><span class="line">            Entry&lt;LifecycleObserver, ObserverWithState&gt; entry = ascendingIterator.next();</span><br><span class="line">            ObserverWithState observer = entry.getValue();</span><br><span class="line">            while ((observer.mState.compareTo(mState) &lt; 0 &amp;&amp; !mNewEventOccurred</span><br><span class="line">                    &amp;&amp; mObserverMap.contains(entry.getKey()))) &#123;</span><br><span class="line">                pushParentState(observer.mState);</span><br><span class="line">                observer.dispatchEvent(lifecycleOwner, upEvent(observer.mState));</span><br><span class="line">                popParentState();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    static class ObserverWithState &#123;</span><br><span class="line">        State mState;</span><br><span class="line">        LifecycleEventObserver mLifecycleObserver;</span><br><span class="line"></span><br><span class="line">        ObserverWithState(LifecycleObserver observer, State initialState) &#123;</span><br><span class="line">            mLifecycleObserver = Lifecycling.lifecycleEventObserver(observer);</span><br><span class="line">            mState = initialState;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        void dispatchEvent(LifecycleOwner owner, Event event) &#123;</span><br><span class="line">            State newState = getStateAfter(event);</span><br><span class="line">            mState = min(mState, newState);</span><br><span class="line">            mLifecycleObserver.onStateChanged(owner, event);</span><br><span class="line">            mState = newState;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终调用了onStateChanged方法也就是LifecycleEventObserver的接口方法，这个接口被FullLifecycleObserverAdapter实现，FullLifecycleObserverAdapter被DefaultLifecycleObserver继承。</p>
+<p>如果你采用的是注解的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">ObserverWithState</span> &#123;</span><br><span class="line">       State mState;</span><br><span class="line">       LifecycleEventObserver mLifecycleObserver;</span><br><span class="line"></span><br><span class="line">       ObserverWithState(LifecycleObserver observer, State initialState) &#123;</span><br><span class="line">           mLifecycleObserver = Lifecycling.lifecycleEventObserver(observer);</span><br><span class="line">           mState = initialState;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">void</span> <span class="title function_">dispatchEvent</span><span class="params">(LifecycleOwner owner, Event event)</span> &#123;</span><br><span class="line">           <span class="type">State</span> <span class="variable">newState</span> <span class="operator">=</span> getStateAfter(event);</span><br><span class="line">           mState = min(mState, newState);</span><br><span class="line">           mLifecycleObserver.onStateChanged(owner, event);</span><br><span class="line">           mState = newState;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>可以看到最后依靠的是运行时注解</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * An internal implementation of &#123;@link LifecycleObserver&#125; that relies on reflection.</span><br><span class="line"> */</span><br><span class="line">class ReflectiveGenericLifecycleObserver implements LifecycleEventObserver &#123;</span><br><span class="line">    private final Object mWrapped;</span><br><span class="line">    private final CallbackInfo mInfo;</span><br><span class="line"></span><br><span class="line">    ReflectiveGenericLifecycleObserver(Object wrapped) &#123;</span><br><span class="line">        mWrapped = wrapped;</span><br><span class="line">        mInfo = ClassesInfoCache.sInstance.getInfo(mWrapped.getClass());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Event event) &#123;</span><br><span class="line">        mInfo.invokeCallbacks(source, event, mWrapped);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>效率会低一些，毕竟是反射</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>生命周期兜兜转转，其实还是得靠在初始化的时候，注册每个activity的生命周期回调来进行的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2020/05/06/Jetpack-Liftcycle/" data-id="cmp4q5cnk0027na3f2metb5k6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetpack/" rel="tag">Jetpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/15/Jetpack%E5%85%A8%E5%AE%B6%E6%A1%B6%E7%9B%AE%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Jetpack全家桶目录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/06/androidx-ktx/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">AndroidX-KTX</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetpack/" rel="tag">Jetpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/about-life/" rel="tag">about life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block-chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cryptography/" rel="tag">cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/" rel="tag">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" rel="tag">新闻摘要</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%AD%E7%94%B5/" rel="tag">杭电</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Jenkins/" style="font-size: 11.67px;">Jenkins</a> <a href="/tags/Jetpack/" style="font-size: 11.67px;">Jetpack</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/about-life/" style="font-size: 10px;">about life</a> <a href="/tags/android/" style="font-size: 16.67px;">android</a> <a href="/tags/block-chain/" style="font-size: 18.33px;">block chain</a> <a href="/tags/block-chain/" style="font-size: 10px;">block-chain</a> <a href="/tags/code/" style="font-size: 20px;">code</a> <a href="/tags/cryptography/" style="font-size: 13.33px;">cryptography</a> <a href="/tags/network/" style="font-size: 13.33px;">network</a> <a href="/tags/note/" style="font-size: 10px;">note</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" style="font-size: 15px;">新闻摘要</a> <a href="/tags/%E6%9D%AD%E7%94%B5/" style="font-size: 15px;">杭电</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 11.67px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/05/14/index/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/14/2026-05-14-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-05-14（周四）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/13/2026-05-13-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-05-13（周三）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/12/2026-05-12-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-05-12（周二）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/11/2026-05-11-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-05-11（周一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Vencent learn coding<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
