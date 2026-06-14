@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>区块链原理 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="以下是的区块链学习笔记 区块链和比特币关系比特币的原理是区块链，但是区块链技术可以做更多事情，比如智能合约还有什么呢。 为什么叫区块链如下图，一个区块，它关联着上一个区块的Block hash值，这个值是作为一个区块链协议头的一部分，然后当前区块最后计算出的Block hash也会被用在下一个区块，那么靠这个Block hash关联成一条链。叫区块链也就是生动形象，理所当然了。 数据区块 为什么说">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链原理">
+<meta property="og:url" content="https://yeqinfu.github.io/2018/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="以下是的区块链学习笔记 区块链和比特币关系比特币的原理是区块链，但是区块链技术可以做更多事情，比如智能合约还有什么呢。 为什么叫区块链如下图，一个区块，它关联着上一个区块的Block hash值，这个值是作为一个区块链协议头的一部分，然后当前区块最后计算出的Block hash也会被用在下一个区块，那么靠这个Block hash关联成一条链。叫区块链也就是生动形象，理所当然了。 数据区块 为什么说">
+<meta property="og:locale">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/c1b251b3ly1fo0pwh8bg8j20ko0eytan.jpg">
+<meta property="article:published_time" content="2018-03-20T09:00:58.000Z">
+<meta property="article:modified_time" content="2026-06-14T00:05:05.266Z">
+<meta property="article:author" content="Vencent learn coding">
+<meta property="article:tag" content="block chain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/c1b251b3ly1fo0pwh8bg8j20ko0eytan.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Vencent Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yeqinfu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-区块链原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/" class="article-date">
+  <time datetime="2018-03-20T09:00:58.000Z" itemprop="datePublished">2018-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      区块链原理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以下是的区块链学习笔记</p>
+<h4 id="区块链和比特币关系"><a href="#区块链和比特币关系" class="headerlink" title="区块链和比特币关系"></a>区块链和比特币关系</h4><p>比特币的原理是区块链，但是区块链技术可以做更多事情，比如智能合约还有什么呢。</p>
+<h4 id="为什么叫区块链"><a href="#为什么叫区块链" class="headerlink" title="为什么叫区块链"></a>为什么叫区块链</h4><p>如下图，一个区块，它关联着上一个区块的Block hash值，这个值是作为一个区块链协议头的一部分，然后当前区块最后计算出的Block hash也会被用在下一个区块，那么靠这个Block hash关联成一条链。叫区块链也就是生动形象，理所当然了。</p>
+<h4 id="数据区块"><a href="#数据区块" class="headerlink" title="数据区块"></a>数据区块</h4><p><img src="http://wx1.sinaimg.cn/mw690/c1b251b3ly1fo0pwh8bg8j20ko0eytan.jpg" alt="weread_image_32591353069582"></p>
+<h4 id="为什么说是去中心化"><a href="#为什么说是去中心化" class="headerlink" title="为什么说是去中心化"></a>为什么说是去中心化</h4><p>区块链本质是一个对等网络的分布式账本数据库。交易去中心化，或者说多中心化。网络挖矿节点有重量级节点，它保存着区块链这条链的完整数据，也有轻量级节点，保存部分数据。比特币的交易数据达到数十个G，并且一直增长，里面的交易记录都是公开透明的。每一个重量级节点都保存完整的数据，就没有一个中心的概念了。而是多中心，或者说无中心的一个网络结构。</p>
+<h4 id="什么是挖矿"><a href="#什么是挖矿" class="headerlink" title="什么是挖矿"></a>什么是挖矿</h4><p>上图可以看出，交易1，比如a转账给b一个比特币。那么这就是一条交易记录。计算hash1 等等每个计算知道Merkle的根hash计算出来，其实这一步很简单，问题是目标哈希值计算是很困难的。当矿机计算出来这个符合共识算法的目标hash的时候，就代表了计算的矿机获得了记账权。这个区块也就封装完成了，也就是矿机挖到矿了，这个链子又长了一截。</p>
+<h4 id="为什么交易无法更改"><a href="#为什么交易无法更改" class="headerlink" title="为什么交易无法更改"></a>为什么交易无法更改</h4><p>交易无法更改是基于数学hash算法的逆向解难度几乎不可能的基础上。hash算法可以把任意长度的内容hash产生一个256位的值。当然用这个256位的值去推算原文，是几乎不可能的。基于这个数学基础，如果我们比特币对目标哈希有一定要求，比如要十个0开头，那在想要算出这个十个0开头的hash，就必须更改原文，其他交易是不能更改的，只能更改区块头的随机值，并且只能用穷举法来计算。这个过程是需要很大的计算力。并且区块链头部还有一个难度值。一旦好不容易计算出来了，想要更改交易，就等于你要重新计算hash，并且自己拉一个分支，这个分支的计算速度要超过全网的算力，因为主链一直在伸长。你要超过主链，才能取代主链。这就是不可能了。</p>
+<h4 id="什么是区块链难度值"><a href="#什么是区块链难度值" class="headerlink" title="什么是区块链难度值"></a>什么是区块链难度值</h4><p>在计算目标hash，计算完后放入区块头部。这个hash可能有时候要求十八个0开头也有可能10个零开头，那么哪个难度更高呢？当然是十八个0难度大。而这个难度值是根据前面的2016个区块决定的。</p>
+<blockquote>
+<p>新难度值 &#x3D; 旧难度值 * ( 过去2016个区块花费时长 &#x2F; 20160 分钟 )</p>
+</blockquote>
+<p>这个20160是按照每10分钟产生一个区块来定的。所以当全网矿机增加的后，计算会变快，但是后面会难度值增加。维持在无论多少个矿机，都是每十分钟产生一个区块的速度。</p>
+<p>也就是说平均十分钟收到一个确认。</p>
+<h4 id="挖矿的人怎么赚钱"><a href="#挖矿的人怎么赚钱" class="headerlink" title="挖矿的人怎么赚钱"></a>挖矿的人怎么赚钱</h4><p>在进行工作量证明之前（就是计算目标哈希），记账节点要做一些准备工作</p>
+<blockquote>
+<ul>
+<li>收集广播中还没有被记录账本的原始交易信息</li>
+<li>检查每个交易信息中付款地址有没有足够的余额</li>
+<li>验证交易是否有正确的签名</li>
+<li>把验证通过的交易信息进行打包记录</li>
+<li>添加一个奖励交易：比如给自己的地址增加12.5比特币</li>
+</ul>
+</blockquote>
+<p>在这个过程，只要挖矿者计算出了目标哈希，他就得到了奖励，而其实除了这个奖励还有交易费的收益。我们在进行比特币交易的时候，你交易的手续费越高，被拿去写入区块的优先级就越高。你的交易就约快完成。</p>
+<h4 id="如果两台矿机同时计算出区块怎么办"><a href="#如果两台矿机同时计算出区块怎么办" class="headerlink" title="如果两台矿机同时计算出区块怎么办"></a>如果两台矿机同时计算出区块怎么办</h4><p>这就代表链条出现分叉，这个分叉并不会马上被抛弃。假设出现a分叉，b分叉。网络矿机节点有的是收到了a节点的广播，把最新节点更新到a节点。有部分收到的是b分叉的广播，把b更新为最新节点末端然后进行工作。总会有一个分叉先结算出新的更长的，比如a+1。它广播之后，更长的就会把b给取代了。</p>
+<h4 id="从上图看出，一个区块结算多少笔交易"><a href="#从上图看出，一个区块结算多少笔交易" class="headerlink" title="从上图看出，一个区块结算多少笔交易"></a>从上图看出，一个区块结算多少笔交易</h4><p><a target="_blank" rel="noopener" href="https://btc.com/stats/pool/BTCC">https://btc.com/stats/pool/BTCC</a> 这个是区块链浏览器。从这个可以看出，每个区块的交易数量是不定的，平均在2500笔交易。每笔交易的大小不一定。并且可以看到除了系统奖励还有部分交易费用的奖励。</p>
+<h4 id="为什么交易所比特币交易只要几秒而不是十分钟"><a href="#为什么交易所比特币交易只要几秒而不是十分钟" class="headerlink" title="为什么交易所比特币交易只要几秒而不是十分钟"></a>为什么交易所比特币交易只要几秒而不是十分钟</h4><p>比特币交易所是中心化的，只有在提币的时候才需要十分钟。</p>
+<h4 id="为什么六个确认之后就确定不会被更改"><a href="#为什么六个确认之后就确定不会被更改" class="headerlink" title="为什么六个确认之后就确定不会被更改"></a>为什么六个确认之后就确定不会被更改</h4><p>虽然有同时挖出两个区块的可能，但是再分叉，直到当前交易后面再挂五个区块，基本就可以确定这个是在主链上，不可能被更改了。当落后六个块，来追赶交易，这个计算量将会是一个天文数字，因为前面知道，计算一个区块链的目标哈希就已经很难了。这个浪费的资源是非常不划算的。</p>
+<h4 id="用户双花问题"><a href="#用户双花问题" class="headerlink" title="用户双花问题"></a>用户双花问题</h4><p>从上一个六个确认就可以知道，经过六个确认后，用户的余额就能被确认是减少了。第二次花费就会被变成无效交易。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/" data-id="cmqd0wdzd0064pw0ic6juf3ze" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/28/Android%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android逆向入门（一）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/23/Kotlin%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Kotlin委托模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetpack/" rel="tag">Jetpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/about-life/" rel="tag">about life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block-chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cryptography/" rel="tag">cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/" rel="tag">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" rel="tag">新闻摘要</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" rel="tag">新闻摘要, 深度阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" rel="tag">新闻摘要,深度阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%AD%E7%94%B5/" rel="tag">杭电</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Jenkins/" style="font-size: 11.43px;">Jenkins</a> <a href="/tags/Jetpack/" style="font-size: 11.43px;">Jetpack</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/about-life/" style="font-size: 10px;">about life</a> <a href="/tags/android/" style="font-size: 15.71px;">android</a> <a href="/tags/block-chain/" style="font-size: 17.14px;">block chain</a> <a href="/tags/block-chain/" style="font-size: 10px;">block-chain</a> <a href="/tags/code/" style="font-size: 20px;">code</a> <a href="/tags/cryptography/" style="font-size: 12.86px;">cryptography</a> <a href="/tags/network/" style="font-size: 12.86px;">network</a> <a href="/tags/note/" style="font-size: 10px;">note</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" style="font-size: 18.57px;">新闻摘要</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" style="font-size: 10px;">新闻摘要, 深度阅读</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" style="font-size: 10px;">新闻摘要,深度阅读</a> <a href="/tags/%E6%9D%AD%E7%94%B5/" style="font-size: 14.29px;">杭电</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 11.43px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/06/">June 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/06/14/index/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/14/2026-06-14-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-06-14（周日）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/13/2026-06-13-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-06-13（周六）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/12/2026-06-12-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-06-12（周五）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/11/2026-06-11-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-06-11（周四）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Vencent learn coding<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Aeternity测试网简易使用教程 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Aeternity测试网络已经上线许久，这里简单介绍如何在测试网络创建账号，充值，转账，编译智能合约，发布智能合约，调用智能合约的步骤。 使用Python SDK创建账号Aeternity 创建账号可以使用Python SDK，JS SDK或者Go SDK。这里举例Python SDK，下载SDK后执行：  可以看到sdk包含的内容有公链数据查询，合约编译，账户区块查询，预言机，钱包创建等相关内容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Aeternity测试网简易使用教程">
+<meta property="og:url" content="https://yeqinfu.github.io/2018/09/05/Aeternity%E6%B5%8B%E8%AF%95%E7%AE%80%E6%98%93%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="Aeternity测试网络已经上线许久，这里简单介绍如何在测试网络创建账号，充值，转账，编译智能合约，发布智能合约，调用智能合约的步骤。 使用Python SDK创建账号Aeternity 创建账号可以使用Python SDK，JS SDK或者Go SDK。这里举例Python SDK，下载SDK后执行：  可以看到sdk包含的内容有公链数据查询，合约编译，账户区块查询，预言机，钱包创建等相关内容">
+<meta property="og:locale">
+<meta property="og:image" content="http://ws3.sinaimg.cn/large/c1b251b3gy1fwotdkp96qj20su0qm77u.jpg">
+<meta property="og:image" content="http://ws4.sinaimg.cn/large/c1b251b3gy1fwotgn0oidj217m076myj.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/c1b251b3gy1fwotlmm4zcj222k0qgq74.jpg">
+<meta property="og:image" content="http://ws3.sinaimg.cn/large/c1b251b3gy1fwotnpgoozj21bo0eywhl.jpg">
+<meta property="og:image" content="http://ws4.sinaimg.cn/large/c1b251b3gy1fwots7wfc7j21qk08w0vj.jpg">
+<meta property="og:image" content="http://ws4.sinaimg.cn/large/c1b251b3gy1fwottyrwghj21cy0degoc.jpg">
+<meta property="og:image" content="http://ws1.sinaimg.cn/large/c1b251b3gy1fuyh8zlv97j21470pogni.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/large/c1b251b3gy1fuyha19hogj213c0j4405.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/large/c1b251b3gy1fuyhfg87drj215g0hlgqf.jpg">
+<meta property="og:image" content="http://ws3.sinaimg.cn/large/c1b251b3gy1fuyhj1caa0j21290ct3yx.jpg">
+<meta property="og:image" content="http://ws2.sinaimg.cn/large/c1b251b3gy1fuyhkiz46lj213008g0t8.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/large/c1b251b3gy1fuyhm96wd5j20yw0hswgm.jpg">
+<meta property="article:published_time" content="2018-09-05T09:00:58.000Z">
+<meta property="article:modified_time" content="2026-06-14T00:05:05.263Z">
+<meta property="article:author" content="Vencent learn coding">
+<meta property="article:tag" content="block chain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ws3.sinaimg.cn/large/c1b251b3gy1fwotdkp96qj20su0qm77u.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Vencent Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yeqinfu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Aeternity测试简易使用教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/05/Aeternity%E6%B5%8B%E8%AF%95%E7%AE%80%E6%98%93%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2018-09-05T09:00:58.000Z" itemprop="datePublished">2018-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Aeternity测试网简易使用教程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Aeternity测试网络已经上线许久，这里简单介绍如何在测试网络创建账号，充值，转账，编译智能合约，发布智能合约，调用智能合约的步骤。</p>
+<h3 id="使用Python-SDK创建账号"><a href="#使用Python-SDK创建账号" class="headerlink" title="使用Python SDK创建账号"></a>使用<a target="_blank" rel="noopener" href="https://github.com/aeternity/aepp-sdk-python">Python SDK</a>创建账号</h3><p>Aeternity 创建账号可以使用Python SDK，JS SDK或者Go SDK。这里举例Python SDK，下载SDK后执行：</p>
+<p><img src="http://ws3.sinaimg.cn/large/c1b251b3gy1fwotdkp96qj20su0qm77u.jpg" alt="image"></p>
+<p>可以看到sdk包含的内容有公链数据查询，合约编译，账户区块查询，预言机，钱包创建等相关内容。我们选择钱包创建，执行：</p>
+<p><img src="http://ws4.sinaimg.cn/large/c1b251b3gy1fwotgn0oidj217m076myj.jpg" alt="image"></p>
+<p>在account后面加上保存密钥文件的路径，加上create命令，输入密码后可以得到如上结果。</p>
+<h3 id="对生成的账户进行充值"><a href="#对生成的账户进行充值" class="headerlink" title="对生成的账户进行充值"></a>对生成的账户进行充值</h3><p>生成的账户其实是不会在链上有记录的，只有执行过交易才会有记录，所以如果发出转账会提示找不到此账户，因为此账户的余额为0.<a target="_blank" rel="noopener" href="https://faucet.aepps.com/">进入测试网充值</a>后，如图所示</p>
+<p><img src="http://wx2.sinaimg.cn/large/c1b251b3gy1fwotlmm4zcj222k0qgq74.jpg" alt="image"></p>
+<p>默认充值是5000AE，充值后就会产生交易记录，可以看到这个交易ID，点击跳转到区块链交易浏览器详情，不过似乎还没开发好，看不到详情。我们使用Python SDK查看交易详情,第一次查询是未充值显示找不到账户，第二次是充值后可以查询到相关余额。</p>
+<p><img src="http://ws3.sinaimg.cn/large/c1b251b3gy1fwotnpgoozj21bo0eywhl.jpg" alt="image"></p>
+<h3 id="测试网转账"><a href="#测试网转账" class="headerlink" title="测试网转账"></a>测试网转账</h3><p>我们的账户已经可以看到有余额是5000AE了，下面对此账户进行转账。</p>
+<p><img src="http://ws4.sinaimg.cn/large/c1b251b3gy1fwots7wfc7j21qk08w0vj.jpg" alt="image"></p>
+<p>指定了我们的密钥路径后，接上spend命令，转账到哪个账户的地址，转账余额。会提示输入密码，此密码就是解密我们密钥的密码输出上图，我们再看一下两个账户的账户余额</p>
+<p><img src="http://ws4.sinaimg.cn/large/c1b251b3gy1fwottyrwghj21cy0degoc.jpg" alt="image"></p>
+<p>经过我多次转账测试，发现每次转账测试网的手续费收取1AE，这个应该会调整。</p>
+<h3 id="智能合约编译"><a href="#智能合约编译" class="headerlink" title="智能合约编译"></a>智能合约编译</h3><p>Python SDK也提供了编译部署智能合约的功能，不过这里介绍<a target="_blank" rel="noopener" href="https://contracts.aepps.com/">在线IDE</a>进行编译，合约使用的是一个叫Sophia 的语言。</p>
+<p><img src="http://ws1.sinaimg.cn/large/c1b251b3gy1fuyh8zlv97j21470pogni.jpg" alt="image"></p>
+<p>直接使用测试样例，点击编译后成字节码，再点击下面的部署按钮就可以部署到测试网络了。</p>
+<p><img src="http://wx1.sinaimg.cn/large/c1b251b3gy1fuyha19hogj213c0j4405.jpg" alt="image"></p>
+<p>点击部署后会生成一个合约地址，我这里的合约地址为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ct$PzpYsHcA858UNDJLnfmQznnNKPwxmatXwFrWG6GjNhr1rScgm</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用区块链浏览器进行查看合约和交易"><a href="#使用区块链浏览器进行查看合约和交易" class="headerlink" title="使用区块链浏览器进行查看合约和交易"></a>使用区块链浏览器进行查看合约和交易</h3><p><img src="http://wx3.sinaimg.cn/large/c1b251b3gy1fuyhfg87drj215g0hlgqf.jpg" alt="image"></p>
+<p>此浏览器可以查看我们以上执行动作的过程，包括充值交易，转账交易，合约创建。SDK并没有提供查询合约的方法，浏览器也不是很完善，所以刚才创建的合约我就不去找了。</p>
+<h3 id="智能合约调用"><a href="#智能合约调用" class="headerlink" title="智能合约调用"></a>智能合约调用</h3><p><img src="http://ws3.sinaimg.cn/large/c1b251b3gy1fuyhj1caa0j21290ct3yx.jpg" alt="image"></p>
+<p>这里使用IDE调用，传入方法名字和参数就可以了，更加复杂的合约例子可以看github的例子。</p>
+<h3 id="在线IDE更改账户"><a href="#在线IDE更改账户" class="headerlink" title="在线IDE更改账户"></a>在线IDE更改账户</h3><p><img src="http://ws2.sinaimg.cn/large/c1b251b3gy1fuyhkiz46lj213008g0t8.jpg" alt="image"></p>
+<p>如果需要更改账户的话，在线IDE的头部可以输入你的账户的密钥，此外，这个密钥是一个十六进制的字符串，用Python SDK生成的是一个已经加密的的密钥文件，所以我们可以在</p>
+<p><img src="http://wx4.sinaimg.cn/large/c1b251b3gy1fuyhm96wd5j20yw0hswgm.jpg" alt="image"></p>
+<p>如上图的位置增加一个输出，得到真正的私钥，后保存下来使用。</p>
+<h3 id="还需要改进的地方"><a href="#还需要改进的地方" class="headerlink" title="还需要改进的地方"></a>还需要改进的地方</h3><ul>
+<li>区块链浏览器 不能根据交易ID查询，根据合约ID查询，交易详情不够完善，比如gas的使用量，交易费用等。</li>
+<li>和以太坊IDE相比的话，缺少Debugger功能，还不够完善</li>
+<li>Python SDK缺少查询合约的功能</li>
+</ul>
+<h4 id="相关地址"><a href="#相关地址" class="headerlink" title="相关地址"></a>相关地址</h4><p>python sdk地址：<a target="_blank" rel="noopener" href="https://github.com/aeternity/aepp-sdk-python">https://github.com/aeternity/aepp-sdk-python</a></p>
+<p>测试网充值地址：<a target="_blank" rel="noopener" href="https://faucet.aepps.com/">https://faucet.aepps.com/</a></p>
+<p>在线合约IDE：<a target="_blank" rel="noopener" href="https://contracts.aepps.com/">https://contracts.aepps.com/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/09/05/Aeternity%E6%B5%8B%E8%AF%95%E7%AE%80%E6%98%93%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" data-id="cmqd0wdxv002qpw0i0jz8gupp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/12/aeternity%20epoch%E6%8C%96%E7%9F%BF/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          epoch挖矿简易教程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/30/%E6%B5%8B%E8%AF%95%E7%BD%91epoch%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">测试网epoch基本使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetpack/" rel="tag">Jetpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/about-life/" rel="tag">about life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block-chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cryptography/" rel="tag">cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/" rel="tag">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" rel="tag">新闻摘要</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" rel="tag">新闻摘要, 深度阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" rel="tag">新闻摘要,深度阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%AD%E7%94%B5/" rel="tag">杭电</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Jenkins/" style="font-size: 11.43px;">Jenkins</a> <a href="/tags/Jetpack/" style="font-size: 11.43px;">Jetpack</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/about-life/" style="font-size: 10px;">about life</a> <a href="/tags/android/" style="font-size: 15.71px;">android</a> <a href="/tags/block-chain/" style="font-size: 17.14px;">block chain</a> <a href="/tags/block-chain/" style="font-size: 10px;">block-chain</a> <a href="/tags/code/" style="font-size: 20px;">code</a> <a href="/tags/cryptography/" style="font-size: 12.86px;">cryptography</a> <a href="/tags/network/" style="font-size: 12.86px;">network</a> <a href="/tags/note/" style="font-size: 10px;">note</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" style="font-size: 18.57px;">新闻摘要</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" style="font-size: 10px;">新闻摘要, 深度阅读</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" style="font-size: 10px;">新闻摘要,深度阅读</a> <a href="/tags/%E6%9D%AD%E7%94%B5/" style="font-size: 14.29px;">杭电</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 11.43px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/06/">June 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/06/14/index/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/14/2026-06-14-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-06-14（周日）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/13/2026-06-13-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-06-13（周六）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/12/2026-06-12-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-06-12（周五）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/11/2026-06-11-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-06-11（周四）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Vencent learn coding<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
