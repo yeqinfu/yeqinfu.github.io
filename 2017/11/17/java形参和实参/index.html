@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JAVA形参和实参 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="参考原文 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849public class MainDe &amp;#123;		public static void main(String[] args) &amp;#123;		&#x2F;&#x2F;int swap		int a&#x3D;1,b&#x3D;2;		swapI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA形参和实参">
+<meta property="og:url" content="https://yeqinfu.github.io/2017/11/17/java%E5%BD%A2%E5%8F%82%E5%92%8C%E5%AE%9E%E5%8F%82/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="参考原文 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849public class MainDe &amp;#123;		public static void main(String[] args) &amp;#123;		&#x2F;&#x2F;int swap		int a&#x3D;1,b&#x3D;2;		swapI">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-11-17T14:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-02T00:07:46.828Z">
+<meta property="article:author" content="Vencent learn coding">
+<meta property="article:tag" content="code">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Vencent Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yeqinfu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-java形参和实参" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/17/java%E5%BD%A2%E5%8F%82%E5%92%8C%E5%AE%9E%E5%8F%82/" class="article-date">
+  <time datetime="2017-11-17T14:00:00.000Z" itemprop="datePublished">2017-11-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JAVA形参和实参
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://dailycast.github.io/Java-%E5%BD%A2%E5%8F%82%E4%B8%8E%E5%AE%9E%E5%8F%82/">参考原文</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainDe</span> &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//int swap</span></span><br><span class="line">		<span class="type">int</span> a=<span class="number">1</span>,b=<span class="number">2</span>;</span><br><span class="line">		swapInt(a,b);</span><br><span class="line">		System.out.println(<span class="string">&quot;a=&quot;</span>+a+<span class="string">&quot; b=&quot;</span>+b);</span><br><span class="line">		<span class="comment">//integer swap</span></span><br><span class="line">		Integer c=<span class="number">1</span>,d=<span class="number">2</span>;</span><br><span class="line">		swapInteger(c,d);</span><br><span class="line">		System.out.println(<span class="string">&quot;c=&quot;</span>+c+<span class="string">&quot; d=&quot;</span>+d);</span><br><span class="line">		<span class="comment">//object swap</span></span><br><span class="line">		A e=<span class="keyword">new</span> <span class="title class_">A</span>(<span class="number">1</span>);</span><br><span class="line">		A f=<span class="keyword">new</span> <span class="title class_">A</span>(<span class="number">2</span>);</span><br><span class="line">		swapObj(e,f);</span><br><span class="line">		System.out.println(<span class="string">&quot;e=&quot;</span>+e.age+<span class="string">&quot; f=&quot;</span>+f.age);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swapObj</span><span class="params">(A e, A f)</span> &#123;</span><br><span class="line">		<span class="type">int</span> temp=e.age;</span><br><span class="line">		e.age=f.age;</span><br><span class="line">		f.age=temp;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swapInteger</span><span class="params">(Integer c, Integer d)</span> &#123;</span><br><span class="line">		Integer temp=c;</span><br><span class="line">		c=d;</span><br><span class="line">		d=temp;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swapInt</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">		<span class="type">int</span> temp=a;</span><br><span class="line">		a=b;</span><br><span class="line">		b=temp;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line">		A(<span class="type">int</span> age)&#123;</span><br><span class="line">			<span class="built_in">this</span>.age=age;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">public</span> <span class="type">int</span> age;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行后答案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=1 b=2</span><br><span class="line">c=1 d=2</span><br><span class="line">e=2 f=1</span><br></pre></td></tr></table></figure>
+
+
+
+<p>基本数据类型在传递的时候都是传值，而对象都是传址。</p>
+<h5 id="swapInt-a-b"><a href="#swapInt-a-b" class="headerlink" title="swapInt a b"></a>swapInt a b</h5><p>这个方法只是把main方法的两个ab的值传递给swapInt的两个形参，而main方法的ab始终指向12；swapInt是不可能改变main里面的ab的值的。</p>
+<h5 id="swapInteger-cd"><a href="#swapInteger-cd" class="headerlink" title="swapInteger cd"></a>swapInteger cd</h5><p>Integer是对象，传递给swapInteger的是cd指向的两个地址，然而swapInteger 方法中的形参地址指向的改变，依然不能影响main方法中的cd引用的地址。</p>
+<h5 id="swapObj-ef"><a href="#swapObj-ef" class="headerlink" title="swapObj  ef"></a>swapObj  ef</h5><p>还是传地址，main方法中的ef指向的空间地址，swapObj  更改的事这个空间地址内部的某一个变量的值，这时候main方法指向的空间还是不变，但是里面的变量值却被改变了。所以是会影响到main的</p>
+<p>因为Integer是对象，所以按道理是可以让swapInteger 方法影响到main的。所以原博文提供了一个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(Integer numa, Integer numb)</span> &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> numa.intValue();<span class="comment">//tmp 定义为基本数据类型</span></span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           <span class="type">Field</span> <span class="variable">field</span> <span class="operator">=</span> Integer.class.getDeclaredField(<span class="string">&quot;value&quot;</span>);</span><br><span class="line">           field.setAccessible(<span class="literal">true</span>);</span><br><span class="line">           field.set(numa, numb);<span class="comment">//这个时候并不改变 tmp 的值</span></span><br><span class="line">           field.set(numb, tmp);</span><br><span class="line">       &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个对象空间有一个value的字段里面直接存的是int的值。把它改了就可以了。</p>
+<p>然后原文还介绍了Integer装箱的缓存，缓存的字符在-128到127之间。就是说上面呢这个方法要百分百灵敏，要么不使用自动装箱，要么自动装箱的值要超过缓存范围。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/11/17/java%E5%BD%A2%E5%8F%82%E5%92%8C%E5%AE%9E%E5%8F%82/" data-id="cmr2qx5dq006spi5nfstagec5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/23/%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          学习贝塞尔曲线
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/16/java%E5%AD%97%E8%8A%82%E7%A0%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">学习java字节码</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetpack/" rel="tag">Jetpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/about-life/" rel="tag">about life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block-chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cryptography/" rel="tag">cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/" rel="tag">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" rel="tag">新闻摘要</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" rel="tag">新闻摘要, 深度阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" rel="tag">新闻摘要,深度阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%AD%E7%94%B5/" rel="tag">杭电</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Jenkins/" style="font-size: 11.43px;">Jenkins</a> <a href="/tags/Jetpack/" style="font-size: 11.43px;">Jetpack</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/about-life/" style="font-size: 10px;">about life</a> <a href="/tags/android/" style="font-size: 15.71px;">android</a> <a href="/tags/block-chain/" style="font-size: 17.14px;">block chain</a> <a href="/tags/block-chain/" style="font-size: 10px;">block-chain</a> <a href="/tags/code/" style="font-size: 18.57px;">code</a> <a href="/tags/cryptography/" style="font-size: 12.86px;">cryptography</a> <a href="/tags/network/" style="font-size: 12.86px;">network</a> <a href="/tags/note/" style="font-size: 10px;">note</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" style="font-size: 20px;">新闻摘要</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" style="font-size: 10px;">新闻摘要, 深度阅读</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" style="font-size: 10px;">新闻摘要,深度阅读</a> <a href="/tags/%E6%9D%AD%E7%94%B5/" style="font-size: 14.29px;">杭电</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 11.43px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/07/">July 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/06/">June 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/07/02/index/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/02/2026-07-02-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-07-02（周四）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/01/2026-07-01-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-07-01（周三）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/30/2026-06-30-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-06-30（周二）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/29/2026-06-29-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-06-29（周一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Vencent learn coding<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

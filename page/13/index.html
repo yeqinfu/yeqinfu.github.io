@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Vencent Blog">
+<meta property="og:url" content="https://yeqinfu.github.io/page/13/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:locale">
+<meta property="article:author" content="Vencent learn coding">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Vencent Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yeqinfu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Map接口概览" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/25/Map%E6%8E%A5%E5%8F%A3%E6%A6%82%E8%A7%88/" class="article-date">
+  <time datetime="2017-10-25T10:00:58.000Z" itemprop="datePublished">2017-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/25/Map%E6%8E%A5%E5%8F%A3%E6%A6%82%E8%A7%88/">Map相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Map接口定义了一系列抽象方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">size</span><span class="params">()</span>;</span><br><span class="line"><span class="type">boolean</span> <span class="title function_">isEmpty</span><span class="params">()</span>;</span><br><span class="line"><span class="type">boolean</span> <span class="title function_">containsKey</span><span class="params">(Object key)</span>;</span><br><span class="line"><span class="type">boolean</span> <span class="title function_">containsValue</span><span class="params">(Object value)</span>;</span><br><span class="line">V <span class="title function_">get</span><span class="params">(Object key)</span>;</span><br><span class="line">V <span class="title function_">put</span><span class="params">(K key, V value)</span>;</span><br><span class="line">V <span class="title function_">remove</span><span class="params">(Object key)</span>;</span><br><span class="line"><span class="keyword">void</span> <span class="title function_">putAll</span><span class="params">(Map&lt;? extends K, ? extends V&gt; m)</span>;</span><br><span class="line"><span class="keyword">void</span> <span class="title function_">clear</span><span class="params">()</span>;</span><br><span class="line">Set&lt;K&gt; <span class="title function_">keySet</span><span class="params">()</span>;</span><br><span class="line">Collection&lt;V&gt; <span class="title function_">values</span><span class="params">()</span>;</span><br><span class="line">Set&lt;Map.Entry&lt;K, V&gt;&gt; entrySet();</span><br><span class="line"><span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span>;</span><br><span class="line">Collection&lt;V&gt; <span class="title function_">values</span><span class="params">()</span>;</span><br><span class="line"><span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>还有默认实现的抽象方法 </p>
+<p>java8新增方法</p>
+<p>compute(Object,BitFunction)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1087</span></span><br><span class="line"><span class="number">1088</span>    <span class="keyword">default</span> V <span class="title function_">compute</span><span class="params">(K key,</span></span><br><span class="line"><span class="params"><span class="number">1089</span>            BiFunction&lt;? <span class="built_in">super</span> K, ? <span class="built_in">super</span> V, ? extends V&gt; remappingFunction)</span> &#123;</span><br><span class="line"><span class="number">1090</span>        Objects.requireNonNull(remappingFunction);</span><br><span class="line"><span class="number">1091</span>        <span class="type">V</span> <span class="variable">oldValue</span> <span class="operator">=</span> get(key);</span><br><span class="line"><span class="number">1092</span></span><br><span class="line"><span class="number">1093</span>        <span class="type">V</span> <span class="variable">newValue</span> <span class="operator">=</span> remappingFunction.apply(key, oldValue);</span><br><span class="line"><span class="number">1094</span>        <span class="keyword">if</span> (newValue == <span class="literal">null</span>) &#123;</span><br><span class="line"><span class="number">1095</span>            <span class="comment">// delete mapping</span></span><br><span class="line"><span class="number">1096</span>            <span class="keyword">if</span> (oldValue != <span class="literal">null</span> || containsKey(key)) &#123;</span><br><span class="line"><span class="number">1097</span>                <span class="comment">// something to remove</span></span><br><span class="line"><span class="number">1098</span>                remove(key);</span><br><span class="line"><span class="number">1099</span>                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"><span class="number">1100</span>            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="number">1101</span>                <span class="comment">// nothing to do. Leave things as they were.</span></span><br><span class="line"><span class="number">1102</span>                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"><span class="number">1103</span>            &#125;</span><br><span class="line"><span class="number">1104</span>        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="number">1105</span>            <span class="comment">// add or replace old mapping</span></span><br><span class="line"><span class="number">1106</span>            put(key, newValue);</span><br><span class="line"><span class="number">1107</span>            <span class="keyword">return</span> newValue;</span><br><span class="line"><span class="number">1108</span>        &#125;</span><br><span class="line"><span class="number">1109</span>    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>入参是，key和BitFunction，BitFunction的实现，由外部定义。</p>
+<p>如果newValues为空，即BitFunction的apply实现返回null值，则如果map有这个key就移除，并且也返回null值。</p>
+<p>如果newValues不为null，则增加或者刷新map的key键值对。并返回apply的实现值。</p>
+<p>再一个java8方法</p>
+<p>computeIfAbsent(Object,Function)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">950</span> </span><br><span class="line"><span class="number">951</span>     <span class="keyword">default</span> V <span class="title function_">computeIfAbsent</span><span class="params">(K key,</span></span><br><span class="line"><span class="params"><span class="number">952</span>             Function&lt;? <span class="built_in">super</span> K, ? extends V&gt; mappingFunction)</span> &#123;</span><br><span class="line"><span class="number">953</span>         Objects.requireNonNull(mappingFunction);</span><br><span class="line"><span class="number">954</span>         V v;</span><br><span class="line"><span class="number">955</span>         <span class="keyword">if</span> ((v = get(key)) == <span class="literal">null</span>) &#123;</span><br><span class="line"><span class="number">956</span>             V newValue;</span><br><span class="line"><span class="number">957</span>             <span class="keyword">if</span> ((newValue = mappingFunction.apply(key)) != <span class="literal">null</span>) &#123;</span><br><span class="line"><span class="number">958</span>                 put(key, newValue);</span><br><span class="line"><span class="number">959</span>                 <span class="keyword">return</span> newValue;</span><br><span class="line"><span class="number">960</span>             &#125;</span><br><span class="line"><span class="number">961</span>         &#125;</span><br><span class="line"><span class="number">962</span> </span><br><span class="line"><span class="number">963</span>         <span class="keyword">return</span> v;</span><br><span class="line"><span class="number">964</span>     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果本地map已经存在这个key键值对，直接返回value，如果不存在，看看Function的apply实现是不是为null，如果为null，返回null，不为null，压入map。</p>
+<p>疑惑1：为什么compute computeIfAbsent的参数表一个是BitFunction一个是Function？</p>
+<p>再一个java8新方法</p>
+<p>computeIfPresent(Object,BitFunction)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1011</span></span><br><span class="line"><span class="number">1012</span>    <span class="keyword">default</span> V <span class="title function_">computeIfPresent</span><span class="params">(K key,</span></span><br><span class="line"><span class="params"><span class="number">1013</span>            BiFunction&lt;? <span class="built_in">super</span> K, ? <span class="built_in">super</span> V, ? extends V&gt; remappingFunction)</span> &#123;</span><br><span class="line"><span class="number">1014</span>        Objects.requireNonNull(remappingFunction);</span><br><span class="line"><span class="number">1015</span>        V oldValue;</span><br><span class="line"><span class="number">1016</span>        <span class="keyword">if</span> ((oldValue = get(key)) != <span class="literal">null</span>) &#123;</span><br><span class="line"><span class="number">1017</span>            <span class="type">V</span> <span class="variable">newValue</span> <span class="operator">=</span> remappingFunction.apply(key, oldValue);</span><br><span class="line"><span class="number">1018</span>            <span class="keyword">if</span> (newValue != <span class="literal">null</span>) &#123;</span><br><span class="line"><span class="number">1019</span>                put(key, newValue);</span><br><span class="line"><span class="number">1020</span>                <span class="keyword">return</span> newValue;</span><br><span class="line"><span class="number">1021</span>            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="number">1022</span>                remove(key);</span><br><span class="line"><span class="number">1023</span>                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"><span class="number">1024</span>            &#125;</span><br><span class="line"><span class="number">1025</span>        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="number">1026</span>            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"><span class="number">1027</span>        &#125;</span><br><span class="line"><span class="number">1028</span>    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>如果不存在key的键值对，直接返回null，不压入。如果存在，而apply实现不为空，就压入覆盖，如果apply实现为空，则移除已经有的key键值对。</p>
+<p>以上三个方法比较：</p>
+<p>compute 只要apply不为空，一定更新或者添加keyvalue，如果apply为空，还要移除map已经有的keyvalue</p>
+<p>computeIfAbsent 如果map的keyvalue为空并且apply实现不为空，才会加入map，不然map返回原有值或null</p>
+<p>​                                如果map不为空，不更新</p>
+<p>computeIfPresent   如果map有keyvalue，并且apply非空实现才更新，空实现则移除。如果map没有keyvalue，不操作，返回null</p>
+<p>java8新增foreach,默认实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">617</span> </span><br><span class="line"><span class="number">618</span>     <span class="keyword">default</span> <span class="keyword">void</span> <span class="title function_">forEach</span><span class="params">(BiConsumer&lt;? <span class="built_in">super</span> K, ? <span class="built_in">super</span> V&gt; action)</span> &#123;</span><br><span class="line"><span class="number">619</span>         Objects.requireNonNull(action);</span><br><span class="line"><span class="number">620</span>         <span class="keyword">for</span> (Map.Entry&lt;K, V&gt; entry : entrySet()) &#123;</span><br><span class="line"><span class="number">621</span>             K k;</span><br><span class="line"><span class="number">622</span>             V v;</span><br><span class="line"><span class="number">623</span>             <span class="keyword">try</span> &#123;</span><br><span class="line"><span class="number">624</span>                 k = entry.getKey();</span><br><span class="line"><span class="number">625</span>                 v = entry.getValue();</span><br><span class="line"><span class="number">626</span>             &#125; <span class="keyword">catch</span>(IllegalStateException ise) &#123;</span><br><span class="line"><span class="number">627</span>                 <span class="comment">// this usually means the entry is no longer in the map.</span></span><br><span class="line"><span class="number">628</span>                 <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ConcurrentModificationException</span>(ise);</span><br><span class="line"><span class="number">629</span>             &#125;</span><br><span class="line"><span class="number">630</span>             action.accept(k, v);</span><br><span class="line"><span class="number">631</span>         &#125;</span><br><span class="line"><span class="number">632</span>     &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>实际上用lambda可以写成这样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map.forEach((k, v) -&gt;</span><br><span class="line">    System.out.println(k+<span class="string">&quot;=&quot;</span> + v));</span><br></pre></td></tr></table></figure>
+
+<p>实际上就是实现了BitConsumer的accept的方法，然后被回调了。</p>
+<p>java8新增getOrDefault</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">585 </span><br><span class="line">586     default V More ...getOrDefault(Object key, V defaultValue) &#123;</span><br><span class="line">587         V v;</span><br><span class="line">588         return (((v = get(key)) != null) || containsKey(key))</span><br><span class="line">589             ? v</span><br><span class="line">590             : defaultValue;</span><br><span class="line">591     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>java 8新增merge方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1168</span></span><br><span class="line"><span class="number">1169</span>    <span class="keyword">default</span> V <span class="title function_">merge</span><span class="params">(K key, V value,</span></span><br><span class="line"><span class="params"><span class="number">1170</span>            BiFunction&lt;? <span class="built_in">super</span> V, ? <span class="built_in">super</span> V, ? extends V&gt; remappingFunction)</span> &#123;</span><br><span class="line"><span class="number">1171</span>        Objects.requireNonNull(remappingFunction);</span><br><span class="line"><span class="number">1172</span>        Objects.requireNonNull(value);</span><br><span class="line"><span class="number">1173</span>        <span class="type">V</span> <span class="variable">oldValue</span> <span class="operator">=</span> get(key);</span><br><span class="line"><span class="number">1174</span>        <span class="type">V</span> <span class="variable">newValue</span> <span class="operator">=</span> (oldValue == <span class="literal">null</span>) ? value :</span><br><span class="line"><span class="number">1175</span>                   remappingFunction.apply(oldValue, value);</span><br><span class="line"><span class="number">1176</span>        <span class="keyword">if</span>(newValue == <span class="literal">null</span>) &#123;</span><br><span class="line"><span class="number">1177</span>            remove(key);</span><br><span class="line"><span class="number">1178</span>        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="number">1179</span>            put(key, newValue);</span><br><span class="line"><span class="number">1180</span>        &#125;</span><br><span class="line"><span class="number">1181</span>        <span class="keyword">return</span> newValue;</span><br><span class="line"><span class="number">1182</span>    &#125;</span><br><span class="line"><span class="number">1183</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>java 8新增putIfAbsent方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">740</span> </span><br><span class="line"><span class="number">741</span>     <span class="keyword">default</span> V More ...putIfAbsent(K key, V value) &#123;</span><br><span class="line"><span class="number">742</span>         <span class="type">V</span> <span class="variable">v</span> <span class="operator">=</span> get(key);</span><br><span class="line"><span class="number">743</span>         <span class="keyword">if</span> (v == <span class="literal">null</span>) &#123;</span><br><span class="line"><span class="number">744</span>             v = put(key, value);</span><br><span class="line"><span class="number">745</span>         &#125;</span><br><span class="line"><span class="number">746</span> </span><br><span class="line"><span class="number">747</span>         <span class="keyword">return</span> v;</span><br><span class="line"><span class="number">748</span>     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>remove</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">783</span> </span><br><span class="line"><span class="number">784</span>     <span class="keyword">default</span> <span class="type">boolean</span> <span class="title function_">remove</span><span class="params">(Object key, Object value)</span> &#123;</span><br><span class="line"><span class="number">785</span>         <span class="type">Object</span> <span class="variable">curValue</span> <span class="operator">=</span> get(key);</span><br><span class="line"><span class="number">786</span>         <span class="keyword">if</span> (!Objects.equals(curValue, value) ||</span><br><span class="line"><span class="number">787</span>             (curValue == <span class="literal">null</span> &amp;&amp; !containsKey(key))) &#123;</span><br><span class="line"><span class="number">788</span>             <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"><span class="number">789</span>         &#125;</span><br><span class="line"><span class="number">790</span>         remove(key);</span><br><span class="line"><span class="number">791</span>         <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"><span class="number">792</span>     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>replace 没什么说的。。。。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">883</span> </span><br><span class="line"><span class="number">884</span>     <span class="keyword">default</span> V <span class="title function_">replace</span><span class="params">(K key, V value)</span> &#123;</span><br><span class="line"><span class="number">885</span>         V curValue;</span><br><span class="line"><span class="number">886</span>         <span class="keyword">if</span> (((curValue = get(key)) != <span class="literal">null</span>) || containsKey(key)) &#123;</span><br><span class="line"><span class="number">887</span>             curValue = put(key, value);</span><br><span class="line"><span class="number">888</span>         &#125;</span><br><span class="line"><span class="number">889</span>         <span class="keyword">return</span> curValue;</span><br><span class="line"><span class="number">890</span>     &#125;</span><br><span class="line"><span class="number">835</span> </span><br><span class="line"><span class="number">836</span>     <span class="keyword">default</span> <span class="type">boolean</span> More ...replace(K key, V oldValue, V newValue) &#123;</span><br><span class="line"><span class="number">837</span>         <span class="type">Object</span> <span class="variable">curValue</span> <span class="operator">=</span> get(key);</span><br><span class="line"><span class="number">838</span>         <span class="keyword">if</span> (!Objects.equals(curValue, oldValue) ||</span><br><span class="line"><span class="number">839</span>             (curValue == <span class="literal">null</span> &amp;&amp; !containsKey(key))) &#123;</span><br><span class="line"><span class="number">840</span>             <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"><span class="number">841</span>         &#125;</span><br><span class="line"><span class="number">842</span>         put(key, newValue);</span><br><span class="line"><span class="number">843</span>         <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"><span class="number">844</span>     &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>内部接口Entry&lt;K,V&gt;</p>
+<p>新增java8几个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">469</span> </span><br><span class="line"><span class="number">470</span>         <span class="keyword">public</span> <span class="keyword">static</span> &lt;K <span class="keyword">extends</span> <span class="title class_">Comparable</span>&lt;? <span class="built_in">super</span> K&gt;, V&gt; Comparator&lt;Map.Entry&lt;K,V&gt;&gt; comparingByKey() &#123;</span><br><span class="line"><span class="number">471</span>             <span class="keyword">return</span> (Comparator&lt;Map.Entry&lt;K, V&gt;&gt; &amp; Serializable)</span><br><span class="line"><span class="number">472</span>                 (c1, c2) -&gt; c1.getKey().compareTo(c2.getKey());</span><br><span class="line"><span class="number">473</span>         &#125;</span><br><span class="line"><span class="number">504</span> </span><br><span class="line"><span class="number">505</span>         <span class="keyword">public</span> <span class="keyword">static</span> &lt;K, V&gt; Comparator&lt;Map.Entry&lt;K, V&gt;&gt; comparingByKey(Comparator&lt;? <span class="built_in">super</span> K&gt; cmp) &#123;</span><br><span class="line"><span class="number">506</span>             Objects.requireNonNull(cmp);</span><br><span class="line"><span class="number">507</span>             <span class="keyword">return</span> (Comparator&lt;Map.Entry&lt;K, V&gt;&gt; &amp; Serializable)</span><br><span class="line"><span class="number">508</span>                 (c1, c2) -&gt; cmp.compare(c1.getKey(), c2.getKey());</span><br><span class="line"><span class="number">509</span>         &#125;</span><br><span class="line"><span class="number">486</span> </span><br><span class="line"><span class="number">487</span>         <span class="keyword">public</span> <span class="keyword">static</span> &lt;K, V <span class="keyword">extends</span> <span class="title class_">Comparable</span>&lt;? <span class="built_in">super</span> V&gt;&gt; Comparator&lt;Map.Entry&lt;K,V&gt;&gt; comparingByValue() &#123;</span><br><span class="line"><span class="number">488</span>             <span class="keyword">return</span> (Comparator&lt;Map.Entry&lt;K, V&gt;&gt; &amp; Serializable)</span><br><span class="line"><span class="number">489</span>                 (c1, c2) -&gt; c1.getValue().compareTo(c2.getValue());</span><br><span class="line"><span class="number">490</span>         &#125;</span><br><span class="line"><span class="number">523</span> </span><br><span class="line"><span class="number">524</span>         <span class="keyword">public</span> <span class="keyword">static</span> &lt;K, V&gt; Comparator&lt;Map.Entry&lt;K, V&gt;&gt;comparingByValue(Comparator&lt;? <span class="built_in">super</span> V&gt; cmp) &#123;</span><br><span class="line"><span class="number">525</span>             Objects.requireNonNull(cmp);</span><br><span class="line"><span class="number">526</span>             <span class="keyword">return</span> (Comparator&lt;Map.Entry&lt;K, V&gt;&gt; &amp; Serializable)</span><br><span class="line"><span class="number">527</span>                 (c1, c2) -&gt; cmp.compare(c1.getValue(), c2.getValue());</span><br><span class="line"><span class="number">528</span>         &#125;</span><br><span class="line"><span class="number">529</span>     &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>&amp;符号，java8新语法，表示同时满足两个接口，就是返回的东西已经同时实现了Comparator Serializable接口</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/10/25/Map%E6%8E%A5%E5%8F%A3%E6%A6%82%E8%A7%88/" data-id="cmr2qx5dj005xpi5n5due13vc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Lrucache介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/24/Lrucache%E4%BB%8B%E7%BB%8D/" class="article-date">
+  <time datetime="2017-10-24T11:00:58.000Z" itemprop="datePublished">2017-10-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/24/Lrucache%E4%BB%8B%E7%BB%8D/">LruCache介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>LruCache介绍</p>
+<p>Lru–&gt;(Least recent used)最少最近使用算法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * @param maxSize for caches that do not override &#123;@link #sizeOf&#125;, this is</span><br><span class="line">    *     the maximum number of entries in the cache. For all other caches,</span><br><span class="line">    *     this is the maximum sum of the sizes of the entries in this cache.</span><br><span class="line">    */</span><br><span class="line">   public LruCache(int maxSize) &#123;</span><br><span class="line">       if (maxSize &lt;= 0) &#123;</span><br><span class="line">           throw new IllegalArgumentException(&quot;maxSize &lt;= 0&quot;);</span><br><span class="line">       &#125;</span><br><span class="line">       this.maxSize = maxSize;</span><br><span class="line">       this.map = new LinkedHashMap&lt;K, V&gt;(0, 0.75f, true);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>构造传入缓存容量，LinkedHashMap维护键值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * Sets the size of the cache.</span><br><span class="line">    *</span><br><span class="line">    * @param maxSize The new maximum size.</span><br><span class="line">    */</span><br><span class="line">   public void resize(int maxSize) &#123;</span><br><span class="line">       if (maxSize &lt;= 0) &#123;</span><br><span class="line">           throw new IllegalArgumentException(&quot;maxSize &lt;= 0&quot;);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       synchronized (this) &#123;</span><br><span class="line">           this.maxSize = maxSize;</span><br><span class="line">       &#125;</span><br><span class="line">       trimToSize(maxSize);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>重设缓存容量，加锁控制并发访问。调用了trimToSize方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public void trimToSize(int maxSize) &#123;</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            K key;</span><br><span class="line">            V value;</span><br><span class="line">            synchronized (this) &#123;</span><br><span class="line">                if (size &lt; 0 || (map.isEmpty() &amp;&amp; size != 0)) &#123;</span><br><span class="line">                    throw new IllegalStateException(getClass().getName()</span><br><span class="line">                            + &quot;.sizeOf() is reporting inconsistent results!&quot;);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (size &lt;= maxSize) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                Map.Entry&lt;K, V&gt; toEvict = map.eldest();</span><br><span class="line">                if (toEvict == null) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                key = toEvict.getKey();</span><br><span class="line">                value = toEvict.getValue();</span><br><span class="line">                map.remove(key);</span><br><span class="line">                size -= safeSizeOf(key, value);</span><br><span class="line">                evictionCount++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            entryRemoved(true, key, value, null);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>实际容量为负数，或者map为空但是实际容量却不为空。抛出异常。</p>
+<p> map.eldest();取出末端数据，然后移除，evictionCount移除数加一。实际容量缩减。调用了safeSizeOf</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private int safeSizeOf(K key, V value) &#123;</span><br><span class="line">        int result = sizeOf(key, value);</span><br><span class="line">        if (result &lt; 0) &#123;</span><br><span class="line">            throw new IllegalStateException(&quot;Negative size: &quot; + key + &quot;=&quot; + value);</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>再调用了sizeOf方法，默认返回1,一般重写这个方法，如果是图片缓存，bitmap是值，这里重写返回bitmap的大小</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * Returns the size of the entry for &#123;@code key&#125; and &#123;@code value&#125; in</span><br><span class="line">     * user-defined units.  The default implementation returns 1 so that size</span><br><span class="line">     * is the number of entries and max size is the maximum number of entries.</span><br><span class="line">     *</span><br><span class="line">     * &lt;p&gt;An entry&#x27;s size must not change while it is in the cache.</span><br><span class="line">     */</span><br><span class="line">    protected int sizeOf(K key, V value) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>trimToSize方法最后调用了entryRemoved方法，默认空实现。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">   * Called for entries that have been evicted or removed. This method is</span><br><span class="line">   * invoked when a value is evicted to make space, removed by a call to</span><br><span class="line">   * &#123;@link #remove&#125;, or replaced by a call to &#123;@link #put&#125;. The default</span><br><span class="line">   * implementation does nothing.</span><br><span class="line">   *</span><br><span class="line">   * &lt;p&gt;The method is called without synchronization: other threads may</span><br><span class="line">   * access the cache while this method is executing.</span><br><span class="line">   *</span><br><span class="line">   * @param evicted true if the entry is being removed to make space, false</span><br><span class="line">   *     if the removal was caused by a &#123;@link #put&#125; or &#123;@link #remove&#125;.</span><br><span class="line">   * @param newValue the new value for &#123;@code key&#125;, if it exists. If non-null,</span><br><span class="line">   *     this removal was caused by a &#123;@link #put&#125;. Otherwise it was caused by</span><br><span class="line">   *     an eviction or a &#123;@link #remove&#125;.</span><br><span class="line">   */</span><br><span class="line">  protected void entryRemoved(boolean evicted, K key, V oldValue, V newValue) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此方法没有控制并发访问，第一个个传true代表已经移除了，用来压缩空间。如果是false，代表是put，或者remove方法调用了此方法。</p>
+<p>看下put方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public final V put(K key, V value) &#123;</span><br><span class="line">        if (key == null || value == null) &#123;</span><br><span class="line">            throw new NullPointerException(&quot;key == null || value == null&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        V previous;</span><br><span class="line">        synchronized (this) &#123;</span><br><span class="line">            putCount++;</span><br><span class="line">            size += safeSizeOf(key, value);</span><br><span class="line">            previous = map.put(key, value);</span><br><span class="line">            if (previous != null) &#123;</span><br><span class="line">                size -= safeSizeOf(key, previous);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (previous != null) &#123;</span><br><span class="line">            entryRemoved(false, key, previous, value);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        trimToSize(maxSize);</span><br><span class="line">        return previous;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>LruCache不允许key，value为null值。同步操作，把key放入map，size增加，如果map已经有值，即previous不是null，则size不能增加，要反扣掉。再调用entryRemoved和trimTosize方法。</p>
+<p>再看get方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">public final V get(K key) &#123;</span><br><span class="line">        if (key == null) &#123;</span><br><span class="line">            throw new NullPointerException(&quot;key == null&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        V mapValue;</span><br><span class="line">        synchronized (this) &#123;</span><br><span class="line">            mapValue = map.get(key);</span><br><span class="line">            if (mapValue != null) &#123;</span><br><span class="line">                hitCount++;</span><br><span class="line">                return mapValue;</span><br><span class="line">            &#125;</span><br><span class="line">            missCount++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /*</span><br><span class="line">         * Attempt to create a value. This may take a long time, and the map</span><br><span class="line">         * may be different when create() returns. If a conflicting value was</span><br><span class="line">         * added to the map while create() was working, we leave that value in</span><br><span class="line">         * the map and release the created value.</span><br><span class="line">         */</span><br><span class="line"></span><br><span class="line">        V createdValue = create(key);</span><br><span class="line">        if (createdValue == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        synchronized (this) &#123;</span><br><span class="line">            createCount++;</span><br><span class="line">            mapValue = map.put(key, createdValue);</span><br><span class="line"></span><br><span class="line">            if (mapValue != null) &#123;</span><br><span class="line">                // There was a conflict so undo that last put</span><br><span class="line">                map.put(key, mapValue);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                size += safeSizeOf(key, createdValue);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (mapValue != null) &#123;</span><br><span class="line">            entryRemoved(false, key, createdValue, mapValue);</span><br><span class="line">            return mapValue;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            trimToSize(maxSize);</span><br><span class="line">            return createdValue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在map取到就直接返回，如果取不到，调用了create方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * Called after a cache miss to compute a value for the corresponding key.</span><br><span class="line">     * Returns the computed value or null if no value can be computed. The</span><br><span class="line">     * default implementation returns null.</span><br><span class="line">     *</span><br><span class="line">     * &lt;p&gt;The method is called without synchronization: other threads may</span><br><span class="line">     * access the cache while this method is executing.</span><br><span class="line">     *</span><br><span class="line">     * &lt;p&gt;If a value for &#123;@code key&#125; exists in the cache when this method</span><br><span class="line">     * returns, the created value will be released with &#123;@link #entryRemoved&#125;</span><br><span class="line">     * and discarded. This can occur when multiple threads request the same key</span><br><span class="line">     * at the same time (causing multiple values to be created), or when one</span><br><span class="line">     * thread calls &#123;@link #put&#125; while another is creating a value for the same</span><br><span class="line">     * key.</span><br><span class="line">     */</span><br><span class="line">    protected V create(K key) &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>create默认返回null，没有控制并发。</p>
+<p>如果有重写，则会添加到map，试图把create返回的createdValue添加到map，但是返回mapValue不是null，说明，有别的线程也访问了create，并且已经添加了一个一样的key到map，所以当前线程不能把这个值覆盖，所以又调用了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// There was a conflict so undo that last put</span><br><span class="line">               map.put(key, mapValue);</span><br></pre></td></tr></table></figure>
+
+<p>用来撤回刚才的put操作。当mapValue不为null时候，调用entryRemoved通知外部，如果为null，则调用trimToSize检查是否超过容量，是否要移除尾部。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/10/24/Lrucache%E4%BB%8B%E7%BB%8D/" data-id="cmr2qx5dj005vpi5nfjqwdv37" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-多线程生产者消费者" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/23/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85/" class="article-date">
+  <time datetime="2017-10-23T11:00:58.000Z" itemprop="datePublished">2017-10-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/23/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85/">多线程生产者消费者</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>多线程生产者消费者<br><a target="_blank" rel="noopener" href="http://www.cnblogs.com/skywang12345/p/3480016.html">生产者消费者模型</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Demo1.java</span></span><br><span class="line"><span class="comment">// 仓库</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Depot</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> capacity;    <span class="comment">// 仓库的容量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> size;        <span class="comment">// 仓库的实际数量</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Depot</span><span class="params">(<span class="type">int</span> capacity)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.capacity = capacity;</span><br><span class="line">        <span class="built_in">this</span>.size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">produce</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">             <span class="comment">// left 表示“想要生产的数量”(有可能生产量太多，需多此生产)</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> val;</span><br><span class="line">            <span class="keyword">while</span> (left &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// 库存已满时，等待“消费者”消费产品。</span></span><br><span class="line">                <span class="keyword">while</span> (size &gt;= capacity)</span><br><span class="line">                    wait();</span><br><span class="line">                <span class="comment">// 获取“实际生产的数量”(即库存中新增的数量)</span></span><br><span class="line">                <span class="comment">// 如果“库存”+“想要生产的数量”&gt;“总的容量”，则“实际增量”=“总的容量”-“当前容量”。(此时填满仓库)</span></span><br><span class="line">                <span class="comment">// 否则“实际增量”=“想要生产的数量”</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">inc</span> <span class="operator">=</span> (size+left)&gt;capacity ? (capacity-size) : left;</span><br><span class="line">                size += inc;</span><br><span class="line">                left -= inc;</span><br><span class="line">                System.out.printf(<span class="string">&quot;%s produce(%3d) --&gt; left=%3d, inc=%3d, size=%3d\n&quot;</span>, </span><br><span class="line">                        Thread.currentThread().getName(), val, left, inc, size);</span><br><span class="line">                <span class="comment">// 通知“消费者”可以消费了。</span></span><br><span class="line">                notifyAll();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">consume</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// left 表示“客户要消费数量”(有可能消费量太大，库存不够，需多此消费)</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> val;</span><br><span class="line">            <span class="keyword">while</span> (left &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// 库存为0时，等待“生产者”生产产品。</span></span><br><span class="line">                <span class="keyword">while</span> (size &lt;= <span class="number">0</span>)</span><br><span class="line">                    wait();</span><br><span class="line">                <span class="comment">// 获取“实际消费的数量”(即库存中实际减少的数量)</span></span><br><span class="line">                <span class="comment">// 如果“库存”&lt;“客户要消费的数量”，则“实际消费量”=“库存”；</span></span><br><span class="line">                <span class="comment">// 否则，“实际消费量”=“客户要消费的数量”。</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">dec</span> <span class="operator">=</span> (size&lt;left) ? size : left;</span><br><span class="line">                size -= dec;</span><br><span class="line">                left -= dec;</span><br><span class="line">                System.out.printf(<span class="string">&quot;%s consume(%3d) &lt;-- left=%3d, dec=%3d, size=%3d\n&quot;</span>, </span><br><span class="line">                        Thread.currentThread().getName(), val, left, dec, size);</span><br><span class="line">                notifyAll();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;capacity:&quot;</span>+capacity+<span class="string">&quot;, actual size:&quot;</span>+size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 生产者</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Producer</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Depot depot;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Producer</span><span class="params">(Depot depot)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.depot = depot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 消费产品：新建一个线程向仓库中生产产品。</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">produce</span><span class="params">(<span class="keyword">final</span> <span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>() &#123;</span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">                depot.produce(val);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 消费者</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Customer</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Depot depot;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Customer</span><span class="params">(Depot depot)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.depot = depot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 消费产品：新建一个线程从仓库中消费产品。</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">consume</span><span class="params">(<span class="keyword">final</span> <span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Thread</span>() &#123;</span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">                depot.consume(val);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo1</span> &#123;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;  </span><br><span class="line">        <span class="type">Depot</span> <span class="variable">mDepot</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Depot</span>(<span class="number">100</span>);</span><br><span class="line">        <span class="type">Producer</span> <span class="variable">mPro</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Producer</span>(mDepot);</span><br><span class="line">        <span class="type">Customer</span> <span class="variable">mCus</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Customer</span>(mDepot);</span><br><span class="line"></span><br><span class="line">        mPro.produce(<span class="number">60</span>);</span><br><span class="line">        mPro.produce(<span class="number">120</span>);</span><br><span class="line">        mCus.consume(<span class="number">90</span>);</span><br><span class="line">        mCus.consume(<span class="number">150</span>);</span><br><span class="line">        mPro.produce(<span class="number">110</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>某一个输出结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Thread-0 produce( 60) --&gt; left=  0, inc= 60, size= 60</span><br><span class="line">Thread-4 produce(110) --&gt; left= 70, inc= 40, size=100</span><br><span class="line">Thread-3 consume(150) &lt;-- left= 50, dec=100, size=  0</span><br><span class="line">Thread-1 produce(120) --&gt; left= 20, inc=100, size=100</span><br><span class="line">Thread-2 consume( 90) &lt;-- left=  0, dec= 90, size= 10</span><br><span class="line">Thread-3 consume(150) &lt;-- left= 40, dec= 10, size=  0</span><br><span class="line">Thread-4 produce(110) --&gt; left=  0, inc= 70, size= 70</span><br><span class="line">Thread-3 consume(150) &lt;-- left=  0, dec= 40, size= 30</span><br><span class="line">Thread-1 produce(120) --&gt; left=  0, inc= 20, size= 50</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>某个生产任务可能要中断，消费后再继续生产，因为仓库已经满了，某次消费也可能消费到仓库空了，必须再生产才能继续消费。这种情况，当执行notifyAll，唤醒后，自己进入等待状态。</p>
+<p>输出结果可能会不同，因为每个线程获取锁的概率不一定，正如下面例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">ShareObj</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ShareObj</span>(<span class="number">5</span>);</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">MyThread</span>(obj).start();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="number">3</span>; i++) &#123;</span><br><span class="line">           TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">MyThread</span>(obj).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ShareObj</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> sec;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ShareObj</span><span class="params">(<span class="type">int</span> sec)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>();</span><br><span class="line">        <span class="built_in">this</span>.sec = sec;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">doSomething</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName());</span><br><span class="line">        TimeUnit.SECONDS.sleep(sec);</span><br><span class="line">        sec = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyThread</span> <span class="keyword">extends</span> <span class="title class_">Thread</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> ShareObj obj;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyThread</span><span class="params">(ShareObj obj)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>();</span><br><span class="line">        <span class="built_in">this</span>.obj = obj;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            obj.doSomething();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>问题描述：多线程处于就绪状态，当对象锁被释放时，多个线程哪个会先得到对象锁？</p>
+<p><a target="_blank" rel="noopener" href="http://bbs.csdn.net/topics/390458387">问题描述参考</a></p>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/chen77716/article/details/6618779">多线程就绪时获得锁的顺序</a></p>
+<p>每个新请求锁的线程先加入ContentionList队列，该队列后进先出，可以并发访问。</p>
+<p>当Owner线程释放锁的时候，如果发现EntryList为空，则把ContentionList的等待队列放入EntryList，并把EntryList的head指定为OnDeck线程，这就很好的解释了，当上面描述问题中，如果创建线程 时候如果执行了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TimeUnit.SECONDS.sleep(1);</span><br></pre></td></tr></table></figure>
+
+<p>那么ContentionList必然是一个倒叙输出，就是最后创建的线程先得到锁，我指的是当第一个线程睡眠五秒，然后每秒创建一个线程，共创建三个线程，输出的结果一直都是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Thread-0</span><br><span class="line">Thread-3</span><br><span class="line">Thread-2</span><br><span class="line">Thread-1</span><br></pre></td></tr></table></figure>
+
+<p>如果你设置睡眠五秒，创建8个线程，每次创建休眠1秒则会得到这个结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Thread-0</span><br><span class="line">Thread-4</span><br><span class="line">Thread-3</span><br><span class="line">Thread-2</span><br><span class="line">Thread-1</span><br><span class="line">Thread-5</span><br><span class="line">Thread-6</span><br><span class="line">Thread-7</span><br><span class="line">Thread-8</span><br></pre></td></tr></table></figure>
+
+<p>在睡眠五秒内，4 3 2 1被加入到ContionList而后Thread-0线程释放锁后又被移入EntryList，并4线程处于OnDeck状态。后续获得锁的线程必然是 4 3 2 1这个顺序直到EntryList为空。当EntryList的线程的最后一个即1执行完时，ContentList只有一个线程5生成，被移动到EntryList，后续的操作都是恰好保持ContionList和EntryList始终只有一个线程。后续都会顺序输出，不管你创建8个还是20个线程。</p>
+<p>如果在创建线程的时候不执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TimeUnit.SECONDS.sleep(1);</span><br></pre></td></tr></table></figure>
+
+<p>则，进入ContionList的顺讯随机，因为ContionList可以并发访问，导致顺序不能确定，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/10/23/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85/" data-id="cmr2qx5e2007wpi5n9au15c13" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-线程同步" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/23/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" class="article-date">
+  <time datetime="2017-10-23T09:00:58.000Z" itemprop="datePublished">2017-10-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/23/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/">理解synchronized</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>理解线程synchronized<br><a target="_blank" rel="noopener" href="http://www.cnblogs.com/skywang12345/p/3479224.html">参考</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// WaitTest.java的源码</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ThreadA</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ThreadA</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="built_in">this</span>) &#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">&quot; call notify()&quot;</span>);</span><br><span class="line">            <span class="comment">// 唤醒当前的wait线程</span></span><br><span class="line">            notify();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WaitTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">ThreadA</span> <span class="variable">t1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ThreadA</span>(<span class="string">&quot;t1&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">synchronized</span>(t1) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 启动“线程t1”</span></span><br><span class="line">                System.out.println(Thread.currentThread().getName()+<span class="string">&quot; start t1&quot;</span>);</span><br><span class="line">                t1.start();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 主线程等待t1通过notify()唤醒。</span></span><br><span class="line">                System.out.println(Thread.currentThread().getName()+<span class="string">&quot; wait()&quot;</span>);</span><br><span class="line">                t1.wait();</span><br><span class="line"></span><br><span class="line">                System.out.println(Thread.currentThread().getName()+<span class="string">&quot; continue&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>线程获取锁要清楚获取的是对象锁，还是类的锁。同步方法，同步静态方法，同步代码块的区别。锁的释放时机，wait的时候会释放对象或者类锁，而notify会重新试图获取锁。</p>
+<img src="/imgs/锁流程.png"   alt="锁流程" align=center />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/10/23/%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" data-id="cmr2qx5ex009api5ngw6w538x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-FutureTask原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/20/FutureTask%E5%8E%9F%E7%90%86/" class="article-date">
+  <time datetime="2017-10-20T16:00:58.000Z" itemprop="datePublished">2017-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/20/FutureTask%E5%8E%9F%E7%90%86/">FutureTask原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>FutureTask原理，下载下来查看会更清楚<br><a target="_blank" rel="noopener" href="http://www.importnew.com/25286.html">参考</a></p>
+<img src="/imgs/FutureTask.png"   alt="FutureTask原理" align=center />
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/10/20/FutureTask%E5%8E%9F%E7%90%86/" data-id="cmr2qx5db0056pi5n5eyk5j56" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Handler流程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/20/Handler%E6%B5%81%E7%A8%8B/" class="article-date">
+  <time datetime="2017-10-20T14:00:58.000Z" itemprop="datePublished">2017-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/20/Handler%E6%B5%81%E7%A8%8B/">Handler流程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Handler，Looper，MessageQueue，Message相关图，下载下来查看会更清楚</p>
+<img src="/imgs/HandlerLooperMessageQueue.png"   alt="Handler流程图" align=center />
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/10/20/Handler%E6%B5%81%E7%A8%8B/" data-id="cmr2qx5dd005cpi5nbaorg2ba" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-博客TravisCI自动部署Hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/06/%E5%8D%9A%E5%AE%A2TravisCI%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2Hexo/" class="article-date">
+  <time datetime="2017-02-06T01:39:34.000Z" itemprop="datePublished">2017-02-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/06/%E5%8D%9A%E5%AE%A2TravisCI%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2Hexo/">TravisCI自动部署Hexo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>用hexo搭建静态博客需要配置hexo，nodejs环境，如果换了电脑，岂不是很麻烦。<br>自己博客源码放在一个名为hexo的仓库，生成的静态博客代码在yeqinfu.github.io仓库。<br>Travis CI 可以监测源码仓库的代码提交，在线生成静态博客代码，并自动提交到yeqinfu.github.io<br>这个仓库。以下叙述配置过程<br>登陆<a target="_blank" rel="noopener" href="https://travis-ci.org/">Travis CI 官网</a><br>添加源码仓库</p>
+<p><img src="/imgs/a1.png" alt="图1"></p>
+<p> 这个仓库将会被监听提交，在这个项目中添加一个配置文件，主要是在线构建的命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">language: node_js</span><br><span class="line">node_js: stable</span><br><span class="line"></span><br><span class="line"># S: Build Lifecycle</span><br><span class="line">install:</span><br><span class="line">  - npm install</span><br><span class="line">#before_script:</span><br><span class="line"> # - npm install -g gulp</span><br><span class="line">script:</span><br><span class="line">  - hexo g </span><br><span class="line">after_script:</span><br><span class="line">  - cd ./public</span><br><span class="line">  - git init</span><br><span class="line">  - git config user.name &quot;yeqinfu&quot;</span><br><span class="line">  - git config user.email &quot;990761790@qq.com&quot;</span><br><span class="line">  - git add .</span><br><span class="line">  - git commit -m &quot;Update docs&quot;</span><br><span class="line">  - git push --force --quiet &quot;https://$&#123;GIT_TOKEN&#125;@$&#123;GH_REF&#125;&quot; master:master</span><br><span class="line"># E: Build LifeCycle</span><br><span class="line">branches:</span><br><span class="line">  only:</span><br><span class="line">    - master</span><br><span class="line">env:</span><br><span class="line"> global:</span><br><span class="line">   - GH_REF: github.com/yeqinfu/yeqinfu.github.io.git</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可以看到当仓库有变动的时候，各个执行命令。最后被提交到GH_REF这个仓库中。<br>这个仓库配置为yeqinfu.github.io<br>提交权限需要一个GIT_TOKEN，在github中<br><img src="/imgs/a2.png" alt="图2"></p>
+<p> 添加即可。拿到token添加到Travis CI的配置面板<br><img src="/imgs/a3.png" alt="图3"></p>
+<p>就完成了配置。所有的提交都会被构建后提交到另一个库。<br><a target="_blank" rel="noopener" href="http://i.woblog.cn/2016/05/04/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8Travis%20CI%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E4%BD%A0%E7%9A%84Hexo%E5%8D%9A%E5%AE%A2%E5%88%B0Github%E4%B8%8A/">参考地址</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/02/06/%E5%8D%9A%E5%AE%A2TravisCI%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2Hexo/" data-id="cmr2qx5e0007qpi5nb6cc5ew8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-杭电2050" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/09/%E6%9D%AD%E7%94%B52050/" class="article-date">
+  <time datetime="2017-01-09T16:33:11.000Z" itemprop="datePublished">2017-01-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/09/%E6%9D%AD%E7%94%B52050/">杭电2050</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=2050">http://acm.hdu.edu.cn/showproblem.php?pid=2050</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package oj;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line">public class Main_2050 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		int t = scanner.nextInt();</span><br><span class="line">		while (t--&gt;0) &#123;</span><br><span class="line">			int a=scanner.nextInt();</span><br><span class="line">			System.out.println(&quot;&quot;+(2*a*a-a+1));</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>如果是直线，会有啥规律？<br>在平面添加一条直线，会把平面分成两部分，在这个基础上再添加一条直线那就是变成4部分要得到平面分割最大面数，就要让第n条直线，穿过前面n－1条直线。可以得到规律<br>直线 面数量<br>1 2<br>2 4<br>3 7<br>4 11</p>
+<p>a1&#x3D;1+1&#x3D;2<br>a2&#x3D;1+1+2&#x3D;4<br>a3&#x3D;1+1+2+3&#x3D;7<br>a4&#x3D;1+1+2+3+4&#x3D;11<br>所以规律是<br>an&#x3D;(n*(n+1))&#x2F;2+1;</p>
+<p>如果在此基础上提出，每次给定的是两条平行线，就是每次给两条平行的线，求n条线能把平面划分多少个面，很明显n是偶数，它相对于直线添加的规律，假定直线的线面函数叫f(n)现在输入的j设定必定为偶数.很明显可以得到<br>g(j)&#x3D;f(j)-j&#x2F;2;<br>注意只适用j为偶数那么－j&#x2F;2是怎么得来的？试想，本来应该香蕉的两条线，结果被搞成平行了，那么，会因为这个最少得减少1个面，因为每次添加都是偶数，那么就是，每次添加两天平行线，那就是在直线f(n)规律上减少一个面</p>
+<p>那么g(j) j为偶数，这就是平行线的规律。在g(j)的基础上，如果每组平行线它不是平行线而是从某个点发出的两条射线，就是说，每次添加的两条线，不再是平行线，而是射线，它两个有共同的原点。那么面数量会如何改变？结果就是面的数量得再减少一个<br>h(j)&#x3D;g(j)-j&#x2F;2;j还是偶数，这样才能符合g(j)得规律.所以最终整理出来<br>h(n)&#x3D;(n(n+1))&#x2F;2+1-n; n为偶数<br>所以这边就是把每条折线当成两个有同一原点的射线，为了适应输入j(j属于自然数) 所以方程里面的n都用2j来代替<br>得到新的y(j)&#x3D;2jj -j+1 (j属于自然数)<br>这就是折线最大面数量规律<br>只要得到规律函数，这题就解了。<br>但是，实际上这道题的初衷，是让我们用递归的思想去解决，以上都是纯数学分析，得到规律公式。<br>递归，就是想要缩减n的规模，一个简单的方法得到递归的表达式就是：<br>y(j)-y(j-1)<br>整理得到j和j-1的增量表达式：<br>4j-3<br>所以，偷懒的变异代码变成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package oj;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line">public class Main_2050 &#123;</span><br><span class="line">   public static void main(String[] args) &#123;</span><br><span class="line">  Scanner scanner = new Scanner(System.in);</span><br><span class="line"> int t = scanner.nextInt();</span><br><span class="line">    while (t--&gt;0) &#123;</span><br><span class="line">   int a=scanner.nextInt();</span><br><span class="line">  System.out.println(&quot;&quot;+fun(a));</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">   private static int fun(int a) &#123;</span><br><span class="line">   if (a==1) &#123;</span><br><span class="line">   return 2;</span><br><span class="line"> </span><br><span class="line">  &#125;else&#123;</span><br><span class="line">    return fun(a-1)+4*a-3;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果光从递归就想解决，n和n－1之间的增量，还真的想不出来哦</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/01/09/%E6%9D%AD%E7%94%B52050/" data-id="cmr2qx5et0090pi5nbg9ofxwd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%AD%E7%94%B5/" rel="tag">杭电</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-杭电1050" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/05/%E6%9D%AD%E7%94%B51050/" class="article-date">
+  <time datetime="2017-01-05T15:35:50.000Z" itemprop="datePublished">2017-01-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/05/%E6%9D%AD%E7%94%B51050/">杭电1050</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=1050">http://acm.hdu.edu.cn/showproblem.php?pid=1050</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">package oj;</span><br><span class="line"></span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class Main_1050 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		int t = scanner.nextInt();</span><br><span class="line">		while (t-- &gt; 0) &#123;</span><br><span class="line">			long n = scanner.nextInt();</span><br><span class="line">			int[] a = new int[200];</span><br><span class="line">			for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">				int s = scanner.nextInt();</span><br><span class="line">				int e = scanner.nextInt();</span><br><span class="line">				s=(s-1)/2;</span><br><span class="line">				e=(e-1)/2;</span><br><span class="line">				if (e&lt;s) &#123;</span><br><span class="line">					int temp=e;</span><br><span class="line">					e=s;</span><br><span class="line">					s=temp;</span><br><span class="line">				&#125;</span><br><span class="line">				for (int j = s; j &lt;=e; j++) &#123;</span><br><span class="line">					a[j] += 1;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			int min = a[0];</span><br><span class="line">			for (int i = 0; i &lt; a.length; i++) &#123;</span><br><span class="line">				if (a[i] &gt; min) &#123;</span><br><span class="line">					min = a[i];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(min*10);</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>有400个房间，但是走廊长度是200.所以才有</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s=(s-1)/2;</span><br><span class="line">e=(e-1)/2;</span><br></pre></td></tr></table></figure>
+<p>只要找出某个走廊段，需要被使用的次数最多，就是最少使用时间。<br>贪心算法入门</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/01/05/%E6%9D%AD%E7%94%B51050/" data-id="cmr2qx5ep008vpi5n7tmv3xpg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%AD%E7%94%B5/" rel="tag">杭电</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-杭电1205" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/05/%E6%9D%AD%E7%94%B51205/" class="article-date">
+  <time datetime="2017-01-05T14:08:46.000Z" itemprop="datePublished">2017-01-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/05/%E6%9D%AD%E7%94%B51205/">杭电1205</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">package oj;</span><br><span class="line"></span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class Main_1205 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		int t = scanner.nextInt();</span><br><span class="line">		while (t-- &gt; 0) &#123;</span><br><span class="line">			long n = scanner.nextInt();</span><br><span class="line">			long sum = 0;</span><br><span class="line">			long max = 0;</span><br><span class="line">			for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">				long a = scanner.nextInt();</span><br><span class="line">				sum += a;</span><br><span class="line">				if (a &gt; max) &#123;</span><br><span class="line">					max = a;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			sum=sum+1-max;</span><br><span class="line">			if (sum&gt;=max) &#123;</span><br><span class="line">				System.out.println(&quot;Yes&quot;);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				System.out.println(&quot;No&quot;);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>只要保证连续两个糖果不一样就可以。那么只要保证最多分类的糖果能够不被连续吃就可以，其他糖果为sum，最多的<br>一类糖果为max，对sum进行插空，sum保证大于等于max－1就可以实现插空，这里注意sum溢出，要用long</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/01/05/%E6%9D%AD%E7%94%B51205/" data-id="cmr2qx5em008spi5nh3kuhx7s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%AD%E7%94%B5/" rel="tag">杭电</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/12/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/14/">__(&#39;next&#39;) &amp;raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetpack/" rel="tag">Jetpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/about-life/" rel="tag">about life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block-chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cryptography/" rel="tag">cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/" rel="tag">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" rel="tag">新闻摘要</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" rel="tag">新闻摘要, 深度阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" rel="tag">新闻摘要,深度阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%AD%E7%94%B5/" rel="tag">杭电</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Jenkins/" style="font-size: 11.43px;">Jenkins</a> <a href="/tags/Jetpack/" style="font-size: 11.43px;">Jetpack</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/about-life/" style="font-size: 10px;">about life</a> <a href="/tags/android/" style="font-size: 15.71px;">android</a> <a href="/tags/block-chain/" style="font-size: 17.14px;">block chain</a> <a href="/tags/block-chain/" style="font-size: 10px;">block-chain</a> <a href="/tags/code/" style="font-size: 18.57px;">code</a> <a href="/tags/cryptography/" style="font-size: 12.86px;">cryptography</a> <a href="/tags/network/" style="font-size: 12.86px;">network</a> <a href="/tags/note/" style="font-size: 10px;">note</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" style="font-size: 20px;">新闻摘要</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" style="font-size: 10px;">新闻摘要, 深度阅读</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" style="font-size: 10px;">新闻摘要,深度阅读</a> <a href="/tags/%E6%9D%AD%E7%94%B5/" style="font-size: 14.29px;">杭电</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 11.43px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/07/">July 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/06/">June 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/07/02/index/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/02/2026-07-02-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-07-02（周四）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/01/2026-07-01-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-07-01（周三）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/30/2026-06-30-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-06-30（周二）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/29/2026-06-29-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-06-29（周一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Vencent learn coding<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
