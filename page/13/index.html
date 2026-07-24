@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Vencent Blog">
+<meta property="og:url" content="https://yeqinfu.github.io/page/13/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:locale">
+<meta property="article:author" content="Vencent learn coding">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Vencent Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yeqinfu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-浮点数在计算机中的表示及精度误差" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/24/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%B2%BE%E5%BA%A6%E8%AF%AF%E5%B7%AE/" class="article-date">
+  <time datetime="2018-05-24T15:00:58.000Z" itemprop="datePublished">2018-05-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/24/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%B2%BE%E5%BA%A6%E8%AF%AF%E5%B7%AE/">浮点数在计算机中的表示和精度误差</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先看误差实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">	System.out.println(<span class="number">88.82</span> + <span class="number">10.85</span>);</span><br><span class="line">    System.out.println(<span class="number">8.82</span> + <span class="number">10.85</span>);</span><br><span class="line">	<span class="type">double</span> <span class="variable">f1</span> <span class="operator">=</span> (<span class="number">3.14</span> + <span class="number">10000000000L</span>) - <span class="number">10000000000L</span>;</span><br><span class="line">	<span class="type">double</span> <span class="variable">f2</span> <span class="operator">=</span> <span class="number">3.14</span> + (<span class="number">10000000000L</span> - <span class="number">10000000000L</span>);</span><br><span class="line">	System.out.println(f1 + <span class="string">&quot;===&quot;</span> + f2);</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">99.66999999999999</span></span><br><span class="line"><span class="number">19.67</span></span><br><span class="line"><span class="number">3.1399993896484375</span>===<span class="number">3.14</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="浮点数表示"><a href="#浮点数表示" class="headerlink" title="浮点数表示"></a>浮点数表示</h4><blockquote>
+<p>N&#x3D;S*R^J</p>
+</blockquote>
+<p>S代表尾数，R基数，j阶码</p>
+<p>在计算机中，规定浮点数表示尾数用纯小数，并且尾数最高位为1，这样的浮点数精度最高。</p>
+<p><img src="http://wx3.sinaimg.cn/large/c1b251b3gy1fruaob7ihcj20fz06b3yp.jpg" alt="image"></p>
+<h3 id="IEEE-754标准"><a href="#IEEE-754标准" class="headerlink" title="IEEE 754标准"></a>IEEE 754标准</h3><p>根据常用计算机浮点数表示标准，以下是各种类型表示占比</p>
+<p><img src="http://wx3.sinaimg.cn/large/c1b251b3gy1fruaruewumj20k804ldg9.jpg" alt="image"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">	System.out.println(<span class="number">88.82</span> + <span class="number">10.85</span>);</span><br><span class="line">    System.out.println(<span class="number">8.82</span> + <span class="number">10.85</span>);</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">99.66999999999999</span></span><br><span class="line"><span class="number">19.67</span></span><br></pre></td></tr></table></figure>
+
+<p>根据误差实例，直接上浮点数运算，以上都是double长实数，化成二进制表示法：</p>
+<h5 id="88-82转二进制数学方法："><a href="#88-82转二进制数学方法：" class="headerlink" title="88.82转二进制数学方法："></a>88.82转二进制数学方法：</h5><p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/597a0643614568312b5243c0.html">参考</a></p>
+<p><img src="http://wx3.sinaimg.cn/large/c1b251b3gy1fruiw3wvawj22oo3kwqv7.jpg" alt="image"></p>
+<p>整数部分的转化，用辗转相除法，倒叙得到88代表的 二进制1011000（上图88多了一个0，错误）</p>
+<p>小数部分的转化，用辗转相乘法，正序得到0.82二进制0.1101001110….后面就不再算了</p>
+<blockquote>
+<p>十进制小数化成二进制，具体是乘以二如果整数部分为一，就取出来，一直乘到小数为零</p>
+</blockquote>
+<p><img src="http://wx3.sinaimg.cn/large/c1b251b3gy1fruj0z4taoj207w070myt.jpg" alt="image"></p>
+<h5 id="十进制转二进制的代码实现"><a href="#十进制转二进制的代码实现" class="headerlink" title="十进制转二进制的代码实现"></a>十进制转二进制的代码实现</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 整数部分 十进制转二进制</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> n</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">fun</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">		StringBuilder stringBuilder=<span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">		<span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">			<span class="type">int</span> r=n%<span class="number">2</span>;</span><br><span class="line">			stringBuilder.append(r+<span class="string">&quot;&quot;</span>);</span><br><span class="line">			n=n/<span class="number">2</span>;</span><br><span class="line">			<span class="keyword">if</span> (n==<span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> stringBuilder.reverse().toString();</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 小数部分 十进制转二进制</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> n</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">fun2</span><span class="params">(<span class="type">double</span> n)</span>&#123;</span><br><span class="line">		StringBuilder stringBuilder=<span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">		stringBuilder.append(<span class="string">&quot;0.&quot;</span>);</span><br><span class="line">		<span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span> (n==<span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> stringBuilder.toString();</span><br><span class="line">			&#125;</span><br><span class="line">			n*=<span class="number">2</span>;</span><br><span class="line">			<span class="keyword">if</span> (n&gt;=<span class="number">1</span>) &#123;</span><br><span class="line">				stringBuilder.append(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">				n=n-<span class="number">1</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				stringBuilder.append(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(stringBuilder.toString());</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<p>由于0.82转化成二进制比较长，浮点数存在精度问题，会被舍去部分，通过代码算出0.82二进制</p>
+<blockquote>
+<p>0.11010001111010111000010100011110101110000101000111101</p>
+</blockquote>
+<p>所以88.82化成二进制</p>
+<blockquote>
+<p>1011000.11010001111010111000010100011110101110000101000111101</p>
+</blockquote>
+<p>再由上面的IEEE标准表格，转化成规格化二进制表示法得出</p>
+<p>88.82 阶码（1阶符 11阶值）0000 0000 0110</p>
+<blockquote>
+<p>第一个0代表阶符为正数，剩下七位代表6因为规格化后，小数点向左平移6位</p>
+</blockquote>
+<p>88.82尾数（1尾符 尾值）0101 1000 1101 0001 1110 1011 1000 0101 0001 1110 1011 1000 0101 </p>
+<blockquote>
+<p>第一个0代表数符，剩下代表精度尾数，从这里看出这个浮点数的精确值受到了舍弃</p>
+</blockquote>
+<p>最后0000 0000 0110 0101 1000 1101 0001 1110 1011 1000 0101 0001 1110 1011 1000 0101 </p>
+<p>同理可以用代码计算其他浮点数转化成机器数的表示方法</p>
+<h5 id="任意实数十进制转二进制"><a href="#任意实数十进制转二进制" class="headerlink" title="任意实数十进制转二进制"></a>任意实数十进制转二进制</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> n 输入一个实数可以大于1</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 输出 二进制</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">fun3</span><span class="params">(<span class="type">double</span> n)</span>&#123;</span><br><span class="line">	<span class="comment">//强转取整数部分</span></span><br><span class="line">	String part1=fun((<span class="type">int</span>)n);</span><br><span class="line">	String part2=fun2(n-(<span class="type">int</span>)n);</span><br><span class="line">	<span class="keyword">return</span> part1+part2.substring(<span class="number">1</span>,part2.length());</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="双精度浮点数表示"><a href="#双精度浮点数表示" class="headerlink" title="双精度浮点数表示"></a>双精度浮点数表示</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 输入是一个二进制字符串</span></span><br><span class="line"><span class="comment">	 * 输出是一个阶码+尾数的64bit浮点数表示</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> s</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">fun4</span><span class="params">(String s)</span>&#123;</span><br><span class="line">		<span class="comment">//小数点位置</span></span><br><span class="line">		<span class="type">int</span> pointIndex=s.length();</span><br><span class="line">		<span class="type">int</span> d=s.indexOf(<span class="string">&quot;.&quot;</span>);</span><br><span class="line">		<span class="keyword">if</span> (d!=-<span class="number">1</span>) &#123;</span><br><span class="line">			pointIndex=d;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//找到第一个1位置</span></span><br><span class="line">		<span class="type">int</span> first=s.indexOf(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">		<span class="keyword">if</span> (first==-<span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&quot;0000 0000 0000 0000 0000 0000&quot;</span>.replaceAll(<span class="string">&quot; &quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//阶符</span></span><br><span class="line">		String jf=pointIndex-first&gt;<span class="number">0</span>?<span class="string">&quot;0&quot;</span>:<span class="string">&quot;1&quot;</span>;</span><br><span class="line">		<span class="comment">//阶值</span></span><br><span class="line">		<span class="type">int</span> a=pointIndex-first-<span class="number">1</span>;</span><br><span class="line">		String jm=fun(a);</span><br><span class="line">		<span class="comment">//填充 不考虑阶值溢出</span></span><br><span class="line">		<span class="keyword">while</span>(jm.length()&lt;<span class="number">11</span>)&#123;</span><br><span class="line">			jm=<span class="string">&quot;0&quot;</span>+jm;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//阶码部分</span></span><br><span class="line">		String jString=jf+jm;</span><br><span class="line">		<span class="comment">//数符 不考虑负数</span></span><br><span class="line">		String sf=<span class="string">&quot;0&quot;</span>;</span><br><span class="line">		<span class="comment">//尾数</span></span><br><span class="line">		s=s.replace(<span class="string">&quot;.&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">		String sm=s.substring(first, Math.min(s.length(), <span class="number">51</span>+first));</span><br><span class="line">		<span class="keyword">return</span> jString+sf+sm;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		String string=fun3(<span class="number">8.82</span>);</span><br><span class="line">		System.out.println(fun4(string));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">0000000000110100011010001111010111000010100011110101110000101001</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>用以上代码得出8.82的浮点数表示</p>
+<blockquote>
+<p>0000000000110100011010001111010111000010100011110101110000101001</p>
+</blockquote>
+<p>88.82</p>
+<blockquote>
+<p>0000000001100101100011010001111010111000010100011110101110000101</p>
+</blockquote>
+<p>10.85</p>
+<blockquote>
+<p>0000000000110101011011001100110011001100110011001100110011001100</p>
+</blockquote>
+<h4 id="浮点数运算"><a href="#浮点数运算" class="headerlink" title="浮点数运算"></a>浮点数运算</h4><p>当阶码不同的时候，浮点运算不能直接进行加法运算，第一步需要对阶，然后尾数求和，规格化，舍入</p>
+<p>对阶，判断溢出。求出阶差，小阶向大阶看齐。尾数右移，尾数可能会丢失，精度受到影响。</p>
+<p>计算88.82+10.85</p>
+<p>求两者的补码，因为都是正数，补码相同</p>
+<p>88.82补码：</p>
+<blockquote>
+<p>0000 0000 0110; 0101100011010001111010111000010100011110101110000101</p>
+</blockquote>
+<p>10.85补码：</p>
+<blockquote>
+<p>0000 0000 0011; 0101011011001100110011001100110011001100110011001100</p>
+</blockquote>
+<h5 id="对阶-分号前为阶码"><a href="#对阶-分号前为阶码" class="headerlink" title="对阶(分号前为阶码)"></a>对阶(分号前为阶码)</h5><p>阶差：</p>
+<blockquote>
+<p>0000 0000 0110-0000 0000 0011</p>
+</blockquote>
+<p>等价于（-0000 0000 0011的补码是1111 1111 1101）(注：其实直接减答案也一样，但是如果被减数小于减数就要这种方法)</p>
+<blockquote>
+<p>0000 0000 0110+1111 1111 1101</p>
+</blockquote>
+<p>结果</p>
+<blockquote>
+<p>0000 0000 0011</p>
+</blockquote>
+<p>这是一个正值，说明要把10.85向高阶移动三位，尾数部分除了符号位右移三位，变成：</p>
+<p>10.85</p>
+<blockquote>
+<p>0000 0000 0110; 0000101011011001100110011001100110011001100110011001</p>
+</blockquote>
+<p>可以看出，前面补领三位，后面舍去三位，精度损失</p>
+<h5 id="尾数求和"><a href="#尾数求和" class="headerlink" title="尾数求和"></a>尾数求和</h5><p>计算10.85和88.82的尾数</p>
+<blockquote>
+<p>0000 1010 1101 1001 1001 1001 1001 1001 1001 1001 1001 1001 1001</p>
+<ul>
+<li></li>
+</ul>
+<p>0101 1000 1101 0001 1110 1011 1000 0101 0001 1110 1011 1000 0101</p>
+<p>&#x3D;</p>
+<p>0110 0011 1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1110</p>
+</blockquote>
+<h5 id="规格化"><a href="#规格化" class="headerlink" title="规格化"></a>规格化</h5><p>尾数部分值在0.5到1之间，已经是规格化，无需变化</p>
+<h5 id="判断溢出"><a href="#判断溢出" class="headerlink" title="判断溢出"></a>判断溢出</h5><p>两个补码相加没有溢出</p>
+<p>最终结果</p>
+<blockquote>
+<p>0000 0000 0110;0110 0011 1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1110</p>
+<p>99.66999999999999</p>
+<p>整数部分：</p>
+<p>110 0011-&gt;99</p>
+<p>小数部分-&gt;1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1110</p>
+</blockquote>
+<p>代码判断</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	System.out.println(<span class="string">&quot;1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1110&quot;</span>.replaceAll(<span class="string">&quot; &quot;</span>, <span class="string">&quot;&quot;</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.66999999999995</span>).substring(<span class="number">2</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.66999999999996</span>).substring(<span class="number">2</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.66999999999999</span>).substring(<span class="number">2</span>));</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011110</span></span><br><span class="line"><span class="number">1010101110000101000111101011100001010001110111010111</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011110000001</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011110100010111</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>因为我也不知道怎么把1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1110转正十进制小数，所以通过把0.66999999999999转化成二进制来比较答案来看不同。</p>
+<p>到这一步，发现精度还是有不对的。内存实际的数值更接近于0.66999999999996</p>
+<p>是哪里出错了？</p>
+<p>10.85对阶之后，尾数舍去了三位影响了精度，如果舍去采用0舍1入会出现什么结果？</p>
+<p>那么10.85舍去之后变成</p>
+<blockquote>
+<p>0000 0000 0110; 0000101011011001100110011001100110011001100110011010</p>
+<p>(末尾本来是1，刚好舍去的也是110入一位)</p>
+</blockquote>
+<p>再计算尾数求和</p>
+<blockquote>
+<p>0000 1010 1101 1001 1001 1001 1001 1001 1001 1001 1001 1001 1010</p>
+<ul>
+<li></li>
+</ul>
+<p>0101 1000 1101 0001 1110 1011 1000 0101 0001 1110 1011 1000 0101</p>
+<p>&#x3D;</p>
+<p>0110 0011 1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1111</p>
+</blockquote>
+<p>所以最终结果变成</p>
+<blockquote>
+<p>0000 0000 0110;0110 0011 1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1111</p>
+</blockquote>
+<p>此时代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;1010 1011 1000 0101 0001 1110 1011 1000 0101 0001 1111&quot;</span>.replaceAll(<span class="string">&quot; &quot;</span>, <span class="string">&quot;&quot;</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.66999999999995</span>).substring(<span class="number">2</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.66999999999996</span>).substring(<span class="number">2</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.66999999999999</span>).substring(<span class="number">2</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.67</span>).substring(<span class="number">2</span>));</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011111</span></span><br><span class="line"><span class="number">1010101110000101000111101011100001010001110111010111</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011110000001</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011110100010111</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011110101110001</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看出内存中的数最接近0.66999999999999</p>
+<h4 id="同理计算8-82-10-85"><a href="#同理计算8-82-10-85" class="headerlink" title="同理计算8.82+10.85"></a>同理计算8.82+10.85</h4><p>8.82</p>
+<blockquote>
+<p>0000 0000 0011;0100011010001111010111000010100011110101110000101001</p>
+</blockquote>
+<p>10.85</p>
+<blockquote>
+<p>0000 0000 0011;0101011011001100110011001100110011001100110011001100</p>
+</blockquote>
+<p>对阶，发现对阶一致，那么直接尾数相加</p>
+<blockquote>
+<p>0100 0110 1000 1111 0101 1100 0010 1000 1111 0101 1100 0010 1001</p>
+<ul>
+<li></li>
+</ul>
+<p>0101 0110 1100 1100 1100 1100 1100 1100 1100 1100 1100 1100 1100</p>
+<p>&#x3D;</p>
+<p>01001 1101 0101 1100 0010 1000 1111 0101 1100 0010 1000 1111 0101</p>
+</blockquote>
+<p>出现了溢出此时，规格化后尾数0舍去1入得到最终</p>
+<blockquote>
+<p>0000 0000 0100;(阶码加1)</p>
+<p>0100 1110 1010 1110 0001 0100 0111 1010 1110 0001 0100 0111 1011</p>
+<p>尾数入1</p>
+</blockquote>
+<p>最终值</p>
+<blockquote>
+<p>0000 0000 0100;0100 1110 1010 1110 0001 0100 0111 1010 1110 0001 0100 0111 1011</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;10 1010 1110 0001 0100 0111 1010 1110 0001 0100 0111 1011&quot;</span>.replaceAll(<span class="string">&quot; &quot;</span>, <span class="string">&quot;&quot;</span>));</span><br><span class="line">		System.out.println(fun3(<span class="number">0.67</span>).substring(<span class="number">2</span>));</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">1010101110000101000111101011100001010001111011</span></span><br><span class="line"><span class="number">10101011100001010001111010111000010100011110101110001</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>上述内容可能具体还会有错，因为不知道怎么把像</p>
+<p>1010101110000101000111101011100001010001111011（52bit）变成0.67.</p>
+<p>因为当把0.67化成一个二进制是</p>
+<p>10101011100001010001111010111000010100011110101110001（59bit）</p>
+<p>但是明白的是，浮点数运算的大致过程，和其中计算过程中的精度损失问题。当两个数相差越大因为要对阶而对齐导致的精度遗失是主要原因。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/05/24/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%8F%8A%E7%B2%BE%E5%BA%A6%E8%AF%AF%E5%B7%AE/" data-id="cmry6idfz00b0ow4s32kwbzbt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-原码反码补码总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/23/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2018-05-23T14:00:58.000Z" itemprop="datePublished">2018-05-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/23/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E6%80%BB%E7%BB%93/">原码，反码，补码总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原码就是符号位加上真值，在java中，我们知道short占用了2字节，也就是16bit。</p>
+<p>但是我们知道它只能表示最大的正数是32767，也就是2^15-1，本来16bit可以表示的正数范围应该是</p>
+<blockquote>
+<p>0~1111 1111 1111 1111</p>
+</blockquote>
+<p>但是现在正数只用了一半的空间，高位数的一半被用来表示负数，最高位代表符号位，1代表负数。所以short最小数可以表示-32768也就是全是1的情况。</p>
+<p>计算机中负数是以补码的形式存在，而反码的出现就是因为补码引起的。因为正数的反码就是本身，负数反码就是符号位不变，其余取反。</p>
+<p>这里假设最大正数不是32767（图计算方便），假设某个类型只用4bit表示，那么它的范围就是-8到7</p>
+<p>仔细一个个数</p>
+<blockquote>
+<p>0000 代表 0</p>
+<p>0001 代表 1</p>
+<p>0010 代表 2</p>
+<p>0011 代表 3</p>
+<p>0100 代表 4</p>
+<p>0101 代表 5</p>
+<p>0110 代表 6</p>
+<p>0111 代表 7</p>
+<p>然后1000代表什么呢？它代表-8</p>
+<p>1000 代表 -8</p>
+<p>1001 代表 -7</p>
+<p>1010 代表 -6</p>
+<p>…</p>
+<p>1111 代表 -1</p>
+</blockquote>
+<p>本来负数的补码就是反码+1，反过来已知补码求原码就是-1，再取反。比如：</p>
+<p>1001减1后：1000</p>
+<p>1000取反：1111就是-7所以没问题。</p>
+<p>但是为什么1000代表-8呢？</p>
+<p>其实可以从<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%90%8C%E4%BD%99%E5%AE%9A%E7%90%86/1212360?fr=aladdin">同余定理</a>的角度来理解。要表示一个负数，就用这个负数的同余数来表示。</p>
+<p>所以可以看到 </p>
+<p>8和-8同余</p>
+<p>9和-7同余</p>
+<p>…</p>
+<p>15和-1同余</p>
+<p>为什么这些分别两数同余呢就是同余定理的问题了。</p>
+<p>可以看下java代码求mod</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">	<span class="type">int</span> i=Math.floorMod(-<span class="number">7</span>, <span class="number">16</span>);</span><br><span class="line">	System.out.println(i);</span><br><span class="line"><span class="comment">//output:9</span></span><br></pre></td></tr></table></figure>
+
+<p>这里想，为什么是除以16？因为你长度就是16,如果你换成17，那output:10就变成了-7用10表示。</p>
+<p>-8用9表示，-9用8表示，-10用7表示。此时等等。感觉不对吧，-10用7表示，那7用啥表示？</p>
+<p>所以为什么不是除以15也是同样道理。</p>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p>到此为止，可以知道一些类型，举例short这个16bit表示的范围是32767到-32768的原因，和负数用同余数的映射关系。那么为什么负数要用补码（也就是同余数）来存？</p>
+<h4 id="计算机为什么负数要以补码的形式存在？"><a href="#计算机为什么负数要以补码的形式存在？" class="headerlink" title="计算机为什么负数要以补码的形式存在？"></a>计算机为什么负数要以补码的形式存在？</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/raytheweak/p/7290617.html">参考</a></p>
+<p>因为电路计算中，借位电路比较复杂	。</p>
+<p>有一道运算</p>
+<blockquote>
+<p>14-7化成二进制减法 1110-0111</p>
+</blockquote>
+<p>这里发现是不是需要借位</p>
+<p>那么如果看成</p>
+<blockquote>
+<p>14+(-7) 并且-7用它的同余数（补码表示）</p>
+<p>变成1110+1001得到&#x3D;0111（最高位溢出）</p>
+</blockquote>
+<p>很神奇，答案竟然一样。所以加法电路简单，用同余数表示不需要借位运算。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>不必去背诵什么正数的原码反码补码一样，什么负数的补码等于反码加1而是要真正理解计算机中，为什么要出现补码，为了运算更快。负数在内存中的表示方式。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/05/23/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E6%80%BB%E7%BB%93/" data-id="cmry6idfn009low4s9j2y6lo8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-NFC基础" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/18/NFC%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2018-05-18T14:00:58.000Z" itemprop="datePublished">2018-05-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/18/NFC%E5%9F%BA%E7%A1%80/">NFC基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="卡片类型"><a href="#卡片类型" class="headerlink" title="卡片类型"></a>卡片类型</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/h3c4lenovo/article/details/8179879">参考</a></p>
+<p>跟nfc有关的ISO标准：</p>
+<table>
+<thead>
+<tr>
+<th>ISO 14443</th>
+<th>RFID卡标准（非接触IC卡），该标准又有很多子标准</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ISO 7816</td>
+<td>接触式IC卡标准</td>
+</tr>
+<tr>
+<td>ISO 15693</td>
+<td>某种射频卡标准吧，这个没查到资料</td>
+</tr>
+<tr>
+<td>ISO 18092</td>
+<td>NFC标准</td>
+</tr>
+</tbody></table>
+<h5 id="NfcA-NfcB类型卡的区别"><a href="#NfcA-NfcB类型卡的区别" class="headerlink" title="NfcA NfcB类型卡的区别"></a>NfcA NfcB类型卡的区别</h5><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>TagTechnology</code></td>
+<td>The interface that all tag technology classes must implement.</td>
+</tr>
+<tr>
+<td><code>NfcA</code></td>
+<td>Provides access to NFC-A (ISO 14443-3A) properties and I&#x2F;O operations.</td>
+</tr>
+<tr>
+<td><code>NfcB</code></td>
+<td>Provides access to NFC-B (ISO 14443-3B) properties and I&#x2F;O operations.</td>
+</tr>
+<tr>
+<td><code>NfcF</code></td>
+<td>Provides access to NFC-F (JIS 6319-4) properties and I&#x2F;O operations.</td>
+</tr>
+<tr>
+<td><code>NfcV</code></td>
+<td>Provides access to NFC-V (ISO 15693) properties and I&#x2F;O operations.</td>
+</tr>
+<tr>
+<td><code>IsoDep</code></td>
+<td>Provides access to ISO-DEP (ISO 14443-4) properties and I&#x2F;O operations.</td>
+</tr>
+<tr>
+<td><code>Ndef</code></td>
+<td>Provides access to NDEF data and operations on NFC tags that have been formatted as NDEF.</td>
+</tr>
+<tr>
+<td><code>NdefFormatable</code></td>
+<td>Provides a format operations for tags that may be NDEF formattable.</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>MifareClassic</code></td>
+<td>Provides access to MIFARE Classic properties and I&#x2F;O operations, if this Android device supports MIFARE.</td>
+</tr>
+<tr>
+<td><code>MifareUltralight</code></td>
+<td>Provides access to MIFARE Ultralight properties and I&#x2F;O operations, if this Android device supports MIFARE.</td>
+</tr>
+</tbody></table>
+<h4 id="主动模式"><a href="#主动模式" class="headerlink" title="主动模式"></a>主动模式</h4><p>NFC第一种通信模式计较主动模式，在主动模式下，nfc发起设备要发送数据给目标设备时，必须产生自己的射频场，被读nfc设备发送响应改发起设备时，也要产生自己的射频场。</p>
+<h4 id="被动模式"><a href="#被动模式" class="headerlink" title="被动模式"></a>被动模式</h4><p>在被动模式下，nfc发起设备的一方，在整个通信过程中提供射频场。</p>
+<h4 id="NFC工作模式和应用分类"><a href="#NFC工作模式和应用分类" class="headerlink" title="NFC工作模式和应用分类"></a>NFC工作模式和应用分类</h4><p>读写模式，p2p模式，卡模拟模式（支付0模式）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/05/18/NFC%E5%9F%BA%E7%A1%80/" data-id="cmry6idey007tow4s40s38fth" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android逆向入门-Smali语法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/28/Android%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8-Smali%E8%AF%AD%E6%B3%95/" class="article-date">
+  <time datetime="2018-03-28T14:00:58.000Z" itemprop="datePublished">2018-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/28/Android%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8-Smali%E8%AF%AD%E6%B3%95/">Android逆向入门-smali语法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="smali语法"><a href="#smali语法" class="headerlink" title="smali语法"></a>smali语法</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wdaming1986/article/details/8299996">出处</a></p>
+<p>android编译工具编译成dex，android系统的DVM会执行该文件，smali&#x2F;baksmali则是DVM可执行文件的汇编器&#x2F;反汇编器。反汇编Dalvik可执行文件后（dex），将会的带smali后缀文件，smali代码拥有特定语法。</p>
+<p>其中dex文件和smali文件可以通过smali，baksmali工具相互转换，而smali文件无法完整转化成java文件，可能是dx工具将java文件的字节码的class文件转化成文件的过程中，进行了重新排列，取出了多余的信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">.class public Lcom/cn/daming/activity/HelloWorldAppActivity;</span><br><span class="line">.super Landroid/app/Activity;</span><br><span class="line">.source &quot;HelloWorldAppActivity.java&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># instance fields</span><br><span class="line">.field private mTextView:Landroid/widget/TextView;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># direct methods</span><br><span class="line">.method public constructor &lt;init&gt;()V</span><br><span class="line">    .locals 0</span><br><span class="line"></span><br><span class="line">    .prologue</span><br><span class="line">    .line 7</span><br><span class="line">    invoke-direct &#123;p0&#125;, Landroid/app/Activity;-&gt;&lt;init&gt;()V</span><br><span class="line"></span><br><span class="line">    return-void</span><br><span class="line">.end method</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># virtual methods</span><br><span class="line">.method public onCreate(Landroid/os/Bundle;)V</span><br><span class="line">    .locals 2</span><br><span class="line">    .parameter &quot;savedInstanceState&quot;</span><br><span class="line"></span><br><span class="line">    .prologue</span><br><span class="line">    .line 12</span><br><span class="line">    invoke-super &#123;p0, p1&#125;, Landroid/app/Activity;-&gt;onCreate(Landroid/os/Bundle;)V</span><br><span class="line"></span><br><span class="line">    .line 13</span><br><span class="line">    const/high16 v0, 0x7f03</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;p0, v0&#125;, Lcom/cn/daming/activity/HelloWorldAppActivity;-&gt;setContentView(I)V</span><br><span class="line"></span><br><span class="line">    .line 14</span><br><span class="line">    const/high16 v0, 0x7f05</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;p0, v0&#125;, Lcom/cn/daming/activity/HelloWorldAppActivity;-&gt;findViewById(I)Landroid/view/View;</span><br><span class="line"></span><br><span class="line">    move-result-object v0</span><br><span class="line"></span><br><span class="line">    check-cast v0, Landroid/widget/TextView;</span><br><span class="line"></span><br><span class="line">    iput-object v0, p0, Lcom/cn/daming/activity/HelloWorldAppActivity;-&gt;mTextView:Landroid/widget/TextView;</span><br><span class="line"></span><br><span class="line">    .line 15</span><br><span class="line">    iget-object v0, p0, Lcom/cn/daming/activity/HelloWorldAppActivity;-&gt;mTextView:Landroid/widget/TextView;</span><br><span class="line"></span><br><span class="line">    const/high16 v1, 0x7f04</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;v0, v1&#125;, Landroid/widget/TextView;-&gt;setText(I)V</span><br><span class="line"></span><br><span class="line">    .line 16</span><br><span class="line">    return-void</span><br><span class="line">.end method</span><br></pre></td></tr></table></figure>
+
+<p>对应java代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.cn.daming.activity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Activity;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorldAppActivity</span> <span class="keyword">extends</span> <span class="title class_">Activity</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> TextView mTextView;</span><br><span class="line">    <span class="comment">/** Called when the activity is first created. */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.main);</span><br><span class="line">        mTextView = (TextView)findViewById(R.id.text_view);</span><br><span class="line">        mTextView.setText(R.string.hello);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Dalvik 字节码有两种类型：原始类型；引用类型（包括对象和数组）</p>
+<p>原始类型：V  void只能用于返回值类型</p>
+<p>​                    Z boolean类型</p>
+<p>​                     B byte</p>
+<p>​                      S short</p>
+<p>​                      C char</p>
+<p>​                      I int</p>
+<p>​                      J long（64位）</p>
+<p>​                      F float</p>
+<p>​                      D double（64bit）</p>
+<p>对象类型：Lpackage&#x2F;name&#x2F;ObjectName;相当于java中的package.name.ObjectName</p>
+<p>​                   L: 表示这个是一个对象类型</p>
+<p>​                    package&#x2F;name:该对象所在的包</p>
+<p>​                    ;  :表示对象名称结束</p>
+<p>数组的表示形式：</p>
+<p>​                   [I :表示一个整形数组的以为数组，相当于java的int[]</p>
+<p>​                   对于多维数组，只要增加[就可以了。[[I &#x3D;int[][]; 注，每一维最多255个</p>
+<p>对象数组的表示形式：</p>
+<p>​                   [Ljava&#x2F;lang&#x2F;String 表示String的对象数组；</p>
+<p>方法的表示形式：</p>
+<p>​                   Lpackage&#x2F;name&#x2F;ObjectName;-&gt;methodName(III)Z</p>
+<p>​                   Lpackage&#x2F;name&#x2F;ObjectName表示类型</p>
+<p>​                   methodName 表示方法名</p>
+<p>​                    III表示参数，这里表示三个整形参数，方法参数是一个接一个的，中间没有隔开</p>
+<p>字段的表示形式：</p>
+<p>​                   Lpackage&#x2F;name&#x2F;ObjectName;-&gt;FieldName:Ljava&#x2F;lang&#x2F;String</p>
+<p>​                   表示包名，字段名和各字段类型</p>
+<p>有两种方式指定一个方法有多少个寄存器是可用的：</p>
+<p>​                  .register 指令指定了方法中的寄存器的总数</p>
+<p>​                  .locals指令表明了方法中非参寄存器的总数，出现在方法的第一行</p>
+<p>方法的传参：</p>
+<p>​                  当一个方法被调用的时候，方法的参数被置于最后N个寄存器中；</p>
+<p>​                  例如，一个方法有两个参数，那么参数将至于最后两个寄存器，非静态方法中的第一个参数总是调用改方法的对象；对于静态方法除了没有隐含的this参数以外，其他都一样；</p>
+<p>寄存器的命名方式：</p>
+<p>​                  V命名</p>
+<p>​                  P命名 第一个寄存器就是方法中的第一个参数寄存器</p>
+<p>​                  比较：使用P命名是为了防止以后如果在方法中增加寄存器，需要对参数寄存器重新进行编号的缺点</p>
+<p>​                  特别说明：Long和Double类型的64bit需要两个寄存器</p>
+<p>例如：对于非静态方法</p>
+<p>​                  LMyObject-&gt;myMethod(IJZ)V;</p>
+<p>​                  有四个参数：LMyObject,int,long,boolean;需要五个寄存器来存储参数</p>
+<p>​                  P0 this</p>
+<p>​                  P1 I(int)</p>
+<p>​                  P2,P3 J(long)</p>
+<p>​                  P4 Z(boolean)</p>
+<p>现在回头看smali代码就一目了然了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/03/28/Android%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8-Smali%E8%AF%AD%E6%B3%95/" data-id="cmry6idej006cow4s4d8gh0fs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android逆向入门（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/28/Android%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
+  <time datetime="2018-03-28T12:00:58.000Z" itemprop="datePublished">2018-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/28/Android%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/">Android逆向入门（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="如何动手？"><a href="#如何动手？" class="headerlink" title="如何动手？"></a>如何动手？</h4><p>破解Android程序通常的方法是将apk文件利用ApkTool反编译，生成Smali格式的反汇编代码，然后阅读Smali文件的代码来理解程序的运行机制，找到程序的突破口进行修改，最后使用ApkTool重新编译生成apk文件并签名，最后运行测试，如此循环，直到程序被成功破解。</p>
+<h4 id="反编译apk文件"><a href="#反编译apk文件" class="headerlink" title="反编译apk文件"></a>反编译apk文件</h4><p>使用ApkTool反编译，这边选择一个没有被加固的，我自己写的一个release版本的apk。</p>
+<p><img src="http://ws1.sinaimg.cn/large/c1b251b3gy1fpsdugbpftj20sq0p8myv.jpg" alt="image"></p>
+<p>上图是apktool的命令参数。然后开始根据格式输入命令</p>
+<blockquote>
+<p>apktool.bat d ZXBZW-release.apk test</p>
+</blockquote>
+<p><img src="http://ws1.sinaimg.cn/large/c1b251b3gy1fpsdyzmb9gj21330ieace.jpg" alt="image"></p>
+<p>这边出现部分错误，目前也不知道为什么会有这个错误，先略过。</p>
+<p><img src="http://ws1.sinaimg.cn/large/c1b251b3gy1fpse0d981ej20jy0fodh7.jpg" alt="image"></p>
+<p>test文件夹出现了一系列目录与文件。smali目录下存放了程序所欲的反汇编代码，res文件夹没有出现。</p>
+<p>查了网上的原因，说是因为ApkTool版本太低了。<a target="_blank" rel="noopener" href="http://www.cnblogs.com/sage-blog/p/4323049.html">回答链接</a></p>
+<blockquote>
+<p>apktool.bat -version 显示1.5.2</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://ibotpeaches.github.io/Apktool/">apkTool 下载地址</a>更新ApkTool后,用jar文件反编译，没有报错</p>
+<p><img src="http://ws1.sinaimg.cn/large/c1b251b3gy1fpsico0juqj21h70h9ta1.jpg" alt="image"></p>
+<p><img src="http://ws1.sinaimg.cn/large/c1b251b3gy1fpsif1k51qj20ib0bwq3k.jpg" alt="image"></p>
+<p>smali目录存放了程序所有的反汇编代码，res目录则是程序的资源文件。</p>
+<h4 id="分析问题"><a href="#分析问题" class="headerlink" title="分析问题"></a>分析问题</h4><p>一般Android来说，错误提示信息通畅是指引关键代码的风向标，在错误提示附近一般是程序的核心验证代码。错误提示字符串可能是硬编码到源码中，也可能引用自“res\values”目录下的strings.xml文件。</p>
+<p>下面打开“res\values\strings.xml”查看内容。</p>
+<p><img src="http://ws1.sinaimg.cn/large/c1b251b3gy1fpsil8vmx2j20r00p4acv.jpg" alt="image"></p>
+<p>开发android程序时，String.xml文件的所有字符串都在“gen&#x2F;<packagename>&#x2F;R.java”文件的String类中被标识，每个字符串都有唯一的int类型索引值。反编译后，索引值保存在string.xml文件同目录下的public.xml文件中。</p>
+<p><img src="http://ws1.sinaimg.cn/large/c1b251b3gy1fpsipgewd5j20kk0c8dgt.jpg" alt="image"></p>
+<p>在这里我们查找登录逻辑，在string.xml中</p>
+<blockquote>
+<p><string name="token_invalid">登录过期请从新登陆！</string></p>
+</blockquote>
+<p>查找这个字符串，对应public.xml中</p>
+<blockquote>
+ <public type="string" name="token_invalid" id="0x7f080210" />
+</blockquote>
+<p>得到了这个id值，然后在smali目录中搜索含有内容为0x7f080210的文件。</p>
+<p><a target="_blank" rel="noopener" href="https://down.52pojie.cn/Tools/Android_Tools/">常用工具包合集</a></p>
+<p>目前不知道专业人士怎么查，我用as打开这个目录ctrl+h查到了这个id</p>
+<p><img src="http://ws1.sinaimg.cn/large/c1b251b3gy1fpsk4q5og6j211u0k9myy.jpg" alt="image"></p>
+<h4 id="smali语法"><a href="#smali语法" class="headerlink" title="smali语法"></a>smali语法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">.field private isFlag:z　　定义变量</span><br><span class="line"></span><br><span class="line">.method　　方法</span><br><span class="line"></span><br><span class="line">.parameter　　方法参数</span><br><span class="line"></span><br><span class="line">.prologue　　方法开始</span><br><span class="line"></span><br><span class="line">.line 12　　此方法位于第12行</span><br><span class="line"></span><br><span class="line">invoke-super　　调用父函数</span><br><span class="line"></span><br><span class="line">const/high16  v0, 0x7fo3　　把0x7fo3赋值给v0</span><br><span class="line"></span><br><span class="line">invoke-direct　　调用函数</span><br><span class="line"></span><br><span class="line">return-void　　函数返回void</span><br><span class="line"></span><br><span class="line">.end method　　函数结束</span><br><span class="line"></span><br><span class="line">new-instance　　创建实例</span><br><span class="line"></span><br><span class="line">iput-object　　对象赋值</span><br><span class="line"></span><br><span class="line">iget-object　　调用对象</span><br><span class="line"></span><br><span class="line">invoke-static　　调用静态函数</span><br><span class="line">条件跳转分支：</span><br><span class="line"></span><br><span class="line">&quot;if-eq vA, vB, :cond_**&quot;   如果vA等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-ne vA, vB, :cond_**&quot;   如果vA不等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-lt vA, vB, :cond_**&quot;    如果vA小于vB则跳转到:cond_**</span><br><span class="line">&quot;if-ge vA, vB, :cond_**&quot;   如果vA大于等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-gt vA, vB, :cond_**&quot;   如果vA大于vB则跳转到:cond_**</span><br><span class="line">&quot;if-le vA, vB, :cond_**&quot;    如果vA小于等于vB则跳转到:cond_**</span><br><span class="line">&quot;if-eqz vA, :cond_**&quot;   如果vA等于0则跳转到:cond_**</span><br><span class="line">&quot;if-nez vA, :cond_**&quot;   如果vA不等于0则跳转到:cond_**</span><br><span class="line">&quot;if-ltz vA, :cond_**&quot;    如果vA小于0则跳转到:cond_**</span><br><span class="line">&quot;if-gez vA, :cond_**&quot;   如果vA大于等于0则跳转到:cond_**</span><br><span class="line">&quot;if-gtz vA, :cond_**&quot;   如果vA大于0则跳转到:cond_**</span><br><span class="line">&quot;if-lez vA, :cond_**&quot;    如果vA小于等于0则跳转到:cond_**</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="java-对比分析"><a href="#java-对比分析" class="headerlink" title="java 对比分析"></a>java 对比分析</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">ifSense</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">tempFlag</span> <span class="operator">=</span> ((<span class="number">3</span>-<span class="number">2</span>)==<span class="number">1</span>)? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (tempFlag) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">.method private ifSense()Z//定义方法</span><br><span class="line">    .locals 2 // 指令表明了方法中非参寄存器的总数，出现在方法中的第一行</span><br><span class="line"></span><br><span class="line">    .prologue//方法开始</span><br><span class="line">    .line 22</span><br><span class="line">    const/4 v0, 0x1     // v0赋值为1</span><br><span class="line"></span><br><span class="line">    .line 24</span><br><span class="line">    .local v0, tempFlag:Z</span><br><span class="line">    if-eqz v0, :cond_0            // 判断v0是否等于0, 不符合条件向下走, 符合条件执行cond_0分支</span><br><span class="line"></span><br><span class="line">    .line 25</span><br><span class="line">    const/4 v1, 0x1            // 符合条件分支</span><br><span class="line"></span><br><span class="line">    .line 27</span><br><span class="line">    :goto_0</span><br><span class="line">    return v1</span><br><span class="line"></span><br><span class="line">    :cond_0</span><br><span class="line">    const/4 v1, 0x0            // cond_0分支</span><br><span class="line"></span><br><span class="line">    goto :goto_0</span><br><span class="line">.end method</span><br></pre></td></tr></table></figure>
+
+<h5 id="const语句"><a href="#const语句" class="headerlink" title="const语句"></a>const语句</h5><p>const语句其实就是赋值。const v1 0x0 就是把0x0赋值给v1寄存器。而const&#x2F;height16不是单纯的赋值，需要将值右边零拓展为32位再赋给寄存器。如</p>
+<blockquote>
+<p>const&#x2F;height16 v1 0x4120</p>
+</blockquote>
+<p>其实是0x41200000赋值给v1</p>
+<blockquote>
+<p>const&#x2F;4 vx,lit4  Puts the 4 bit constant into vx 这也就这么类似</p>
+</blockquote>
+<p>现在查看，反编译中的id被赋值给v0这个变量</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/03/28/Android%E9%80%86%E5%90%91%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="cmry6idek006eow4sd4c64bzo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-区块链原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/" class="article-date">
+  <time datetime="2018-03-20T09:00:58.000Z" itemprop="datePublished">2018-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/">区块链原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以下是的区块链学习笔记</p>
+<h4 id="区块链和比特币关系"><a href="#区块链和比特币关系" class="headerlink" title="区块链和比特币关系"></a>区块链和比特币关系</h4><p>比特币的原理是区块链，但是区块链技术可以做更多事情，比如智能合约还有什么呢。</p>
+<h4 id="为什么叫区块链"><a href="#为什么叫区块链" class="headerlink" title="为什么叫区块链"></a>为什么叫区块链</h4><p>如下图，一个区块，它关联着上一个区块的Block hash值，这个值是作为一个区块链协议头的一部分，然后当前区块最后计算出的Block hash也会被用在下一个区块，那么靠这个Block hash关联成一条链。叫区块链也就是生动形象，理所当然了。</p>
+<h4 id="数据区块"><a href="#数据区块" class="headerlink" title="数据区块"></a>数据区块</h4><p><img src="http://wx1.sinaimg.cn/mw690/c1b251b3ly1fo0pwh8bg8j20ko0eytan.jpg" alt="weread_image_32591353069582"></p>
+<h4 id="为什么说是去中心化"><a href="#为什么说是去中心化" class="headerlink" title="为什么说是去中心化"></a>为什么说是去中心化</h4><p>区块链本质是一个对等网络的分布式账本数据库。交易去中心化，或者说多中心化。网络挖矿节点有重量级节点，它保存着区块链这条链的完整数据，也有轻量级节点，保存部分数据。比特币的交易数据达到数十个G，并且一直增长，里面的交易记录都是公开透明的。每一个重量级节点都保存完整的数据，就没有一个中心的概念了。而是多中心，或者说无中心的一个网络结构。</p>
+<h4 id="什么是挖矿"><a href="#什么是挖矿" class="headerlink" title="什么是挖矿"></a>什么是挖矿</h4><p>上图可以看出，交易1，比如a转账给b一个比特币。那么这就是一条交易记录。计算hash1 等等每个计算知道Merkle的根hash计算出来，其实这一步很简单，问题是目标哈希值计算是很困难的。当矿机计算出来这个符合共识算法的目标hash的时候，就代表了计算的矿机获得了记账权。这个区块也就封装完成了，也就是矿机挖到矿了，这个链子又长了一截。</p>
+<h4 id="为什么交易无法更改"><a href="#为什么交易无法更改" class="headerlink" title="为什么交易无法更改"></a>为什么交易无法更改</h4><p>交易无法更改是基于数学hash算法的逆向解难度几乎不可能的基础上。hash算法可以把任意长度的内容hash产生一个256位的值。当然用这个256位的值去推算原文，是几乎不可能的。基于这个数学基础，如果我们比特币对目标哈希有一定要求，比如要十个0开头，那在想要算出这个十个0开头的hash，就必须更改原文，其他交易是不能更改的，只能更改区块头的随机值，并且只能用穷举法来计算。这个过程是需要很大的计算力。并且区块链头部还有一个难度值。一旦好不容易计算出来了，想要更改交易，就等于你要重新计算hash，并且自己拉一个分支，这个分支的计算速度要超过全网的算力，因为主链一直在伸长。你要超过主链，才能取代主链。这就是不可能了。</p>
+<h4 id="什么是区块链难度值"><a href="#什么是区块链难度值" class="headerlink" title="什么是区块链难度值"></a>什么是区块链难度值</h4><p>在计算目标hash，计算完后放入区块头部。这个hash可能有时候要求十八个0开头也有可能10个零开头，那么哪个难度更高呢？当然是十八个0难度大。而这个难度值是根据前面的2016个区块决定的。</p>
+<blockquote>
+<p>新难度值 &#x3D; 旧难度值 * ( 过去2016个区块花费时长 &#x2F; 20160 分钟 )</p>
+</blockquote>
+<p>这个20160是按照每10分钟产生一个区块来定的。所以当全网矿机增加的后，计算会变快，但是后面会难度值增加。维持在无论多少个矿机，都是每十分钟产生一个区块的速度。</p>
+<p>也就是说平均十分钟收到一个确认。</p>
+<h4 id="挖矿的人怎么赚钱"><a href="#挖矿的人怎么赚钱" class="headerlink" title="挖矿的人怎么赚钱"></a>挖矿的人怎么赚钱</h4><p>在进行工作量证明之前（就是计算目标哈希），记账节点要做一些准备工作</p>
+<blockquote>
+<ul>
+<li>收集广播中还没有被记录账本的原始交易信息</li>
+<li>检查每个交易信息中付款地址有没有足够的余额</li>
+<li>验证交易是否有正确的签名</li>
+<li>把验证通过的交易信息进行打包记录</li>
+<li>添加一个奖励交易：比如给自己的地址增加12.5比特币</li>
+</ul>
+</blockquote>
+<p>在这个过程，只要挖矿者计算出了目标哈希，他就得到了奖励，而其实除了这个奖励还有交易费的收益。我们在进行比特币交易的时候，你交易的手续费越高，被拿去写入区块的优先级就越高。你的交易就约快完成。</p>
+<h4 id="如果两台矿机同时计算出区块怎么办"><a href="#如果两台矿机同时计算出区块怎么办" class="headerlink" title="如果两台矿机同时计算出区块怎么办"></a>如果两台矿机同时计算出区块怎么办</h4><p>这就代表链条出现分叉，这个分叉并不会马上被抛弃。假设出现a分叉，b分叉。网络矿机节点有的是收到了a节点的广播，把最新节点更新到a节点。有部分收到的是b分叉的广播，把b更新为最新节点末端然后进行工作。总会有一个分叉先结算出新的更长的，比如a+1。它广播之后，更长的就会把b给取代了。</p>
+<h4 id="从上图看出，一个区块结算多少笔交易"><a href="#从上图看出，一个区块结算多少笔交易" class="headerlink" title="从上图看出，一个区块结算多少笔交易"></a>从上图看出，一个区块结算多少笔交易</h4><p><a target="_blank" rel="noopener" href="https://btc.com/stats/pool/BTCC">https://btc.com/stats/pool/BTCC</a> 这个是区块链浏览器。从这个可以看出，每个区块的交易数量是不定的，平均在2500笔交易。每笔交易的大小不一定。并且可以看到除了系统奖励还有部分交易费用的奖励。</p>
+<h4 id="为什么交易所比特币交易只要几秒而不是十分钟"><a href="#为什么交易所比特币交易只要几秒而不是十分钟" class="headerlink" title="为什么交易所比特币交易只要几秒而不是十分钟"></a>为什么交易所比特币交易只要几秒而不是十分钟</h4><p>比特币交易所是中心化的，只有在提币的时候才需要十分钟。</p>
+<h4 id="为什么六个确认之后就确定不会被更改"><a href="#为什么六个确认之后就确定不会被更改" class="headerlink" title="为什么六个确认之后就确定不会被更改"></a>为什么六个确认之后就确定不会被更改</h4><p>虽然有同时挖出两个区块的可能，但是再分叉，直到当前交易后面再挂五个区块，基本就可以确定这个是在主链上，不可能被更改了。当落后六个块，来追赶交易，这个计算量将会是一个天文数字，因为前面知道，计算一个区块链的目标哈希就已经很难了。这个浪费的资源是非常不划算的。</p>
+<h4 id="用户双花问题"><a href="#用户双花问题" class="headerlink" title="用户双花问题"></a>用户双花问题</h4><p>从上一个六个确认就可以知道，经过六个确认后，用户的余额就能被确认是减少了。第二次花费就会被变成无效交易。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86/" data-id="cmry6idfl009dow4s4ysu84fj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Kotlin委托模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/23/Kotlin%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/" class="article-date">
+  <time datetime="2018-01-23T14:00:58.000Z" itemprop="datePublished">2018-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/23/Kotlin%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/">Kotlin委托模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>设计模式之代理模式（委托模式）</p>
+<p>Kotlin中委托实现关键字by</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">interface</span> <span class="title class_">ISports</span> &#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">doSports</span><span class="params">()</span></span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">SwimForSports</span>: <span class="type">ISports</span>&#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">doSports</span><span class="params">()</span></span> &#123;</span><br><span class="line">            println(<span class="string">&quot;do swim&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">SportsManager</span>(sport: ISports): ISports <span class="keyword">by</span> sport</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> swimSports= SwimForSports()</span><br><span class="line">        <span class="keyword">var</span> m=SportsManager(swimSports)</span><br><span class="line">        m.doSports()<span class="comment">// Log：do swim</span></span><br><span class="line">        Log.d(<span class="string">&quot;yeqinfu&quot;</span>,<span class="string">&quot;-------&quot;</span>+(m <span class="keyword">is</span> ISports))</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//echo yeqinfu: -------true</span></span><br></pre></td></tr></table></figure>
+
+<p>实现了ISports接口，实际由sport 对象代理</p>
+<h3 id="lazy"><a href="#lazy" class="headerlink" title="lazy"></a>lazy</h3><p>延迟委托</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">lazy</span><span class="params">(initializer: () -&gt; <span class="type">T</span>)</span></span>: Lazy&lt;T&gt; = SynchronizedLazyImpl(initializer)</span><br></pre></td></tr></table></figure>
+
+<p>查看Lazy接口</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a value with lazy initialization.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * To create an instance of [Lazy] use the [lazy] function.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Lazy</span>&lt;<span class="type">out T</span>&gt; &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Gets the lazily initialized value of the current Lazy instance.</span></span><br><span class="line"><span class="comment">     * Once the value was initialized it must not change during the rest of lifetime of this Lazy instance.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">val</span> value: T</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns `true` if a value for this Lazy instance has been already initialized, and `false` otherwise.</span></span><br><span class="line"><span class="comment">     * Once this function has returned `true` it stays `true` for the rest of lifetime of this Lazy instance.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">isInitialized</span><span class="params">()</span></span>: <span class="built_in">Boolean</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个接口存了值，和是否已经初始化了的变量，再看SynchronizedLazyImpl</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">SynchronizedLazyImpl</span>&lt;<span class="type">out T</span>&gt;(initializer: () -&gt; T, lock: Any? = <span class="literal">null</span>) : Lazy&lt;T&gt;, Serializable &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> initializer: (() -&gt; T)? = initializer</span><br><span class="line">    <span class="meta">@Volatile</span> <span class="keyword">private</span> <span class="keyword">var</span> _value: Any? = UNINITIALIZED_VALUE</span><br><span class="line">    <span class="comment">// final field is required to enable safe publication of constructed instance</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> lock = lock ?: <span class="keyword">this</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> value: T</span><br><span class="line">        <span class="keyword">get</span>() &#123;</span><br><span class="line">            <span class="keyword">val</span> _v1 = _value</span><br><span class="line">            <span class="keyword">if</span> (_v1 !== UNINITIALIZED_VALUE) &#123;</span><br><span class="line">                <span class="meta">@Suppress(<span class="string">&quot;UNCHECKED_CAST&quot;</span>)</span></span><br><span class="line">                <span class="keyword">return</span> _v1 <span class="keyword">as</span> T</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> synchronized(lock) &#123;</span><br><span class="line">                <span class="keyword">val</span> _v2 = _value</span><br><span class="line">                <span class="keyword">if</span> (_v2 !== UNINITIALIZED_VALUE) &#123;</span><br><span class="line">                    <span class="meta">@Suppress(<span class="string">&quot;UNCHECKED_CAST&quot;</span>)</span> (_v2 <span class="keyword">as</span> T)</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">val</span> typedValue = initializer!!()</span><br><span class="line">                    _value = typedValue</span><br><span class="line">                    initializer = <span class="literal">null</span></span><br><span class="line">                    typedValue</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">isInitialized</span><span class="params">()</span></span>: <span class="built_in">Boolean</span> = _value !== UNINITIALIZED_VALUE</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>: String = <span class="keyword">if</span> (isInitialized()) value.toString() <span class="keyword">else</span> <span class="string">&quot;Lazy value not initialized yet.&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">writeReplace</span><span class="params">()</span></span>: Any = InitializedLazyImpl(value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>重写了value的get方法，_value会被赋值一次，并且是线程同步的。之后 _value再也不会是null值，就一直直接返回。</p>
+<p>可能会有疑惑就是lazy函数返回值是一个Lazy<T>类型，</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> d:<span class="built_in">Int</span> <span class="keyword">by</span> lazy &#123;</span><br><span class="line">        <span class="number">2</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>怎么通过赋值，赋值给这个变量d呢</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> Lazy<span class="type">&lt;T&gt;</span>.<span class="title">getValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T = value</span><br></pre></td></tr></table></figure>
+
+<p>by 执行了Lazy<T> 的getValue方法 实现赋值的。</p>
+<h3 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name: String <span class="keyword">by</span> Delegates.observable(<span class="string">&quot;wang&quot;</span>, &#123;</span><br><span class="line">      kProperty, oldName, newName -&gt;</span><br><span class="line">      println(<span class="string">&quot;kProperty：<span class="subst">$&#123;kProperty.name&#125;</span> | oldName:<span class="variable">$oldName</span> | newName:<span class="variable">$newName</span>&quot;</span>)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个委托会帮我们监控属性的变化，当set被调用的时候，会执行我们的lambda表达式查看方法如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">observable</span><span class="params">(initialValue: <span class="type">T</span>, <span class="keyword">crossinline</span> onChange: (<span class="type">property</span>: <span class="type">KProperty</span>&lt;*&gt;, <span class="type">oldValue</span>: <span class="type">T</span>, <span class="type">newValue</span>: <span class="type">T</span>) -&gt; <span class="type">Unit</span>)</span></span>: ReadWriteProperty&lt;Any?, T&gt; = <span class="keyword">object</span> : ObservableProperty&lt;T&gt;(initialValue) &#123;</span><br><span class="line">       <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">afterChange</span><span class="params">(property: <span class="type">KProperty</span>&lt;*&gt;, oldValue: <span class="type">T</span>, newValue: <span class="type">T</span>)</span></span> = onChange(property, oldValue, newValue)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>涉及到内联关键字</p>
+<p>所谓的内联函数就是在被调用的地方直接展开，没有参数压栈和返回时候的参数出栈资源释放的操作，提高了程序的执行速度</p>
+<h4 id="kotlin-inline-noinline-crossinline"><a href="#kotlin-inline-noinline-crossinline" class="headerlink" title="kotlin inline noinline crossinline"></a>kotlin inline noinline crossinline</h4><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/u013009899/article/details/78584994">参考</a></p>
+<p>一个函数中，如果存在一个lambda表达式，在该lambda中不支持直接进行return退出该函数，比如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">    innerFun &#123;</span><br><span class="line">        <span class="comment">//return  //错误，不支持直接return</span></span><br><span class="line">        <span class="comment">//只支持通过标签，返回innerFun</span></span><br><span class="line">        <span class="keyword">return</span><span class="symbol">@innerFun</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//如果是匿名或者具名函数，则支持</span></span><br><span class="line">    <span class="keyword">var</span> f = <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除非是inline函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">    innerFun &#123;</span><br><span class="line">        <span class="keyword">return</span>  <span class="comment">//支持直接返回outterFun</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是内联</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">        innerFun &#123;</span><br><span class="line">            <span class="comment">//return  //错误，不支持直接return</span></span><br><span class="line">            <span class="comment">//只支持通过标签，返回innerFun</span></span><br><span class="line">            Log.d(<span class="string">&quot;======&quot;</span>,<span class="string">&quot;=============innerFun===============&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        Log.d(<span class="string">&quot;======&quot;</span>,<span class="string">&quot;=============innerFun2222===============&quot;</span>)</span><br><span class="line">        <span class="comment">//如果是匿名或者具名函数，则支持</span></span><br><span class="line">        <span class="keyword">var</span> f = <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">        a()</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//echo ======: =============innerFun===============</span></span><br></pre></td></tr></table></figure>
+
+<p>可以理解，方法执行的时候被直接展开，innerFun2222没有得到输出，因为内联函数return了</p>
+<h6 id="noinline"><a href="#noinline" class="headerlink" title="noinline"></a>noinline</h6><blockquote>
+<p>如果你只想被（作为参数）传给一个内联函数的 lamda 表达式中只有一些被内联，你可以用 noinline 修饰符标记一些函数参数：</p>
+</blockquote>
+<h5 id="crossinline"><a href="#crossinline" class="headerlink" title="crossinline"></a>crossinline</h5><p>crossinline 的作用是让被标记的lambda表达式不允许非局部返回。 </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">       innerFun &#123;</span><br><span class="line">          </span><br><span class="line">           Log.d(<span class="string">&quot;======&quot;</span>,<span class="string">&quot;=============innerFun===============&quot;</span>)</span><br><span class="line">           <span class="keyword">return</span><span class="symbol">@innerFun</span></span><br><span class="line">       &#125;</span><br><span class="line">       Log.d(<span class="string">&quot;======&quot;</span>,<span class="string">&quot;=============innerFun2222===============&quot;</span>)</span><br><span class="line">       <span class="comment">//如果是匿名或者具名函数，则支持</span></span><br><span class="line">       <span class="keyword">var</span> f = <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">           <span class="keyword">return</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(<span class="keyword">crossinline</span> a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">       a()</span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">//echo =============innerFun===============</span></span><br><span class="line"><span class="comment">//=============innerFun2222===============</span></span><br></pre></td></tr></table></figure>
+
+<p>不允许局部返回之后有两个echo 日志</p>
+<p>observable 两个入参，一个是初始值 initialValue 一个是callback的lambda</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">ObservableProperty</span>&lt;<span class="type">T</span>&gt;(initialValue: T) : ReadWriteProperty&lt;Any?, T&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> value = initialValue</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  The callback which is called before a change to the property value is attempted.</span></span><br><span class="line"><span class="comment">     *  The value of the property hasn&#x27;t been changed yet, when this callback is invoked.</span></span><br><span class="line"><span class="comment">     *  If the callback returns `true` the value of the property is being set to the new value,</span></span><br><span class="line"><span class="comment">     *  and if the callback returns `false` the new value is discarded and the property remains its old value.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">beforeChange</span><span class="params">(property: <span class="type">KProperty</span>&lt;*&gt;, oldValue: <span class="type">T</span>, newValue: <span class="type">T</span>)</span></span>: <span class="built_in">Boolean</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The callback which is called after the change of the property is made. The value of the property</span></span><br><span class="line"><span class="comment">     * has already been changed when this callback is invoked.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">afterChange</span> <span class="params">(property: <span class="type">KProperty</span>&lt;*&gt;, oldValue: <span class="type">T</span>, newValue: <span class="type">T</span>)</span></span>: <span class="built_in">Unit</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T &#123;</span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;, value: <span class="type">T</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> oldValue = <span class="keyword">this</span>.value</span><br><span class="line">        <span class="keyword">if</span> (!beforeChange(property, oldValue, value)) &#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.value = value</span><br><span class="line">        afterChange(property, oldValue, value)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>返回值表达式是实现了了上述这个类，在setvalue方法中设置了oldvalue，调用了afterChange，最后执行了外层的lambda。实现了监听模式。</p>
+<h4 id="Vetoable"><a href="#Vetoable" class="headerlink" title="Vetoable"></a>Vetoable</h4><p>特殊委托，从setvalue看出，是根据lambda返回值决定是否要保持值。</p>
+<h4 id="Not-Null"><a href="#Not-Null" class="headerlink" title="Not Null"></a>Not Null</h4><p>在没有赋值调用getValue会抛出异常</p>
+<h4 id="map映射"><a href="#map映射" class="headerlink" title="map映射"></a>map映射</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/01/23/Kotlin%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/" data-id="cmry6idev007jow4s9a38eynk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-kotlin泛型函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/23/kotlin%E6%B3%9B%E5%9E%8B%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2018-01-23T09:00:58.000Z" itemprop="datePublished">2018-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/23/kotlin%E6%B3%9B%E5%9E%8B%E5%87%BD%E6%95%B0/">Kotlin泛型函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> T.<span class="title">let</span><span class="params">(f: (<span class="type">T</span>) -&gt; <span class="type">R</span>)</span></span>: R = f(<span class="keyword">this</span>)</span><br></pre></td></tr></table></figure>
+
+<p>方法声明中看出，接受的参数是一个函数f，这个f的入参就是T，返回值就是R。然后let函数的返回值类型为R整个let的方法体就是f(this)。上面这个函数可以改成看的清晰点的：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> T.<span class="title">let</span><span class="params">(f: (<span class="type">T</span>) -&gt; <span class="type">R</span>)</span></span>: R &#123;</span><br><span class="line">       <span class="keyword">return</span>  f(<span class="keyword">this</span>)</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<p>在运用let函数的时候可以这样写,入参是大括号的闭包</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> d=Intent()</span><br><span class="line"> <span class="keyword">var</span> re=d?.let(&#123;</span><br><span class="line">            haha(d)</span><br><span class="line">        &#125;)</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">haha</span><span class="params">(i:<span class="type">Intent</span>)</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>lambda简写，第一个中省略小括号，省略小括号并且把闭包放在外面</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re=d?.let()&#123;</span><br><span class="line">            haha(d)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> re=d?.let&#123;</span><br><span class="line">            haha(d)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>闭包默认有一个参数被省略</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re=d?.let()&#123;it-&gt;</span><br><span class="line">            haha(it)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以写成这样,下划线代表参数占位符</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re=d?.let&#123;_-&gt;</span><br><span class="line">           haha(it)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>let函数加？可以让it保证不为空，let函数只有d不为空的时候被执行</p>
+<h3 id="with"><a href="#with" class="headerlink" title="with"></a>with</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> <span class="title">with</span><span class="params">(receiver: <span class="type">T</span>, f: <span class="type">T</span>.() -&gt; <span class="type">R</span>)</span></span>: R = receiver.f()</span><br></pre></td></tr></table></figure>
+
+<p>with接收一个对象receiver，和一个函数，这个函数会作为这个对象的扩展函数执行。最后返回这个函数的返回值。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f: (T) -&gt; R</span><br><span class="line">f: T.() -&gt; R</span><br></pre></td></tr></table></figure>
+
+<p>这两个表达式的区别，第一个代表一个方法，名字叫f 参数表示一个T，返回值是R。第二个代表名字叫f，是T的扩展函数，返回值为R。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list: MutableList&lt;String&gt; = mutableListOf(<span class="string">&quot;A&quot;</span>, <span class="string">&quot;B&quot;</span>, <span class="string">&quot;C&quot;</span>)</span><br><span class="line">  <span class="keyword">val</span> change: Any</span><br><span class="line">  change = with(list) &#123;</span><br><span class="line">      add(<span class="string">&quot;D&quot;</span>)</span><br><span class="line">      add(<span class="string">&quot;E&quot;</span>)</span><br><span class="line">      <span class="keyword">this</span>.add(<span class="string">&quot;F&quot;</span>)</span><br><span class="line">      size</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>简写后，大括号代表拓展函数体，add方法是list的方法，可以加this，也可以不加list，最后一句表达式就是返回值。</p>
+<h3 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> T.<span class="title">apply</span><span class="params">(f: <span class="type">T</span>.() -&gt; <span class="type">Unit</span>)</span></span>: T &#123; f(); <span class="keyword">return</span> <span class="keyword">this</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>apply被定义为T的拓展函数，接受一个扩展函数，返回T本身。和with类似，但是返回的一直都是this，即T</p>
+<h3 id="safeRun"><a href="#safeRun" class="headerlink" title="safeRun"></a>safeRun</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 自定义泛型函数 结合let函数</span></span><br><span class="line"><span class="comment">    * 如果fragement没有被attached到Activity就不执行</span></span><br><span class="line"><span class="comment">    * 这边可以做异步返回的检查工作</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> T.<span class="title">safeRun</span><span class="params">(f: (<span class="type">T</span>) -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (isAdded) &#123;</span><br><span class="line">          f(<span class="keyword">this</span>)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>项目中，会出现一个异步异常，就是如果异步返回的时候fragment已经被销毁，比如多个viewpager迅速切换，这时候在返回的回调函数调用设置界面就会出现异常奔溃，是因为fragment已经没有和activity关联了。所以，自定义了这个扩展函数，使用如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">response?.safeRun &#123;</span><br><span class="line">                     tv_totalKwh.text=it.message.analysisCateSum</span><br><span class="line">                    </span><br><span class="line">                 &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个方法体执行之前，做了不为null的检查和fragment的attched的检查。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/01/23/kotlin%E6%B3%9B%E5%9E%8B%E5%87%BD%E6%95%B0/" data-id="cmry6idfc008pow4s7c337dl6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-AS的GsonFormat插件变种" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/16/AS%E7%9A%84GsonFormat%E6%8F%92%E4%BB%B6%E5%8F%98%E7%A7%8D/" class="article-date">
+  <time datetime="2018-01-16T14:00:58.000Z" itemprop="datePublished">2018-01-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/16/AS%E7%9A%84GsonFormat%E6%8F%92%E4%BB%B6%E5%8F%98%E7%A7%8D/">AS的GsonFormat插件变种</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Bean的生成会用到一些插件来完成，比如<a target="_blank" rel="noopener" href="https://github.com/zzz40500/GsonFormat">GsonFormat</a>，但是后台会有情况比如生成的一个类A，但是后台给这个类A的值不是一个空对象，而是null。这样导致我们在调用类A的cc属性的时候，因为A已经是null了还调用null的一个属性而导致空指针异常，所以这个插件为了就是解决这个问题，自动补充null的时候的值，所有代码都是改别人的库，变种而已。更改的代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String method = &quot;public &quot;</span><br><span class="line">                       .concat(typeStr).concat(</span><br><span class="line">                               &quot;   get&quot;).concat(</span><br><span class="line">                               captureName(field)).concat(</span><br><span class="line">                               &quot;() &#123; &quot; +getNotNull(typeStr, field1.getGenerateFieldName())+&quot;  return &quot;).concat(</span><br><span class="line">                               field1.getGenerateFieldName()).concat(&quot; ;&#125; &quot;);</span><br><span class="line">               mClass.add(mFactory.createMethodFromText(method, mClass));</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在这个原来生成get的方法代码中插入一个getNotNull字符，方法内容如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String <span class="title function_">getNotNull</span><span class="params">(String typeStr,String fieldName)</span> &#123;</span><br><span class="line">        String result=<span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (typeStr.equals(<span class="string">&quot;String&quot;</span>))&#123;<span class="comment">//</span></span><br><span class="line">            result=<span class="string">&quot;if(&quot;</span>+fieldName+<span class="string">&quot;==null)&#123;\n&quot;</span>+fieldName+<span class="string">&quot;=\&quot;\&quot;;&#125;&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (typeStr.equals(<span class="string">&quot;int&quot;</span>)</span><br><span class="line">                |typeStr.equals(<span class="string">&quot;double&quot;</span>)</span><br><span class="line">                |typeStr.equals(<span class="string">&quot;long&quot;</span>)</span><br><span class="line">                |typeStr.equals(<span class="string">&quot;float&quot;</span>)</span><br><span class="line">                |typeStr.equals(<span class="string">&quot;byte&quot;</span>)</span><br><span class="line">                |typeStr.equals(<span class="string">&quot;short&quot;</span>)</span><br><span class="line">                |typeStr.equals(<span class="string">&quot;char&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            String prx=typeStr;</span><br><span class="line">            <span class="keyword">if</span> (typeStr.startsWith(<span class="string">&quot;java.util.List&quot;</span>))&#123;</span><br><span class="line">                prx=prx.replace(<span class="string">&quot;java.util.List&quot;</span>,<span class="string">&quot;java.util.ArrayList&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            result=<span class="string">&quot;if(&quot;</span>+fieldName+<span class="string">&quot;==null)&#123;\n&quot;</span>+fieldName+<span class="string">&quot;= new &quot;</span>+prx+<span class="string">&quot;();&#125;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>如果不是基本数据类型，而且是null值，就new一个出来，如果还有报错，可以以后再修正。就是一个静态代码的生成罢了</p>
+<p>代码地址<a target="_blank" rel="noopener" href="https://github.com/yeqinfu/NotNullGsonFormat">https://github.com/yeqinfu/NotNullGsonFormat</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/01/16/AS%E7%9A%84GsonFormat%E6%8F%92%E4%BB%B6%E5%8F%98%E7%A7%8D/" data-id="cmry6idec005tow4s5bo37fpp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ToastUtils的完美单例" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/11/ToastUtils%E7%9A%84%E5%AE%8C%E7%BE%8E%E5%8D%95%E4%BE%8B/" class="article-date">
+  <time datetime="2018-01-11T14:00:58.000Z" itemprop="datePublished">2018-01-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/11/ToastUtils%E7%9A%84%E5%AE%8C%E7%BE%8E%E5%8D%95%E4%BE%8B/">ToastUtils的完美单例</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有点经验的人会想到Toast要写成工具类，单例模式。这样就不会用户一直点一直点，然后不点了，然后后面toast还在一直弹一直弹，弹到前面点的相应次数为止。这个很恶心。所以网上随便看看Toast的单例模式有人会这么写，甚至说我项目里面的Toast工具也是这么写的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ToastUtils</span> &#123;  </span><br><span class="line">      </span><br><span class="line">    <span class="comment">/** 之前显示的内容 */</span>  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String oldMsg ;  </span><br><span class="line">    <span class="comment">/** Toast对象 */</span>  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">Toast</span> <span class="variable">toast</span> <span class="operator">=</span> <span class="literal">null</span> ;  </span><br><span class="line">    <span class="comment">/** 第一次时间 */</span>  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">long</span> <span class="variable">oneTime</span> <span class="operator">=</span> <span class="number">0</span> ;  </span><br><span class="line">    <span class="comment">/** 第二次时间 */</span>  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">long</span> <span class="variable">twoTime</span> <span class="operator">=</span> <span class="number">0</span> ;  </span><br><span class="line">      </span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 显示Toast </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> context </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> message </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">showToast</span><span class="params">(Context context,String message)</span>&#123;  </span><br><span class="line">        <span class="keyword">if</span>(toast == <span class="literal">null</span>)&#123;  </span><br><span class="line">            toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);  </span><br><span class="line">            toast.show() ;  </span><br><span class="line">            oneTime = System.currentTimeMillis() ;  </span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">            twoTime = System.currentTimeMillis() ;  </span><br><span class="line">            <span class="keyword">if</span>(message.equals(oldMsg))&#123;  </span><br><span class="line">                <span class="keyword">if</span>(twoTime - oneTime &gt; Toast.LENGTH_SHORT)&#123;  </span><br><span class="line">                    toast.show() ;  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">                oldMsg = message ;  </span><br><span class="line">                toast.setText(message) ;  </span><br><span class="line">                toast.show() ;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        oneTime = twoTime ;  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>很多写法大同小异，都是用到单例和静态变量。问题在于，它们有一个共同问题，如上代码所示，toast这个变量是静态的，不被回收，那么context对象作为toast的私有变量也得不到回收。所以会造成始终有一个Activity回收不了，而回收不了的那个Activity就是第一次生成toast实例的那个activity。</p>
+<p>那么既要保持单例模式，又要做到activity的及时回收，这怎么弄？</p>
+<p>直接贴我的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Created by yeqinfu on 17-9-27 上午9:35</span></span><br><span class="line"><span class="comment"> * Copyright (c) JXT All rights reserved.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.ppandroid.app.utils.toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Activity;</span><br><span class="line"><span class="keyword">import</span> android.app.Application;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.text.TextUtils;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.ppandroid.app.base.SampleApplicationLike;</span><br><span class="line"><span class="keyword">import</span> com.ppandroid.app.utils.activitymanager.ActivityManager;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ToastUtilAdapter</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> ToastUtilAdapter	instance;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Toast					toast;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="title function_">ToastUtilAdapter</span><span class="params">()</span> &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> ToastUtilAdapter <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">			<span class="keyword">synchronized</span> (ToastUtilAdapter.class) &#123;</span><br><span class="line">				<span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">					instance = <span class="keyword">new</span> <span class="title class_">ToastUtilAdapter</span>();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Activity mContext;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">toast</span><span class="params">(<span class="keyword">final</span> String toastMsg)</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (TextUtils.isEmpty(toastMsg)) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">if</span> (mContext==<span class="literal">null</span>)&#123;</span><br><span class="line">            mContext=getContext();</span><br><span class="line">            toast = Toast.makeText(mContext, toastMsg, Toast.LENGTH_SHORT);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (ActivityManager.getActivityManager().isInStack(mContext))&#123;<span class="comment">//如果上次保留的mContext还在栈内</span></span><br><span class="line">                toast.setText(toastMsg);</span><br><span class="line">                toast.setDuration(Toast.LENGTH_SHORT);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;<span class="comment">//不在栈内移除引用从新new一个toast对象</span></span><br><span class="line">                mContext=getContext();</span><br><span class="line">                toast = Toast.makeText(mContext, toastMsg, Toast.LENGTH_SHORT);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">				<span class="comment">/*</span></span><br><span class="line"><span class="comment">				这个是旧代码的单例写法，会导致第一个使用的Activity如AC_Login上下文泄漏</span></span><br><span class="line"><span class="comment">				if (toast == null) &#123;</span></span><br><span class="line"><span class="comment">						 toast = Toast.makeText(getContext(), toastMsg, Toast.LENGTH_SHORT);</span></span><br><span class="line"><span class="comment">					&#125;</span></span><br><span class="line"><span class="comment">					else &#123;</span></span><br><span class="line"><span class="comment">						toast.setText(toastMsg);</span></span><br><span class="line"><span class="comment">						toast.setDuration(Toast.LENGTH_SHORT);</span></span><br><span class="line"><span class="comment">					&#125;*/</span></span><br><span class="line">        toast.show();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 这边改成获取当前栈顶的activity对象作为上下文</span></span><br><span class="line"><span class="comment">	 * 增加一个activity的监听，如果当前的mContext被回收，则及时释放引用</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> Activity <span class="title function_">getContext</span><span class="params">()</span> &#123;</span><br><span class="line">	    Activity current=ActivityManager.getActivityManager().currentActivity();</span><br><span class="line">        SampleApplicationLike.getContext().registerActivityLifecycleCallbacks(<span class="keyword">new</span> <span class="title class_">Application</span>.ActivityLifecycleCallbacks() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivityCreated</span><span class="params">(Activity activity, Bundle bundle)</span> &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivityStarted</span><span class="params">(Activity activity)</span> &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivityResumed</span><span class="params">(Activity activity)</span> &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivityPaused</span><span class="params">(Activity activity)</span> &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivityStopped</span><span class="params">(Activity activity)</span> &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivitySaveInstanceState</span><span class="params">(Activity activity, Bundle bundle)</span> &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivityDestroyed</span><span class="params">(Activity activity)</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (activity==mContext)&#123;</span><br><span class="line">                    mContext=<span class="literal">null</span>;</span><br><span class="line">                     toast=<span class="literal">null</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">		<span class="keyword">return</span> current;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">toast</span><span class="params">(<span class="type">int</span> resId)</span> &#123;</span><br><span class="line"></span><br><span class="line">		toast(getContext().getResources().getString(resId));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如代码所示，mContext对象一直是作为Toast的上下文对象，但是加了一个ActivityLifecycleCallbacks，当对象呗销毁的时候，及时释放mContext这个强引用。</p>
+<p>而在mContext为空的时候，从一个维护Activtiy的Stack取出栈顶的Activity作为Toast的上下文对象。核心就是及时释放这个单例的mContext对象。也就是Toast它不应该是一个Application级别的全局单例，而是作为一个页面activity级别的单例而存在。</p>
+<p>另外，网络上的getaplicationcontext()这样的Context作为Toast的上下文是不可行的，好像跟window token有关。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/01/11/ToastUtils%E7%9A%84%E5%AE%8C%E7%BE%8E%E5%8D%95%E4%BE%8B/" data-id="cmry6idf00080ow4sb8w91eiy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/12/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/14/">__(&#39;next&#39;) &amp;raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetpack/" rel="tag">Jetpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/about-life/" rel="tag">about life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block-chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cryptography/" rel="tag">cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/" rel="tag">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" rel="tag">新闻摘要</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" rel="tag">新闻摘要, 深度阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" rel="tag">新闻摘要,深度阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%AD%E7%94%B5/" rel="tag">杭电</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Jenkins/" style="font-size: 11.43px;">Jenkins</a> <a href="/tags/Jetpack/" style="font-size: 11.43px;">Jetpack</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/about-life/" style="font-size: 10px;">about life</a> <a href="/tags/android/" style="font-size: 15.71px;">android</a> <a href="/tags/block-chain/" style="font-size: 17.14px;">block chain</a> <a href="/tags/block-chain/" style="font-size: 10px;">block-chain</a> <a href="/tags/code/" style="font-size: 18.57px;">code</a> <a href="/tags/cryptography/" style="font-size: 12.86px;">cryptography</a> <a href="/tags/network/" style="font-size: 12.86px;">network</a> <a href="/tags/note/" style="font-size: 10px;">note</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" style="font-size: 20px;">新闻摘要</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" style="font-size: 11.43px;">新闻摘要, 深度阅读</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" style="font-size: 10px;">新闻摘要,深度阅读</a> <a href="/tags/%E6%9D%AD%E7%94%B5/" style="font-size: 14.29px;">杭电</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 11.43px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/07/">July 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/06/">June 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/07/24/index/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/24/2026-07-24-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-07-24（周五）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/23/2026-07-23-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-07-23（周四）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/22/2026-07-22-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-07-22（周三）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/21/2026-07-21-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-07-21（周二）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Vencent learn coding<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

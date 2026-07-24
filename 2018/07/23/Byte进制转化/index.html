@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Byte进制转化 | Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="进制转化 Integer.toBinaryString(i);因为看到Integer有这个转化二进制的方法，而Byte之类的却没有，所以看看它是怎么实现进制转化的。并且完成我需要的Byte进制转化。 12345678910111213141516171819202122232425262728293031323334353637public static String toBinaryString">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Byte进制转化">
+<meta property="og:url" content="https://yeqinfu.github.io/2018/07/23/Byte%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:description" content="进制转化 Integer.toBinaryString(i);因为看到Integer有这个转化二进制的方法，而Byte之类的却没有，所以看看它是怎么实现进制转化的。并且完成我需要的Byte进制转化。 12345678910111213141516171819202122232425262728293031323334353637public static String toBinaryString">
+<meta property="og:locale">
+<meta property="og:image" content="http://ws4.sinaimg.cn/large/c1b251b3gy1ftjv3mr3sij210g0en0us.jpg">
+<meta property="article:published_time" content="2018-07-23T09:00:58.000Z">
+<meta property="article:modified_time" content="2026-07-24T00:05:01.249Z">
+<meta property="article:author" content="Vencent learn coding">
+<meta property="article:tag" content="code">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ws4.sinaimg.cn/large/c1b251b3gy1ftjv3mr3sij210g0en0us.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Vencent Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yeqinfu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Byte进制转化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/23/Byte%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" class="article-date">
+  <time datetime="2018-07-23T09:00:58.000Z" itemprop="datePublished">2018-07-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Byte进制转化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="进制转化-Integer-toBinaryString-i"><a href="#进制转化-Integer-toBinaryString-i" class="headerlink" title="进制转化 Integer.toBinaryString(i);"></a>进制转化 Integer.toBinaryString(i);</h3><p>因为看到Integer有这个转化二进制的方法，而Byte之类的却没有，所以看看它是怎么实现进制转化的。并且完成我需要的Byte进制转化。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">toBinaryString</span><span class="params">(<span class="type">int</span> i)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> toUnsignedString0(i, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title function_">toUnsignedString0</span><span class="params">(<span class="type">int</span> val, <span class="type">int</span> shift)</span> &#123;</span><br><span class="line">        <span class="comment">// assert shift &gt; 0 &amp;&amp; shift &lt;=5 : &quot;Illegal shift value&quot;;</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">mag</span> <span class="operator">=</span> Integer.SIZE - Integer.numberOfLeadingZeros(val);</span><br><span class="line">        <span class="type">int</span> <span class="variable">chars</span> <span class="operator">=</span> Math.max(((mag + (shift - <span class="number">1</span>)) / shift), <span class="number">1</span>);</span><br><span class="line">        <span class="type">char</span>[] buf = <span class="keyword">new</span> <span class="title class_">char</span>[chars];</span><br><span class="line"></span><br><span class="line">        formatUnsignedInt(val, shift, buf, <span class="number">0</span>, chars);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Use special constructor which takes over &quot;buf&quot;.</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">String</span>(buf, <span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">numberOfLeadingZeros</span><span class="params">(<span class="type">int</span> i)</span> &#123;</span><br><span class="line">        <span class="comment">// HD, Figure 5-6</span></span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">32</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;&gt;&gt; <span class="number">16</span> == <span class="number">0</span>) &#123; n += <span class="number">16</span>; i &lt;&lt;= <span class="number">16</span>; &#125;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;&gt;&gt; <span class="number">24</span> == <span class="number">0</span>) &#123; n +=  <span class="number">8</span>; i &lt;&lt;=  <span class="number">8</span>; &#125;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;&gt;&gt; <span class="number">28</span> == <span class="number">0</span>) &#123; n +=  <span class="number">4</span>; i &lt;&lt;=  <span class="number">4</span>; &#125;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;&gt;&gt; <span class="number">30</span> == <span class="number">0</span>) &#123; n +=  <span class="number">2</span>; i &lt;&lt;=  <span class="number">2</span>; &#125;</span><br><span class="line">        n -= i &gt;&gt;&gt; <span class="number">31</span>;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">static</span> <span class="type">int</span> <span class="title function_">formatUnsignedInt</span><span class="params">(<span class="type">int</span> val, <span class="type">int</span> shift, <span class="type">char</span>[] buf, <span class="type">int</span> offset, <span class="type">int</span> len)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">charPos</span> <span class="operator">=</span> len;</span><br><span class="line">        <span class="type">int</span> <span class="variable">radix</span> <span class="operator">=</span> <span class="number">1</span> &lt;&lt; shift;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mask</span> <span class="operator">=</span> radix - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            buf[offset + --charPos] = Integer.digits[val &amp; mask];</span><br><span class="line">            val &gt;&gt;&gt;= shift;</span><br><span class="line">        &#125; <span class="keyword">while</span> (val != <span class="number">0</span> &amp;&amp; charPos &gt; <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> charPos;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>主要是以上四个方法做了转化。</p>
+<p>numberOfLeadingZeros 这个方法主要是可以得出一个int类型前面有多少个零。就是长度为32bit的int有多少个0</p>
+<p>这个方法有两个小知识点，一个是右移运算法，无符号右移运算符。还有n -&#x3D; i &gt;&gt;&gt; 31;的执行顺序。</p>
+<h4 id="为什么先无符号右移，再左移回来？"><a href="#为什么先无符号右移，再左移回来？" class="headerlink" title="为什么先无符号右移，再左移回来？"></a>为什么先无符号右移，再左移回来？</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> -<span class="number">4</span> &gt;&gt;&gt;<span class="number">1</span>;</span><br><span class="line">System.out.println(j);</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">2147483646</span></span><br></pre></td></tr></table></figure>
+
+<p>我们知道负数是补码形式在计算机中的</p>
+<blockquote>
+<p>-4真值：1000 0000 0000 0000 0000 0000 0000 0100</p>
+<p>-4反码：1111 1111 1111 1111 1111 1111 1111  1011</p>
+<p>-4补码：1111 1111 1111 1111 1111 1111 1111  1100</p>
+<p>无符号对补码进行右移一位空位补0。最后一个0没了，前面多了一个0，此时变成了正数，就是比正数最大值少一</p>
+<p>0111 1111 1111 1111 1111 1111 1111  1110</p>
+</blockquote>
+<p>numberOfLeadingZeros 这个方法的思想是通过二分法来判断有几个前置零。</p>
+<p><img src="http://ws4.sinaimg.cn/large/c1b251b3gy1ftjv3mr3sij210g0en0us.jpg" alt="image"></p>
+<p>这就类似当位数为32位的时候，通过四次二分法就可以确定它有几个零了。</p>
+<p>而这四个if就很巧妙得把四次二分法都完全执行了。</p>
+<h4 id="toUnsignedString0-转化成无符号字符串"><a href="#toUnsignedString0-转化成无符号字符串" class="headerlink" title="toUnsignedString0 转化成无符号字符串"></a>toUnsignedString0 转化成无符号字符串</h4><p>知道前面有多少个零之后，就可以按需声明一个char数组来存储非零部分的数字。后续比较简单。</p>
+<p>值得注意的是toUnsignedString0参数表中的shift。当传入1就代表转化的是二进制，因为后续是用shift来右移。如果传入4代表就是16进制。传入3代表八进制。</p>
+<h4 id="写一个Byte的二进制转化"><a href="#写一个Byte的二进制转化" class="headerlink" title="写一个Byte的二进制转化"></a>写一个Byte的二进制转化</h4><p>我的需求是写个Byte的进制转化，并希望签名补0就是完整的8bit长度。根据以上思想完善如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">byte n=1;</span><br><span class="line">n = i &gt;&gt;&gt; 7;</span><br></pre></td></tr></table></figure>
+
+<p>发现这段会报错，位移运算符接收的必须是整形</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">byte</span> <span class="title function_">numberofLeadingZerosByte</span><span class="params">(<span class="type">byte</span> i)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (i==<span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">8</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">byte</span> n=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (i&gt;&gt;&gt;<span class="number">4</span>==<span class="number">0</span>) &#123;</span><br><span class="line">			n+=<span class="number">4</span>;</span><br><span class="line">			i&lt;&lt;=<span class="number">4</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (i&gt;&gt;&gt;<span class="number">6</span>==<span class="number">0</span>) &#123;</span><br><span class="line">			n+=<span class="number">2</span>;</span><br><span class="line">			i&lt;&lt;=<span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		n -= i &gt;&gt;&gt; <span class="number">7</span>;</span><br><span class="line">		<span class="keyword">return</span> n;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) <span class="number">1</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) <span class="number">2</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) <span class="number">4</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) <span class="number">8</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) <span class="number">16</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) <span class="number">64</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) -<span class="number">1</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) -<span class="number">2</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) -<span class="number">4</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) -<span class="number">8</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) -<span class="number">16</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) -<span class="number">64</span>));</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>但是以上代码是不报错的，估计是被向上转型了	n -&#x3D; i &gt;&gt;&gt; 7;这段代码被向上转型了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="type">byte</span> i0=-<span class="number">1</span>;</span><br><span class="line">		<span class="type">short</span> <span class="variable">i1</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">i2</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">		<span class="type">long</span> <span class="variable">i3</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">		System.out.println(i0 &gt;&gt;&gt; <span class="number">7</span>);</span><br><span class="line">		System.out.println(i1 &gt;&gt;&gt; <span class="number">7</span>);</span><br><span class="line">		System.out.println(i2 &gt;&gt;&gt; <span class="number">7</span>);</span><br><span class="line">		System.out.println(i3 &gt;&gt;&gt; <span class="number">7</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">33554431</span></span><br><span class="line"><span class="number">33554431</span></span><br><span class="line"><span class="number">33554431</span></span><br><span class="line"><span class="number">144115188075855871</span></span><br></pre></td></tr></table></figure>
+
+<p>说明byte，short会被转型为int。导致不准确的问题。</p>
+<p>也就是说当-1传入numberofLeadingZerosByte这个方法执行	n -&#x3D; i &gt;&gt;&gt; 7;的时候。i先向上转型变成</p>
+<p>1111 1111 1111 1111 1111 1111 1111 1111</p>
+<p>然后无符号右移7位</p>
+<p>0000 0001 1111 1111 1111 1111 1111 1111</p>
+<p>上面这个数33554431然后1-33554431得到-33554430它的二进制</p>
+<p>11111110000000000000000000000010</p>
+<p>然后再被强制转型赋值给n</p>
+<p>取低位八位</p>
+<p>0000 0010</p>
+<p>也就是2</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;为什么我这么猜是对的呢？&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>因为传入-1，-2，-8都是返回2.我们再试一下-8按照上诉流程得出的结果，先向上转型变成</p>
+<p>1111 1111 1111 1111 1111 1111 1111 1000</p>
+<p>然后无符号右移7位</p>
+<p>0000 0001 1111 1111 1111 1111 1111 1111</p>
+<p>发现跟上面是一样的。就不用再试剩下的步骤了。</p>
+<h3 id="现在如何让他（numberofLeadingZerosByte）返回正确的数？"><a href="#现在如何让他（numberofLeadingZerosByte）返回正确的数？" class="headerlink" title="现在如何让他（numberofLeadingZerosByte）返回正确的数？"></a>现在如何让他（numberofLeadingZerosByte）返回正确的数？</h3><p>改成这样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">byte</span> <span class="title function_">numberofLeadingZerosByte</span><span class="params">(<span class="type">byte</span> i)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (i==<span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">8</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">byte</span> n=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (i&gt;&gt;&gt;<span class="number">4</span>==<span class="number">0</span>) &#123;</span><br><span class="line">			n+=<span class="number">4</span>;</span><br><span class="line">			i&lt;&lt;=<span class="number">4</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (i&gt;&gt;&gt;<span class="number">6</span>==<span class="number">0</span>) &#123;</span><br><span class="line">			n+=<span class="number">2</span>;</span><br><span class="line">			i&lt;&lt;=<span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (i&gt;&gt;&gt;<span class="number">7</span>==<span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> n;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> --n;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) <span class="number">1</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) <span class="number">2</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) <span class="number">4</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) <span class="number">8</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) <span class="number">16</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) <span class="number">64</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) -<span class="number">1</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) -<span class="number">2</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) -<span class="number">4</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) -<span class="number">8</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) -<span class="number">16</span>));</span><br><span class="line">		System.out.println(numberofLeadingZerosByte((<span class="type">byte</span>) -<span class="number">64</span>));</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Byte转String"><a href="#Byte转String" class="headerlink" title="Byte转String"></a>Byte转String</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">byteToBinaryStr</span><span class="params">(<span class="type">byte</span> b)</span>&#123;</span><br><span class="line">		<span class="type">int</span> zeroSize=numberofLeadingZerosByte(b);</span><br><span class="line">		<span class="type">char</span>[] buf = <span class="keyword">new</span> <span class="title class_">char</span>[<span class="number">8</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;zeroSize;i++)&#123;</span><br><span class="line">			buf[i]=<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(b</span><br><span class="line">				);</span><br><span class="line">		<span class="type">int</span> mag=Byte.SIZE-zeroSize;</span><br><span class="line">		<span class="type">int</span> charPos=<span class="number">7</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(mag&gt; <span class="number">0</span>) &#123;</span><br><span class="line">			System.out.println(b&amp;<span class="number">1</span>);</span><br><span class="line">			mag--;</span><br><span class="line">			buf[charPos--] = (b&amp;<span class="number">1</span>)==<span class="number">1</span>?<span class="string">&#x27;1&#x27;</span>:<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">		</span><br><span class="line">			b=(<span class="type">byte</span>) (b&gt;&gt;&gt;<span class="number">1</span>);</span><br><span class="line">		&#125; </span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">String</span>(buf);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>完结。</p>
+<p>​	</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/07/23/Byte%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/" data-id="cmry6idem006low4sedxt127z" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/26/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%AB%98%E4%BB%B7%E5%B8%81%E7%A7%8D%E5%92%8C%E8%91%97%E5%90%8D%E6%BC%8F%E6%B4%9E/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          区块链币种介绍
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/18/%E5%AF%86%E7%A0%81%E5%AD%A6-AES%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">密码学-AES加密原理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetpack/" rel="tag">Jetpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/about-life/" rel="tag">about life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block-chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cryptography/" rel="tag">cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/" rel="tag">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" rel="tag">新闻摘要</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" rel="tag">新闻摘要, 深度阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" rel="tag">新闻摘要,深度阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%AD%E7%94%B5/" rel="tag">杭电</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Jenkins/" style="font-size: 11.43px;">Jenkins</a> <a href="/tags/Jetpack/" style="font-size: 11.43px;">Jetpack</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/about-life/" style="font-size: 10px;">about life</a> <a href="/tags/android/" style="font-size: 15.71px;">android</a> <a href="/tags/block-chain/" style="font-size: 17.14px;">block chain</a> <a href="/tags/block-chain/" style="font-size: 10px;">block-chain</a> <a href="/tags/code/" style="font-size: 18.57px;">code</a> <a href="/tags/cryptography/" style="font-size: 12.86px;">cryptography</a> <a href="/tags/network/" style="font-size: 12.86px;">network</a> <a href="/tags/note/" style="font-size: 10px;">note</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" style="font-size: 20px;">新闻摘要</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" style="font-size: 11.43px;">新闻摘要, 深度阅读</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" style="font-size: 10px;">新闻摘要,深度阅读</a> <a href="/tags/%E6%9D%AD%E7%94%B5/" style="font-size: 14.29px;">杭电</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 11.43px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/07/">July 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/06/">June 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/07/24/index/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/24/2026-07-24-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-07-24（周五）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/23/2026-07-23-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-07-23（周四）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/22/2026-07-22-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-07-22（周三）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/21/2026-07-21-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-07-21（周二）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Vencent learn coding<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
