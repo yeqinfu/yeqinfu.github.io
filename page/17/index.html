@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vencent Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Vencent Blog">
+<meta property="og:url" content="https://yeqinfu.github.io/page/17/index.html">
+<meta property="og:site_name" content="Vencent Blog">
+<meta property="og:locale">
+<meta property="article:author" content="Vencent learn coding">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Vencent Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Vencent Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yeqinfu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Kotlin委托模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/23/Kotlin%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/" class="article-date">
+  <time datetime="2018-01-23T14:00:58.000Z" itemprop="datePublished">2018-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/23/Kotlin%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/">Kotlin委托模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>设计模式之代理模式（委托模式）</p>
+<p>Kotlin中委托实现关键字by</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">interface</span> <span class="title class_">ISports</span> &#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">doSports</span><span class="params">()</span></span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">SwimForSports</span>: <span class="type">ISports</span>&#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">doSports</span><span class="params">()</span></span> &#123;</span><br><span class="line">            println(<span class="string">&quot;do swim&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">SportsManager</span>(sport: ISports): ISports <span class="keyword">by</span> sport</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> swimSports= SwimForSports()</span><br><span class="line">        <span class="keyword">var</span> m=SportsManager(swimSports)</span><br><span class="line">        m.doSports()<span class="comment">// Log：do swim</span></span><br><span class="line">        Log.d(<span class="string">&quot;yeqinfu&quot;</span>,<span class="string">&quot;-------&quot;</span>+(m <span class="keyword">is</span> ISports))</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//echo yeqinfu: -------true</span></span><br></pre></td></tr></table></figure>
+
+<p>实现了ISports接口，实际由sport 对象代理</p>
+<h3 id="lazy"><a href="#lazy" class="headerlink" title="lazy"></a>lazy</h3><p>延迟委托</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">lazy</span><span class="params">(initializer: () -&gt; <span class="type">T</span>)</span></span>: Lazy&lt;T&gt; = SynchronizedLazyImpl(initializer)</span><br></pre></td></tr></table></figure>
+
+<p>查看Lazy接口</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a value with lazy initialization.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * To create an instance of [Lazy] use the [lazy] function.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Lazy</span>&lt;<span class="type">out T</span>&gt; &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Gets the lazily initialized value of the current Lazy instance.</span></span><br><span class="line"><span class="comment">     * Once the value was initialized it must not change during the rest of lifetime of this Lazy instance.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">val</span> value: T</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns `true` if a value for this Lazy instance has been already initialized, and `false` otherwise.</span></span><br><span class="line"><span class="comment">     * Once this function has returned `true` it stays `true` for the rest of lifetime of this Lazy instance.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">isInitialized</span><span class="params">()</span></span>: <span class="built_in">Boolean</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个接口存了值，和是否已经初始化了的变量，再看SynchronizedLazyImpl</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">SynchronizedLazyImpl</span>&lt;<span class="type">out T</span>&gt;(initializer: () -&gt; T, lock: Any? = <span class="literal">null</span>) : Lazy&lt;T&gt;, Serializable &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> initializer: (() -&gt; T)? = initializer</span><br><span class="line">    <span class="meta">@Volatile</span> <span class="keyword">private</span> <span class="keyword">var</span> _value: Any? = UNINITIALIZED_VALUE</span><br><span class="line">    <span class="comment">// final field is required to enable safe publication of constructed instance</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> lock = lock ?: <span class="keyword">this</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> value: T</span><br><span class="line">        <span class="keyword">get</span>() &#123;</span><br><span class="line">            <span class="keyword">val</span> _v1 = _value</span><br><span class="line">            <span class="keyword">if</span> (_v1 !== UNINITIALIZED_VALUE) &#123;</span><br><span class="line">                <span class="meta">@Suppress(<span class="string">&quot;UNCHECKED_CAST&quot;</span>)</span></span><br><span class="line">                <span class="keyword">return</span> _v1 <span class="keyword">as</span> T</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> synchronized(lock) &#123;</span><br><span class="line">                <span class="keyword">val</span> _v2 = _value</span><br><span class="line">                <span class="keyword">if</span> (_v2 !== UNINITIALIZED_VALUE) &#123;</span><br><span class="line">                    <span class="meta">@Suppress(<span class="string">&quot;UNCHECKED_CAST&quot;</span>)</span> (_v2 <span class="keyword">as</span> T)</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">val</span> typedValue = initializer!!()</span><br><span class="line">                    _value = typedValue</span><br><span class="line">                    initializer = <span class="literal">null</span></span><br><span class="line">                    typedValue</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">isInitialized</span><span class="params">()</span></span>: <span class="built_in">Boolean</span> = _value !== UNINITIALIZED_VALUE</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>: String = <span class="keyword">if</span> (isInitialized()) value.toString() <span class="keyword">else</span> <span class="string">&quot;Lazy value not initialized yet.&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">writeReplace</span><span class="params">()</span></span>: Any = InitializedLazyImpl(value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>重写了value的get方法，_value会被赋值一次，并且是线程同步的。之后 _value再也不会是null值，就一直直接返回。</p>
+<p>可能会有疑惑就是lazy函数返回值是一个Lazy<T>类型，</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> d:<span class="built_in">Int</span> <span class="keyword">by</span> lazy &#123;</span><br><span class="line">        <span class="number">2</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>怎么通过赋值，赋值给这个变量d呢</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> Lazy<span class="type">&lt;T&gt;</span>.<span class="title">getValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T = value</span><br></pre></td></tr></table></figure>
+
+<p>by 执行了Lazy<T> 的getValue方法 实现赋值的。</p>
+<h3 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name: String <span class="keyword">by</span> Delegates.observable(<span class="string">&quot;wang&quot;</span>, &#123;</span><br><span class="line">      kProperty, oldName, newName -&gt;</span><br><span class="line">      println(<span class="string">&quot;kProperty：<span class="subst">$&#123;kProperty.name&#125;</span> | oldName:<span class="variable">$oldName</span> | newName:<span class="variable">$newName</span>&quot;</span>)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个委托会帮我们监控属性的变化，当set被调用的时候，会执行我们的lambda表达式查看方法如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">observable</span><span class="params">(initialValue: <span class="type">T</span>, <span class="keyword">crossinline</span> onChange: (<span class="type">property</span>: <span class="type">KProperty</span>&lt;*&gt;, <span class="type">oldValue</span>: <span class="type">T</span>, <span class="type">newValue</span>: <span class="type">T</span>) -&gt; <span class="type">Unit</span>)</span></span>: ReadWriteProperty&lt;Any?, T&gt; = <span class="keyword">object</span> : ObservableProperty&lt;T&gt;(initialValue) &#123;</span><br><span class="line">       <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">afterChange</span><span class="params">(property: <span class="type">KProperty</span>&lt;*&gt;, oldValue: <span class="type">T</span>, newValue: <span class="type">T</span>)</span></span> = onChange(property, oldValue, newValue)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>涉及到内联关键字</p>
+<p>所谓的内联函数就是在被调用的地方直接展开，没有参数压栈和返回时候的参数出栈资源释放的操作，提高了程序的执行速度</p>
+<h4 id="kotlin-inline-noinline-crossinline"><a href="#kotlin-inline-noinline-crossinline" class="headerlink" title="kotlin inline noinline crossinline"></a>kotlin inline noinline crossinline</h4><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/u013009899/article/details/78584994">参考</a></p>
+<p>一个函数中，如果存在一个lambda表达式，在该lambda中不支持直接进行return退出该函数，比如：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">    innerFun &#123;</span><br><span class="line">        <span class="comment">//return  //错误，不支持直接return</span></span><br><span class="line">        <span class="comment">//只支持通过标签，返回innerFun</span></span><br><span class="line">        <span class="keyword">return</span><span class="symbol">@innerFun</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//如果是匿名或者具名函数，则支持</span></span><br><span class="line">    <span class="keyword">var</span> f = <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除非是inline函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">    innerFun &#123;</span><br><span class="line">        <span class="keyword">return</span>  <span class="comment">//支持直接返回outterFun</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是内联</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">        innerFun &#123;</span><br><span class="line">            <span class="comment">//return  //错误，不支持直接return</span></span><br><span class="line">            <span class="comment">//只支持通过标签，返回innerFun</span></span><br><span class="line">            Log.d(<span class="string">&quot;======&quot;</span>,<span class="string">&quot;=============innerFun===============&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        Log.d(<span class="string">&quot;======&quot;</span>,<span class="string">&quot;=============innerFun2222===============&quot;</span>)</span><br><span class="line">        <span class="comment">//如果是匿名或者具名函数，则支持</span></span><br><span class="line">        <span class="keyword">var</span> f = <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">        a()</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//echo ======: =============innerFun===============</span></span><br></pre></td></tr></table></figure>
+
+<p>可以理解，方法执行的时候被直接展开，innerFun2222没有得到输出，因为内联函数return了</p>
+<h6 id="noinline"><a href="#noinline" class="headerlink" title="noinline"></a>noinline</h6><blockquote>
+<p>如果你只想被（作为参数）传给一个内联函数的 lamda 表达式中只有一些被内联，你可以用 noinline 修饰符标记一些函数参数：</p>
+</blockquote>
+<h5 id="crossinline"><a href="#crossinline" class="headerlink" title="crossinline"></a>crossinline</h5><p>crossinline 的作用是让被标记的lambda表达式不允许非局部返回。 </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">outterFun</span><span class="params">()</span></span> &#123;</span><br><span class="line">       innerFun &#123;</span><br><span class="line">          </span><br><span class="line">           Log.d(<span class="string">&quot;======&quot;</span>,<span class="string">&quot;=============innerFun===============&quot;</span>)</span><br><span class="line">           <span class="keyword">return</span><span class="symbol">@innerFun</span></span><br><span class="line">       &#125;</span><br><span class="line">       Log.d(<span class="string">&quot;======&quot;</span>,<span class="string">&quot;=============innerFun2222===============&quot;</span>)</span><br><span class="line">       <span class="comment">//如果是匿名或者具名函数，则支持</span></span><br><span class="line">       <span class="keyword">var</span> f = <span class="function"><span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">           <span class="keyword">return</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">innerFun</span><span class="params">(<span class="keyword">crossinline</span> a: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">       a()</span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">//echo =============innerFun===============</span></span><br><span class="line"><span class="comment">//=============innerFun2222===============</span></span><br></pre></td></tr></table></figure>
+
+<p>不允许局部返回之后有两个echo 日志</p>
+<p>observable 两个入参，一个是初始值 initialValue 一个是callback的lambda</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">ObservableProperty</span>&lt;<span class="type">T</span>&gt;(initialValue: T) : ReadWriteProperty&lt;Any?, T&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> value = initialValue</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  The callback which is called before a change to the property value is attempted.</span></span><br><span class="line"><span class="comment">     *  The value of the property hasn&#x27;t been changed yet, when this callback is invoked.</span></span><br><span class="line"><span class="comment">     *  If the callback returns `true` the value of the property is being set to the new value,</span></span><br><span class="line"><span class="comment">     *  and if the callback returns `false` the new value is discarded and the property remains its old value.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">beforeChange</span><span class="params">(property: <span class="type">KProperty</span>&lt;*&gt;, oldValue: <span class="type">T</span>, newValue: <span class="type">T</span>)</span></span>: <span class="built_in">Boolean</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The callback which is called after the change of the property is made. The value of the property</span></span><br><span class="line"><span class="comment">     * has already been changed when this callback is invoked.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">afterChange</span> <span class="params">(property: <span class="type">KProperty</span>&lt;*&gt;, oldValue: <span class="type">T</span>, newValue: <span class="type">T</span>)</span></span>: <span class="built_in">Unit</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T &#123;</span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;, value: <span class="type">T</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> oldValue = <span class="keyword">this</span>.value</span><br><span class="line">        <span class="keyword">if</span> (!beforeChange(property, oldValue, value)) &#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.value = value</span><br><span class="line">        afterChange(property, oldValue, value)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>返回值表达式是实现了了上述这个类，在setvalue方法中设置了oldvalue，调用了afterChange，最后执行了外层的lambda。实现了监听模式。</p>
+<h4 id="Vetoable"><a href="#Vetoable" class="headerlink" title="Vetoable"></a>Vetoable</h4><p>特殊委托，从setvalue看出，是根据lambda返回值决定是否要保持值。</p>
+<h4 id="Not-Null"><a href="#Not-Null" class="headerlink" title="Not Null"></a>Not Null</h4><p>在没有赋值调用getValue会抛出异常</p>
+<h4 id="map映射"><a href="#map映射" class="headerlink" title="map映射"></a>map映射</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/01/23/Kotlin%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/" data-id="cmtm76ekd00agsy4xa5eg8z7c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-kotlin泛型函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/23/kotlin%E6%B3%9B%E5%9E%8B%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2018-01-23T09:00:58.000Z" itemprop="datePublished">2018-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/23/kotlin%E6%B3%9B%E5%9E%8B%E5%87%BD%E6%95%B0/">Kotlin泛型函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> T.<span class="title">let</span><span class="params">(f: (<span class="type">T</span>) -&gt; <span class="type">R</span>)</span></span>: R = f(<span class="keyword">this</span>)</span><br></pre></td></tr></table></figure>
+
+<p>方法声明中看出，接受的参数是一个函数f，这个f的入参就是T，返回值就是R。然后let函数的返回值类型为R整个let的方法体就是f(this)。上面这个函数可以改成看的清晰点的：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> T.<span class="title">let</span><span class="params">(f: (<span class="type">T</span>) -&gt; <span class="type">R</span>)</span></span>: R &#123;</span><br><span class="line">       <span class="keyword">return</span>  f(<span class="keyword">this</span>)</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<p>在运用let函数的时候可以这样写,入参是大括号的闭包</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> d=Intent()</span><br><span class="line"> <span class="keyword">var</span> re=d?.let(&#123;</span><br><span class="line">            haha(d)</span><br><span class="line">        &#125;)</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">haha</span><span class="params">(i:<span class="type">Intent</span>)</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>lambda简写，第一个中省略小括号，省略小括号并且把闭包放在外面</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re=d?.let()&#123;</span><br><span class="line">            haha(d)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> re=d?.let&#123;</span><br><span class="line">            haha(d)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>闭包默认有一个参数被省略</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re=d?.let()&#123;it-&gt;</span><br><span class="line">            haha(it)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以写成这样,下划线代表参数占位符</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re=d?.let&#123;_-&gt;</span><br><span class="line">           haha(it)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>let函数加？可以让it保证不为空，let函数只有d不为空的时候被执行</p>
+<h3 id="with"><a href="#with" class="headerlink" title="with"></a>with</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> <span class="title">with</span><span class="params">(receiver: <span class="type">T</span>, f: <span class="type">T</span>.() -&gt; <span class="type">R</span>)</span></span>: R = receiver.f()</span><br></pre></td></tr></table></figure>
+
+<p>with接收一个对象receiver，和一个函数，这个函数会作为这个对象的扩展函数执行。最后返回这个函数的返回值。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f: (T) -&gt; R</span><br><span class="line">f: T.() -&gt; R</span><br></pre></td></tr></table></figure>
+
+<p>这两个表达式的区别，第一个代表一个方法，名字叫f 参数表示一个T，返回值是R。第二个代表名字叫f，是T的扩展函数，返回值为R。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list: MutableList&lt;String&gt; = mutableListOf(<span class="string">&quot;A&quot;</span>, <span class="string">&quot;B&quot;</span>, <span class="string">&quot;C&quot;</span>)</span><br><span class="line">  <span class="keyword">val</span> change: Any</span><br><span class="line">  change = with(list) &#123;</span><br><span class="line">      add(<span class="string">&quot;D&quot;</span>)</span><br><span class="line">      add(<span class="string">&quot;E&quot;</span>)</span><br><span class="line">      <span class="keyword">this</span>.add(<span class="string">&quot;F&quot;</span>)</span><br><span class="line">      size</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>简写后，大括号代表拓展函数体，add方法是list的方法，可以加this，也可以不加list，最后一句表达式就是返回值。</p>
+<h3 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> T.<span class="title">apply</span><span class="params">(f: <span class="type">T</span>.() -&gt; <span class="type">Unit</span>)</span></span>: T &#123; f(); <span class="keyword">return</span> <span class="keyword">this</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>apply被定义为T的拓展函数，接受一个扩展函数，返回T本身。和with类似，但是返回的一直都是this，即T</p>
+<h3 id="safeRun"><a href="#safeRun" class="headerlink" title="safeRun"></a>safeRun</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 自定义泛型函数 结合let函数</span></span><br><span class="line"><span class="comment">    * 如果fragement没有被attached到Activity就不执行</span></span><br><span class="line"><span class="comment">    * 这边可以做异步返回的检查工作</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> T.<span class="title">safeRun</span><span class="params">(f: (<span class="type">T</span>) -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (isAdded) &#123;</span><br><span class="line">          f(<span class="keyword">this</span>)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>项目中，会出现一个异步异常，就是如果异步返回的时候fragment已经被销毁，比如多个viewpager迅速切换，这时候在返回的回调函数调用设置界面就会出现异常奔溃，是因为fragment已经没有和activity关联了。所以，自定义了这个扩展函数，使用如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">response?.safeRun &#123;</span><br><span class="line">                     tv_totalKwh.text=it.message.analysisCateSum</span><br><span class="line">                    </span><br><span class="line">                 &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个方法体执行之前，做了不为null的检查和fragment的attched的检查。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/01/23/kotlin%E6%B3%9B%E5%9E%8B%E5%87%BD%E6%95%B0/" data-id="cmtm76ekm00bjsy4x9cwz83tt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-AS的GsonFormat插件变种" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/16/AS%E7%9A%84GsonFormat%E6%8F%92%E4%BB%B6%E5%8F%98%E7%A7%8D/" class="article-date">
+  <time datetime="2018-01-16T14:00:58.000Z" itemprop="datePublished">2018-01-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/16/AS%E7%9A%84GsonFormat%E6%8F%92%E4%BB%B6%E5%8F%98%E7%A7%8D/">AS的GsonFormat插件变种</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Bean的生成会用到一些插件来完成，比如<a target="_blank" rel="noopener" href="https://github.com/zzz40500/GsonFormat">GsonFormat</a>，但是后台会有情况比如生成的一个类A，但是后台给这个类A的值不是一个空对象，而是null。这样导致我们在调用类A的cc属性的时候，因为A已经是null了还调用null的一个属性而导致空指针异常，所以这个插件为了就是解决这个问题，自动补充null的时候的值，所有代码都是改别人的库，变种而已。更改的代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String method = &quot;public &quot;</span><br><span class="line">                       .concat(typeStr).concat(</span><br><span class="line">                               &quot;   get&quot;).concat(</span><br><span class="line">                               captureName(field)).concat(</span><br><span class="line">                               &quot;() &#123; &quot; +getNotNull(typeStr, field1.getGenerateFieldName())+&quot;  return &quot;).concat(</span><br><span class="line">                               field1.getGenerateFieldName()).concat(&quot; ;&#125; &quot;);</span><br><span class="line">               mClass.add(mFactory.createMethodFromText(method, mClass));</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在这个原来生成get的方法代码中插入一个getNotNull字符，方法内容如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String <span class="title function_">getNotNull</span><span class="params">(String typeStr,String fieldName)</span> &#123;</span><br><span class="line">        String result=<span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (typeStr.equals(<span class="string">&quot;String&quot;</span>))&#123;<span class="comment">//</span></span><br><span class="line">            result=<span class="string">&quot;if(&quot;</span>+fieldName+<span class="string">&quot;==null)&#123;\n&quot;</span>+fieldName+<span class="string">&quot;=\&quot;\&quot;;&#125;&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (typeStr.equals(<span class="string">&quot;int&quot;</span>)</span><br><span class="line">                |typeStr.equals(<span class="string">&quot;double&quot;</span>)</span><br><span class="line">                |typeStr.equals(<span class="string">&quot;long&quot;</span>)</span><br><span class="line">                |typeStr.equals(<span class="string">&quot;float&quot;</span>)</span><br><span class="line">                |typeStr.equals(<span class="string">&quot;byte&quot;</span>)</span><br><span class="line">                |typeStr.equals(<span class="string">&quot;short&quot;</span>)</span><br><span class="line">                |typeStr.equals(<span class="string">&quot;char&quot;</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            String prx=typeStr;</span><br><span class="line">            <span class="keyword">if</span> (typeStr.startsWith(<span class="string">&quot;java.util.List&quot;</span>))&#123;</span><br><span class="line">                prx=prx.replace(<span class="string">&quot;java.util.List&quot;</span>,<span class="string">&quot;java.util.ArrayList&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            result=<span class="string">&quot;if(&quot;</span>+fieldName+<span class="string">&quot;==null)&#123;\n&quot;</span>+fieldName+<span class="string">&quot;= new &quot;</span>+prx+<span class="string">&quot;();&#125;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>如果不是基本数据类型，而且是null值，就new一个出来，如果还有报错，可以以后再修正。就是一个静态代码的生成罢了</p>
+<p>代码地址<a target="_blank" rel="noopener" href="https://github.com/yeqinfu/NotNullGsonFormat">https://github.com/yeqinfu/NotNullGsonFormat</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/01/16/AS%E7%9A%84GsonFormat%E6%8F%92%E4%BB%B6%E5%8F%98%E7%A7%8D/" data-id="cmtm76ejy008nsy4xheqh1m7l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ToastUtils的完美单例" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/11/ToastUtils%E7%9A%84%E5%AE%8C%E7%BE%8E%E5%8D%95%E4%BE%8B/" class="article-date">
+  <time datetime="2018-01-11T14:00:58.000Z" itemprop="datePublished">2018-01-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/11/ToastUtils%E7%9A%84%E5%AE%8C%E7%BE%8E%E5%8D%95%E4%BE%8B/">ToastUtils的完美单例</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有点经验的人会想到Toast要写成工具类，单例模式。这样就不会用户一直点一直点，然后不点了，然后后面toast还在一直弹一直弹，弹到前面点的相应次数为止。这个很恶心。所以网上随便看看Toast的单例模式有人会这么写，甚至说我项目里面的Toast工具也是这么写的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ToastUtils</span> &#123;  </span><br><span class="line">      </span><br><span class="line">    <span class="comment">/** 之前显示的内容 */</span>  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String oldMsg ;  </span><br><span class="line">    <span class="comment">/** Toast对象 */</span>  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">Toast</span> <span class="variable">toast</span> <span class="operator">=</span> <span class="literal">null</span> ;  </span><br><span class="line">    <span class="comment">/** 第一次时间 */</span>  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">long</span> <span class="variable">oneTime</span> <span class="operator">=</span> <span class="number">0</span> ;  </span><br><span class="line">    <span class="comment">/** 第二次时间 */</span>  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">long</span> <span class="variable">twoTime</span> <span class="operator">=</span> <span class="number">0</span> ;  </span><br><span class="line">      </span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 显示Toast </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> context </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> message </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">showToast</span><span class="params">(Context context,String message)</span>&#123;  </span><br><span class="line">        <span class="keyword">if</span>(toast == <span class="literal">null</span>)&#123;  </span><br><span class="line">            toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);  </span><br><span class="line">            toast.show() ;  </span><br><span class="line">            oneTime = System.currentTimeMillis() ;  </span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">            twoTime = System.currentTimeMillis() ;  </span><br><span class="line">            <span class="keyword">if</span>(message.equals(oldMsg))&#123;  </span><br><span class="line">                <span class="keyword">if</span>(twoTime - oneTime &gt; Toast.LENGTH_SHORT)&#123;  </span><br><span class="line">                    toast.show() ;  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">                oldMsg = message ;  </span><br><span class="line">                toast.setText(message) ;  </span><br><span class="line">                toast.show() ;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        oneTime = twoTime ;  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>很多写法大同小异，都是用到单例和静态变量。问题在于，它们有一个共同问题，如上代码所示，toast这个变量是静态的，不被回收，那么context对象作为toast的私有变量也得不到回收。所以会造成始终有一个Activity回收不了，而回收不了的那个Activity就是第一次生成toast实例的那个activity。</p>
+<p>那么既要保持单例模式，又要做到activity的及时回收，这怎么弄？</p>
+<p>直接贴我的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Created by yeqinfu on 17-9-27 上午9:35</span></span><br><span class="line"><span class="comment"> * Copyright (c) JXT All rights reserved.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.ppandroid.app.utils.toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.Activity;</span><br><span class="line"><span class="keyword">import</span> android.app.Application;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.text.TextUtils;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.ppandroid.app.base.SampleApplicationLike;</span><br><span class="line"><span class="keyword">import</span> com.ppandroid.app.utils.activitymanager.ActivityManager;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ToastUtilAdapter</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> ToastUtilAdapter	instance;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Toast					toast;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="title function_">ToastUtilAdapter</span><span class="params">()</span> &#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> ToastUtilAdapter <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">			<span class="keyword">synchronized</span> (ToastUtilAdapter.class) &#123;</span><br><span class="line">				<span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">					instance = <span class="keyword">new</span> <span class="title class_">ToastUtilAdapter</span>();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Activity mContext;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">toast</span><span class="params">(<span class="keyword">final</span> String toastMsg)</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (TextUtils.isEmpty(toastMsg)) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">if</span> (mContext==<span class="literal">null</span>)&#123;</span><br><span class="line">            mContext=getContext();</span><br><span class="line">            toast = Toast.makeText(mContext, toastMsg, Toast.LENGTH_SHORT);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (ActivityManager.getActivityManager().isInStack(mContext))&#123;<span class="comment">//如果上次保留的mContext还在栈内</span></span><br><span class="line">                toast.setText(toastMsg);</span><br><span class="line">                toast.setDuration(Toast.LENGTH_SHORT);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;<span class="comment">//不在栈内移除引用从新new一个toast对象</span></span><br><span class="line">                mContext=getContext();</span><br><span class="line">                toast = Toast.makeText(mContext, toastMsg, Toast.LENGTH_SHORT);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">				<span class="comment">/*</span></span><br><span class="line"><span class="comment">				这个是旧代码的单例写法，会导致第一个使用的Activity如AC_Login上下文泄漏</span></span><br><span class="line"><span class="comment">				if (toast == null) &#123;</span></span><br><span class="line"><span class="comment">						 toast = Toast.makeText(getContext(), toastMsg, Toast.LENGTH_SHORT);</span></span><br><span class="line"><span class="comment">					&#125;</span></span><br><span class="line"><span class="comment">					else &#123;</span></span><br><span class="line"><span class="comment">						toast.setText(toastMsg);</span></span><br><span class="line"><span class="comment">						toast.setDuration(Toast.LENGTH_SHORT);</span></span><br><span class="line"><span class="comment">					&#125;*/</span></span><br><span class="line">        toast.show();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 这边改成获取当前栈顶的activity对象作为上下文</span></span><br><span class="line"><span class="comment">	 * 增加一个activity的监听，如果当前的mContext被回收，则及时释放引用</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> Activity <span class="title function_">getContext</span><span class="params">()</span> &#123;</span><br><span class="line">	    Activity current=ActivityManager.getActivityManager().currentActivity();</span><br><span class="line">        SampleApplicationLike.getContext().registerActivityLifecycleCallbacks(<span class="keyword">new</span> <span class="title class_">Application</span>.ActivityLifecycleCallbacks() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivityCreated</span><span class="params">(Activity activity, Bundle bundle)</span> &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivityStarted</span><span class="params">(Activity activity)</span> &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivityResumed</span><span class="params">(Activity activity)</span> &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivityPaused</span><span class="params">(Activity activity)</span> &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivityStopped</span><span class="params">(Activity activity)</span> &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivitySaveInstanceState</span><span class="params">(Activity activity, Bundle bundle)</span> &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onActivityDestroyed</span><span class="params">(Activity activity)</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (activity==mContext)&#123;</span><br><span class="line">                    mContext=<span class="literal">null</span>;</span><br><span class="line">                     toast=<span class="literal">null</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">		<span class="keyword">return</span> current;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">toast</span><span class="params">(<span class="type">int</span> resId)</span> &#123;</span><br><span class="line"></span><br><span class="line">		toast(getContext().getResources().getString(resId));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如代码所示，mContext对象一直是作为Toast的上下文对象，但是加了一个ActivityLifecycleCallbacks，当对象呗销毁的时候，及时释放mContext这个强引用。</p>
+<p>而在mContext为空的时候，从一个维护Activtiy的Stack取出栈顶的Activity作为Toast的上下文对象。核心就是及时释放这个单例的mContext对象。也就是Toast它不应该是一个Application级别的全局单例，而是作为一个页面activity级别的单例而存在。</p>
+<p>另外，网络上的getaplicationcontext()这样的Context作为Toast的上下文是不可行的，好像跟window token有关。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2018/01/11/ToastUtils%E7%9A%84%E5%AE%8C%E7%BE%8E%E5%8D%95%E4%BE%8B/" data-id="cmtm76ekh00awsy4xe0azabrz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-杭电1008" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/22/%E6%9D%AD%E7%94%B51008/" class="article-date">
+  <time datetime="2017-12-22T14:00:58.000Z" itemprop="datePublished">2017-12-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/22/%E6%9D%AD%E7%94%B51008/">杭电1008</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> oj;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main_1008</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		Scanner scanner=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">		<span class="keyword">while</span>(scanner.hasNext())&#123;</span><br><span class="line">			<span class="type">int</span> n=scanner.nextInt();</span><br><span class="line">			<span class="keyword">if</span> (n==<span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="type">int</span>[] a=<span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">					a[i]=scanner.nextInt();</span><br><span class="line">				&#125;</span><br><span class="line">				doThing(a);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">doThing</span><span class="params">(<span class="type">int</span>[] a)</span> &#123;</span><br><span class="line">		<span class="type">int</span> step=<span class="number">0</span>;</span><br><span class="line">		<span class="type">int</span> count=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">			count+=<span class="number">5</span>;</span><br><span class="line">			<span class="type">int</span> distance=a[i]-step;</span><br><span class="line">			<span class="keyword">if</span> (distance&gt;<span class="number">0</span>) &#123;</span><br><span class="line">				count+=distance*<span class="number">6</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				count+=(-distance*<span class="number">4</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			step=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(count);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/12/22/%E6%9D%AD%E7%94%B51008/" data-id="cmtm76el600d8sy4xavqd1psv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-学习Https" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/30/%E5%AD%A6%E4%B9%A0Https/" class="article-date">
+  <time datetime="2017-11-30T09:00:58.000Z" itemprop="datePublished">2017-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/30/%E5%AD%A6%E4%B9%A0Https/">学习https</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="http://blog.csdn.net/clh604/article/details/22179907">学习参考</a></p>
+<h5 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h5><p>由HTTP+SSL&#x2F;TLS组成。服务端配置证书可以自己制作或者权威机构购买。证书传送其实就是公钥传送，里面包含颁发机构，过期时间等。</p>
+<h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><p>浏览器将自己支持的加密规则发送给服务端</p>
+<h5 id="客户端解析证书"><a href="#客户端解析证书" class="headerlink" title="客户端解析证书"></a>客户端解析证书</h5><p>服务端选一组加密算法和hash算法，把信息征收发送给客户端。客户端TLS验证公钥是否有效，比如颁发机构，过期时间，如果异常会弹出警告。如果没有异常，就生成一个随机值。用证书对改随机值进行加密。</p>
+<h5 id="传送加密信息"><a href="#传送加密信息" class="headerlink" title="传送加密信息"></a>传送加密信息</h5><p>服务端得到随机值，服务端和客户端用这个随机值来进行加密解密。</p>
+<h5 id="服务端解密信息"><a href="#服务端解密信息" class="headerlink" title="服务端解密信息"></a>服务端解密信息</h5><p>服务端用私钥解密之后，得到随机值（私钥），然后把内容通过该值进行对称加密。</p>
+<h5 id="传输加密后的信息"><a href="#传输加密后的信息" class="headerlink" title="传输加密后的信息"></a>传输加密后的信息</h5><p>服务端用随机值（私钥对称加密）传输内容</p>
+<h5 id="客户端解密"><a href="#客户端解密" class="headerlink" title="客户端解密"></a>客户端解密</h5><p>客户端用对称加密（随机值）进行解密</p>
+<h4 id="ssl位置"><a href="#ssl位置" class="headerlink" title="ssl位置"></a>ssl位置</h4><p>ssl在应用层和tcp层之间。通过加入ssl头部再传到下一层。</p>
+<p><img src="http://wx2.sinaimg.cn/mw690/c1b251b3gy1flzvdmhlonj20w90yrq55.jpg" alt="三次握手"></p>
+<p>上图梳理来自<a target="_blank" rel="noopener" href="http://blog.csdn.net/u014386474/article/details/51669098">博文代码</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fron/p/https-20170111.html">证书参考</a></p>
+<h2 id="生成服务器的密匙文件casserver-keystore"><a href="#生成服务器的密匙文件casserver-keystore" class="headerlink" title="生成服务器的密匙文件casserver.keystore"></a>生成服务器的密匙文件casserver.keystore</h2><blockquote>
+<h3 id="keytool-genkey-alias-casserver-keypass-cas123-keyalg-RSA-keystore-casserver-keystore-validity-365"><a href="#keytool-genkey-alias-casserver-keypass-cas123-keyalg-RSA-keystore-casserver-keystore-validity-365" class="headerlink" title="keytool -genkey -alias casserver -keypass cas123 -keyalg RSA -keystore casserver.keystore -validity 365"></a>keytool -genkey -alias casserver -keypass cas123 -keyalg RSA -keystore casserver.keystore -validity 365</h3></blockquote>
+<p>-alias指定别名为casserver；</p>
+<p>-keyalg指定RSA算法；</p>
+<p>-keypass指定私钥密码；</p>
+<p>-keystore指定密钥文件名称为casserver.keystore；</p>
+<p>-validity指定有效期为365天。</p>
+<p>另外提示输入密匙库口令应与-keypass指定的cas123相同.您的名字与姓氏fron.com是CAS服务器使用的域名（不能是IP，也不能是localhost），其它项随意填。</p>
+<h2 id="生成服务端证书casserver-cer"><a href="#生成服务端证书casserver-cer" class="headerlink" title="生成服务端证书casserver.cer"></a>生成服务端证书casserver.cer</h2><blockquote>
+<p>keytool -export -alias casserver -storepass cas123 -file casserver.cer -keystore casserver.keystore</p>
+</blockquote>
+<p>-alias指定别名为casserver；</p>
+<p>-storepass指定私钥为liuqizhi；</p>
+<p>-file指定导出证书的文件名为casserver.cer；</p>
+<p>-keystore指定之前生成的密钥文件的文件名。</p>
+<p>注意：-alias和-storepass必须为生成casserver.keystore密钥文件时所指定的别名和密码，否则证书导出失败</p>
+<h2 id="导入证书文件到cacerts-密钥库文件"><a href="#导入证书文件到cacerts-密钥库文件" class="headerlink" title="导入证书文件到cacerts 密钥库文件"></a>导入证书文件到cacerts 密钥库文件</h2><p>接下来就是把上面生成的服务器的证书casserver.cer导入到cacerts密钥库文件中(后面的客户端会用到这些)</p>
+<h2 id="服务端Tomcat配置"><a href="#服务端Tomcat配置" class="headerlink" title="服务端Tomcat配置"></a>服务端Tomcat配置</h2><p>server.xml是tomcat的主配置文件，Server是顶级组件，代表一个Tomcat实例，可以包含多个Services其中每个Service都有自己的Engines和Connectors</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector protocol=&quot;HTTP/1.1&quot; SSLEnabled=&quot;true&quot; maxThreads=&quot;150&quot;</span><br><span class="line">			scheme=&quot;https&quot; secure=&quot;true&quot; clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot;</span><br><span class="line"></span><br><span class="line">			keystoreFile=&quot;E:\dev_soft\apache-tomcat-9.0.0.M20\casserver.keystore&quot;</span><br><span class="line"></span><br><span class="line">			keystorePass=&quot;cas123&quot; port=&quot;8443&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>把上面的代码贴入Services标签</p>
+<p>配置了https之后，我们希望客户端或者其他都智能通过https来请求我们的服务，就必须禁用不安全的https请求方式，或者使http重定向为https。</p>
+<p>解决方法：</p>
+<p>在tomcat\conf\web.xml中的</welcome-file-list>后面加上这样一段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;security-constraint&gt;</span><br><span class="line">		&lt;web-resource-collection&gt;</span><br><span class="line">			&lt;web-resource-name&gt;securedapp&lt;/web-resource-name&gt;</span><br><span class="line">			&lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">		&lt;/web-resource-collection&gt;</span><br><span class="line">		&lt;user-data-constraint&gt;</span><br><span class="line">			&lt;transport-guarantee&gt;CONFIDENTIAL&lt;/transport-guarantee&gt;</span><br><span class="line">		&lt;/user-data-constraint&gt;</span><br><span class="line">	&lt;/security-constraint&gt; </span><br></pre></td></tr></table></figure>
+
+<p>这样访问<a target="_blank" rel="noopener" href="https://localhost:8443/">https://localhost:8443/</a> 进入tomcat主页说明成功了。</p>
+<p>在我的项目中，tomcat的启动是根据以下代码启动的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tomcat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.catalina.connector.Connector;</span><br><span class="line"><span class="keyword">import</span> org.apache.catalina.startup.Tomcat;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The Class StartMainTomcat.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> nibili</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StartTomcat1</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/** The Constant PORT. */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">PORT</span> <span class="operator">=</span> <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/** The Constant CONTEXT. */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">CONTEXT</span> <span class="operator">=</span> <span class="string">&quot;web_api&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * The main method.</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">	 *            the arguments</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">	 *             the exception</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		System.setProperty(<span class="string">&quot;catalina.base&quot;</span>, System.getProperty(<span class="string">&quot;user.dir&quot;</span>) + <span class="string">&quot;/target&quot;</span>);</span><br><span class="line">		System.setProperty(<span class="string">&quot;log.sql.port&quot;</span>, <span class="string">&quot;80&quot;</span>);</span><br><span class="line">		<span class="type">Tomcat</span> <span class="variable">tomcat</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Tomcat</span>();</span><br><span class="line">		tomcat.setBaseDir(System.getProperty(<span class="string">&quot;catalina.base&quot;</span>));</span><br><span class="line">		tomcat.setPort(PORT);</span><br><span class="line">		tomcat.addWebapp(CONTEXT, System.getProperty(<span class="string">&quot;user.dir&quot;</span>) + <span class="string">&quot;/src/main/webapp&quot;</span>);</span><br><span class="line">		<span class="type">Connector</span> <span class="variable">connector</span> <span class="operator">=</span> tomcat.getConnector();</span><br><span class="line">		connector.setURIEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">		tomcat.start();</span><br><span class="line">		System.out.println(<span class="string">&quot;Hit Enter in console to stop server&quot;</span>);</span><br><span class="line">		<span class="keyword">if</span> (System.in.read() != <span class="number">0</span>) &#123;</span><br><span class="line">			tomcat.stop();</span><br><span class="line">			System.out.println(<span class="string">&quot;Server stopped&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>也就是说，server.xml，web.xml的配置不适用这个启动方式。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/11/30/%E5%AD%A6%E4%B9%A0Https/" data-id="cmtm76ekx00cgsy4x0op592bu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-贝塞尔曲线学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/23/%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2017-11-23T09:00:58.000Z" itemprop="datePublished">2017-11-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/23/%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E5%AD%A6%E4%B9%A0/">学习贝塞尔曲线</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>画一个简单的心。</p>
+<p>效果图如下：</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/c1b251b3gy1fls03bmka9g208w0fskik.gif" alt="心图"></p>
+<p>四个控制点的贝塞尔曲线。定义四个点</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> gridSpace=<span class="number">80</span>;</span><br><span class="line">   <span class="type">float</span> pointRadius=<span class="number">20</span>;</span><br><span class="line">   <span class="comment">//四个自定义点 假设位置</span></span><br><span class="line">   BPoint p0=<span class="keyword">new</span> <span class="title class_">BPoint</span>(<span class="number">7</span>*gridSpace,<span class="number">6</span>*gridSpace);</span><br><span class="line">   BPoint p1=<span class="keyword">new</span> <span class="title class_">BPoint</span>(<span class="number">11</span>*gridSpace,<span class="number">5</span>*gridSpace);</span><br><span class="line">   BPoint p2=<span class="keyword">new</span> <span class="title class_">BPoint</span>(<span class="number">11</span>*gridSpace,<span class="number">11</span>*gridSpace);</span><br><span class="line">   BPoint p3=<span class="keyword">new</span> <span class="title class_">BPoint</span>(<span class="number">7</span>*gridSpace,<span class="number">12</span>*gridSpace);</span><br></pre></td></tr></table></figure>
+
+<p>BPoint</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.widget.bezier;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by yeqinfu on 2017/11/23.</span></span><br><span class="line"><span class="comment"> * 贝塞尔坐标点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BPoint</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">float</span> x;</span><br><span class="line">    <span class="keyword">public</span></span><br><span class="line">    <span class="type">float</span> y;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">BPoint</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">BPoint</span><span class="params">(<span class="type">float</span> x, <span class="type">float</span> y)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.x = x;</span><br><span class="line">        <span class="built_in">this</span>.y = y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>主要绘画代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onDraw</span><span class="params">(Canvas canvas)</span> &#123;</span><br><span class="line">       <span class="comment">//背景网格</span></span><br><span class="line">       drawBackground(canvas);</span><br><span class="line">       <span class="comment">//画四个控制点</span></span><br><span class="line">       drawControllerPoint(canvas);</span><br><span class="line">       <span class="comment">//三阶贝塞尔曲线</span></span><br><span class="line">       Path path2=<span class="keyword">new</span> <span class="title class_">Path</span>();</span><br><span class="line">       BPoint start2=Utils_Berzier.calculateBerzierThree(p0,p1,p2,p3,<span class="number">0</span>);</span><br><span class="line">       path2.moveTo(start2.x,start2.y);</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">float</span> i=<span class="number">0.01f</span>;i&lt;<span class="number">1f</span>;i+=<span class="number">0.01f</span>)&#123;</span><br><span class="line">           BPoint point=Utils_Berzier.calculateBerzierThree(p0,p1,p2,p3,i);</span><br><span class="line">           path2.lineTo(point.x,point.y);</span><br><span class="line">       &#125;</span><br><span class="line">      <span class="comment">// canvas.drawPath(path2,getPathPaint());</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">/**计算p1 p2镜像点位置*/</span></span><br><span class="line">       BPoint p4=calculataImagePoint(p0,p3,p1);</span><br><span class="line">       BPoint p5=calculataImagePoint(p0,p3,p2);</span><br><span class="line">       <span class="comment">//镜像三阶贝塞尔曲线</span></span><br><span class="line">       Path path3=<span class="keyword">new</span> <span class="title class_">Path</span>();</span><br><span class="line">       BPoint start3=Utils_Berzier.calculateBerzierThree(p0,p4,p5,p3,<span class="number">0</span>);</span><br><span class="line">       path3.moveTo(start3.x,start3.y);</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">float</span> i=<span class="number">0.01f</span>;i&lt;<span class="number">1f</span>;i+=<span class="number">0.01f</span>)&#123;</span><br><span class="line">           BPoint point=Utils_Berzier.calculateBerzierThree(p0,p4,p5,p3,i);</span><br><span class="line">           path3.lineTo(point.x,point.y);</span><br><span class="line">       &#125;</span><br><span class="line">       path3.addPath(path2);</span><br><span class="line">       canvas.drawPath(path3,getPathPaint());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>网格背景</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">drawBackground</span><span class="params">(Canvas canvas)</span> &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;getHeight();i+=gridSpace)&#123;</span><br><span class="line">          canvas.drawLine(<span class="number">0</span>,i,getWidth(),i,getBackgroundPaint());</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;getWidth();i+=gridSpace)&#123;</span><br><span class="line">          canvas.drawLine(i,<span class="number">0</span>,i,getHeight(),getBackgroundPaint());</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>画四个控制点,并连线</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">drawControllerPoint</span><span class="params">(Canvas canvas)</span> &#123;</span><br><span class="line">        drawPoint(p0,canvas);</span><br><span class="line">        drawPoint(p1,canvas);</span><br><span class="line">        drawPoint(p2,canvas);</span><br><span class="line">        drawPoint(p3,canvas);</span><br><span class="line">        linePoint(p0,p1,canvas);</span><br><span class="line">        linePoint(p1,p2,canvas);</span><br><span class="line">        linePoint(p2,p3,canvas);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>画点代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">drawPoint</span><span class="params">(BPoint p0, Canvas canvas)</span> &#123;</span><br><span class="line">       canvas.drawCircle( p0.x, p0.y,pointRadius,getPointPaint());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>连线代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">linePoint</span><span class="params">(BPoint p0, BPoint p1, Canvas canvas)</span> &#123;</span><br><span class="line">       canvas.drawLine(p0.x,p0.y,p1.x,p1.y,getPointPaint());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>根据这四个点就可以画出三阶曲线了，画出来的曲线存在path2中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//三阶贝塞尔曲线</span></span><br><span class="line">     Path path2=<span class="keyword">new</span> <span class="title class_">Path</span>();</span><br><span class="line">     BPoint start2=Utils_Berzier.calculateBerzierThree(p0,p1,p2,p3,<span class="number">0</span>);</span><br><span class="line">     path2.moveTo(start2.x,start2.y);</span><br><span class="line">     <span class="keyword">for</span> (<span class="type">float</span> i=<span class="number">0.01f</span>;i&lt;<span class="number">1f</span>;i+=<span class="number">0.01f</span>)&#123;</span><br><span class="line">         BPoint point=Utils_Berzier.calculateBerzierThree(p0,p1,p2,p3,i);</span><br><span class="line">         path2.lineTo(point.x,point.y);</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>查看calculateBerzierThree方法。把这条曲线细分成一百个点，然后连线。这边并没有用android自带的path2.quadTo();path2.cubicTo();这几个方法去实现贝塞尔曲线。而是自己用公式计算，并细分细节。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 三阶贝塞尔曲线</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p0</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p1</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p2</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p3</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> t</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> BPoint <span class="title function_">calculateBerzierThree</span><span class="params">(BPoint p0,BPoint p1,BPoint p2,BPoint p3,<span class="type">float</span> t)</span>&#123;</span><br><span class="line">       BPoint bPoint=<span class="keyword">new</span> <span class="title class_">BPoint</span>();</span><br><span class="line">       bPoint.x=getBerzierThree(p0.x,p1.x,p2.x,p3.x,t);</span><br><span class="line">       bPoint.y=getBerzierThree(p0.y,p1.y,p2.y,p3.y,t);</span><br><span class="line">       <span class="keyword">return</span> bPoint;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>返回是一个不同细节时候的点。在上一层被连接。接着看getBerzierThree代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 三阶贝塞尔曲线</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p0</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p1</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p2</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> p3</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> t</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">float</span> <span class="title function_">getBerzierThree</span><span class="params">(<span class="type">float</span> p0,<span class="type">float</span> p1,<span class="type">float</span> p2,<span class="type">float</span> p3,<span class="type">float</span> t)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> p0*(<span class="number">1</span>-t)*(<span class="number">1</span>-t)*(<span class="number">1</span>-t)+<span class="number">3</span>*p1*t*(<span class="number">1</span>-t)*(<span class="number">1</span>-t)+<span class="number">3</span>*p2*t*t*(<span class="number">1</span>-t)+p3*t*t*t;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>直接就是三阶曲线方程式</p>
+<p>然后返回ondraw方法.因为这样只画出了一半的心形线</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**计算p1 p2镜像点位置*/</span></span><br><span class="line">     BPoint p4=calculataImagePoint(p0,p3,p1);</span><br><span class="line">     BPoint p5=calculataImagePoint(p0,p3,p2);</span><br><span class="line">     <span class="comment">//镜像三阶贝塞尔曲线</span></span><br><span class="line">     Path path3=<span class="keyword">new</span> <span class="title class_">Path</span>();</span><br><span class="line">     BPoint start3=Utils_Berzier.calculateBerzierThree(p0,p4,p5,p3,<span class="number">0</span>);</span><br><span class="line">     path3.moveTo(start3.x,start3.y);</span><br><span class="line">     <span class="keyword">for</span> (<span class="type">float</span> i=<span class="number">0.01f</span>;i&lt;<span class="number">1f</span>;i+=<span class="number">0.01f</span>)&#123;</span><br><span class="line">         BPoint point=Utils_Berzier.calculateBerzierThree(p0,p4,p5,p3,i);</span><br><span class="line">         path3.lineTo(point.x,point.y);</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>p4,p5是分别关于p0,p3直线函数的镜像点。</p>
+<p>查看镜像计算方法calculataImagePoint</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> p0 直线点1</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> p3 直线点2</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> p1 镜像点</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> p1的镜像点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> BPoint <span class="title function_">calculataImagePoint</span><span class="params">(BPoint p0, BPoint p3, BPoint p1)</span> &#123;</span><br><span class="line">        <span class="comment">//计算p0p3直线公式y=ax+b 的ab值</span></span><br><span class="line">        <span class="type">float</span> a=(p0.y-p3.y)/(p0.x-p3.x);</span><br><span class="line">        <span class="type">float</span> b=p0.y-p0.x*a;</span><br><span class="line">        <span class="comment">//根据中点公式，斜率相乘为-1得到一个代数式</span></span><br><span class="line">        BPoint result=<span class="keyword">new</span> <span class="title class_">BPoint</span>();</span><br><span class="line">        result.x=(<span class="number">2</span>*p1.y*a-<span class="number">2</span>*b*a-a*a*p1.x+p1.x)/(<span class="number">1</span>+a*a);</span><br><span class="line">        result.y=p1.y-(result.x-p1.x)/a;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如图注解，就是一个代数式的总结而已。得到的镜像path</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">path3.addPath(path2);</span><br><span class="line">       canvas.drawPath(path3,getPathPaint());</span><br></pre></td></tr></table></figure>
+
+<p>合并并描绘</p>
+<p>再来看控制点触摸监听</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onTouchEvent</span><span class="params">(MotionEvent event)</span> &#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (event.getAction()==MotionEvent.ACTION_DOWN)&#123;<span class="comment">//按下事件</span></span><br><span class="line">           BPoint point=calculatePointArea(event);</span><br><span class="line">           <span class="keyword">if</span> (point!=<span class="literal">null</span>)&#123;<span class="comment">//说明按在控制点上</span></span><br><span class="line">               move=point;</span><br><span class="line">               <span class="keyword">return</span>  <span class="literal">true</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;<span class="keyword">else</span> <span class="keyword">if</span> (event.getAction()==MotionEvent.ACTION_MOVE)&#123;<span class="comment">//移动事件</span></span><br><span class="line">           <span class="keyword">if</span> (move!=<span class="literal">null</span>)&#123;</span><br><span class="line">               move.x=event.getX();</span><br><span class="line">               move.y=event.getY();</span><br><span class="line">               invalidate();</span><br><span class="line">               <span class="keyword">return</span>  <span class="literal">true</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;<span class="keyword">else</span> <span class="keyword">if</span> (event.getAction()==MotionEvent.ACTION_UP)&#123;<span class="comment">//松手</span></span><br><span class="line">           move=<span class="literal">null</span>;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="built_in">super</span>.onTouchEvent(event);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>按下事件计算是否按下四个控制点的其中一个查看calculatePointArea方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 计算按下的点是否在控制点范围内</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> event</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span> 如果在，返回该控制点，不在返回null</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">private</span> BPoint <span class="title function_">calculatePointArea</span><span class="params">(MotionEvent event)</span> &#123;</span><br><span class="line">      <span class="type">float</span> distance=calculatePointDistance(event,p0);</span><br><span class="line">      <span class="keyword">if</span> (distance&lt;=pointRadius)&#123;</span><br><span class="line">          <span class="keyword">return</span> p0;</span><br><span class="line">      &#125;</span><br><span class="line">      distance=calculatePointDistance(event,p1);</span><br><span class="line">      <span class="keyword">if</span> (distance&lt;=pointRadius)&#123;</span><br><span class="line">          <span class="keyword">return</span> p1;</span><br><span class="line">      &#125;</span><br><span class="line">      distance=calculatePointDistance(event,p2);</span><br><span class="line">      <span class="keyword">if</span> (distance&lt;=pointRadius)&#123;</span><br><span class="line">          <span class="keyword">return</span> p2;</span><br><span class="line">      &#125;</span><br><span class="line">      distance=calculatePointDistance(event,p3);</span><br><span class="line">      <span class="keyword">if</span> (distance&lt;=pointRadius)&#123;</span><br><span class="line">          <span class="keyword">return</span> p3;</span><br><span class="line">      &#125;</span><br><span class="line">     <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>两点之间距离计算calculatePointDistance</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">float</span> <span class="title function_">calculatePointDistance</span><span class="params">(MotionEvent event, BPoint p0)</span> &#123;</span><br><span class="line">       <span class="type">float</span> result= (<span class="type">float</span>) Math.sqrt((event.getX()-p0.x)*(event.getX()-p0.x)+(event.getY()-p0.y)*(event.getY()-p0.y));</span><br><span class="line">       <span class="keyword">return</span> result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后move事件不断重新更新被按下的控制点的坐标重绘整个界面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (move!=<span class="literal">null</span>)&#123;</span><br><span class="line">              move.x=event.getX();</span><br><span class="line">              move.y=event.getY();</span><br><span class="line">              invalidate();</span><br><span class="line">              <span class="keyword">return</span>  <span class="literal">true</span>;</span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure>
+
+<p>完结。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/11/23/%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E5%AD%A6%E4%B9%A0/" data-id="cmtm76elg00e2sy4xb6w79lct" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java形参和实参" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/17/java%E5%BD%A2%E5%8F%82%E5%92%8C%E5%AE%9E%E5%8F%82/" class="article-date">
+  <time datetime="2017-11-17T14:00:00.000Z" itemprop="datePublished">2017-11-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/17/java%E5%BD%A2%E5%8F%82%E5%92%8C%E5%AE%9E%E5%8F%82/">JAVA形参和实参</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://dailycast.github.io/Java-%E5%BD%A2%E5%8F%82%E4%B8%8E%E5%AE%9E%E5%8F%82/">参考原文</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainDe</span> &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//int swap</span></span><br><span class="line">		<span class="type">int</span> a=<span class="number">1</span>,b=<span class="number">2</span>;</span><br><span class="line">		swapInt(a,b);</span><br><span class="line">		System.out.println(<span class="string">&quot;a=&quot;</span>+a+<span class="string">&quot; b=&quot;</span>+b);</span><br><span class="line">		<span class="comment">//integer swap</span></span><br><span class="line">		Integer c=<span class="number">1</span>,d=<span class="number">2</span>;</span><br><span class="line">		swapInteger(c,d);</span><br><span class="line">		System.out.println(<span class="string">&quot;c=&quot;</span>+c+<span class="string">&quot; d=&quot;</span>+d);</span><br><span class="line">		<span class="comment">//object swap</span></span><br><span class="line">		A e=<span class="keyword">new</span> <span class="title class_">A</span>(<span class="number">1</span>);</span><br><span class="line">		A f=<span class="keyword">new</span> <span class="title class_">A</span>(<span class="number">2</span>);</span><br><span class="line">		swapObj(e,f);</span><br><span class="line">		System.out.println(<span class="string">&quot;e=&quot;</span>+e.age+<span class="string">&quot; f=&quot;</span>+f.age);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swapObj</span><span class="params">(A e, A f)</span> &#123;</span><br><span class="line">		<span class="type">int</span> temp=e.age;</span><br><span class="line">		e.age=f.age;</span><br><span class="line">		f.age=temp;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swapInteger</span><span class="params">(Integer c, Integer d)</span> &#123;</span><br><span class="line">		Integer temp=c;</span><br><span class="line">		c=d;</span><br><span class="line">		d=temp;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swapInt</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">		<span class="type">int</span> temp=a;</span><br><span class="line">		a=b;</span><br><span class="line">		b=temp;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line">		A(<span class="type">int</span> age)&#123;</span><br><span class="line">			<span class="built_in">this</span>.age=age;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">public</span> <span class="type">int</span> age;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行后答案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=1 b=2</span><br><span class="line">c=1 d=2</span><br><span class="line">e=2 f=1</span><br></pre></td></tr></table></figure>
+
+
+
+<p>基本数据类型在传递的时候都是传值，而对象都是传址。</p>
+<h5 id="swapInt-a-b"><a href="#swapInt-a-b" class="headerlink" title="swapInt a b"></a>swapInt a b</h5><p>这个方法只是把main方法的两个ab的值传递给swapInt的两个形参，而main方法的ab始终指向12；swapInt是不可能改变main里面的ab的值的。</p>
+<h5 id="swapInteger-cd"><a href="#swapInteger-cd" class="headerlink" title="swapInteger cd"></a>swapInteger cd</h5><p>Integer是对象，传递给swapInteger的是cd指向的两个地址，然而swapInteger 方法中的形参地址指向的改变，依然不能影响main方法中的cd引用的地址。</p>
+<h5 id="swapObj-ef"><a href="#swapObj-ef" class="headerlink" title="swapObj  ef"></a>swapObj  ef</h5><p>还是传地址，main方法中的ef指向的空间地址，swapObj  更改的事这个空间地址内部的某一个变量的值，这时候main方法指向的空间还是不变，但是里面的变量值却被改变了。所以是会影响到main的</p>
+<p>因为Integer是对象，所以按道理是可以让swapInteger 方法影响到main的。所以原博文提供了一个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(Integer numa, Integer numb)</span> &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> numa.intValue();<span class="comment">//tmp 定义为基本数据类型</span></span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           <span class="type">Field</span> <span class="variable">field</span> <span class="operator">=</span> Integer.class.getDeclaredField(<span class="string">&quot;value&quot;</span>);</span><br><span class="line">           field.setAccessible(<span class="literal">true</span>);</span><br><span class="line">           field.set(numa, numb);<span class="comment">//这个时候并不改变 tmp 的值</span></span><br><span class="line">           field.set(numb, tmp);</span><br><span class="line">       &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个对象空间有一个value的字段里面直接存的是int的值。把它改了就可以了。</p>
+<p>然后原文还介绍了Integer装箱的缓存，缓存的字符在-128到127之间。就是说上面呢这个方法要百分百灵敏，要么不使用自动装箱，要么自动装箱的值要超过缓存范围。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/11/17/java%E5%BD%A2%E5%8F%82%E5%92%8C%E5%AE%9E%E5%8F%82/" data-id="cmtm76ekl00bdsy4x5opv2zsu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java字节码" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/16/java%E5%AD%97%E8%8A%82%E7%A0%81/" class="article-date">
+  <time datetime="2017-11-16T09:00:58.000Z" itemprop="datePublished">2017-11-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/16/java%E5%AD%97%E8%8A%82%E7%A0%81/">学习java字节码</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://juejin.im/entry/58cf583c2f301e007e52d95f">学习原文链接</a></p>
+<p>写一个Demo.java代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="type">int</span> aa=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">testMethod</span><span class="params">()</span>&#123;</span><br><span class="line">		<span class="comment">//do nothing</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行javac Demo.java后，查看Demo.class文件，得到如下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">cafe babe 0000 0034 0012 0a00 0400 0e09</span><br><span class="line">0003 000f 0700 1007 0011 0100 0261 6101</span><br><span class="line">0001 4901 0006 3c69 6e69 743e 0100 0328</span><br><span class="line">2956 0100 0443 6f64 6501 000f 4c69 6e65</span><br><span class="line">4e75 6d62 6572 5461 626c 6501 000a 7465</span><br><span class="line">7374 4d65 7468 6f64 0100 0a53 6f75 7263</span><br><span class="line">6546 696c 6501 0009 4465 6d6f 2e6a 6176</span><br><span class="line">610c 0007 0008 0c00 0500 0601 0004 4465</span><br><span class="line">6d6f 0100 106a 6176 612f 6c61 6e67 2f4f</span><br><span class="line">626a 6563 7400 2100 0300 0400 0000 0100</span><br><span class="line">0200 0500 0600 0000 0200 0100 0700 0800</span><br><span class="line">0100 0900 0000 2600 0200 0100 0000 0a2a</span><br><span class="line">b700 012a 04b5 0002 b100 0000 0100 0a00</span><br><span class="line">0000 0a00 0200 0000 0100 0400 0200 0000</span><br><span class="line">0b00 0800 0100 0900 0000 1900 0000 0100</span><br><span class="line">0000 01b1 0000 0001 000a 0000 0006 0001</span><br><span class="line">0000 0005 0001 000c 0000 0002 000d </span><br></pre></td></tr></table></figure>
+
+<p>盗图-&gt; <img src="https://user-gold-cdn.xitu.io/2017/3/20/7c6ee3a5ab7e10036b4f7a059dfd8ccd?imageView2/0/w/1280/h/960/ignore-error/1" alt="格式图"></p>
+<ul>
+<li><p>都是十六进制的东西，前面四个字节为魔数，值固定为0xcafe babe</p>
+</li>
+<li><p>接下来2+2个字节，为java版本号，0000是次版本号，0034是主版本号，0034转成十进制为52，对应1.8.0</p>
+</li>
+<li><p>接下来2+n字节为常量池，常量池包括字面量和符号引用。0012代表常量池的数量，十进制表示就是有17个。其中0项保留。</p>
+<p>盗图-&gt; <img src="https://user-gold-cdn.xitu.io/2017/3/20/1033aafa9504be8a60af21a20e0a6572?imageView2/0/w/1280/h/960/ignore-error/1" alt="常量类型表"></p>
+<p>0012代表常量池的数量，从这个表明class的常量池最大长度为65535，我也试过，当变量声明为7w个的时候，编译会报常量过多的错误。</p>
+</li>
+<li><p>常量1：对照上表，接下第一个是U1类型的数据代表常量，分析0a，转化成十进制为10，查表可知道是MethodRef_info；从表格可以得知接下来是一个U2，表明方法的类描述符的索引（即0004十进制4），然后是世象名称及类型性描述符（即CONSTANT_NameAndType_info索引000e，十进制14）</p>
+</li>
+<li><p>常量2，Tag（09，十进制09）查表可知是CONSTANT_Fieldref_info（然后是CONTANT_Class_info索引0003），CONTANT_NameAndType_info(000f,十进制16)</p>
+</li>
+<li><p>常量3（0700 10），Tag(07,CONSTANT_Class_info),全限定名常量项索引（0010）</p>
+</li>
+<li><p>常量4（07 0011），Tag(07,CONSTANT_Class_info),全限定名常量项索引（0011）</p>
+</li>
+<li><p>常量5（0100 026161），Tag(01,CONTANT_Utf8_info),UTF-8长度（length：0002），长度为length的UTF-8字符串（61就是ASCII的‘a’），因为长度为2，所以还有一个61，即‘a’;(从这里可以看出，变量名的命名长度最长不能超过两字节)</p>
+</li>
+<li><p>常量6（010001 49）,Tag(01,CONTANT_Utf8_info),length：1，值：49即“l”</p>
+</li>
+<li><p>常量7（01 0006 3c69 6e69 743e），Tag(01)，length：0006；字符（3c-&gt;’&lt;’）(69-&gt;’i’)(6e-&gt;’n’)(69-&gt;’i’)(74-&gt;’t’)(3e-&gt;’&gt;’)合起来就是‘<init>’;具体都是查ASCALL表得到的</p>
+</li>
+<li><p>常量8（0100 0328 2956），TAG(01),length：0003，字符：（28-&gt;’(‘）(29-&gt;’)’)(56-&gt;’V’),合起来就是()V</p>
+</li>
+<li><p>常量9 （0100 0443 6f64 65）TAG(01)，length：0004，字符43-&gt;’C’;6f-&gt;’o’;64-&gt;’d’;65-&gt;’e’;合起来Code</p>
+</li>
+<li><p>常量10（01 000f 4c69 6e65 4e75 6d62 6572 5461 62 6c65），TAG(01),length：15.最后合起来是‘LineNumberTable</p>
+</li>
+<li><p>常量11 略~</p>
+</li>
+<li><p>省略翻译部分常量，当常量都完了之后，进入00 21</p>
+<p>盗图-&gt;<img src="https://user-gold-cdn.xitu.io/2017/3/20/7a45f63f077133c0d0ed86d8928dbb45?imageView2/0/w/1280/h/960/ignore-error/1" alt="标志位"></p>
+<p>​</p>
+</li>
+</ul>
+<p>0021说是0020和0001的并集。所以声明为public类型，。。。</p>
+<p>0003类索引引用第三个常量，这两第三个常量引用16常量。最后定位为包名</p>
+<p>等等。大概了解到这里就够了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/11/16/java%E5%AD%97%E8%8A%82%E7%A0%81/" data-id="cmtm76ekl00bfsy4x211qg8kx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/" rel="tag">code</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-DNS认识" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/15/DNS%E8%AE%A4%E8%AF%86/" class="article-date">
+  <time datetime="2017-11-15T12:00:58.000Z" itemprop="datePublished">2017-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/15/DNS%E8%AE%A4%E8%AF%86/">认识DNS</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="域名系统（Domain-Name-System）"><a href="#域名系统（Domain-Name-System）" class="headerlink" title="域名系统（Domain Name System）"></a>域名系统（Domain Name System）</h4><h5 id="根域名服务器"><a href="#根域名服务器" class="headerlink" title="根域名服务器"></a>根域名服务器</h5><p>域名系统是分布式的。根域名服务器是最高层次的域名服务器。他知道所偶有顶级域名服务器的域名和IP地址。如果根域名服务器瘫痪了，那么整个DNS将无法工作，在因特网上共有十三个不同IP地址的根域名服务器。他们的名字是用一个英文字母命名。从a到m。分别是a.rootservers.net, …, m.rootservers.net。但是这并不是说只有十三个机器。而是十三套装置。根域名服务器并不是直接把待查询的域名直接转换成IP地址。而是告诉本地域名服务器下一步应该找哪个顶级域名服务器进行查询。</p>
+<h5 id="顶级域名服务器"><a href="#顶级域名服务器" class="headerlink" title="顶级域名服务器"></a>顶级域名服务器</h5><p>即TLD服务器，这些域名服务器负责管理在该顶级域名服务器注册的所有二级域名，当收到DNS查询情趣，就该出相应的回答。</p>
+<h5 id="权限域名服务器"><a href="#权限域名服务器" class="headerlink" title="权限域名服务器"></a>权限域名服务器</h5><p>这是负责一个区的域名服务器，当一个权限域名服务器还不能给出最后的查询回答时，就告诉DNS客户下一步改找哪个权限域名服务器。</p>
+<h5 id="本地域名服务器"><a href="#本地域名服务器" class="headerlink" title="本地域名服务器"></a>本地域名服务器</h5><p>当主机发出NDS查询请求时，这个查询清秀报文就发送给本地域名服务器。每一个因特网服务提供者ISP或者一个大学都可以拥有一个本地域名服务器。这种域名服务器也称为默认域名服务器。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yeqinfu.github.io/2017/11/15/DNS%E8%AE%A4%E8%AF%86/" data-id="cmtm76ek7009osy4xettsh2g5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/" rel="tag">network</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/16/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/18/">__(&#39;next&#39;) &amp;raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jenkins/" rel="tag">Jenkins</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetpack/" rel="tag">Jetpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/about-life/" rel="tag">about life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block-chain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/code/" rel="tag">code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cryptography/" rel="tag">cryptography</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/" rel="tag">network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/" rel="tag">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" rel="tag">新闻摘要</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" rel="tag">新闻摘要, 深度阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" rel="tag">新闻摘要,深度阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%AD%E7%94%B5/" rel="tag">杭电</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Jenkins/" style="font-size: 11.43px;">Jenkins</a> <a href="/tags/Jetpack/" style="font-size: 11.43px;">Jetpack</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/about-life/" style="font-size: 10px;">about life</a> <a href="/tags/android/" style="font-size: 15.71px;">android</a> <a href="/tags/block-chain/" style="font-size: 17.14px;">block chain</a> <a href="/tags/block-chain/" style="font-size: 10px;">block-chain</a> <a href="/tags/code/" style="font-size: 18.57px;">code</a> <a href="/tags/cryptography/" style="font-size: 12.86px;">cryptography</a> <a href="/tags/network/" style="font-size: 12.86px;">network</a> <a href="/tags/note/" style="font-size: 10px;">note</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81/" style="font-size: 20px;">新闻摘要</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" style="font-size: 11.43px;">新闻摘要, 深度阅读</a> <a href="/tags/%E6%96%B0%E9%97%BB%E6%91%98%E8%A6%81-%E6%B7%B1%E5%BA%A6%E9%98%85%E8%AF%BB/" style="font-size: 10px;">新闻摘要,深度阅读</a> <a href="/tags/%E6%9D%AD%E7%94%B5/" style="font-size: 14.29px;">杭电</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 11.43px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/09/">September 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/08/">August 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/07/">July 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/06/">June 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/09/04/index/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/09/04/2026-09-04-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-09-04（周五）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/09/03/2026-09-03-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-09-03（周四）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/09/02/2026-09-02-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-09-02（周三）</a>
+          </li>
+        
+          <li>
+            <a href="/2026/09/01/2026-09-01-%E6%AF%8F%E6%97%A5%E6%96%B0%E9%97%BB/">每日新闻 2026-09-01（周二）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Vencent learn coding<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
